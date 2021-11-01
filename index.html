@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/petite-vue"></script>
+    <script src="https://unpkg.com/moment@2.29.1/moment.js"></script>
+    <script type="module" src="scheduleFormatting.js"></script>
+    <script type="module" src="petiteVue.js"></script>
+    <!-- <script type="module" src="JSONRequest.js"></script> -->
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Niramit:300,regular,500,600"
+      rel="stylesheet"
+    />
+    <title>19min. | LCHS Go</title>
+  </head>
+  <body class="body">
+    <div class="background"></div>
+    <div class="app-container" v-scope>
+      <div class="header">
+        <div class="navigation">
+          <div @click="switchToNowPage()" class="nav-button" v-bind:class="{'selected': currentPage == 'now'}">
+            NOW
+          </div>
+          <div @click="switchToCalendarPage()" class="nav-button" v-bind:class="{'selected': currentPage == 'calendar'}">
+            CALENDAR
+          </div>
+          <div @click="switchToSettingsPage()" class="nav-button" v-bind:class="{'selected': currentPage == 'settings'}">
+            SETTINGS
+          </div>
+        </div>
+      </div>
+      <div id="now-page" v-if="currentPage == 'now'">
+        <div class="todays-schedule">
+          Good afternoon. Today is regular schedule.
+        </div>
+        <div class="schedule-container">
+          <div class="period-information">
+            <div class="progress-bar">
+              <div class="circle"></div>
+              <div class="circle moving"></div>
+              <div class="vertical-bar"></div>
+              <div class="circle"></div>
+            </div>
+            <div class="period-information-content" v-if="currentPeriod() != null">
+              <div class="start-time">{{ currentPeriod().getStart() }}</div>
+              <div class="time-left">
+                <div class="divider-bar" style="margin-bottom: 10px;"></div>
+                <div class="time-left-group">
+                  <div class="details-name">Lunch</div>
+                  <div class="time-left-text">
+                    <span class="time-left-number">{{  }}</span> min. until period
+                    ends
+                  </div>
+                  <div class="time-left-percent">(37% completed)</div>
+                </div>
+                <div class="divider-bar" style="margin-top: 20px;"></div>
+              </div>
+              <div class="end-time">12 : 54 PM</div>
+            </div>
+          </div>
+          <div class="all-periods">
+            <div class="periods-header">
+              <div class="period-name">
+                <div class="period-header-text">Period</div>
+              </div>
+              <div class="period-header-text">Start</div>
+              <div class="period-header-text">End</div>
+            </div>
+            <div class="period" v-bind:class="{ current: isCurrent() }" v-for="period in formattedJSON" v-scope="PeriodComponent({ name: period.name, start: period.start, end: period.end })">
+              <div class="period-name">
+                <div class="period-details">{{ name }}</div>
+              </div>
+              <div class="period-details">{{ getStart() }}</div>
+              <div class="period-details">{{ getEnd() }}</div>
+            </div>
+            
+            <!-- <div class="period-details-small">
+              <div class="period-information-content">
+                <div class="start-time">12 : 19 PM</div>
+                <div class="time-left">
+                  <div class="divider-bar"></div>
+                  <div class="time-left-group">
+                    <div class="details-name">Lunch</div>
+                    <div class="time-left-text">
+                      <span class="time-left-number">19</span> min. until
+                      period ends
+                    </div>
+                    <div class="time-left-percent">(37% completed)</div>
+                  </div>
+                  <div class="divider-bar"></div>
+                </div>
+                <div class="end-time">12 : 54 PM</div>
+              </div>
+            </div> -->
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

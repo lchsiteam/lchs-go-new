@@ -1,0 +1,384 @@
+* {
+  box-sizing: border-box;
+}
+.body {
+  font-family: "Niramit", sans-serif;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+.app-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100vh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+.background {
+  position: fixed;
+  left: 0%;
+  top: 0%;
+  right: 0%;
+  bottom: 0%;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+  background-color: #466272;
+}
+.header {
+  margin-bottom: 30px;
+}
+.navigation {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.todays-schedule {
+  margin-bottom: 30px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+}
+.schedule-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: stretch;
+}
+.period-information {
+  position: relative;
+  left: -24px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 300px;
+  margin-right: 10px;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+.all-periods {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 450px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+.nav-button {
+  margin-right: 15px;
+  margin-left: 15px;
+  padding: 5px 10px;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.nav-button:hover {
+  background-color: rgba(122, 154, 173, 0.65);
+}
+.nav-button.selected {
+  background-color: rgba(26, 66, 88, 0.65);
+}
+.periods-header {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 40px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.25);
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+}
+.period {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 40px;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.period.list-odd {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.period.current {
+  position: relative;
+  left: -12px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  background-color: rgba(0, 0, 0, 0.25);
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+}
+.period-details {
+  color: #fff;
+  font-weight: 300;
+}
+.period-name {
+  width: 140px;
+}
+.period-header-text {
+  color: #fff;
+  font-weight: 500;
+}
+.progress-bar {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.period-information-content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+.start-time {
+  height: 25%;
+  color: #5988a3;
+  font-size: 21px;
+  line-height: 62px;
+  font-weight: 600;
+  text-align: center;
+}
+.time-left {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.end-time {
+  height: 25%;
+  color: #5988a3;
+  font-size: 21px;
+  line-height: 62px;
+  font-weight: 600;
+  text-align: center;
+}
+.details-name {
+  color: #fff;
+  font-size: 35px;
+  font-weight: 600;
+  text-align: center;
+}
+.time-left-text {
+  margin-top: 15px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 400;
+}
+.time-left-number {
+  font-size: 35px;
+  font-weight: 600;
+}
+.time-left-percent {
+  color: #fff;
+  font-weight: 400;
+}
+.divider-bar {
+  width: 150px;
+  border-top: 2px solid hsla(0, 0%, 100%, 0.25);
+}
+.circle {
+  width: 20px;
+  height: 20px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: hsla(0, 0%, 100%, 0.25);
+  border-radius: 50%;
+}
+.circle.moving {
+  position: absolute;
+  top: 37%;
+  width: 10px;
+  height: 10px;
+  background-color: #344955;
+}
+.vertical-bar {
+  width: 1px;
+  height: 100%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: hsla(0, 0%, 100%, 0.25);
+}
+.period-details-small {
+  display: none;
+}
+.time-left-group {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+@media screen and (max-width: 991px) {
+  .period-information {
+    left: -22px;
+  }
+  .all-periods {
+    width: 400px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .schedule-container {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+  .period-information {
+    display: none;
+  }
+  .period.current {
+    left: 0px;
+    display: none;
+  }
+  .period-details-small {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    height: auto;
+    margin-top: 13px;
+    margin-bottom: 13px;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    background-color: rgba(0, 0, 0, 0.25);
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  .period-details-small.current {
+    left: 0px;
+    display: none;
+  }
+}
+@media screen and (max-width: 479px) {
+  .all-periods {
+    width: 315px;
+  }
+  .nav-button {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+}

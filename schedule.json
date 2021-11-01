@@ -1,0 +1,90 @@
+{
+  "version": 8,
+  "defaults": {
+    "0": "NONE",
+    "1": "REGULAR",
+    "2": "REGULAR",
+    "3": "BLOCK_ODD",
+    "4": "BLOCK_EVEN",
+    "5": "REGULAR",
+    "6": "NONE"
+  },
+  "languages": {
+    "ENGLISH": {
+      "PERIOD_0": "Period 0",
+      "PERIOD_1": "Period 1",
+      "PERIOD_2": "Period 2",
+      "PERIOD_3": "Period 3",
+      "PERIOD_4": "Period 4",
+      "PERIOD_5": "Period 5",
+      "PERIOD_6": "Period 6",
+      "BREAK": "Break",
+      "LUNCH": "Lunch",
+      "REGULAR": "Regular",
+      "BLOCK_ODD": "Block Day (odd)",
+      "BLOCK_EVEN": "Block Day (even)",
+      "NOW": "NOW",
+      "CALENDAR": "CALENDAR",
+      "MORNING": "Good Morning.",
+      "TODAY_IS": "Today is {} schedule.",
+      "PERCENT_COMPLETED": "({}% completed)"
+    }
+  },
+  "overrides": {
+    "6/4/6323": "REGULAR"
+  },
+  "dateRanges": {
+    "summerBreak": ["6/3/2022", "08/16/22"],
+    "winterBreak": ["12/18/2021", "01/02/2022"],
+    "springBreak": [],
+    "thanksgivingBreak": []
+  },
+  "gradeLevels": {
+    "7/8": {
+      "REGULAR": {
+        "PERIOD_0": ["07:28 AM", "08:24 AM"],
+        "PERIOD_1": ["08:30 AM", "09:26 AM"],
+        "PERIOD_2": ["09:32 AM", "10:28 AM"],
+        "BREAK":    ["10:28 AM", "10:38 AM"],
+        "PERIOD_3": ["10:43 AM", "11:39 AM"],
+        "PERIOD_4": ["11:45 AM", "12:41 PM"],
+        "LUNCH":    ["12:41 PM", "01:11 PM"],
+        "PERIOD_5": ["01:16 PM", "02:12 PM"],
+        "PERIOD_6": ["02:18 PM", "03:14 PM"]
+      }
+    },
+    "highSchool": {
+      "REGULAR": {
+        "PERIOD_0": ["07:28 AM", "08:24 AM"],
+        "PERIOD_1": ["08:30 AM", "09:26 AM"],
+        "PERIOD_2": ["09:32 AM", "10:28 AM"],
+        "BREAK":    ["10:28 AM", "10:38 AM"],
+        "PERIOD_3": ["10:43 AM", "11:39 AM"],
+        "LUNCH":    ["11:39 AM", "12:09 PM"],
+        "PERIOD_4": ["12:14 PM", "01:10 PM"],
+        "PERIOD_5": ["01:16 PM", "02:12 PM"],
+        "PERIOD_6": ["02:18 PM", "03:14 PM"]
+      },
+      "BLOCK_ODD": {
+        "PERIOD_0": ["7:28", "8:24"],
+        "PERIOD_1": ["8:30", "10:14"],
+        "BREAK": ["10:14", "10:24"],
+        "PERIOD_3": ["10:29", "12:13"],
+        "STEP_ODD": ["12:19", "12:54"],
+        "LUNCH": ["12:54", "1:24"],
+        "PERIOD_5": ["1:29", "3:13"]
+      },
+      "BLOCK_EVEN": {
+        "PERIOD_0": ["7:28", "8:24"],
+        "PERIOD_2": ["8:30", "10:14"],
+        "BREAK": ["10:14", "10:24"],
+        "PERIOD_4": ["10:29", "12:13"],
+        "STEP_EVEN": ["12:19", "12:54"],
+        "LUNCH": ["12:54", "01:24"],
+        "PERIOD_6": ["1:29", "3:13"]
+      },
+      "ASSEMBLY": {}
+    },
+    "all": {}
+  }
+}
