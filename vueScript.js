@@ -15,7 +15,18 @@ function switchToSettingsPage() {
   this.currentPage = "settings";
 }
 
+function startTimer() {
+  console.log("STARt");
+  setInterval(boop(), 5);
+}
+
+function boop() {
+  console.log("boop!");
+}
+
 var currentPeriod = null;
+var periodList = formattedJSON.map(p => { return PeriodComponent(p.name, p.start, p.end, p.passing) });
+periodList.forEach(p => p.isCurrent());
 
 PetiteVue.createApp({
   //Components
@@ -23,24 +34,32 @@ PetiteVue.createApp({
 
   //Variables
   currentPage,
-  currentPeriod() {
-    return currentPeriod;
+  periodList,
+  listCount: 0,
+  getListCount() {
+    this.listCount++;
+    return this.listCount % 2 == 0;
   },
-  formattedJSON,
+  currentPeriod,
+  timeLeft: currentPeriod.end.diff(moment(), 'minutes') + 1,
+  percentCompleted() {
+    return Math.trunc(100 - this.timeLeft / currentPeriod.end.diff(currentPeriod.start, 'minutes') * 100);
+  },
 
   //Functions
   switchToNowPage,
   switchToCalendarPage,
-  switchToSettingsPage
+  switchToSettingsPage,
+  startTimer
 }).mount();
 
-function PeriodComponent(props) {
+function PeriodComponent(setName, setStart, setEnd, setPassing) {
   return {
-    name: props.name,
-    start: moment(props.start, "hh:mm aa"), //formats from the json
-    end: moment(props.end, "hh:mm aa"),
+    name: setName,
+    start: moment(setStart, "hh:mm aa"), //formats from the json
+    end: moment(setEnd, "hh:mm aa"),
+    passing: setPassing,
     isCurrent() {
-      console.log(currentPeriod);
       var now = moment();
       if (this.start < now && now < this.end) {
         currentPeriod = this;
@@ -48,11 +67,17 @@ function PeriodComponent(props) {
       }
       return false;
     },
+    getName() {
+      return this.name;
+    },
     getStart() {
       return this.start.format(timeFormat);
     },
     getEnd() {
       return this.end.format(timeFormat);
+    },
+    isPassing() {
+      return this.passing;
     }
   };
 }

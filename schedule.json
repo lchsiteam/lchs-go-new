@@ -1,5 +1,5 @@
 {
-  "version": 8,
+  "version": 9,
   "defaults": {
     "0": "NONE",
     "1": "REGULAR",
@@ -18,6 +18,7 @@
       "PERIOD_4": "Period 4",
       "PERIOD_5": "Period 5",
       "PERIOD_6": "Period 6",
+      "PASSING_BEFORE": "Passing before",
       "BREAK": "Break",
       "LUNCH": "Lunch",
       "REGULAR": "Regular",

@@ -175,7 +175,7 @@
   font-weight: 300;
 }
 .period-name {
-  width: 140px;
+  width: 50%;
 }
 .period-header-text {
   color: #fff;
@@ -222,10 +222,11 @@
 .start-time {
   height: 25%;
   color: #5988a3;
-  font-size: 21px;
+  font-size: 25px;
   line-height: 62px;
   font-weight: 600;
   text-align: center;
+  letter-spacing: 2px;
 }
 .time-left {
   display: -webkit-box;
@@ -250,10 +251,11 @@
 .end-time {
   height: 25%;
   color: #5988a3;
-  font-size: 21px;
+  font-size: 25px;
   line-height: 62px;
   font-weight: 600;
   text-align: center;
+  letter-spacing: 2px;
 }
 .details-name {
   color: #fff;
@@ -289,7 +291,6 @@
 }
 .circle.moving {
   position: absolute;
-  top: 37%;
   width: 10px;
   height: 10px;
   background-color: #344955;

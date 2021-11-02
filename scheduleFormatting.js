@@ -28,13 +28,22 @@ export function getSchedule(date) {
 
   //add passing periods
 
+  var previousEnd;
   if (storage.grade >= 9) {
     Object.keys(scheduleJSON.gradeLevels.highSchool[scheduleType]).forEach(period => {
       formattedJSON.push({
+        name: translate("PASSING_BEFORE") + " " + translate(period),
+        start: previousEnd,
+        end: scheduleJSON.gradeLevels.highSchool[scheduleType][period][0],
+        passing: true
+      });
+      formattedJSON.push({
         name: translate(period),
         start: scheduleJSON.gradeLevels.highSchool[scheduleType][period][0],
-        end: scheduleJSON.gradeLevels.highSchool[scheduleType][period][1]
+        end: scheduleJSON.gradeLevels.highSchool[scheduleType][period][1],
+        passing: false
       });
+      previousEnd = scheduleJSON.gradeLevels.highSchool[scheduleType][period][1];
     });
   }
 }
