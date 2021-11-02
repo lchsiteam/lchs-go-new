@@ -22,7 +22,6 @@ PetiteVue.createApp({
   PeriodComponent,
 
   //Variables
-  timeRemaining,
   currentPage,
   currentPeriod() {
     return currentPeriod;
