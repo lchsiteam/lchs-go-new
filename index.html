@@ -33,7 +33,7 @@
       </div>
       <div id="now-page" v-if="currentPage == 'now'">
         <div class="todays-schedule">
-          Good afternoon. Today is regular schedule.
+          Good afternoon. Today is regular {{ scheduleType }}
         </div>
         <div class="schedule-container">
           <div class="period-information">
@@ -50,7 +50,7 @@
                 <div class="time-left-group">
                   <div class="details-name">{{ currentPeriod.getName() }}</div>
                   <div class="time-left-text">
-                    <span class="time-left-number" @mounted="startTimer()">{{ timeLeft }}</span> 
+                    <span class="time-left-number" @mounted="startTimer()" v-effect="$el.textContent = timeLeft"></span> 
                     min. until period ends
                   </div>
                   <div class="time-left-percent">({{ percentCompleted() }}% completed)</div>

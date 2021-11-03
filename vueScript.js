@@ -1,8 +1,8 @@
-import { formattedJSON } from "./scheduleFormatting.js";
+import { formattedJSON, scheduleType } from "./scheduleFormatting.js";
 import { storage } from "./storage.js";
 
 //stores the user preference for how they display time
-var timeFormat = (storage.twentyFourHour ? "HH" : "h") + ":mm" + (storage.showAMPM ? " aa" : "");
+var timeFormat = (storage.twentyFourHour ? "HH" : "h") + ":mm" + (storage.showAMPM ? " A" : "");
 var currentPage = "now";
 
 function switchToNowPage() {
@@ -13,15 +13,6 @@ function switchToCalendarPage() {
 }
 function switchToSettingsPage() {
   this.currentPage = "settings";
-}
-
-function startTimer() {
-  console.log("STARt");
-  setInterval(boop(), 5);
-}
-
-function boop() {
-  console.log("boop!");
 }
 
 var currentPeriod = null;
@@ -35,6 +26,7 @@ PetiteVue.createApp({
   //Variables
   currentPage,
   periodList,
+  scheduleType,
   listCount: 0,
   getListCount() {
     this.listCount++;
@@ -50,14 +42,18 @@ PetiteVue.createApp({
   switchToNowPage,
   switchToCalendarPage,
   switchToSettingsPage,
-  startTimer
+  startTimer() { 
+    setInterval(() => {
+      this.timeLeft = currentPeriod.end.diff(moment(), 'minutes') + 1;
+      }, 5000)
+  }
 }).mount();
 
 function PeriodComponent(setName, setStart, setEnd, setPassing) {
   return {
     name: setName,
-    start: moment(setStart, "hh:mm aa"), //formats from the json
-    end: moment(setEnd, "hh:mm aa"),
+    start: moment(setStart, "hh:mm A"), //formats from the json
+    end: moment(setEnd, "hh:mm A"),
     passing: setPassing,
     isCurrent() {
       var now = moment();

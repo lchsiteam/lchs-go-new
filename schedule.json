@@ -1,5 +1,5 @@
 {
-  "version": 9,
+  "version": 11,
   "defaults": {
     "0": "NONE",
     "1": "REGULAR",
@@ -24,6 +24,8 @@
       "REGULAR": "Regular",
       "BLOCK_ODD": "Block Day (odd)",
       "BLOCK_EVEN": "Block Day (even)",
+      "STEP_ODD": "STEP (odd)",
+      "STEP_EVEN": "STEP (even)",
       "NOW": "NOW",
       "CALENDAR": "CALENDAR",
       "MORNING": "Good Morning.",
@@ -67,22 +69,22 @@
         "PERIOD_6": ["02:18 PM", "03:14 PM"]
       },
       "BLOCK_ODD": {
-        "PERIOD_0": ["7:28", "8:24"],
-        "PERIOD_1": ["8:30", "10:14"],
-        "BREAK": ["10:14", "10:24"],
-        "PERIOD_3": ["10:29", "12:13"],
-        "STEP_ODD": ["12:19", "12:54"],
-        "LUNCH": ["12:54", "1:24"],
-        "PERIOD_5": ["1:29", "3:13"]
+        "PERIOD_0": ["07:28 AM", "08:24 AM"],
+        "PERIOD_1": ["08:30 AM", "10:14 AM"],
+        "BREAK":    ["10:14 AM", "10:24 AM"],
+        "PERIOD_3": ["10:29 AM", "12:13 PM"],
+        "STEP_ODD": ["12:19 PM", "12:54 PM"],
+        "LUNCH":    ["12:54 PM", "01:24 PM"],
+        "PERIOD_5": ["01:29 PM", "03:13 PM"]
       },
       "BLOCK_EVEN": {
-        "PERIOD_0": ["7:28", "8:24"],
-        "PERIOD_2": ["8:30", "10:14"],
-        "BREAK": ["10:14", "10:24"],
-        "PERIOD_4": ["10:29", "12:13"],
-        "STEP_EVEN": ["12:19", "12:54"],
-        "LUNCH": ["12:54", "01:24"],
-        "PERIOD_6": ["1:29", "3:13"]
+        "PERIOD_0": ["07:28 AM", "08:24 AM"],
+        "PERIOD_2": ["08:30 AM", "10:14 AM"],
+        "BREAK":    ["10:14 AM", "10:24 AM"],
+        "PERIOD_4": ["10:29 AM", "12:13 PM"],
+        "STEP_EVEN":["12:19 PM", "12:54 PM"],
+        "LUNCH":    ["12:54 PM", "01:24 PM"],
+        "PERIOD_6": ["01:29 PM", "03:13 PM"]
       },
       "ASSEMBLY": {}
     },

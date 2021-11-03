@@ -15,10 +15,10 @@ xmlhttp.open("GET", "./schedule.json", true);
 xmlhttp.send();
 
 export var formattedJSON = [];
-//storage.language;
+export var scheduleType;
+
 getSchedule(new Date());
-export function getSchedule(date) {
-  var scheduleType;
+export function getSchedule(date) {  
   //Check if an override exists
   if (Object.keys(scheduleJSON.overrides).includes(date)) { // this doesn't work - find a way to format the date for the JSON using the Date class
     scheduleType = scheduleJSON.overrides[date.getDate()];
