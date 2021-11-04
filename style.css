@@ -289,11 +289,20 @@
   border-color: hsla(0, 0%, 100%, 0.25);
   border-radius: 50%;
 }
-.circle.moving {
+.moving-time {
+  width: 30px;
+  height: 20px;
   position: absolute;
-  width: 10px;
-  height: 10px;
   background-color: #344955;
+
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: hsla(0, 0%, 100%, 0.25);
+  color: hsla(0, 0%, 100%, 1);
+  font-size: 15px;
+  line-height: 16px;
+  font-weight: 300;
+  text-align: center;
 }
 .vertical-bar {
   width: 1px;

@@ -13,7 +13,7 @@
       href="https://fonts.googleapis.com/css?family=Niramit:300,regular,500,600"
       rel="stylesheet"
     />
-    <title>19min. | LCHS Go</title>
+    <title>LCHS Go</title>
   </head>
   <body class="body">
     <div class="background"></div>
@@ -39,7 +39,7 @@
           <div class="period-information">
             <div class="progress-bar">
               <div class="circle"></div><!--                             percent max  min          min-->
-              <div class="circle moving" v-bind:style="{ top: percentCompleted * (85 - 12) / 100 + 12 + '%' }"></div> <!--12 - 85-->
+              <div class="moving-time" v-bind:style="{ top: percentCompleted * (85 - 12) / 100 + 12 + '%' }" v-effect="$el.textContent = currentTime"></div> <!--12 - 85-->
               <div class="vertical-bar"></div>
               <div class="circle"></div>
             </div>
@@ -53,7 +53,7 @@
                     <span class="time-left-number" @mounted="startTimer()" v-effect="$el.textContent = timeLeft"></span> 
                     min. until period ends
                   </div>
-                  <div class="time-left-percent">({{ Math.trunc(percentCompleted) }}% completed)</div>
+                  <div class="time-left-percent">{{ percentCompletedText }}</div>
                 </div>
                 <div class="divider-bar" style="margin-top: 20px;"></div>
               </div>

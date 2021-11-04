@@ -1,5 +1,5 @@
-import { storage } from "./storage.js";
-var scheduleJSON = JSON.parse(localStorage.getItem("scheduleJSON"));
+import { settings } from "./settings.js";
+export var scheduleJSON = JSON.parse(localStorage.getItem("scheduleJSON"));
 
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function () {
@@ -15,7 +15,7 @@ xmlhttp.open("GET", "./schedule.json", true);
 xmlhttp.send();
 
 export var formattedJSON = [];
-var scheduleType;
+export var scheduleType;
 
 getSchedule(new Date());
 export function getSchedule(date) {  
@@ -27,7 +27,7 @@ export function getSchedule(date) {
   }
 
   var previousEnd;
-  if (storage.grade >= 9) {
+  if (settings.grade >= 9) {
     Object.keys(scheduleJSON.gradeLevels.highSchool[scheduleType]).forEach(period => {
       if (previousEnd != undefined) {
         formattedJSON.push({
@@ -65,29 +65,12 @@ export function getSchedule(date) {
     ]
   }
 }
-
-export function getTodaysGreeting() {
-  return getGreeting() + " " + translateWithInsert("TODAY_IS", translate(scheduleType));
+export function translate(translateText) {
+  return scheduleJSON.languages[settings.language][translateText];
 }
 
-function translate(translateText) {
-  return scheduleJSON.languages[storage.language][translateText];
-}
-
-function translateWithInsert(translateText, insertString) {
-  var returnText = scheduleJSON.languages[storage.language][translateText];
+export function translateWithInsert(translateText, insertString) {
+  var returnText = scheduleJSON.languages[settings.language][translateText];
   var index = returnText.indexOf("{}");
   return returnText.slice(0, index) + insertString + returnText.slice(index + 2);
 }
-
-function getGreeting() {
-  var minutes = moment().minutes();
-       if (minutes <= 720) { return translate("MORNING"); }
-  else if (minutes <= 1050) { return translate("AFTERNOON"); }
-  else if (minutes <= 1440) { return translate("EVENING"); }
-  else { 
-    console.log(minutes);
-    console.log("Something went wrong. Please notify someone of this error including the number above.")
-    return 'Hello, student'; 
-    }
-  }
