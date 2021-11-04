@@ -1,4 +1,4 @@
-import { formattedJSON, scheduleType } from "./scheduleFormatting.js";
+import { formattedJSON, getTodaysGreeting } from "./scheduleFormatting.js";
 import { storage } from "./storage.js";
 
 //stores the user preference for how they display time
@@ -26,25 +26,34 @@ PetiteVue.createApp({
   //Variables
   currentPage,
   periodList,
-  scheduleType,
+  todaysGreeting: "",
   listCount: 0,
   getListCount() {
     this.listCount++;
     return this.listCount % 2 == 0;
   },
   currentPeriod,
-  timeLeft: currentPeriod.end.diff(moment(), 'minutes') + 1,
-  percentCompleted() {
-    return Math.trunc(100 - this.timeLeft / currentPeriod.end.diff(currentPeriod.start, 'minutes') * 100);
-  },
+  timeLeft: 0,
+  percentCompleted: 0,
 
   //Functions
   switchToNowPage,
   switchToCalendarPage,
   switchToSettingsPage,
   startTimer() { 
+    this.timeLeft = currentPeriod.end.diff(moment(), 'minutes') + 1;
+    this.percentCompleted = Math.trunc(100 - this.timeLeft / currentPeriod.end.diff(currentPeriod.start, 'minutes') * 100);
+    this.todaysGreeting = getTodaysGreeting();
+
     setInterval(() => {
+      if (!currentPeriod.isCurrent) {
+        periodList.forEach(p => p.isCurrent());
+      }
+
+      this.todaysGreeting = getTodaysGreeting();
       this.timeLeft = currentPeriod.end.diff(moment(), 'minutes') + 1;
+      this.percentCompleted = 100 - this.timeLeft / currentPeriod.end.diff(currentPeriod.start, 'minutes') * 100;
+
       }, 5000)
   }
 }).mount();

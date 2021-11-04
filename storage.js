@@ -11,9 +11,6 @@ const defaultConfig = {
     colorTheme: '',
     grade: 9,
     language: 'ENGLISH'
-  },
-  data: {
-    numberOfClicks: 0
   }
 }
 
