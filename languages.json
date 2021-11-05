@@ -1,0 +1,43 @@
+{
+  "version": 0,
+  "ENGLISH": {
+    "BEFORE_SCHOOL": "Before School",
+    "AFTER_SCHOOL": "After School",
+    "PERIOD_0": "Period 0",
+    "PERIOD_1": "Period 1",
+    "PERIOD_2": "Period 2",
+    "PERIOD_3": "Period 3",
+    "PERIOD_4": "Period 4",
+    "PERIOD_5": "Period 5",
+    "PERIOD_6": "Period 6",
+    "PASSING_BEFORE": "Passing before",
+    "BREAK": "Break",
+    "LUNCH": "Lunch",
+    "REGULAR": "Regular",
+    "BLOCK_ODD": "Block (odd)",
+    "BLOCK_EVEN": "Block (even)",
+    "STEP_ODD": "STEP (odd)",
+    "STEP_EVEN": "STEP (even)",
+    "NOW": "NOW",
+    "CALENDAR": "CALENDAR",
+    "SETTINGS": "SETTINGS",
+    "MORNING": "Good Morning.",
+    "AFTERNOON": "Good Afternoon.",
+    "EVENING": "Good Evening.",
+    "PERIOD_NAME": "Period",
+    "PERIOD_START": "Start",
+    "PERIOD_END": "End",
+    "MINUTES_LEFT": "min. until period ends",
+    "TODAY_IS": "Today is {} schedule.",
+    "PERCENT_COMPLETED": "({}% completed)"
+  },
+  "SPANISH": {
+
+  },
+  "GERMAN": {
+
+  },
+  "FRENCH": {
+
+  }
+}

@@ -219,15 +219,6 @@
   -ms-flex-pack: justify;
   justify-content: space-between;
 }
-.start-time {
-  height: 25%;
-  color: #5988a3;
-  font-size: 25px;
-  line-height: 62px;
-  font-weight: 600;
-  text-align: center;
-  letter-spacing: 2px;
-}
 .time-left {
   display: -webkit-box;
   display: -webkit-flex;
@@ -248,10 +239,10 @@
   -ms-flex-align: center;
   align-items: center;
 }
-.end-time {
+.start-end-time {
   height: 25%;
-  color: #5988a3;
-  font-size: 25px;
+  color: #6a9dba;
+  font-size: 30px;
   line-height: 62px;
   font-weight: 600;
   text-align: center;
@@ -294,10 +285,6 @@
   height: 20px;
   position: absolute;
   background-color: #344955;
-
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  border-bottom-color: hsla(0, 0%, 100%, 0.25);
   color: hsla(0, 0%, 100%, 1);
   font-size: 15px;
   line-height: 16px;

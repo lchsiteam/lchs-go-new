@@ -1,4 +1,4 @@
-import { scheduleType, formattedJSON, translateWithInsert, translate, } from "./scheduleFormatting.js";
+import { scheduleType, formattedJSON, languageJSON } from "./scheduleFormatting.js";
 import { settings } from "./settings.js";
 
 //stores the user preference for how they display time
@@ -44,6 +44,8 @@ PetiteVue.createApp({
   switchToNowPage,
   switchToCalendarPage,
   switchToSettingsPage,
+  translateWithInsert, 
+  translate,
   startTimer() {
     this.update();
     setInterval(() => {
@@ -79,7 +81,11 @@ function PeriodComponent(setName, setStart, setEnd, setPassing) {
       return false;
     },
     getName() {
-      return this.name;
+      if (this.passing) {
+        let tempName = this.name.split('|');
+        return translateWithInsert(tempName[0], tempName[1]);
+      }
+      return translate(this.name);
     },
     getStart() {
       return this.start.format(timeFormat);
@@ -111,4 +117,14 @@ function getGreeting() {
   } else {
     return translate("EVENING");
   }
+}
+
+export function translate(translateText) {
+  return languageJSON[translateText];
+}
+
+export function translateWithInsert(translateText, insertString) {
+  var returnText = languageJSON[translateText];
+  var index = returnText.indexOf("{}");
+  return returnText.slice(0, index) + insertString + returnText.slice(index + 2);
 }

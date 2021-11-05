@@ -21,13 +21,13 @@
       <div class="header">
         <div class="navigation">
           <div @click="switchToNowPage()" class="nav-button" v-bind:class="{'selected': currentPage == 'now'}">
-            NOW
+            {{ translate("NOW") }}
           </div>
           <div @click="switchToCalendarPage()" class="nav-button" v-bind:class="{'selected': currentPage == 'calendar'}">
-            CALENDAR
+            {{ translate("CALENDAR") }}
           </div>
           <div @click="switchToSettingsPage()" class="nav-button" v-bind:class="{'selected': currentPage == 'settings'}">
-            SETTINGS
+            {{ translate("SETTINGS") }}
           </div>
         </div>
       </div>
@@ -44,34 +44,34 @@
               <div class="circle"></div>
             </div>
             <div class="period-information-content">
-              <div class="start-time">{{ currentPeriod.getStart() }}</div>
+              <div class="start-end-time">{{ currentPeriod.getStart() }}</div>
               <div class="time-left">
                 <div class="divider-bar" style="margin-bottom: 10px;"></div>
                 <div class="time-left-group">
                   <div class="details-name">{{ currentPeriod.getName() }}</div>
                   <div class="time-left-text">
-                    <span class="time-left-number" @mounted="startTimer()" v-effect="$el.textContent = timeLeft"></span> 
-                    min. until period ends
+                    <span class="time-left-number" @mounted="startTimer()" v-effect="$el.textContent = timeLeft"></span>
+                    {{ translate('MINUTES_LEFT') }}
                   </div>
                   <div class="time-left-percent">{{ percentCompletedText }}</div>
                 </div>
                 <div class="divider-bar" style="margin-top: 20px;"></div>
               </div>
-              <div class="end-time">{{ currentPeriod.getEnd() }}</div>
+              <div class="start-end-time">{{ currentPeriod.getEnd() }}</div>
             </div>
           </div>
           <div class="all-periods">
             <div class="periods-header">
               <div class="period-name">
-                <div class="period-header-text">Period</div>
+                <div class="period-header-text">{{ translate("PERIOD_NAME") }}</div>
               </div>
-              <div class="period-header-text">Start</div>
-              <div class="period-header-text">End</div>
+              <div class="period-header-text">{{ translate("PERIOD_START") }}</div>
+              <div class="period-header-text">{{ translate("PERIOD_END") }}</div>
             </div>
             <div v-for="period in periodList" v-effect="currentPeriod">
               <div class="period" v-bind:class="{ current: period.isCurrent(), 'list-odd': getListCount() }" v-if="period.isCurrent() || !period.isPassing()">
                 <div class="period-name">
-                  <div class="period-details">{{ period.name }}</div>
+                  <div class="period-details">{{ period.getName() }}</div>
                 </div>
                 <div class="period-details">{{ period.getStart() }}</div>
                 <div class="period-details">{{ period.getEnd() }}</div>

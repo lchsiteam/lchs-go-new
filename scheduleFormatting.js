@@ -1,17 +1,37 @@
 import { settings } from "./settings.js";
 export var scheduleJSON = JSON.parse(localStorage.getItem("scheduleJSON"));
+export var languageJSON = JSON.parse(localStorage.getItem("languageJSON"));
 
+//Schedule JSON Request
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function () {
   if (this.readyState == 4 && this.status == 200) {
-      var serverScheduleJSON = JSON.parse(this.responseText);
-      if (scheduleJSON == null || scheduleJSON.version < serverScheduleJSON.version) {
-        localStorage.setItem("scheduleJSON", JSON.stringify(serverScheduleJSON));
-        scheduleJSON = serverScheduleJSON;
-      }
+    var serverScheduleJSON = JSON.parse(this.responseText);
+    if (scheduleJSON == null || scheduleJSON.version < serverScheduleJSON.version) {
+      localStorage.setItem("scheduleJSON", JSON.stringify(serverScheduleJSON));
+      scheduleJSON = serverScheduleJSON;
+      location.reload();
+    }
   }
 };
 xmlhttp.open("GET", "./schedule.json", true);
+xmlhttp.send();
+
+//Language JSON Request
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function () {
+  if (this.readyState == 4 && this.status == 200) {
+    var serverLanguageJSON = JSON.parse(this.responseText);
+    if (languageJSON == null || languageJSON.language != settings.language || languageJSON.verion < serverLanguageJSON.verion) {
+      var tempJSON = serverLanguageJSON[settings.language];
+      tempJSON.language = settings.language;
+      tempJSON.version = serverLanguageJSON.verion;
+      localStorage.setItem("languageJSON", JSON.stringify(tempJSON))
+      location.reload();
+    }
+  }
+};
+xmlhttp.open("GET", "./languages.json", true);
 xmlhttp.send();
 
 export var formattedJSON = [];
@@ -31,14 +51,14 @@ export function getSchedule(date) {
     Object.keys(scheduleJSON.gradeLevels.highSchool[scheduleType]).forEach(period => {
       if (previousEnd != undefined) {
         formattedJSON.push({
-          name: translate("PASSING_BEFORE") + " " + translate(period),
+          name: "PASSING_BEFORE," + period,
           start: previousEnd,
           end: scheduleJSON.gradeLevels.highSchool[scheduleType][period][0],
           passing: true
         });
       }
       formattedJSON.push({
-        name: translate(period),
+        name: period,
         start: scheduleJSON.gradeLevels.highSchool[scheduleType][period][0],
         end: scheduleJSON.gradeLevels.highSchool[scheduleType][period][1],
         passing: false
@@ -50,27 +70,18 @@ export function getSchedule(date) {
   if (scheduleType != "NONE") {
     formattedJSON = [
       {
-        name: translate("BEFORE_SCHOOL"),
+        name: "BEFORE_SCHOOL",
         start: moment().startOf('day'),
         end: formattedJSON[0].start,
         passing: true
       },
       ...formattedJSON,
       {
-        name: translate("AFTER_SCHOOL"),
+        name: "AFTER_SCHOOL",
         start: formattedJSON[formattedJSON.length - 1].end,
         end: moment().endOf('day'),
         passing: true
       }
     ]
   }
-}
-export function translate(translateText) {
-  return scheduleJSON.languages[settings.language][translateText];
-}
-
-export function translateWithInsert(translateText, insertString) {
-  var returnText = scheduleJSON.languages[settings.language][translateText];
-  var index = returnText.indexOf("{}");
-  return returnText.slice(0, index) + insertString + returnText.slice(index + 2);
 }
