@@ -4,7 +4,6 @@ const defaultSettings = {
   settings: {
     notificationsOn: true,
     enableAnimations: true,
-    enableThemeAnimations: true,
     showExtraPeriods: false,
     sixthEnabled: true,
     zeroEnabled: true,
@@ -30,12 +29,6 @@ const settingsMenu = {
     new: false,
   },
   enableAnimations: {
-    title: "",
-    description: "",
-    mode: '',
-    new: false,
-  },
-  enableThemeAnimations: {
     title: "",
     description: "",
     mode: '',

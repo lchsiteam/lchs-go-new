@@ -16,6 +16,32 @@
     <title>LCHS Go</title>
   </head>
   <body class="body">
+    <template id="period-information-template">
+      <div class="progress-bar">
+        <div class="circle"></div><!--                             percent max  min          min-->
+        <div class="moving-time" v-bind:style="{ top: percentCompleted * (85 - 12) / 100 + 12 + '%' }"
+          v-effect="$el.textContent = currentTime"></div>
+        <!--12 - 85-->
+        <div class="vertical-bar"></div>
+        <div class="circle"></div>
+      </div>
+      <div class="period-information-content">
+        <div class="start-end-time">{{ currentPeriod.getStart() }}</div>
+        <div class="time-left">
+          <div class="divider-bar" style="margin-bottom: 10px;"></div>
+          <div class="time-left-group">
+            <div class="details-name">{{ currentPeriod.getName() }}</div>
+            <div class="time-left-text">
+              <span class="time-left-number" @mounted="startTimer()" v-effect="$el.textContent = timeLeft"></span>
+              {{ translate('MINUTES_LEFT') }}
+            </div>
+            <div class="time-left-percent">{{ percentCompletedText }}</div>
+          </div>
+          <div class="divider-bar" style="margin-top: 20px;"></div>
+        </div>
+        <div class="start-end-time">{{ currentPeriod.getEnd() }}</div>
+      </div>
+    </template>
     <div class="background"></div>
     <div class="app-container" v-scope>
       <div class="header">
@@ -36,30 +62,7 @@
           Hello. Things are broken :)
         </div>
         <div class="schedule-container">
-          <div class="period-information">
-            <div class="progress-bar">
-              <div class="circle"></div><!--                             percent max  min          min-->
-              <div class="moving-time" v-bind:style="{ top: percentCompleted * (85 - 12) / 100 + 12 + '%' }" v-effect="$el.textContent = currentTime"></div> <!--12 - 85-->
-              <div class="vertical-bar"></div>
-              <div class="circle"></div>
-            </div>
-            <div class="period-information-content">
-              <div class="start-end-time">{{ currentPeriod.getStart() }}</div>
-              <div class="time-left">
-                <div class="divider-bar" style="margin-bottom: 10px;"></div>
-                <div class="time-left-group">
-                  <div class="details-name">{{ currentPeriod.getName() }}</div>
-                  <div class="time-left-text">
-                    <span class="time-left-number" @mounted="startTimer()" v-effect="$el.textContent = timeLeft"></span>
-                    {{ translate('MINUTES_LEFT') }}
-                  </div>
-                  <div class="time-left-percent">{{ percentCompletedText }}</div>
-                </div>
-                <div class="divider-bar" style="margin-top: 20px;"></div>
-              </div>
-              <div class="start-end-time">{{ currentPeriod.getEnd() }}</div>
-            </div>
-          </div>
+          <div class="period-information" v-scope="PeriodInformationComponent()"></div>
           <div class="all-periods">
             <div class="periods-header">
               <div class="period-name">
@@ -76,26 +79,9 @@
                 <div class="period-details">{{ period.getStart() }}</div>
                 <div class="period-details">{{ period.getEnd() }}</div>
               </div>
+              <div class="period-details-small" v-scope="PeriodInformationComponent()" v-if="period.isCurrent()"></div>
             </div>
-            
-            <!-- <div class="period-details-small">
-              <div class="period-information-content">
-                <div class="start-time">12 : 19 PM</div>
-                <div class="time-left">
-                  <div class="divider-bar"></div>
-                  <div class="time-left-group">
-                    <div class="details-name">Lunch</div>
-                    <div class="time-left-text">
-                      <span class="time-left-number">19</span> min. until
-                      period ends
-                    </div>
-                    <div class="time-left-percent">(37% completed)</div>
-                  </div>
-                  <div class="divider-bar"></div>
-                </div>
-                <div class="end-time">12 : 54 PM</div>
-              </div>
-            </div> -->
+          </div>
         </div>
       </div>
     </div>

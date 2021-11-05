@@ -23,7 +23,7 @@ periodList.forEach((p) => p.isCurrent());
 
 PetiteVue.createApp({
   //Components
-  PeriodComponent,
+  PeriodInformationComponent,
 
   //Variables
   currentPage,
@@ -99,6 +99,12 @@ function PeriodComponent(setName, setStart, setEnd, setPassing) {
   };
 }
 
+function PeriodInformationComponent(props) {
+  return {
+    $template: "#period-information-template"
+  }
+}
+
 export function getTodaysGreeting() {
   return (
     getGreeting() +
@@ -126,5 +132,8 @@ export function translate(translateText) {
 export function translateWithInsert(translateText, insertString) {
   var returnText = languageJSON[translateText];
   var index = returnText.indexOf("{}");
+  if (index < 0) {
+    return translate(translateText);
+  }
   return returnText.slice(0, index) + insertString + returnText.slice(index + 2);
 }

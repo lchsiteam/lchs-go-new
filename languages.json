@@ -1,6 +1,19 @@
 {
-  "version": 0,
+  "version": 1,
   "ENGLISH": {
+    "NOW": "NOW",
+    "CALENDAR": "CALENDAR",
+    "SETTINGS": "SETTINGS",
+
+    "MORNING": "Good Morning.",
+    "AFTERNOON": "Good Afternoon.",
+    "EVENING": "Good Evening.",
+    "TODAY_IS": "Today is {} schedule.",
+
+    "PERIOD_NAME": "Period",
+    "PERIOD_START": "Start",
+    "PERIOD_END": "End",
+
     "BEFORE_SCHOOL": "Before School",
     "AFTER_SCHOOL": "After School",
     "PERIOD_0": "Period 0",
@@ -13,23 +26,37 @@
     "PASSING_BEFORE": "Passing before",
     "BREAK": "Break",
     "LUNCH": "Lunch",
+
     "REGULAR": "Regular",
     "BLOCK_ODD": "Block (odd)",
     "BLOCK_EVEN": "Block (even)",
     "STEP_ODD": "STEP (odd)",
     "STEP_EVEN": "STEP (even)",
-    "NOW": "NOW",
-    "CALENDAR": "CALENDAR",
-    "SETTINGS": "SETTINGS",
-    "MORNING": "Good Morning.",
-    "AFTERNOON": "Good Afternoon.",
-    "EVENING": "Good Evening.",
-    "PERIOD_NAME": "Period",
-    "PERIOD_START": "Start",
-    "PERIOD_END": "End",
+    "NONE": "no",
+    
     "MINUTES_LEFT": "min. until period ends",
-    "TODAY_IS": "Today is {} schedule.",
-    "PERCENT_COMPLETED": "({}% completed)"
+    "PERCENT_COMPLETED": "({}% completed)",
+
+    "SETTINGS_NOTIFICATION_TITLE": "",
+    "SETTINGS_NOTIFICATION_DESC": "",
+    "SETTINGS_ANIMATIONS_TITLE": "",
+    "SETTINGS_ANIMATIONS_DESC": "",
+    "SETTINGS_EXTRA_PERIODS_TITLE": "",
+    "SETTINGS_EXTRA_PERIODS_DESC": "",
+    "SETTINGS_SIXTH_PERIOD_TITLE": "",
+    "SETTINGS_SIXTH_PERIOD_DESC": "",
+    "SETTINGS_ZERO_PERIOD_TITLE": "",
+    "SETTINGS_ZERO_PERIOD_DESC": "",
+    "SETTINGS_TWENTY_FOUR_HOUR_TITLE": "",
+    "SETTINGS_TWENTY_FOUR_HOUR_DESC": "",
+    "SETTINGS_AM_PM_TITLE": "",
+    "SETTINGS_AM_PM_DESC": "",
+    "SETTINGS_COLOR_THEME_TITLE": "",
+    "SETTINGS_COLOR_THEME_DESC": "",
+    "SETTINGS_GRADE_LEVEL_TITLE": "",
+    "SETTINGS_GRADE_LEVEL_DESC": "",
+    "SETTINGS_LANGUAGE_TITLE": "",
+    "SETTINGS_LANGUAGE_DESC": ""
   },
   "SPANISH": {
 
