@@ -1,5 +1,3 @@
-import { scheduleJSON } from "./scheduleFormatting.js";
-
 const defaultSettings = {
   settings: {
     notificationsOn: true,
@@ -21,7 +19,7 @@ if (settings == null) {
   localStorage.setItem("settings", JSON.stringify(settings));
 }
 
-const settingsMenu = {
+export const settingsMenu = {
   notificationsOn: {
     title: "",
     description: "",

@@ -1,5 +1,5 @@
 import { scheduleType, formattedJSON, languageJSON } from "./scheduleFormatting.js";
-import { settings } from "./settings.js";
+import { settings, settingsMenu } from "./settings.js";
 
 //stores the user preference for how they display time
 var timeFormat = (settings.twentyFourHour ? "HH" : "h") + ":mm" + (settings.showAMPM ? " A" : "");
@@ -25,8 +25,10 @@ PetiteVue.createApp({
   //Components
   PeriodInformationComponent,
 
-  //Variables
+  //All Pages
   currentPage,
+
+  //Now Page
   periodList,
   todaysGreeting: "",
   listCount: 0,
@@ -39,6 +41,9 @@ PetiteVue.createApp({
   timeLeft: 0,
   percentCompleted: 0,
   percentCompletedText: "",
+
+  //Settings Page
+  settingsMenu,
 
   //Functions
   switchToNowPage,
@@ -53,7 +58,8 @@ PetiteVue.createApp({
     }, 5000);
   },
   update() {
-    if (!currentPeriod.isCurrent) {
+    
+    if (!currentPeriod.isCurrent()) {
       periodList.forEach((p) => p.isCurrent());
     }
 
@@ -82,8 +88,8 @@ function PeriodComponent(setName, setStart, setEnd, setPassing) {
     },
     getName() {
       if (this.passing) {
-        let tempName = this.name.split('|');
-        return translateWithInsert(tempName[0], tempName[1]);
+        let tempName = this.name.split(',');
+        return translateWithInsert(tempName[0], translate(tempName[1]));
       }
       return translate(this.name);
     },
