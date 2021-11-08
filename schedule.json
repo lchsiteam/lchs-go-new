@@ -9,34 +9,6 @@
     "5": "REGULAR",
     "6": "NONE"
   },
-  "languages": {
-    "ENGLISH": {
-      "BEFORE_SCHOOL": "Before School",
-      "AFTER_SCHOOL": "After School",
-      "PERIOD_0": "Period 0",
-      "PERIOD_1": "Period 1",
-      "PERIOD_2": "Period 2",
-      "PERIOD_3": "Period 3",
-      "PERIOD_4": "Period 4",
-      "PERIOD_5": "Period 5",
-      "PERIOD_6": "Period 6",
-      "PASSING_BEFORE": "Passing before",
-      "BREAK": "Break",
-      "LUNCH": "Lunch",
-      "REGULAR": "Regular",
-      "BLOCK_ODD": "Block (odd)",
-      "BLOCK_EVEN": "Block (even)",
-      "STEP_ODD": "STEP (odd)",
-      "STEP_EVEN": "STEP (even)",
-      "NOW": "NOW",
-      "CALENDAR": "CALENDAR",
-      "MORNING": "Good Morning.",
-      "AFTERNOON": "Good Afternoon.",
-      "EVENING": "Good Evening.",
-      "TODAY_IS": "Today is {} schedule.",
-      "PERCENT_COMPLETED": "({}% completed)"
-    }
-  },
   "overrides": {
     "6/4/6323": "REGULAR"
   },

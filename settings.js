@@ -1,10 +1,7 @@
-import { scheduleJSON } from "./scheduleFormatting.js";
-
 const defaultSettings = {
   settings: {
     notificationsOn: true,
     enableAnimations: true,
-    enableThemeAnimations: true,
     showExtraPeriods: false,
     sixthEnabled: true,
     zeroEnabled: true,
@@ -22,7 +19,7 @@ if (settings == null) {
   localStorage.setItem("settings", JSON.stringify(settings));
 }
 
-const settingsMenu = {
+export const settingsMenu = {
   notificationsOn: {
     title: "",
     description: "",
@@ -30,12 +27,6 @@ const settingsMenu = {
     new: false,
   },
   enableAnimations: {
-    title: "",
-    description: "",
-    mode: '',
-    new: false,
-  },
-  enableThemeAnimations: {
     title: "",
     description: "",
     mode: '',
