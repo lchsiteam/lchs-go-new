@@ -383,3 +383,37 @@
     margin-left: 10px;
   }
 }
+/* Table stuff*/
+table{
+  width:80vw;
+  height:80vh;
+}
+table, th, td {
+  border: 1px solid black; /* aiden fix */
+}
+td{
+  width: 10vw;
+  height: 10vh;
+  vertical-align: text-top;
+}
+.oof{
+  visibility: hidden;
+  vertical-align: text-top;
+
+}
+td{
+  color:white /*date color */
+}
+table p{
+  color:black/*  event color*/
+}
+
+
+tr:nth-child(even) td:nth-child(even), tr:nth-child(odd) td:nth-child(odd)
+{
+  background-color: gray /* AIDEN FIX THIS PLEASE make it look good */
+}
+tr:nth-child(odd) td:nth-child(even), tr:nth-child(even) td:nth-child(odd)
+{
+  background-color: rgb(79,92, 106) /* AIDEN FIX THIS PLEASE make it look good */
+}

@@ -1,5 +1,6 @@
 import { settings } from "./settings.js";
 export var scheduleJSON = JSON.parse(localStorage.getItem("scheduleJSON"));
+export var eventsJSON = JSON.parse(localStorage.getItem("eventsJSON"));
 export var languageJSON = JSON.parse(localStorage.getItem("languageJSON"));
 
 fetch("./schedule.json")
@@ -26,6 +27,15 @@ fetch("./languages.json")
 
 export var formattedJSON = [];
 export var scheduleType;
+
+fetch("./events.json")
+  .then(response => response.json())
+  .then(serverEventsJSON => {
+    if (eventsJSON == null || eventsJSON.version < serverEventsJSON.version) {
+        localStorage.setItem("eventsJSON", JSON.stringify(serverEventsJSON));
+        eventsJSON = serverEventsJSON;
+      }
+  }
 
 getSchedule(moment());
 export function getSchedule(date) {  
