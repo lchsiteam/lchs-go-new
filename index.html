@@ -99,5 +99,64 @@
         </div>
       </div>
     </div>
+    <div id="calendar" v-if="currentPage == 'calendar'">
+      <table>
+        <tr> <!-- Week 1-->
+          <td id = "a1" @click="scheduleClick(1)"> 1</td>
+          <td id = "a2" @click="scheduleClick(2)"> 2</td>
+          <td id = "a3" @click="scheduleClick(3)"> 3</td>
+          <td id = "a4" @click="scheduleClick(4)"> </td>
+          <td id = "a5" @click="scheduleClick(5)"> </td>
+          <td id = "a6" @click="scheduleClick(6)"> </td>
+          <td id = "a7" @click="scheduleClick(7)"> </td>
+
+        </tr>
+        <tr> <!-- Week 2-->
+          <td id = "a8" @click="scheduleClick(8)"></td>
+          <td id = "a9" @click="scheduleClick(9)"></td>
+          <td id = "a10"@click="scheduleClick(10)"></td>
+          <td id = "a11"@click="scheduleClick(11)"></td>
+          <td id = "a12"@click="scheduleClick(12)"></td>
+          <td id = "a13"@click="scheduleClick(13)"></td>
+          <td id = "a14"@click="scheduleClick(14)"></td>
+        </tr>
+        <tr> <!-- Week 3-->
+          <td id = "a15"@click="scheduleClick(15)"></td>
+          <td id = "a16"@click="scheduleClick(16)"></td>
+          <td id = "a17"@click="scheduleClick(17)"></td>
+          <td id = "a18"@click="scheduleClick(18)"></td>
+          <td id = "a19"@click="scheduleClick(19)"></td>
+          <td id = "a20"@click="scheduleClick(20)"></td>
+          <td id = "a21"@click="scheduleClick(21)"></td>
+        </tr>
+        <tr> <!-- Week 4-->
+          <td id = "a22"@click="scheduleClick(22)"></td>
+          <td id = "a23"@click="scheduleClick(23)"></td>
+          <td id = "a24"@click="scheduleClick(24)"></td>
+          <td id = "a25"@click="scheduleClick(25)"></td>
+          <td id = "a26"@click="scheduleClick(26)"></td>
+          <td id = "a27"@click="scheduleClick(27)"></td>
+          <td id = "a28"@click="scheduleClick(28)"></td>
+        </tr>
+        <tr> <!-- Week 5-->
+          <td id = "a29"@click="scheduleClick(29)"></td>
+          <td id = "a30"@click="scheduleClick(30)"></td>
+          <td id = "a31"@click="scheduleClick(31)"></td>
+          <td id = "a32"@click="scheduleClick(32)"></td>
+          <td id = "a33"@click="scheduleClick(33)"></td>
+          <td id = "a34"@click="scheduleClick(34)"></td>
+          <td id = "a35"@click="scheduleClick(35)"></td>
+        </tr>
+        <tr id = "extra"> <!-- for shifting, extra week-->
+          <td id = "a36"@click="scheduleClick(36)"></td>
+          <td id = "a37"@click="scheduleClick(37)"></td>
+          <td id = "a38"@click="scheduleClick(38)"></td>
+          <td id = "a39"@click="scheduleClick(39)"></td>
+          <td id = "a40"@click="scheduleClick(4O)"></td>
+          <td id = "a41"@click="scheduleClick(41)"></td>
+          <td id = "a42"@click="scheduleClick(42)"></td>
+        </tr>
+      </table>
+    </div>
   </body>
 </html>

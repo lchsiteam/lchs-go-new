@@ -1,5 +1,6 @@
 import { settings } from "./settings.js";
 export var scheduleJSON = JSON.parse(localStorage.getItem("scheduleJSON"));
+export var eventsJSON = JSON.parse(localStorage.getItem("eventsJSON"));
 
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function () {
@@ -16,6 +17,19 @@ xmlhttp.send();
 
 export var formattedJSON = [];
 export var scheduleType;
+
+xmlhttp.onreadystatechange = function () {
+  if (this.readyState == 4 && this.status == 200) {
+      var serverEventsJSON = JSON.parse(this.responseText);
+      if (eventsJSON == null || eventsJSON.version < serverEventsJSON.version) {
+        localStorage.setItem("eventsJSON", JSON.stringify(serverEventsJSON));
+        eventsJSON = serverEventsJSON;
+      }
+  }
+};
+xmlhttp.open("GET", "./events.json", true);
+xmlhttp.send();
+
 
 getSchedule(new Date());
 export function getSchedule(date) {  
