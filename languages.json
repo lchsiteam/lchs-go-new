@@ -1,5 +1,5 @@
 {
-  "version": 6,
+  "version": 7,
   "ENGLISH": {
     "NOW": "NOW",
     "CALENDAR": "CALENDAR",
@@ -35,7 +35,7 @@
     "STEP_EVEN": "STEP (even)",
     "NONE": "no",
     
-    "MINUTES_LEFT": "min. until period ends",
+    "UNITL_END": " until period ends",
     "PERCENT_COMPLETED": "({}% completed)",
 
     "SETTINGS_NOTIFICATION_TITLE": "NOTIFICATION_TITLE",

@@ -255,6 +255,9 @@
   text-align: center;
 }
 .time-left-text {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
   margin-top: 15px;
   color: #fff;
   font-size: 18px;
@@ -267,6 +270,7 @@
 .time-left-percent {
   color: #fff;
   font-weight: 400;
+  margin-top: 15px;
 }
 .divider-bar {
   width: 150px;

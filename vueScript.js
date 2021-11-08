@@ -19,7 +19,10 @@ var currentPeriod = null;
 var periodList = formattedJSON.map((p) => {
   return PeriodComponent(p.name, p.start, p.end, p.passing);
 });
-periodList.forEach((p) => p.isCurrent());
+periodList.forEach((p) => {
+        if(p.isCurrent()) {
+          currentPeriod = p;
+        }});
 
 PetiteVue.createApp({
   //Components
@@ -38,7 +41,7 @@ PetiteVue.createApp({
   },
   currentPeriod,
   currentTime: 0,
-  timeLeft: 0,
+  minutesLeft: 0,
   percentCompleted: 0,
   percentCompletedText: "",
 
@@ -51,24 +54,34 @@ PetiteVue.createApp({
   switchToSettingsPage,
   translateWithInsert, 
   translate,
+  interval: 0,
   startTimer() {
     this.update();
-    setInterval(() => {
+    clearInterval(this.interval);
+    this.interval = setInterval(() => {
       this.update();
     }, 5000);
   },
   update() {
+
+    console.log("tick");
     
     if (!currentPeriod.isCurrent()) {
-      periodList.forEach((p) => p.isCurrent());
+      location.reload();
+      // console.log("new Period");
+      // periodList.forEach((p) => {
+      //   if(p.isCurrent()) {
+      //     currentPeriod = p;
+      //   }});
+      // periodList = periodList;
     }
 
     this.todaysGreeting = getTodaysGreeting();
-    this.timeLeft = currentPeriod.end.diff(moment(), "minutes") + 1;
-    this.percentCompleted = 100 - (this.timeLeft / currentPeriod.end.diff(currentPeriod.start, "minutes")) * 100;
+    this.minutesLeft = currentPeriod.end.diff(moment(), "minutes") + 1;
+    this.percentCompleted = 100 - (this.minutesLeft / currentPeriod.end.diff(currentPeriod.start, "minutes")) * 100;
     this.percentCompletedText = translateWithInsert( "PERCENT_COMPLETED", Math.trunc(this.percentCompleted));
     this.currentTime = moment().format(timeFormat);
-    document.title = this.timeLeft + "min. | LCHS Go";
+    document.title = this.minutesLeft + "min. | LCHS Go";
   },
 }).mount();
 
@@ -81,7 +94,6 @@ function PeriodComponent(setName, setStart, setEnd, setPassing) {
     isCurrent() {
       var now = moment();
       if (this.start < now && now < this.end) {
-        currentPeriod = this;
         return true;
       }
       return false;

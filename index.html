@@ -15,9 +15,9 @@
     />
     <title>LCHS Go</title>
   </head>
-  <body class="body">
+  <body class="body" v-scope @mounted="startTimer()">
     <div class="background"></div>
-    <div class="app-container" v-scope>
+    <div class="app-container">
       <div class="header">
         <div class="navigation">
           <div @click="switchToNowPage()" class="nav-button" v-bind:class="{'selected': currentPage == 'now'}">
@@ -45,8 +45,8 @@
               <div class="period-header-text">{{ translate("PERIOD_START") }}</div>
               <div class="period-header-text">{{ translate("PERIOD_END") }}</div>
             </div>
-            <div v-for="period in periodList" v-effect="currentPeriod.isCurrent()">
-              <div class="period" v-bind:class="{ current: period.isCurrent(), 'list-odd': getListCount() }" v-if="period.isCurrent() || !period.isPassing()">
+            <div v-for="period in periodList">
+              <div class="period" v-bind:class="{ current: period.isCurrent(), 'list-odd': getListCount() }" v-if="period.isCurrent() || !period.isPassing()" v-effect="/*currentPeriod*/ console.log('update');">
                 <div class="period-name">
                   <div class="period-details">{{ period.getName() }}</div>
                 </div>
@@ -84,14 +84,24 @@
         <div class="circle"></div>
       </div>
       <div class="period-information-content">
-        <div class="start-end-time" v-effect="currentPeriod.getStart()">{{ currentPeriod.getStart() }}</div>
+        <div class="start-end-time" v-effect="currentPeriod">{{ currentPeriod.getStart() }}</div>
         <div class="time-left">
           <div class="divider-bar" style="margin-bottom: 10px;"></div>
           <div class="time-left-group">
             <div class="details-name">{{ currentPeriod.getName() }}</div>
             <div class="time-left-text">
-              <span class="time-left-number" @mounted="startTimer()" v-effect="$el.textContent = timeLeft"></span>
-              {{ translate('MINUTES_LEFT') }}
+              <div style="margin-right: 5px;" v-if="Math.trunc(minutesLeft / 60) > 0">
+                <span class="time-left-number" v-effect="$el.textContent = Math.trunc(minutesLeft / 60)"></span>
+                hr.
+              </div>
+              <div style="margin-right: 5px;">
+                <span class="time-left-number" v-effect="$el.textContent = minutesLeft % 60"></span>
+                min.
+              </div>
+              <div>
+                <span class="time-left-number" v-if="Math.trunc(minutesLeft / 60) < 1"></span>
+                {{ translate('UNITL_END') }}
+              </div>
             </div>
             <div class="time-left-percent">{{ percentCompletedText }}</div>
           </div>
