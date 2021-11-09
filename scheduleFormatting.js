@@ -35,7 +35,7 @@ fetch("./events.json")
         localStorage.setItem("eventsJSON", JSON.stringify(serverEventsJSON));
         eventsJSON = serverEventsJSON;
       }
-  }
+  });
 
 getSchedule(moment());
 export function getSchedule(date) {  
@@ -43,7 +43,9 @@ export function getSchedule(date) {
   if (Object.keys(scheduleJSON.overrides).map(d => moment(d, "MM/DD/YYYY")).includes(date.format("MM/DD/YYYY"))) {
     scheduleType = scheduleJSON.overrides[date.format("MM/DD/YYYY")];
   } else {
+    
     scheduleType = scheduleJSON.defaults[date.format("e")];
+    //console.log(scheduleType)
   }
 
   if (scheduleType != "NONE") {
@@ -93,4 +95,5 @@ export function getSchedule(date) {
       }
     ]
   }
+  return formattedJSON;
 }

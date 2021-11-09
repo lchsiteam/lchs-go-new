@@ -1,5 +1,5 @@
 populateCalendar()
-import { scheduleType, formattedJSON, translateWithInsert, translate, eventsJSON, languageJSON } from "./scheduleFormatting.js";
+import { scheduleType, formattedJSON, eventsJSON, languageJSON, getSchedule } from "./scheduleFormatting.js";
 import { settings, settingsMenu } from "./settings.js";
 
 //stores the user preference for how they display time
@@ -229,13 +229,20 @@ function dayOfWeek()
 // i found this formula online
  return test
 }
+
+
 function scheduleClick(number)
 {
   var shift = dayOfWeek()
-
-
-  if (number-shift > 0 && eventsJSON[number-shift]!= null)
-    console.log(eventsJSON[number-shift])
+  var day = number - shift
+  if (day > 0)
+  {
+var bruh = moment()
+bruh.set('date',day)
+console.log(getSchedule(bruh))
+this.currentPage = "popup";
+  }
+ 
 }
 export function translate(translateText) {
   return languageJSON[translateText];

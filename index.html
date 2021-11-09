@@ -73,7 +73,6 @@
           </div>
         </div>
       </div>
-    </div>
     <div id="calendar" v-if="currentPage == 'calendar'">
       <table>
         <tr> <!-- Week 1-->
@@ -132,7 +131,18 @@
           <td id = "a42"@click="scheduleClick(42)"></td>
         </tr>
       </table>
+      
+
+
+
     </div>
+    <div id="popup" v-if="currentPage == 'popup'">
+ <!-- Aiden can you add the code to display period here-->
+
+        <div @click="switchToCalendarPage()" class="nav-button" v-bind:class="{'selected': currentPage == 'calendar'}">
+         <center> <-- go back </center> 
+          </div>
+      </div>
     <template id="period-information-template">
       <div class="progress-bar">
         <div class="circle"></div><!--                             percent max  min          min-->
