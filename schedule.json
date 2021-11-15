@@ -1,5 +1,5 @@
 {
-  "version": 12,
+  "version": 14,
   "defaults": {
     "0": "NONE",
     "1": "REGULAR",
@@ -10,7 +10,8 @@
     "6": "NONE"
   },
   "overrides": {
-    "6/4/6323": "REGULAR"
+    "11/09/2021": "BLOCK_EVEN",
+    "11/11/2021": "NONE"
   },
   "dateRanges": {
     "summerBreak": ["6/3/2022", "08/16/22"],

@@ -1,5 +1,4 @@
-populateCalendar()
-import { scheduleType, formattedJSON, eventsJSON, languageJSON, getSchedule } from "./scheduleFormatting.js";
+import {formattedJSON, eventsJSON, languageJSON, getSchedule } from "./scheduleFormatting.js";
 import { settings, settingsMenu } from "./settings.js";
 
 //stores the user preference for how they display time
@@ -16,8 +15,6 @@ function switchToSettingsPage() {
   this.currentPage = "settings";
 }
 
-
-
 var currentPeriod = null;
 var periodList = formattedJSON.map((p) => {
   return PeriodComponent(p.name, p.start, p.end, p.passing);
@@ -30,6 +27,8 @@ periodList.forEach((p) => {
 PetiteVue.createApp({
   //Components
   PeriodInformationComponent,
+  PeriodListComponent,
+  CalendarDay,
 
   //All Pages
   currentPage,
@@ -50,12 +49,12 @@ PetiteVue.createApp({
 
   //Settings Page
   settingsMenu,
+  settings,
 
   //Functions
   switchToNowPage,
   switchToCalendarPage,
   switchToSettingsPage,
-  scheduleClick,
   translateWithInsert, 
   translate,
   interval: 0,
@@ -67,8 +66,6 @@ PetiteVue.createApp({
     }, 5000);
   },
   update() {
-
-    console.log("tick");
     
     if (!currentPeriod.isCurrent()) {
       location.reload();
@@ -121,9 +118,24 @@ function PeriodComponent(setName, setStart, setEnd, setPassing) {
   };
 }
 
+function CalendarDay(props) {
+  return {
+    date: moment().set('date', props.num - moment().day()),
+    scheduleType() {
+      return translate(getSchedule(this.date).scheduleType);
+    }
+  }
+}
+
 function PeriodInformationComponent(props) {
   return {
     $template: "#period-information-template"
+  }
+}
+
+function PeriodListComponent(props) {
+  return {
+    $template: "#period-list-template"
   }
 }
 
@@ -131,7 +143,7 @@ export function getTodaysGreeting() {
   return (
     getGreeting() +
     " " +
-    translateWithInsert("TODAY_IS", translate(scheduleType))
+    translateWithInsert("TODAY_IS", translate(formattedJSON.scheduleType))
   );
 }
 
@@ -147,103 +159,6 @@ function getGreeting() {
   }
 }
 
-
-function populateCalendar() {
-var month = moment().month;
-var maxDays = 0;
-var offset = dayOfWeek();
-var extraRow = false;
-
-console.log(offset)
-
-switch(month)
-{
-case 0:
-case 2:
-case 4:
-case 6:
-case 7:
-case 9:
-case 11:
-  maxDays = 31;
-break;
-case 1:
-  maxDays = 28;
-break;
-default:
-  maxDays = 30;
-}
-
-if (offset + maxDays > 35)
-{
-  var extraRow = true;
-}
-
-for (var i = 1 ; i<= maxDays+offset; i++)
-{
-  var cell = document.getElementById("a" + i);
-  cell.addEventListener("click", () => {
-    window.location.href = "/a"+i;
-  });
-  console.log(toString(1))
-  console.log("a" +i)
-  console.log(document.getElementById("a" + i))
-
-  if (i < offset)
-  {
-
-  }
- 
-  if (eventsJSON[i-offset] != null && i > offset){
-    document.getElementById("a" + i).innerHTML = i-offset + "<p class='poof'>" + eventsJSON[i-offset] + "</p>";
-  }
-  else if (i <= offset){
-    document.getElementById("a" + i).innerHTML = "<p class='oof'> owo </p>";
-
-  }
-  else{
-    document.getElementById("a" + i).innerHTML =  i-offset +  "<p class='oof'> owo  </p>  ";
-  }
-
-  if (!extraRow) {
-    document.getElementById("extra").style.display = "none";
-  }
-
-
-
-
-}
-
-}
-function dayOfWeek()
-{
-  var year = moment().year() % 100;
-
-  var mone = moment().month() -1;
-  if (mone <= 0)
-  {
-    mone += 11
-  }
-  var century = Math.round(moment().year() /100)
- var test = (1 + Math.floor(2.6 * mone - 0.2) - 2*century + year + Math.floor(year/4) +Math.floor(century/4)) %7
-// i found this formula online
- return test
-}
-
-
-function scheduleClick(number)
-{
-  var shift = dayOfWeek()
-  var day = number - shift
-  if (day > 0)
-  {
-var bruh = moment()
-bruh.set('date',day)
-console.log(getSchedule(bruh))
-this.currentPage = "popup";
-  }
- 
-}
 export function translate(translateText) {
   return languageJSON[translateText];
 }

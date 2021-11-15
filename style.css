@@ -21,7 +21,6 @@
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  height: 100vh;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
@@ -31,6 +30,8 @@
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 .background {
   position: fixed;
@@ -117,10 +118,10 @@
   cursor: pointer;
 }
 .nav-button:hover {
-  background-color: rgba(122, 154, 173, 0.65);
+  background-color: rgba(0, 0, 0, 0.15);
 }
 .nav-button.selected {
-  background-color: rgba(26, 66, 88, 0.65);
+  background-color: rgba(0, 0, 0, 0.25);
 }
 .periods-header {
   display: -webkit-box;
@@ -241,7 +242,7 @@
 }
 .start-end-time {
   height: 25%;
-  color: #6a9dba;
+  color: #fff;
   font-size: 30px;
   line-height: 62px;
   font-weight: 600;
@@ -256,8 +257,7 @@
 }
 .time-left-text {
   display: inline-flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
   margin-top: 15px;
   color: #fff;
   font-size: 18px;
@@ -288,7 +288,7 @@
   width: 30px;
   height: 20px;
   position: absolute;
-  background-color: #344955;
+  background-color: rgba(255, 255, 255, 0);
   color: hsla(0, 0%, 100%, 1);
   font-size: 15px;
   line-height: 16px;
@@ -373,6 +373,14 @@
     left: 0px;
     display: none;
   }
+  .calendar-container {
+    justify-content: center;
+    flex-wrap: nowrap;
+  }
+  .calendar-day {
+    height: 350px;
+    flex-basis: 80%;
+  }
 }
 @media screen and (max-width: 479px) {
   .all-periods {
@@ -384,36 +392,186 @@
   }
 }
 /* Table stuff*/
-table{
-  width:80vw;
-  height:80vh;
+table {
+  width: 80vw;
+  height: 80vh;
 }
-table, th, td {
+table,
+th,
+td {
   border: 1px solid black; /* aiden fix */
 }
-td{
+td {
   width: 10vw;
   height: 10vh;
   vertical-align: text-top;
 }
-.oof{
+.oof {
   visibility: hidden;
   vertical-align: text-top;
+}
+td {
+  color: white; /*date color */
+}
+table p {
+  color: black; /*  event color*/
+}
 
+tr:nth-child(even) td:nth-child(even),
+tr:nth-child(odd) td:nth-child(odd) {
+  background-color: gray; /* AIDEN FIX THIS PLEASE make it look good */
 }
-td{
-  color:white /*date color */
-}
-table p{
-  color:black/*  event color*/
+tr:nth-child(odd) td:nth-child(even),
+tr:nth-child(even) td:nth-child(odd) {
+  background-color: rgb(
+    79,
+    92,
+    106
+  ); /* AIDEN FIX THIS PLEASE make it look good */
 }
 
-
-tr:nth-child(even) td:nth-child(even), tr:nth-child(odd) td:nth-child(odd)
-{
-  background-color: gray /* AIDEN FIX THIS PLEASE make it look good */
+.calendar-container {
+  display: flex;
+  max-width: 85vw;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items: flex-start;
 }
-tr:nth-child(odd) td:nth-child(even), tr:nth-child(even) td:nth-child(odd)
-{
-  background-color: rgb(79,92, 106) /* AIDEN FIX THIS PLEASE make it look good */
+
+.calendar-day {
+  position: relative;
+  display: flex;
+  height: 100px;
+  margin-top: 2px;
+  margin-right: 2px;
+  margin-bottom: 2px;
+  margin-left: 2px;
+  padding-top: 40px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 13%;
+  background-color: hsla(0, 0%, 6.67%, 0.15);
+}
+
+.calendar-day.outside {
+  opacity: 50%;
+}
+
+.cd-number {
+  position: absolute;
+  left: 5px;
+  top: -3px;
+  right: auto;
+  bottom: auto;
+  font-family: Niramit;
+  color: white;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.cd-tag {
+  width: 100%;
+  padding: 3px;
+  background-color: rgba(0, 0, 0, .15);
+  text-align: center;
+  color: white;
+}
+
+.settings-row {
+  width: 60vw;
+  padding: 10px 16px;
+  border-radius: 4px;
+  margin: 5px 0;
+  cursor: default;
+}
+.settings-row:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+.sr-head {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.sr-title {
+  color: rgba(255, 255, 255, 0.8);
+  display: inline;
+  font-size: 1.2em;
+  margin-right: 8px;
+}
+.sr-badge-new {
+  position: absolute;
+  right: 0px;
+  background-color: rgba(18, 15, 43, 0.3);
+  color: rgba(255, 255, 255, 0.8);
+  border-radius: 2px;
+  display: inline-block;
+  font-size: 10px;
+  padding: 2px 6px;
+  margin-right: 8px;
+}
+.sr-desc {
+  font-size: 0.9em;
+  display: inline;
+  color: rgba(255, 255, 255, 0.7);
+}
+.sr-option {
+  font-weight: 600;
+  margin: 8px 0;
+}
+
+.sr-selector {
+  background: rgba(0, 0, 0, 0.08);
+  display: inline-block;
+  padding: 4px 4px;
+  border-radius: 2px;
+}
+.sr-selector-option {
+  background: rgba(0, 0, 0, 0);
+  display: inline-block;
+  padding: 4px 12px;
+  margin: 0 2px;
+  min-width: 80px;
+  text-align: center;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: 100ms ease;
+  color: rgba(255, 255, 255, 0.7);
+  box-sizing: border-box;
+}
+.sr-selector-option:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+.sr-selector-option.selected {
+  background: rgba(0, 0, 0, 0.15);
+  cursor: default;
+}
+
+select.sr-select {
+  color: #fff;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  text-decoration-color: white;
+  font-weight: 600;
+  font-family: Niramit, Avenir, sans-serif;
+  border-color: rgba(0, 0, 0, 0);
+  border-width: 1px;
+  border-radius: 3px;
+}
+option.sr-select-item {
+  color: rgba(255, 255, 255, 0.6);
+  background: var(--button-menu-color, #42b983);
+  padding: 5px;
+  text-decoration-color: white;
+  font-weight: 600;
+  font-family: Niramit, Avenir, sans-serif;
+  border-color: rgba(0, 0, 0, 0);
+  border-width: 1px;
+  border-radius: 3px;
 }

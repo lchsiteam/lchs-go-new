@@ -1,7 +1,7 @@
 import { settings } from "./settings.js";
 export var scheduleJSON = JSON.parse(localStorage.getItem("scheduleJSON"));
-export var eventsJSON = JSON.parse(localStorage.getItem("eventsJSON"));
 export var languageJSON = JSON.parse(localStorage.getItem("languageJSON"));
+export var eventsJSON = JSON.parse(localStorage.getItem("eventsJSON"));
 
 fetch("./schedule.json")
   .then(response => response.json())
@@ -25,9 +25,6 @@ fetch("./languages.json")
     }
   });
 
-export var formattedJSON = [];
-export var scheduleType;
-
 fetch("./events.json")
   .then(response => response.json())
   .then(serverEventsJSON => {
@@ -38,9 +35,15 @@ fetch("./events.json")
   });
 
 getSchedule(moment());
-export function getSchedule(date) {  
+
+export var formattedJSON = getSchedule(moment());
+export function getSchedule(date) {
+  if (date == null) return;
+  var scheduleType;
+  var localJSON = [];
+
   //Check if an override exists
-  if (Object.keys(scheduleJSON.overrides).map(d => moment(d, "MM/DD/YYYY")).includes(date.format("MM/DD/YYYY"))) {
+  if (Object.keys(scheduleJSON.overrides).includes(date.format("MM/DD/YYYY"))) {
     scheduleType = scheduleJSON.overrides[date.format("MM/DD/YYYY")];
   } else {
     
@@ -53,14 +56,14 @@ export function getSchedule(date) {
     if (settings.grade >= 9) {
       Object.keys(scheduleJSON.gradeLevels.highSchool[scheduleType]).forEach(period => {
         if (previousEnd != undefined) {
-          formattedJSON.push({
+          localJSON.push({
             name: "PASSING_BEFORE," + period,
             start: previousEnd,
             end: scheduleJSON.gradeLevels.highSchool[scheduleType][period][0],
             passing: true
           });
         }
-        formattedJSON.push({
+        localJSON.push({
           name: period,
           start: scheduleJSON.gradeLevels.highSchool[scheduleType][period][0],
           end: scheduleJSON.gradeLevels.highSchool[scheduleType][period][1],
@@ -70,23 +73,23 @@ export function getSchedule(date) {
       });
     }
 
-    formattedJSON = [
+    localJSON = [
       {
         name: "BEFORE_SCHOOL",
         start: moment().startOf('day'),
-        end: formattedJSON[0].start,
+        end: localJSON[0].start,
         passing: true
       },
-      ...formattedJSON,
+      ...localJSON,
       {
         name: "AFTER_SCHOOL",
-        start: formattedJSON[formattedJSON.length - 1].end,
+        start: localJSON[localJSON.length - 1].end,
         end: moment().endOf('day'),
         passing: true
       }
     ]
   } else {
-    formattedJSON = [
+    localJSON = [
       {
         name: "NO_SCHOOL",
         start: moment().startOf('day'),
@@ -95,5 +98,8 @@ export function getSchedule(date) {
       }
     ]
   }
-  return formattedJSON;
+
+  localJSON.scheduleType = scheduleType;
+
+  return localJSON;
 }

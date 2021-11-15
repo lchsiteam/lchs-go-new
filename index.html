@@ -1,164 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://unpkg.com/petite-vue"></script>
-    <script src="https://unpkg.com/moment@2.29.1/moment.js"></script>
-    <script type="module" src="scheduleFormatting.js"></script>
-    <script type="module" src="vueScript.js"></script>
-    <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Niramit:300,regular,500,600"
-      rel="stylesheet"
-    />
-    <title>LCHS Go</title>
-  </head>
-  <body class="body" v-scope @mounted="startTimer()">
-    <div class="background"></div>
-    <div class="app-container">
-      <div class="header">
-        <div class="navigation">
-          <div @click="switchToNowPage()" class="nav-button" v-bind:class="{'selected': currentPage == 'now'}">
-            {{ translate("NOW") }}
-          </div>
-          <div @click="switchToCalendarPage()" class="nav-button" v-bind:class="{'selected': currentPage == 'calendar'}">
-            {{ translate("CALENDAR") }}
-          </div>
-          <div @click="switchToSettingsPage()" class="nav-button" v-bind:class="{'selected': currentPage == 'settings'}">
-            {{ translate("SETTINGS") }}
-          </div>
-        </div>
-      </div>
-      <div id="now-page" v-if="currentPage == 'now'">
-        <div class="todays-schedule" v-effect="$el.textContent = todaysGreeting">
-          Hello. Things are broken :)
-        </div>
-        <div class="schedule-container">
-          <div class="period-information" v-scope="PeriodInformationComponent()"></div>
-          <div class="all-periods">
-            <div class="periods-header">
-              <div class="period-name">
-                <div class="period-header-text">{{ translate("PERIOD_NAME") }}</div>
-              </div>
-              <div class="period-header-text">{{ translate("PERIOD_START") }}</div>
-              <div class="period-header-text">{{ translate("PERIOD_END") }}</div>
-            </div>
-            <div v-for="period in periodList">
-              <div class="period" v-bind:class="{ current: period.isCurrent(), 'list-odd': getListCount() }" v-if="period.isCurrent() || !period.isPassing()" v-effect="/*currentPeriod*/ console.log('update');">
-                <div class="period-name">
-                  <div class="period-details">{{ period.getName() }}</div>
-                </div>
-                <div class="period-details">{{ period.getStart() }}</div>
-                <div class="period-details">{{ period.getEnd() }}</div>
-              </div>
-              <div class="period-details-small" v-scope="PeriodInformationComponent()" v-if="period.isCurrent()"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="settings-page" v-if="currentPage == 'settings'">
-        <div class="settings-header">
 
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://unpkg.com/petite-vue"></script>
+  <script src="https://unpkg.com/moment@2.29.1/moment.js"></script>
+  <script type="module" src="scheduleFormatting.js"></script>
+  <script type="module" src="vueScript.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    href="https://fonts.googleapis.com/css?family=Niramit:300,regular,500,600"
+    rel="stylesheet" />
+  <title>LCHS Go</title>
+</head>
+
+<body class="body" v-scope @mounted="startTimer()">
+  <div class="background"></div>
+  <div class="app-container">
+    <div class="header">
+      <div class="navigation">
+        <div @click="switchToNowPage()" class="nav-button" v-bind:class="{'selected': currentPage == 'now'}">
+          {{ translate("NOW") }}
         </div>
-        <div class="settings-body">
-          <div v-for="option in settingsMenu">
-            <div>
-              {{ option.title }}
-            </div>
-            <div>
-              {{ option.description }}
-            </div>
-          </div>
+        <div @click="switchToCalendarPage()" class="nav-button" v-bind:class="{'selected': currentPage == 'calendar'}">
+          {{ translate("CALENDAR") }}
+        </div>
+        <div @click="switchToSettingsPage()" class="nav-button" v-bind:class="{'selected': currentPage == 'settings'}">
+          {{ translate("SETTINGS") }}
         </div>
       </div>
+    </div>
+    <div id="now-page" v-if="currentPage == 'now'">
+      <div class="todays-schedule" v-effect="$el.textContent = todaysGreeting">
+        Hello. Things are broken :)
+      </div>
+      <div class="schedule-container">
+        <div class="period-information" v-scope="PeriodInformationComponent()"></div>
+        <div class="all-periods" v-scope="PeriodListComponent()"></div>
+      </div>
+    </div>
     <div id="calendar" v-if="currentPage == 'calendar'">
-      <table>
-        <tr> <!-- Week 1-->
-          <td id = "a1" @click="scheduleClick(1)"> 1</td>
-          <td id = "a2" @click="scheduleClick(2)"> 2</td>
-          <td id = "a3" @click="scheduleClick(3)"> 3</td>
-          <td id = "a4" @click="scheduleClick(4)"> </td>
-          <td id = "a5" @click="scheduleClick(5)"> </td>
-          <td id = "a6" @click="scheduleClick(6)"> </td>
-          <td id = "a7" @click="scheduleClick(7)"> </td>
-
-        </tr>
-        <tr> <!-- Week 2-->
-          <td id = "a8" @click="scheduleClick(8)"></td>
-          <td id = "a9" @click="scheduleClick(9)"></td>
-          <td id = "a10"@click="scheduleClick(10)"></td>
-          <td id = "a11"@click="scheduleClick(11)"></td>
-          <td id = "a12"@click="scheduleClick(12)"></td>
-          <td id = "a13"@click="scheduleClick(13)"></td>
-          <td id = "a14"@click="scheduleClick(14)"></td>
-        </tr>
-        <tr> <!-- Week 3-->
-          <td id = "a15"@click="scheduleClick(15)"></td>
-          <td id = "a16"@click="scheduleClick(16)"></td>
-          <td id = "a17"@click="scheduleClick(17)"></td>
-          <td id = "a18"@click="scheduleClick(18)"></td>
-          <td id = "a19"@click="scheduleClick(19)"></td>
-          <td id = "a20"@click="scheduleClick(20)"></td>
-          <td id = "a21"@click="scheduleClick(21)"></td>
-        </tr>
-        <tr> <!-- Week 4-->
-          <td id = "a22"@click="scheduleClick(22)"></td>
-          <td id = "a23"@click="scheduleClick(23)"></td>
-          <td id = "a24"@click="scheduleClick(24)"></td>
-          <td id = "a25"@click="scheduleClick(25)"></td>
-          <td id = "a26"@click="scheduleClick(26)"></td>
-          <td id = "a27"@click="scheduleClick(27)"></td>
-          <td id = "a28"@click="scheduleClick(28)"></td>
-        </tr>
-        <tr> <!-- Week 5-->
-          <td id = "a29"@click="scheduleClick(29)"></td>
-          <td id = "a30"@click="scheduleClick(30)"></td>
-          <td id = "a31"@click="scheduleClick(31)"></td>
-          <td id = "a32"@click="scheduleClick(32)"></td>
-          <td id = "a33"@click="scheduleClick(33)"></td>
-          <td id = "a34"@click="scheduleClick(34)"></td>
-          <td id = "a35"@click="scheduleClick(35)"></td>
-        </tr>
-        <tr id = "extra"> <!-- for shifting, extra week-->
-          <td id = "a36"@click="scheduleClick(36)"></td>
-          <td id = "a37"@click="scheduleClick(37)"></td>
-          <td id = "a38"@click="scheduleClick(38)"></td>
-          <td id = "a39"@click="scheduleClick(39)"></td>
-          <td id = "a40"@click="scheduleClick(4O)"></td>
-          <td id = "a41"@click="scheduleClick(41)"></td>
-          <td id = "a42"@click="scheduleClick(42)"></td>
-        </tr>
-      </table>
-      
-
-
-
+      <div class="todays-schedule">
+        Calendar
+      </div>
+      <div class="calendar-container">
+        <div class="calendar-day" v-for="day in 35" v-bind:class="{ 'outside': date.month() !== moment().month() }"
+          v-scope="CalendarDay({num: day})">
+          <div class="cd-number">
+            {{ date.date() }}
+          </div>
+          <div class="cd-tag">
+            {{ scheduleType() }}
+          </div>
+        </div>
+      </div>
     </div>
     <div id="popup" v-if="currentPage == 'popup'">
- <!-- Aiden can you add the code to display period here-->
-
-        <div @click="switchToCalendarPage()" class="nav-button" v-bind:class="{'selected': currentPage == 'calendar'}">
-         <center> <-- go back </center> 
+      <!-- Aiden can you add the code to display period here-->
+      <div @click="switchToCalendarPage()" class="nav-button" v-bind:class="{'selected': currentPage == 'calendar'}"></div>
+        <div class="all-periods" v-scope="PeriodListComponent()"></div>
+    </div>
+    <div id="settings-page" v-if="currentPage == 'settings'">
+      <div class="todays-schedule">
+        App Settings
+      </div>
+      <div class="settings-row" v-for="setting in settingsMenu">
+        <div class="sr-head">
+          <span class="sr-badge-new" v-if="setting.new">NEW</span>
+          <b class="sr-title">{{ translate("SETTINGS_" + setting.key + "_DESC") }}</b>
+          <span class="sr-desc">{{ translate("SETTINGS_" + setting.key + "_DESC") }}</span>
+        </div>
+        <div class="sr-option">
+          <div class="sr-selector" v-if="setting.mode == 'toggle'">
+            <div class="sr-selector-option" v-bind:class="{ 'selected': option[1] == settings[setting.setting] }" v-for="option in setting.options">{{
+              translate(option[0]) }}</div>
           </div>
+          <select class="sr-select" v-if="setting.mode == 'dropdown'">
+            <option class="sr-select-item" value="j" v-for="option in setting.options">{{ translate(option) }}</option>
+          </select>
+        </div>
       </div>
-    <template id="period-information-template">
-      <div class="progress-bar">
-        <div class="circle"></div><!--                             percent max  min          min-->
-        <div class="moving-time" v-bind:style="{ top: percentCompleted * (85 - 12) / 100 + 12 + '%' }"
-          v-effect="$el.textContent = currentTime"></div>
-        <!--12 - 85-->
-        <div class="vertical-bar"></div>
-        <div class="circle"></div>
-      </div>
-      <div class="period-information-content">
-        <div class="start-end-time" v-effect="currentPeriod">{{ currentPeriod.getStart() }}</div>
-        <div class="time-left">
-          <div class="divider-bar" style="margin-bottom: 10px;"></div>
-          <div class="time-left-group">
-            <div class="details-name">{{ currentPeriod.getName() }}</div>
-            <div class="time-left-text">
+    </div>
+  </div>
+  <template id="period-information-template">
+    <div class="progress-bar">
+      <div class="circle"></div><!--                             percent max  min          min-->
+      <div class="moving-time" v-bind:style="{ top: percentCompleted * (85 - 12) / 100 + 12 + '%' }"
+        v-effect="$el.textContent = currentTime"></div>
+      <!--12 - 85-->
+      <div class="vertical-bar"></div>
+      <div class="circle"></div>
+    </div>
+    <div class="period-information-content">
+      <div class="start-end-time" v-effect="currentPeriod">{{ currentPeriod.getStart() }}</div>
+      <div class="time-left">
+        <div class="divider-bar" style="margin-bottom: 10px;"></div>
+        <div class="time-left-group">
+          <div class="details-name">{{ currentPeriod.getName() }}</div>
+          <div class="time-left-text">
+            <div style="display: inline-flex; justify-content: center; flex-wrap: wrap;">
               <div style="margin-right: 5px;" v-if="Math.trunc(minutesLeft / 60) > 0">
                 <span class="time-left-number" v-effect="$el.textContent = Math.trunc(minutesLeft / 60)"></span>
                 hr.
@@ -167,17 +109,36 @@
                 <span class="time-left-number" v-effect="$el.textContent = minutesLeft % 60"></span>
                 min.
               </div>
-              <div>
-                <span class="time-left-number" v-if="Math.trunc(minutesLeft / 60) < 1"></span>
-                {{ translate('UNITL_END') }}
-              </div>
             </div>
-            <div class="time-left-percent">{{ percentCompletedText }}</div>
+            {{ translate('UNITL_END') }}
           </div>
-          <div class="divider-bar" style="margin-top: 20px;"></div>
+          <div class="time-left-percent">{{ percentCompletedText }}</div>
         </div>
-        <div class="start-end-time">{{ currentPeriod.getEnd() }}</div>
+        <div class="divider-bar" style="margin-top: 20px;"></div>
       </div>
-    </template>
-  </body>
+      <div class="start-end-time">{{ currentPeriod.getEnd() }}</div>
+    </div>
+  </template>
+  <template id="period-list-template">
+    <div class="periods-header">
+      <div class="period-name">
+        <div class="period-header-text">{{ translate("PERIOD_NAME") }}</div>
+      </div>
+      <div class="period-header-text">{{ translate("PERIOD_START") }}</div>
+      <div class="period-header-text">{{ translate("PERIOD_END") }}</div>
+    </div>
+    <div v-for="period in periodList">
+      <div class="period" v-bind:class="{ current: period.isCurrent(), 'list-odd': getListCount() }"
+        v-if="period.isCurrent() || !period.isPassing()">
+        <div class="period-name">
+          <div class="period-details">{{ period.getName() }}</div>
+        </div>
+        <div class="period-details">{{ period.getStart() }}</div>
+        <div class="period-details">{{ period.getEnd() }}</div>
+      </div>
+      <div class="period-details-small" v-scope="PeriodInformationComponent()" v-if="period.isCurrent()"></div>
+    </div>
+  </template>
+</body>
+
 </html>
