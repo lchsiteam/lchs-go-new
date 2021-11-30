@@ -20,78 +20,60 @@ if (settings == null) {
   localStorage.setItem("settings", JSON.stringify(settings));
 }
 
-class LCHSGoTheme {
-id = 0;
-name = "";
-color = '#42b983';
-
-constructor(id, name, color) {
-  this.id = id;
-  this.name = name;
-  this.color = color;
-}
-}
-
-const themes = [
-  new LCHSGoTheme(0, "AHHH", "#122363"),
-  new LCHSGoTheme(1, "fdfd", "#111111")
-]
-
 export const settingsMenu = {
   notificationsOn: {
     setting: "notificationsOn",
     key: "NOTIFICATION",
     mode: 'toggle',
-    options: [["ON", true], ["OFF", false]],
+    options: [[true, "ON"], [false, "OFF"]],
     new: false,
   },
   enableAnimations: {
     setting: "enableAnimations",
     key: "ANIMATIONS",
     mode: 'toggle',
-    options: [["ON", true], ["OFF", false]],
+    options: [[true, "ON"], [false, "OFF"]],
     new: false,
   },
   showExtraPeriods: {
     setting: "showExtraPeriods",
     key: "EXTRA_PERIODS",
     mode: 'toggle',
-    options: [["ON", true], ["OFF", false]],
+    options: [[true, "ON"], [false, "OFF"]],
     new: false,
   },
   sixthEnabled: {
     setting: "sixthEnabled",
     key: "SIXTH_PERIOD",
     mode: 'toggle',
-    options: [["ON", true], ["OFF", false]],
+    options: [[true, "ON"], [false, "OFF"]],
     new: false,
   },
   zeroEnabled: {
     setting: "zeroEnabled",
     key: "ZERO_PERIOD",
     mode: 'toggle',
-    options: [["ON", true], ["OFF", false]],
+    options: [[true, "ON"], [false, "OFF"]],
     new: false,
   },
   twentyFourHour: {
     setting: "twentyFourHour",
     key: "TWENTY_FOUR_HOUR",
     mode: 'toggle',
-    options: [["ON", true], ["OFF", false]],
+    options: [[true, "ON"], [false, "OFF"]],
     new: false,
   },
   showAMPM: {
     setting: "showAMPM",
     key: "AM_PM",
     mode: 'toggle',
-    options: [["ON", true], ["OFF", false]],
+    options: [[true, "ON"], [false, "OFF"]],
     new: false,
   },
   colorTheme: {
     setting: "colorTheme",
     key: "COLOR_THEME",
-    mode: 'dropdown',
-    options: themes.map(t => t.id),
+    mode: 'color-slider',
     new: true,
   },
   grade: {

@@ -3,18 +3,6 @@ import { settings, settingsMenu } from "./settings.js";
 
 //stores the user preference for how they display time
 var timeFormat = (settings.twentyFourHour ? "HH" : "h") + ":mm" + (settings.showAMPM ? " A" : "");
-var currentPage = "now";
-
-function switchToNowPage() {
-  this.currentPage = "now";
-}
-function switchToCalendarPage() {
-  this.currentPage = "calendar";
-}
-function switchToSettingsPage() {
-  this.currentPage = "settings";
-}
-
 var currentPeriod = null;
 var periodList = formattedJSON.map((p) => {
   return PeriodComponent(p.name, p.start, p.end, p.passing);
@@ -31,7 +19,9 @@ PetiteVue.createApp({
   CalendarDay,
 
   //All Pages
-  currentPage,
+  currentPage: 'now',
+  showPopup: false,
+  backgroundColor: "hsl( 0, 50, 50)",
 
   //Now Page
   periodList,
@@ -50,11 +40,11 @@ PetiteVue.createApp({
   //Settings Page
   settingsMenu,
   settings,
+  changedSetting: true,
 
   //Functions
-  switchToNowPage,
-  switchToCalendarPage,
-  switchToSettingsPage,
+  changeSetting,
+  changeHue,
   translateWithInsert, 
   translate,
   interval: 0,
@@ -120,9 +110,13 @@ function PeriodComponent(setName, setStart, setEnd, setPassing) {
 
 function CalendarDay(props) {
   return {
-    date: moment().set('date', props.num - moment().day()),
+    date: moment().set('date', props.num - moment().startOf('month').day()),
     scheduleType() {
-      return translate(getSchedule(this.date).scheduleType);
+      console.log(this.date);
+      return getSchedule(this.date);
+    },
+    event() {
+      return eventsJSON[this.date.year()][moment.months()[this.date.month()]][this.date.date()];
     }
   }
 }
@@ -157,6 +151,20 @@ function getGreeting() {
   } else {
     return translate("EVENING");
   }
+}
+
+function changeSetting(setting, value) {
+  settings[setting] = value;
+  this.changedSetting = !this.changedSetting;
+  localStorage.setItem("settings", JSON.stringify(settings));
+  console.log(setting);
+  console.log(settings[setting]);
+}
+
+function changeHue(hue) {
+  console.log(hue);
+  this.backgroundColor = "hsl(" + hue + ", 50, 50)";
+  console.log(this.backgroundColor);
 }
 
 export function translate(translateText) {
