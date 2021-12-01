@@ -1,5 +1,5 @@
 {
-  "version": 14,
+  "version": 15,
   "defaults": {
     "0": "NONE",
     "1": "REGULAR",
@@ -14,10 +14,11 @@
     "11/11/2021": "NONE"
   },
   "dateRanges": {
-    "summerBreak": ["6/3/2022", "08/16/22"],
-    "winterBreak": ["12/18/2021", "01/02/2022"],
-    "springBreak": [],
-    "thanksgivingBreak": []
+    "SUMMER_BREAK":  ["06/03/2022", "08/16/2022"],
+    "WINTER_BREAK":   ["12/18/2021", "01/02/2022"],
+    "SPRING_BREAK":   ["04/04/2022", "04/08/2022"],
+    "FALL_BREAK":     ["11/22/2021", "11/26/2021"],
+    "BLOCK_SWITCH":   ["11/17/2021", "02/17/2022"]
   },
   "gradeLevels": {
     "7/8": {
