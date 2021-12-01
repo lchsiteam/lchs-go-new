@@ -8,7 +8,9 @@ var currentPage = "now";
 
 
 var periodArray = [];
+var smallPeriod = [];
 var nameArray = [];
+var smallName = [];
 
 
 function switchToNowPage() {
@@ -42,8 +44,7 @@ PetiteVue.createApp({
 
   //All Pages
   currentPage: 'now',
-  submitClasses,
-  changeName,
+  submitClass,
   showPopup: false,
   backgroundColor: "hsl( 0, 50, 50)",
 
@@ -112,22 +113,14 @@ PetiteVue.createApp({
 
 
 
-function submitClasses()
+function submitClass(period)
 {
-  var periodNum = parseInt(document.getElementById("period").value)
-  periodArray.push(periodNum)
-  var even = (document.getElementById("name").value)
-  nameArray.push(even)
-  document.getElementById("name").value  = ""
-}
+  console.log(period.name)
+  console.log(period.value)
 
-function changeName()
-{
-  console.log("hello");
-  console.log(periodArray);
-  console.log(nameArray);
+  //period.value
+  
 }
-
 
 function PeriodComponent(setName, setStart, setEnd, setPassing) {
   return {
