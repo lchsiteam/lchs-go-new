@@ -3,6 +3,28 @@ import { settings, settingsMenu } from "./settings.js";
 
 //stores the user preference for how they display time
 var timeFormat = (settings.twentyFourHour ? "HH" : "h") + ":mm" + (settings.showAMPM ? " A" : "");
+var currentPage = "now";
+
+
+
+var periodArray = [];
+var nameArray = [];
+
+
+function switchToNowPage() {
+  this.currentPage = "now";
+}
+function switchToCalendarPage() {
+  this.currentPage = "calendar";
+}
+function switchToSettingsPage() {
+  this.currentPage = "settings";
+}
+function switchToChange(){
+  this.currentPage = "change"
+}
+
+
 var currentPeriod = null;
 var periodList = formattedJSON.map((p) => {
   return PeriodComponent(p.name, p.start, p.end, p.passing);
@@ -20,8 +42,12 @@ PetiteVue.createApp({
 
   //All Pages
   currentPage: 'now',
+  submitClasses,
+  changeName,
   showPopup: false,
   backgroundColor: "hsl( 0, 50, 50)",
+
+
 
   //Now Page
   periodList,
@@ -43,8 +69,14 @@ PetiteVue.createApp({
   changedSetting: true,
 
   //Functions
+
+  switchToNowPage,
+  switchToCalendarPage,
+  switchToSettingsPage,
+  switchToChange,
   changeSetting,
   changeHue,
+
   translateWithInsert, 
   translate,
   interval: 0,
@@ -77,6 +109,25 @@ PetiteVue.createApp({
     document.title = this.minutesLeft + "min. | LCHS Go";
   },
 }).mount();
+
+
+
+function submitClasses()
+{
+  var periodNum = parseInt(document.getElementById("period").value)
+  periodArray.push(periodNum)
+  var even = (document.getElementById("name").value)
+  nameArray.push(even)
+  document.getElementById("name").value  = ""
+}
+
+function changeName()
+{
+  console.log("hello");
+  console.log(periodArray);
+  console.log(nameArray);
+}
+
 
 function PeriodComponent(setName, setStart, setEnd, setPassing) {
   return {
@@ -179,6 +230,9 @@ function hslToHex(h, s, l) {
 export function translate(translateText) {
   return languageJSON[translateText];
 }
+
+
+
 
 export function translateWithInsert(translateText, insertString) {
   var returnText = languageJSON[translateText];

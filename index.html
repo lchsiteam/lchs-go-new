@@ -32,6 +32,10 @@
           v-bind:class="{'selected': currentPage == 'settings'}">
           {{ translate("SETTINGS") }}
         </div>
+        <div @click="switchToChange()" class="nav-button" v-bind:class="{'selected': currentPage == 'change'}">
+          Change Class Names
+
+        </div>
       </div>
     </div>
     <div id="now-page" v-if="currentPage == 'now'">
@@ -62,8 +66,11 @@
         </div>
       </div>
     </div>
+
+
     <div class="schedule-popup" v-if="showPopup" @click="showPopup = false;">
       <div v-scope="PeriodListComponent()"></div>
+
     </div>
     <div id="settings-page" v-if="currentPage == 'settings'">
       <div class="todays-schedule">
@@ -96,6 +103,30 @@
 
 
       </div>
+    </div>
+    <div id="change-class" v-if="currentPage == 'change'">
+      <form id = "saveMe">
+          <label for="date">Class Period:</label><br>
+          <select id="period" name="period">
+              <option value="0">Zero</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+              <option value="4">Four</option>
+              <option value="5">Five</option>
+              <option value="6">Six</option>
+
+            </select>
+          <br>
+          <label for="name">New Name:</label><br>
+          <input type="text" id="name" name = "name">
+          <br>
+
+      </form>
+      <button @click="submitClasses()">Enter</button>
+
+      <button @click="changeName()">Finish</button>
+
     </div>
   </div>
   <template id="period-information-template">
