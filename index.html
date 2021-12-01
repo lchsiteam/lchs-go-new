@@ -17,7 +17,7 @@
 </head>
 
 <body class="body" v-scope @mounted="startTimer()">
-  <div class="background" style="background-color: rgb(46, 204, 165)" v-effect="$el.style.backgroundColor = backgroundColor"></div>
+  <div class="background" id="background"></div>
   <div class="app-container">
     <div class="header">
       <div class="navigation">
@@ -72,14 +72,13 @@
       <div class="settings-row" v-for="setting in settingsMenu">
         <div class="sr-head">
           <span class="sr-badge-new" v-if="setting.new">NEW</span>
-          <b class="sr-title">{{ translate("SETTINGS_" + setting.key + "_DESC") }}</b>
+          <b class="sr-title">{{ translate("SETTINGS_" + setting.key + "_TITLE") }}</b>
           <span class="sr-desc">{{ translate("SETTINGS_" + setting.key + "_DESC") }}</span>
         </div>
 
         <div class="sr-option" v-scope="{ userOption: settings[setting.setting] }">
           <div class="sr-selector" v-if="setting.mode == 'toggle'">
-            <div class="sr-selector-option" v-for="option in setting.options" 
-              v-effect="console.log(changedSetting)"
+            <div class="sr-selector-option" v-for="option in setting.options"
               @click="changeSetting(setting.setting, option[0])" v-bind:class="{ 'selected': userOption == option[0] }">
               {{ translate(option[1]) }}
             </div>
@@ -89,7 +88,9 @@
           </select>
            
           <div class="" v-if="setting.mode == 'color-slider'">    
-            <input class="sr-color-slider" id="hue" type="range" value="50" max="360" v-on:input="changeHue($el.value)">
+            <input class="sr-color-slider" id="hue" type="range" max="360" v-effect="$el.value = settings.colorTheme"
+            v-on:input="changeHue($el.value)" 
+            v-on:change="changeSetting('colorTheme', $el.value)">
           </div>
         </div>
 
