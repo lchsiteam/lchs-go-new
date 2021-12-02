@@ -5,14 +5,6 @@ import { settings, settingsMenu } from "./settings.js";
 var timeFormat = (settings.twentyFourHour ? "HH" : "h") + ":mm" + (settings.showAMPM ? " A" : "");
 var currentPage = "now";
 
-
-
-var periodArray = [];
-var smallPeriod = [];
-var nameArray = [];
-var smallName = [];
-
-
 function switchToNowPage() {
   this.currentPage = "now";
 }
@@ -115,10 +107,61 @@ PetiteVue.createApp({
 
 function submitClass(period)
 {
-  console.log(period.name)
-  console.log(period.value)
-
-  //period.value
+  var p = period.name;
+  var pNum = 0;
+  //yandere dev type coding
+  if (period.value != "")
+  {
+  if (p == "zero")
+  {
+    pNum = 0;
+  }
+  else if (p =="one")
+  {
+    pNum = 1;
+  }
+  else if (p =="two")
+  {
+    pNum = 2;
+  }
+  else if (p =="three")
+  {
+    pNum = 3;
+  }
+  else if (p =="four")
+  {
+    pNum = 4;
+  }
+  else if (p =="five")
+  {
+    pNum = 5;
+  }
+  else if (p =="six")
+  {
+    pNum = 6;
+  }
+  else if (p =="odd")
+  {
+    pNum = 7;
+  }
+  else if (p =="even")
+  {
+    pNum = 8;
+  }
+  else if (p =="break")
+  {
+     pNum = 9;
+  }
+  else if (p =="lunch")
+  {
+    pNum = 10;
+  }
+  //JSON[pNum] = period.value to override localstorage
+}
+else{
+  console.log('blank')
+  //save as default
+}
   
 }
 
