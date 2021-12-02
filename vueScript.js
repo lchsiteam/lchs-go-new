@@ -109,60 +109,55 @@ function submitClass(period)
 {
   var p = period.name;
   var pNum = 0;
-  //yandere dev type coding
+  switch (p)
+  {
+    case "zero":
+      pNum = 0;
+      break;
+    case "one":
+      pNum = 1;
+      break;
+    case "two":
+      pNum = 2;
+      break;
+    case "three":
+      pNum = 3;
+      break;
+    case "four":
+      pNum = 4;
+      break;
+    case "five":
+      pNum = 5;
+      break;
+    case "six":
+      pNum = 6;
+      break;
+    case "even":
+      pNum = 7;
+      break;
+    case "odd":
+      pNum = 8;
+      break;
+    case "lunch":
+      pNum = 9;
+      break;
+    case "break":
+      pNum = 10;
+      break;
+    default:
+      pNum = 0;
+  }
   if (period.value != "")
   {
-  if (p == "zero")
-  {
-    pNum = 0;
+    console.log("set new using name");
   }
-  else if (p =="one")
+  else 
   {
-    pNum = 1;
+    console.log("return to default");
   }
-  else if (p =="two")
-  {
-    pNum = 2;
-  }
-  else if (p =="three")
-  {
-    pNum = 3;
-  }
-  else if (p =="four")
-  {
-    pNum = 4;
-  }
-  else if (p =="five")
-  {
-    pNum = 5;
-  }
-  else if (p =="six")
-  {
-    pNum = 6;
-  }
-  else if (p =="odd")
-  {
-    pNum = 7;
-  }
-  else if (p =="even")
-  {
-    pNum = 8;
-  }
-  else if (p =="break")
-  {
-     pNum = 9;
-  }
-  else if (p =="lunch")
-  {
-    pNum = 10;
-  }
-  //JSON[pNum] = period.value to override localstorage
-}
-else{
-  console.log('blank')
-  //save as default
-}
-  
+
+
+
 }
 
 function PeriodComponent(setName, setStart, setEnd, setPassing) {
