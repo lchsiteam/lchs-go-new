@@ -169,9 +169,7 @@ function test()
   console.log(localStorage.per1)
 }
 
-
-
-function submitClass(period)
+function changeClassName(period)
 {
   var p = period.value;
   console.log(p)

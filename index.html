@@ -108,19 +108,19 @@
       <form id = "saveMe">
           <br>
           <label for="name"> Zero:</label>
-          <input type="text" id="zero" name = "zero" @blur="submitClass(zero)">
+          <input type="text" id="zero" name = "zero" @blur="changeClassName(zero)">
           <label for="name"> One:</label>
-          <input type="text" id="one" name = "one" @blur="submitClass(one)">
+          <input type="text" id="one" name = "one" @blur="changeClassName(one)">
           <label for="name"> Two:</label>
-          <input type="text" id="two" name = "two" @blur="submitClass(two)">
+          <input type="text" id="two" name = "two" @blur="changeClassName(two)">
           <label for="name"> Three:</label>
-          <input type="text" id="three" name = "three" @blur="submitClass(three)">
+          <input type="text" id="three" name = "three" @blur="changeClassName(three)">
           <label for="name"> Four:</label>
-          <input type="text" id="four" name = "four" @blur="submitClass(four)">
+          <input type="text" id="four" name = "four" @blur="changeClassName(four)">
           <label for="name"> Five:</label>
-          <input type="text" id="five" name = "five" @blur="submitClass(five)">
+          <input type="text" id="five" name = "five" @blur="changeClassName(five)">
           <label for="name"> Six:</label>
-          <input type="text" id="six" name = "six" @blur="submitClass(six)">
+          <input type="text" id="six" name = "six" @blur="changeClassName(six)">
           <br>
           <p id ="tester"> </p>
 
@@ -178,7 +178,7 @@
       <div class="period" v-bind:class="{ current: period.isCurrent(), 'list-odd': getListCount() }"
         v-if="period.isCurrent() || !period.isPassing()">
         <div class="period-name">
-          <div class="period-details">{{ period.getName() }}</div>
+          <input class="period-details" v-effect="$el.value = period.getName()" @blur="changeClassName(period.name, $el.value)"></input>
         </div>
         <div class="period-details">{{ period.getStart() }}</div>
         <div class="period-details">{{ period.getEnd() }}</div>
