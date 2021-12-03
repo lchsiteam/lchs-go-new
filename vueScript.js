@@ -37,6 +37,7 @@ PetiteVue.createApp({
   //All Pages
   currentPage: 'now',
   submitClass,
+  test,
   showPopup: false,
   backgroundColor: "hsl( 0, 50, 50)",
 
@@ -72,6 +73,68 @@ PetiteVue.createApp({
 
   translateWithInsert, 
   translate,
+  data: {
+    per0: "Zero Period",
+    per1: "Period 1",
+    per2: "Period 2",
+    per3: "Period 3",
+    per4: "Period 4",
+    per5: "Period 5",
+    per6: "Period 6",
+    lunch: "Lunch",
+    stepOdd: "Step (Odd)",
+    stepEven: "Step (Even)",
+    break: "Break"
+
+  },
+  mounted () //Aidan maybe consider cleanig this
+  {
+    console.log(localStorage.per0)
+    if (localStorage.per0)
+    {
+      this.per0 = localStorage.per0;
+    }
+    if (localStorage.per1)
+    {
+      this.per1 = localStorage.per1;
+    }
+    if (localStorage.per2)
+    {
+      this.per2 = localStorage.per2;
+    }
+    if (localStorage.per3)
+    {
+      this.per3 = localStorage.per3;
+    }
+    if (localStorage.per4)
+    {
+      this.per4 = localStorage.per4;
+    }
+    if (localStorage.per5)
+    {
+      this.per5 = localStorage.per5;
+    }
+    if (localStorage.per6)
+    {
+      this.per6 = localStorage.per6;
+    }
+    if (localStorage.lunch)
+    {
+      this.lunch = localStorage.lunch;
+    }
+    if (localStorage.break)
+    {
+      this.break = localStorage.break;
+    }
+    if (localStorage.stepOdd)
+    {
+      this.stepOdd = localStorage.stepOdd;
+    }
+    if (localStorage.stepEven)
+    {
+      this.stepEven = localStorage.stepEven
+    }
+  },
   interval: 0,
   startTimer() {
     this.update();
@@ -102,63 +165,105 @@ PetiteVue.createApp({
     document.title = this.minutesLeft + "min. | LCHS Go";
   },
 }).mount();
+function test()
+{
+  document.getElementById("tester").innerHTML = localStorage.per1;
+  console.log(localStorage.per1)
+}
 
 
 
 function submitClass(period)
 {
-  var p = period.name;
+  var p = period.value;
+  console.log(p)
   var pNum = 0;
-  switch (p)
+  console.log(localStorage)
+  if (p == ""){
+  switch (period.name)
+    {
+      case "zero":
+        p = "Zero Period";
+        break;
+      case "one":
+        p = "Period One";
+        break;
+      case "two":
+        p = "Period Two";
+        break;
+      case "three":
+        p = "Period Three";
+        break;
+      case "four":
+        p = "Period Four";
+        break;
+      case "five":
+        p = "Period Five";
+        break;
+      case "six":
+        p = "Period Six";
+        break;
+      case "even":
+        p = "Step (Even)";
+        break;
+      case "odd":
+        p = "Step (Odd)";
+        break;
+      case "lunch":
+        p = "Lunch";
+        break;
+      case "break":
+        p = "Break";
+        break;
+      default:
+        break;
+    //localStorage.per = p;
+}}
+
+  switch (period.name)
   {
     case "zero":
-      pNum = 0;
+      localStorage.per0 = p;
       break;
     case "one":
-      pNum = 1;
+    localStorage.per1 = p;
       break;
     case "two":
-      pNum = 2;
+      localStorage.per2 = p;
       break;
     case "three":
-      pNum = 3;
+    localStorage.per3 = p;
       break;
     case "four":
-      pNum = 4;
+      localStorage.per4 = p;
       break;
     case "five":
-      pNum = 5;
+      localStorage.per5 = p;
       break;
     case "six":
-      pNum = 6;
+      localStorage.per6 = p;
       break;
     case "even":
-      pNum = 7;
+      localStorage.per7 = p;
       break;
     case "odd":
-      pNum = 8;
+      localStorage.per8 = p;
       break;
     case "lunch":
-      pNum = 9;
+      localStorage.lunch = p;
       break;
     case "break":
-      pNum = 10;
+      localStorage.break = p;
       break;
     default:
-      pNum = 0;
+      break;
+    //localStorage.per = p;
+    }
+    test()
   }
-  if (period.value != "")
-  {
-    console.log("set new using name");
-  }
-  else 
-  {
-    console.log("return to default");
-  }
+  
 
 
-
-}
 
 function PeriodComponent(setName, setStart, setEnd, setPassing) {
   return {
