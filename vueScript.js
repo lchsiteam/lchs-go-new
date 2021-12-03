@@ -5,12 +5,6 @@ import { settings, settingsMenu } from "./settings.js";
 var timeFormat = (settings.twentyFourHour ? "HH" : "h") + ":mm" + (settings.showAMPM ? " A" : "");
 var currentPage = "now";
 
-
-
-var periodArray = [];
-var nameArray = [];
-
-
 function switchToNowPage() {
   this.currentPage = "now";
 }
@@ -42,8 +36,7 @@ PetiteVue.createApp({
 
   //All Pages
   currentPage: 'now',
-  submitClasses,
-  changeName,
+  submitClass,
   showPopup: false,
   backgroundColor: "hsl( 0, 50, 50)",
 
@@ -110,22 +103,60 @@ PetiteVue.createApp({
 
 
 
-function submitClasses()
+function submitClass(period)
 {
-  var periodNum = parseInt(document.getElementById("period").value)
-  periodArray.push(periodNum)
-  var even = (document.getElementById("name").value)
-  nameArray.push(even)
-  document.getElementById("name").value  = ""
-}
+  var p = period.name;
+  var pNum = 0;
+  switch (p)
+  {
+    case "zero":
+      pNum = 0;
+      break;
+    case "one":
+      pNum = 1;
+      break;
+    case "two":
+      pNum = 2;
+      break;
+    case "three":
+      pNum = 3;
+      break;
+    case "four":
+      pNum = 4;
+      break;
+    case "five":
+      pNum = 5;
+      break;
+    case "six":
+      pNum = 6;
+      break;
+    case "even":
+      pNum = 7;
+      break;
+    case "odd":
+      pNum = 8;
+      break;
+    case "lunch":
+      pNum = 9;
+      break;
+    case "break":
+      pNum = 10;
+      break;
+    default:
+      pNum = 0;
+  }
+  if (period.value != "")
+  {
+    console.log("set new using name");
+  }
+  else 
+  {
+    console.log("return to default");
+  }
 
-function changeName()
-{
-  console.log("hello");
-  console.log(periodArray);
-  console.log(nameArray);
-}
 
+
+}
 
 function PeriodComponent(setName, setStart, setEnd, setPassing) {
   return {

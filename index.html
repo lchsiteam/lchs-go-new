@@ -106,26 +106,27 @@
     </div>
     <div id="change-class" v-if="currentPage == 'change'">
       <form id = "saveMe">
-          <label for="date">Class Period:</label><br>
-          <select id="period" name="period">
-              <option value="0">Zero</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-              <option value="4">Four</option>
-              <option value="5">Five</option>
-              <option value="6">Six</option>
-
-            </select>
           <br>
-          <label for="name">New Name:</label><br>
-          <input type="text" id="name" name = "name">
+          <label for="name"> Zero:</label>
+          <input type="text" id="zero" name = "zero" @blur="submitClass(zero)">
+          <label for="name"> One:</label>
+          <input type="text" id="one" name = "one" @blur="submitClass(one)">
+          <label for="name"> Two:</label>
+          <input type="text" id="two" name = "two" @blur="submitClass(two)">
+          <label for="name"> Three:</label>
+          <input type="text" id="three" name = "three" @blur="submitClass(three)">
+          <label for="name"> Four:</label>
+          <input type="text" id="four" name = "four" @blur="submitClass(four)">
+          <label for="name"> Five:</label>
+          <input type="text" id="five" name = "five" @blur="submitClass(five)">
+          <label for="name"> Six:</label>
+          <input type="text" id="six" name = "six" @blur="submitClass(six)">
           <br>
 
       </form>
-      <button @click="submitClasses()">Enter</button>
 
-      <button @click="changeName()">Finish</button>
+
+
 
     </div>
   </div>
