@@ -47,8 +47,6 @@ PetiteVue.createApp({
   showPopup: false,
   backgroundColor: "hsl( 0, 50, 50)",
 
-
-
   //Now Page
   periodList,
   todaysGreeting: "",
@@ -165,7 +163,6 @@ function CalendarDay(props) {
   return {
     date: moment().set('date', props.num - moment().startOf('month').day()),
     scheduleType() {
-      console.log(this.date);
       return getSchedule(this.date);
     },
     event() {

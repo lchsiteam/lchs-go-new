@@ -437,7 +437,7 @@ tr:nth-child(even) td:nth-child(odd) {
   flex-direction: row;
   justify-content: flex-start;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: stretch;
 }
 
 .calendar-day {

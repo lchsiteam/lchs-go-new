@@ -1,5 +1,5 @@
 {
-  "version": 15,
+  "version": 16,
   "defaults": {
     "0": "NONE",
     "1": "REGULAR",
@@ -11,7 +11,9 @@
   },
   "overrides": {
     "11/09/2021": "BLOCK_EVEN",
-    "11/11/2021": "NONE"
+    "11/11/2021": "NONE",
+    "12/08/2021": "REGULAR",
+    "12/09/2021": "REGULAR"
   },
   "dateRanges": {
     "SUMMER_BREAK":  ["06/03/2022", "08/16/2022"],
@@ -20,6 +22,7 @@
     "FALL_BREAK":     ["11/22/2021", "11/26/2021"],
     "BLOCK_SWITCH":   ["11/17/2021", "02/17/2022"]
   },
+  "timeOffset": "00:01:30",
   "gradeLevels": {
     "7/8": {
       "REGULAR": {
