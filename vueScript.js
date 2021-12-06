@@ -1,6 +1,11 @@
 import {formattedJSON, eventsJSON, languageJSON, getSchedule } from "./scheduleFormatting.js";
 import { settings, settingsMenu } from "./settings.js";
 
+var customNames = JSON.parse(localStorage.getItem("customNames"));
+if (customNames == null) {
+  customNames = {};
+}
+
 //stores the user preference for how they display time
 var timeFormat = (settings.twentyFourHour ? "HH" : "h") + ":mm" + (settings.showAMPM ? " A" : "");
 var currentPage = "now";
@@ -170,8 +175,8 @@ function changeClassName(periodId, newValue) {
   } else if (newValue == "") {
     newValue = translate(periodId);
   }
-  languageJSON[periodId] = newValue;
-  localStorage.setItem("languageJSON", JSON.stringify(languageJSON));
+  customNames[periodId] = newValue;
+  localStorage.setItem("customNames", JSON.stringify(languageJSON));
 }
 
 function PeriodComponent(setName, setStart, setEnd, setPassing) {
@@ -272,14 +277,15 @@ function hslToHex(h, s, l) {
 }
 
 export function translate(translateText) {
-  return languageJSON[translateText];
+  if (customNames[translateText] != null) {
+    return customNames[translateText];
+  } else {
+    return languageJSON[translateText];
+  }
 }
 
-
-
-
 export function translateWithInsert(translateText, insertString) {
-  var returnText = languageJSON[translateText];
+  var returnText = translate(translateText);
   var index = returnText.indexOf("{}");
   if (index < 0) {
     return translate(translateText);
