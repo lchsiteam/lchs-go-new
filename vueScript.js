@@ -1,7 +1,7 @@
 import {formattedJSON, eventsJSON, languageJSON, getSchedule } from "./scheduleFormatting.js";
 import { settings, settingsMenu } from "./settings.js";
 
-var customNames = JSON.parse(localStorage.getItem("customNames"));
+var customNames = JSON.parse(localStorage.getItem("customNamesJSON"));
 if (customNames == null) {
   customNames = {};
 }
@@ -79,7 +79,6 @@ PetiteVue.createApp({
   startTimer() {
     this.update();
     changeHue(settings.colorTheme);
-    console.log(languageJSON);
 
     clearInterval(this.interval);
     this.interval = setInterval(() => {
@@ -211,7 +210,8 @@ function changeClassName(periodId, newValue) {
     newValue = translate(periodId);
   }
   customNames[periodId] = newValue;
-  localStorage.setItem("customNames", JSON.stringify(languageJSON));
+  console.log(customNames)
+  localStorage.setItem("customNamesJSON", JSON.stringify(customNames));
 }
 
 export function translate(translateText) {
