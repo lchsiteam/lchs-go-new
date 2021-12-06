@@ -41,7 +41,6 @@ PetiteVue.createApp({
 
   //All Pages
   currentPage: 'now',
-  changeClassName,
   showPopup: false,
   backgroundColor: "hsl( 0, 50, 50)",
 
@@ -49,10 +48,6 @@ PetiteVue.createApp({
   periodList,
   todaysGreeting: "",
   listCount: 0,
-  getListCount() {
-    this.listCount++;
-    return this.listCount % 2 == 0;
-  },
   currentPeriod,
   currentTime: 0,
   minutesLeft: 0,
@@ -72,7 +67,7 @@ PetiteVue.createApp({
   switchToChange,
   changeSetting,
   changeHue,
-
+  changeClassName,
   translateWithInsert, 
   translate,
   interval: 0,
@@ -204,14 +199,13 @@ function hslToHex(h, s, l) {
 }
 
 function changeClassName(periodId, newValue) {
-  if (newValue == translate(periodId)) {
-    return;
-  } else if (newValue == "") {
-    newValue = translate(periodId);
+  if (newValue == languageJSON[periodId] || newValue == "") {
+    newValue = languageJSON[periodId];
+    delete customNames[periodId];
+  } else {
+    customNames[periodId] = newValue;
+    localStorage.setItem("customNamesJSON", JSON.stringify(customNames));
   }
-  customNames[periodId] = newValue;
-  console.log(customNames)
-  localStorage.setItem("customNamesJSON", JSON.stringify(customNames));
 }
 
 export function translate(translateText) {

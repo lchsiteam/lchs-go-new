@@ -143,7 +143,7 @@
       <div class="period-header-text">{{ translate("PERIOD_END") }}</div>
     </div>
     <div v-for="period in periodList">
-      <div class="period" v-bind:class="{ current: period.isCurrent(), 'list-odd': getListCount() }"
+      <div class="period" v-bind:class="{ current: period.isCurrent() }"
         v-if="period.isCurrent() || !period.isPassing()">
         <div class="period-name">
           <input class="period-details" v-effect="$el.value = period.getName()" @blur="changeClassName(period.name, $el.value)"></input>
