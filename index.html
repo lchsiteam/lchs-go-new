@@ -32,10 +32,6 @@
           v-bind:class="{'selected': currentPage == 'settings'}">
           {{ translate("SETTINGS") }}
         </div>
-        <div @click="switchToChange()" class="nav-button" v-bind:class="{'selected': currentPage == 'change'}">
-          Change Class Names
-
-        </div>
       </div>
     </div>
     <div id="now-page" v-if="currentPage == 'now'">
@@ -100,35 +96,7 @@
             v-on:change="changeSetting('colorTheme', $el.value)">
           </div>
         </div>
-
-
       </div>
-    </div>
-    <div id="change-class" v-if="currentPage == 'change'">
-      <form id = "saveMe">
-          <br>
-          <label for="name"> Zero:</label>
-          <input type="text" id="zero" name = "zero" @blur="changeClassName(zero)">
-          <label for="name"> One:</label>
-          <input type="text" id="one" name = "one" @blur="changeClassName(one)">
-          <label for="name"> Two:</label>
-          <input type="text" id="two" name = "two" @blur="changeClassName(two)">
-          <label for="name"> Three:</label>
-          <input type="text" id="three" name = "three" @blur="changeClassName(three)">
-          <label for="name"> Four:</label>
-          <input type="text" id="four" name = "four" @blur="changeClassName(four)">
-          <label for="name"> Five:</label>
-          <input type="text" id="five" name = "five" @blur="changeClassName(five)">
-          <label for="name"> Six:</label>
-          <input type="text" id="six" name = "six" @blur="changeClassName(six)">
-          <br>
-          <p id ="tester"> </p>
-
-      </form>
-
-
-
-
     </div>
   </div>
   <template id="period-information-template">
