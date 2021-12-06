@@ -175,6 +175,12 @@
 .period-details {
   color: #fff;
   font-weight: 300;
+  background-color: transparent;
+  border: none;
+  font: inherit;
+}
+.period-details:focus-visible {
+  outline: none;
 }
 .period-name {
   width: 50%;

@@ -36,8 +36,7 @@ PetiteVue.createApp({
 
   //All Pages
   currentPage: 'now',
-  submitClass,
-  test,
+  changeClassName,
   showPopup: false,
   backgroundColor: "hsl( 0, 50, 50)",
 
@@ -137,6 +136,7 @@ PetiteVue.createApp({
   startTimer() {
     this.update();
     changeHue(settings.colorTheme);
+    console.log(languageJSON);
 
     clearInterval(this.interval);
     this.interval = setInterval(() => {
@@ -163,103 +163,16 @@ PetiteVue.createApp({
     document.title = this.minutesLeft + "min. | LCHS Go";
   },
 }).mount();
-function test()
-{
-  document.getElementById("tester").innerHTML = localStorage.per1;
-  console.log(localStorage.per1)
-}
 
-function changeClassName(period)
-{
-  var p = period.value;
-  console.log(p)
-  var pNum = 0;
-  console.log(localStorage)
-  if (p == ""){
-  switch (period.name)
-    {
-      case "zero":
-        p = "Zero Period";
-        break;
-      case "one":
-        p = "Period One";
-        break;
-      case "two":
-        p = "Period Two";
-        break;
-      case "three":
-        p = "Period Three";
-        break;
-      case "four":
-        p = "Period Four";
-        break;
-      case "five":
-        p = "Period Five";
-        break;
-      case "six":
-        p = "Period Six";
-        break;
-      case "even":
-        p = "Step (Even)";
-        break;
-      case "odd":
-        p = "Step (Odd)";
-        break;
-      case "lunch":
-        p = "Lunch";
-        break;
-      case "break":
-        p = "Break";
-        break;
-      default:
-        break;
-    //localStorage.per = p;
-}}
-
-  switch (period.name)
-  {
-    case "zero":
-      localStorage.per0 = p;
-      break;
-    case "one":
-    localStorage.per1 = p;
-      break;
-    case "two":
-      localStorage.per2 = p;
-      break;
-    case "three":
-    localStorage.per3 = p;
-      break;
-    case "four":
-      localStorage.per4 = p;
-      break;
-    case "five":
-      localStorage.per5 = p;
-      break;
-    case "six":
-      localStorage.per6 = p;
-      break;
-    case "even":
-      localStorage.per7 = p;
-      break;
-    case "odd":
-      localStorage.per8 = p;
-      break;
-    case "lunch":
-      localStorage.lunch = p;
-      break;
-    case "break":
-      localStorage.break = p;
-      break;
-    default:
-      break;
-    //localStorage.per = p;
-    }
-    test()
+function changeClassName(periodId, newValue) {
+  if (newValue == translate(periodId)) {
+    return;
+  } else if (newValue == "") {
+    newValue = translate(periodId);
   }
-  
-
-
+  languageJSON[periodId] = newValue;
+  localStorage.setItem("languageJSON", JSON.stringify(languageJSON));
+}
 
 function PeriodComponent(setName, setStart, setEnd, setPassing) {
   return {
