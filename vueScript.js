@@ -75,68 +75,6 @@ PetiteVue.createApp({
 
   translateWithInsert, 
   translate,
-  data: {
-    per0: "Zero Period",
-    per1: "Period 1",
-    per2: "Period 2",
-    per3: "Period 3",
-    per4: "Period 4",
-    per5: "Period 5",
-    per6: "Period 6",
-    lunch: "Lunch",
-    stepOdd: "Step (Odd)",
-    stepEven: "Step (Even)",
-    break: "Break"
-
-  },
-  mounted () //Aidan maybe consider cleanig this
-  {
-    console.log(localStorage.per0)
-    if (localStorage.per0)
-    {
-      this.per0 = localStorage.per0;
-    }
-    if (localStorage.per1)
-    {
-      this.per1 = localStorage.per1;
-    }
-    if (localStorage.per2)
-    {
-      this.per2 = localStorage.per2;
-    }
-    if (localStorage.per3)
-    {
-      this.per3 = localStorage.per3;
-    }
-    if (localStorage.per4)
-    {
-      this.per4 = localStorage.per4;
-    }
-    if (localStorage.per5)
-    {
-      this.per5 = localStorage.per5;
-    }
-    if (localStorage.per6)
-    {
-      this.per6 = localStorage.per6;
-    }
-    if (localStorage.lunch)
-    {
-      this.lunch = localStorage.lunch;
-    }
-    if (localStorage.break)
-    {
-      this.break = localStorage.break;
-    }
-    if (localStorage.stepOdd)
-    {
-      this.stepOdd = localStorage.stepOdd;
-    }
-    if (localStorage.stepEven)
-    {
-      this.stepEven = localStorage.stepEven
-    }
-  },
   interval: 0,
   startTimer() {
     this.update();
@@ -168,16 +106,6 @@ PetiteVue.createApp({
     document.title = this.minutesLeft + "min. | LCHS Go";
   },
 }).mount();
-
-function changeClassName(periodId, newValue) {
-  if (newValue == translate(periodId)) {
-    return;
-  } else if (newValue == "") {
-    newValue = translate(periodId);
-  }
-  customNames[periodId] = newValue;
-  localStorage.setItem("customNames", JSON.stringify(languageJSON));
-}
 
 function PeriodComponent(setName, setStart, setEnd, setPassing) {
   return {
@@ -274,6 +202,16 @@ function hslToHex(h, s, l) {
     return Math.round(255 * color).toString(16).padStart(2, '0');   // convert to Hex and prefix "0" if needed
   };
   return `#${f(0)}${f(8)}${f(4)}`;
+}
+
+function changeClassName(periodId, newValue) {
+  if (newValue == translate(periodId)) {
+    return;
+  } else if (newValue == "") {
+    newValue = translate(periodId);
+  }
+  customNames[periodId] = newValue;
+  localStorage.setItem("customNames", JSON.stringify(languageJSON));
 }
 
 export function translate(translateText) {
