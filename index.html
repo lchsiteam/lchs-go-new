@@ -143,7 +143,7 @@
       <div class="period-header-text">{{ translate("PERIOD_END") }}</div>
     </div>
     <div v-for="period in periodList">
-      <div class="period" v-bind:class="{ current: period.isCurrent() }"
+      <div class="period" v-bind:class="{ current: period.isCurrent(), 'list-odd': getListCount() }"
         v-if="period.isCurrent() || !period.isPassing()">
         <div class="period-name">
           <!-- <span class="material-icons-outlined">sync</span> -->

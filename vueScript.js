@@ -48,6 +48,10 @@ PetiteVue.createApp({
   periodList,
   todaysGreeting: "",
   listCount: 0,
+  getListCount() {
+    this.listCount++;
+    return this.listCount % 2 == 0;
+  },
   currentPeriod,
   currentTime: 0,
   minutesLeft: 0,
