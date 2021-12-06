@@ -198,14 +198,16 @@ function hslToHex(h, s, l) {
   return `#${f(0)}${f(8)}${f(4)}`;
 }
 
-function changeClassName(periodId, newValue) {
+function changeClassName(periodId, element) {
+  var newValue = element.value;
   if (newValue == languageJSON[periodId] || newValue == "") {
     newValue = languageJSON[periodId];
     delete customNames[periodId];
+    element.value = newValue;
   } else {
     customNames[periodId] = newValue;
-    localStorage.setItem("customNamesJSON", JSON.stringify(customNames));
   }
+  localStorage.setItem("customNamesJSON", JSON.stringify(customNames));
 }
 
 export function translate(translateText) {
