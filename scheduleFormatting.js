@@ -1,8 +1,12 @@
+// Import the user settings
 import { settings } from "./settings.js";
+
+// Export the JSON parsed in this file
 export var scheduleJSON = JSON.parse(localStorage.getItem("scheduleJSON"));
 export var languageJSON = JSON.parse(localStorage.getItem("languageJSON"));
 export var eventsJSON = JSON.parse(localStorage.getItem("eventsJSON"));
 
+// Fetch the schedule.json for updates
 fetch("./schedule.json")
   .then((response) => response.json())
   .then((serverScheduleJSON) => {
@@ -16,6 +20,7 @@ fetch("./schedule.json")
     }
   });
 
+// Fetch the language.json for update
 fetch("./languages.json")
   .then((response) => response.json())
   .then((serverLanguageJSON) => {
@@ -32,6 +37,7 @@ fetch("./languages.json")
     }
   });
 
+// Fetch the events.json for updates
 fetch("./events.json")
   .then((response) => response.json())
   .then((serverEventsJSON) => {
@@ -41,19 +47,19 @@ fetch("./events.json")
     }
   });
 
-getSchedule(moment());
-
+// Create and export the formattedJSON for today
 export var formattedJSON = getSchedule(moment());
+
+// Function - get the formatted schedule json for a specific day - pass in a moment() object
 export function getSchedule(date) {
   if (date == null) return;
   var scheduleType;
-  var blockSwitch = false;
   var localJSON = [];
 
-  //Check if an override exists
+  // Check if an override exists
   if (Object.keys(scheduleJSON.overrides).includes(date.format("MM/DD/YYYY"))) {
     scheduleType = scheduleJSON.overrides[date.format("MM/DD/YYYY")];
-  } else {
+  } else { // Check if today is in a range
     if (inRange(date, "SUMMER_BREAK")) {
       scheduleType = "SUMMER_BREAK";
     } else if(inRange(date, "WINTER_BREAK")) {
@@ -71,6 +77,7 @@ export function getSchedule(date) {
     }
   }
 
+  // Add the periods and passing periods the json
   if (scheduleType != "NONE" && !scheduleType.includes("BREAK")) {
     var previousEnd;
     if (settings.grade >= 9) {
@@ -96,6 +103,7 @@ export function getSchedule(date) {
       );
     }
 
+    // Add before and after school
     localJSON = [
       {
         name: "BEFORE_SCHOOL",
@@ -111,7 +119,7 @@ export function getSchedule(date) {
         passing: true,
       },
     ];
-  } else {
+  } else { // Add only no school
     localJSON = [
       {
         name: "NO_SCHOOL",
@@ -122,10 +130,12 @@ export function getSchedule(date) {
     ];
   }
 
+  // Add the scheduleType to the json
   localJSON.scheduleType = scheduleType;
   return localJSON;
 }
 
+// Function - Check if a date is in a date from the schedule.json
 function inRange(date, range) {
   return date.isBetween(moment(scheduleJSON.dateRanges[range][0], "MM/DD/YYYY").startOf('day'), moment(scheduleJSON.dateRanges[range][1], "MM/DD/YYYY").endOf('day'));
 }

@@ -1,3 +1,4 @@
+// Default settings JSON
 const defaultSettings = {
   settings: {
     setting: "settings",
@@ -14,18 +15,20 @@ const defaultSettings = {
   }
 }
 
+// Export the current settings JSON
 export var settings = JSON.parse(localStorage.getItem("settings"));
 if (settings == null) {
   settings = defaultSettings.settings;
   localStorage.setItem("settings", JSON.stringify(settings));
 }
 
+// Settings menu data
 export const settingsMenu = {
-  notificationsOn: {
-    setting: "notificationsOn",
-    key: "NOTIFICATION",
-    mode: 'toggle',
-    options: [[true, "ON"], [false, "OFF"]],
+  notificationsOn: {                         // setting id (same as ^)
+    setting: "notificationsOn",              // setting id (same as ^)
+    key: "NOTIFICATION",                     // language translation key
+    mode: 'toggle',                          // setting type
+    options: [[true, "ON"], [false, "OFF"]], // options for the setting array of arrays [ [<set to value>, <language key for display>] , ... ]
     new: false,
   },
   enableAnimations: {

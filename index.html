@@ -17,9 +17,11 @@
 </head>
 
 <body class="body" v-scope @mounted="startTimer()">
+  <!-- Background - Used to do the color -->
   <div class="background" id="background"></div>
   <div class="app-container">
     <div class="header">
+      <!-- Navigation - Holds the page buttons -->
       <div class="navigation">
         <div @click="currentPage = 'now'" class="nav-button" v-bind:class="{'selected': currentPage == 'now'}">
           {{ translate("NOW") }}
@@ -34,6 +36,7 @@
         </div>
       </div>
     </div>
+    <!-- Now Page - Has the period list and the times -->
     <div id="now-page" v-if="currentPage == 'now'">
       <div class="todays-schedule" v-effect="$el.textContent = todaysGreeting">
         Hello. Things are broken :)
@@ -43,6 +46,7 @@
         <div class="all-periods" v-scope="PeriodListComponent()"></div>
       </div>
     </div>
+    <!-- Calendar Page - Calendar pulled from the events.json -->
     <div id="calendar" v-if="currentPage == 'calendar'">
       <div class="todays-schedule">
         Calendar
@@ -62,12 +66,11 @@
         </div>
       </div>
     </div>
-
-
+    <!-- Schedule Popup - Shows up when clicked on a calendar day (To be removed until fixed) -->
     <div class="schedule-popup" v-if="showPopup" @click="showPopup = false;">
       <div v-scope="PeriodListComponent()"></div>
-
     </div>
+    <!-- Settings Page - All of the user settings generated from settings.js -->
     <div id="settings-page" v-if="currentPage == 'settings'">
       <div class="todays-schedule">
         App Settings
@@ -99,6 +102,8 @@
       </div>
     </div>
   </div>
+  <!-- Templates Section - These are templates because they are used in multiple areas -->
+  <!-- Period Information Template - Holds the time left -->
   <template id="period-information-template">
     <div class="progress-bar">
       <div class="circle"></div><!--                             percent max  min          min-->
@@ -134,6 +139,7 @@
       <div class="start-end-time">{{ currentPeriod.getEnd() }}</div>
     </div>
   </template>
+  <!-- Period List Template - Holds the list of periods -->
   <template id="period-list-template">
     <div class="periods-header">
       <div class="period-name">

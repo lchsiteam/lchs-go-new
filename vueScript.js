@@ -1,29 +1,17 @@
+// Importing the Schedule, Settings, and Languages
 import {formattedJSON, eventsJSON, languageJSON, getSchedule } from "./scheduleFormatting.js";
 import { settings, settingsMenu } from "./settings.js";
 
+// Basically and import
 var customNames = JSON.parse(localStorage.getItem("customNamesJSON"));
 if (customNames == null) {
   customNames = {};
 }
 
-//stores the user preference for how they display time
+// Stores the user preference for how they display time
 var timeFormat = (settings.twentyFourHour ? "HH" : "h") + ":mm" + (settings.showAMPM ? " A" : "");
-var currentPage = "now";
 
-function switchToNowPage() {
-  this.currentPage = "now";
-}
-function switchToCalendarPage() {
-  this.currentPage = "calendar";
-}
-function switchToSettingsPage() {
-  this.currentPage = "settings";
-}
-function switchToChange(){
-  this.currentPage = "change"
-}
-
-
+// Find current Period
 var currentPeriod = null;
 var periodList = formattedJSON.map((p) => {
   return PeriodComponent(p.name, p.start, p.end, p.passing);
@@ -33,18 +21,19 @@ periodList.forEach((p) => {
           currentPeriod = p;
         }});
 
+// Petite Vue interface
 PetiteVue.createApp({
-  //Components
+  // Components
   PeriodInformationComponent,
   PeriodListComponent,
   CalendarDay,
 
-  //All Pages
+  // All Pages
   currentPage: 'now',
   showPopup: false,
   backgroundColor: "hsl( 0, 50, 50)",
 
-  //Now Page
+  // Now Page
   periodList,
   todaysGreeting: "",
   listCount: 0,
@@ -58,13 +47,12 @@ PetiteVue.createApp({
   percentCompleted: 0,
   percentCompletedText: "",
 
-  //Settings Page
+  // Settings Page
   settingsMenu,
   settings,
   changedSetting: true,
 
-  //Functions
-
+  // Functions
   switchToNowPage,
   switchToCalendarPage,
   switchToSettingsPage,
@@ -74,6 +62,8 @@ PetiteVue.createApp({
   changeClassName,
   translateWithInsert, 
   translate,
+
+  // Update interval timer
   interval: 0,
   startTimer() {
     this.update();
@@ -105,6 +95,7 @@ PetiteVue.createApp({
   },
 }).mount();
 
+// Component - Period - Holds the name, start, end, and if passing
 function PeriodComponent(setName, setStart, setEnd, setPassing) {
   return {
     name: setName,
@@ -137,6 +128,7 @@ function PeriodComponent(setName, setStart, setEnd, setPassing) {
   };
 }
 
+// Component - CalendarDay - Holds the schedule for the day and the date
 function CalendarDay(props) {
   return {
     date: moment().set('date', props.num - moment().startOf('month').day()),
@@ -149,18 +141,21 @@ function CalendarDay(props) {
   }
 }
 
+// Component - Period Information Template - Used to make a period information block
 function PeriodInformationComponent(props) {
   return {
     $template: "#period-information-template"
   }
 }
 
+// Component - Period List Template - Used to make a period list block
 function PeriodListComponent(props) {
   return {
     $template: "#period-list-template"
   }
 }
 
+// Function - Get the translated greeting and schedule for the day
 export function getTodaysGreeting() {
   return (
     getGreeting() +
@@ -169,6 +164,7 @@ export function getTodaysGreeting() {
   );
 }
 
+// Function - Get the time of day for the greeting
 function getGreeting() {
   var hours = moment().hours();
 
@@ -181,16 +177,33 @@ function getGreeting() {
   }
 }
 
+// Function - Page switching
+function switchToNowPage() {
+  this.currentPage = "now";
+}
+function switchToCalendarPage() {
+  this.currentPage = "calendar";
+}
+function switchToSettingsPage() {
+  this.currentPage = "settings";
+}
+function switchToChange(){
+  this.currentPage = "change"
+}
+
+// Function - Set the local storage settings with an updated user setting
 function changeSetting(setting, value) {
   settings[setting] = value;
   this.changedSetting = !this.changedSetting;
   localStorage.setItem("settings", JSON.stringify(settings));
 }
 
+// Function - Called by the HTML to set the background color
 function changeHue(hue) {
   document.getElementById("background").style.backgroundColor = hslToHex(hue, 50, 50);
 }
 
+// Function - Helper for ^ to change HSL to Hex
 function hslToHex(h, s, l) {
   l /= 100;
   const a = s * Math.min(l, 1 - l) / 100;
@@ -202,6 +215,7 @@ function hslToHex(h, s, l) {
   return `#${f(0)}${f(8)}${f(4)}`;
 }
 
+// Function - Update the local storage for the customNames to the new custom names
 function changeClassName(periodId, element) {
   var newValue = element.value;
   if (newValue == languageJSON[periodId] || newValue == "") {
@@ -214,6 +228,7 @@ function changeClassName(periodId, element) {
   localStorage.setItem("customNamesJSON", JSON.stringify(customNames));
 }
 
+// Function - Used to translate a key to the selected language.
 export function translate(translateText) {
   if (customNames[translateText] != null) {
     return customNames[translateText];
@@ -222,6 +237,7 @@ export function translate(translateText) {
   }
 }
 
+// Function - Used to translate a key to the selected language and insert other text if possible.
 export function translateWithInsert(translateText, insertString) {
   var returnText = translate(translateText);
   var index = returnText.indexOf("{}");
