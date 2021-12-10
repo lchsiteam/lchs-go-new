@@ -16,7 +16,7 @@
   <title>LCHS Go</title>
 </head>
 
-<body class="body" v-scope @mounted="startTimer()">
+<body class="body" id="body" v-scope v-effect="startTimer()">
   <!-- Background - Used to do the color -->
   <div class="background" id="background"></div>
   <div class="app-container">
@@ -53,7 +53,7 @@
       </div>
       <div class="calendar-container">
         <div class="calendar-day" v-for="day in 35" v-bind:class="{ 'outside': date.month() !== moment().month() }"
-          v-scope="CalendarDay({num: day})" @click="showPopup = true; popupSchedule = scheduleType()">
+          v-scope="CalendarDay({num: day})"> <!-- @click="showPopup = true; popupSchedule = scheduleType()" -->
           <div class="cd-number">
             {{ date.date() }}
           </div>
@@ -77,19 +77,30 @@
       </div>
       <div class="settings-row" v-for="setting in settingsMenu">
         <div class="sr-head">
-          <span class="sr-badge-new" v-if="setting.new">NEW</span>
+          <div class="sr-badge-group">
+            <span class="sr-badge" v-if="setting.experimental">!</span>
+            <span class="sr-badge" v-if="setting.new">NEW</span>
+          </div>
           <b class="sr-title">{{ translate("SETTINGS_" + setting.key + "_TITLE") }}</b>
           <span class="sr-desc">{{ translate("SETTINGS_" + setting.key + "_DESC") }}</span>
         </div>
 
-        <div class="sr-option" v-scope="{ userOption: settings[setting.setting] }">
-          <div class="sr-selector" v-if="setting.mode == 'toggle'">
+        <div class="sr-option">
+          <div class="sr-selector" v-if="setting.mode == 'toggle'" v-scope="{ value: settings[setting.setting] }">
             <div class="sr-selector-option" v-for="option in setting.options"
-              @click="changeSetting(setting.setting, option[0])" v-bind:class="{ 'selected': userOption == option[0] }">
+              v-effect="
+                if(value == option[0]) {
+                  $el.className = 'sr-selector-option selected'; 
+                } else {
+                  $el.className = 'sr-selector-option';
+                }"
+              @click="changeSetting(setting.setting, option[0]); value = option[0]" 
+              v-bind:class="{ 'selected': settings[setting.setting] == option[0] }">
               {{ translate(option[1]) }}
             </div>
           </div>
-          <select class="sr-select" v-if="setting.mode == 'dropdown'">
+          <select class="sr-select" v-if="setting.mode == 'dropdown'" v-effect="$el.selectedIndex = setting.options.indexOf(settings[setting.setting])"
+          @change="changeSetting(setting.setting, setting.options[$el.selectedIndex])">
             <option class="sr-select-item" v-for="option in setting.options">{{ translate(option) }}</option>
           </select>
            
@@ -100,6 +111,9 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="credits">
+      Made with ❤️ by the <a href="https://lciteam.club" class="credits" target="_blank">LC iTeam</a>
     </div>
   </div>
   <!-- Templates Section - These are templates because they are used in multiple areas -->
@@ -150,9 +164,8 @@
     </div>
     <div v-for="period in periodList">
       <div class="period" v-bind:class="{ current: period.isCurrent(), 'list-odd': getListCount() }"
-        v-if="period.isCurrent() || !period.isPassing()">
+        v-if="period.isCurrent() || (!period.isPassing() || settings.showExtraPeriods)">
         <div class="period-name">
-          <!-- <span class="material-icons-outlined">sync</span> -->
           <input class="period-details" v-effect="$el.value = period.getName()" @click="$el.focus(); $el.select();" @blur="changeClassName(period.name, $el)"></input>
         </div>
         <div class="period-details">{{ period.getStart() }}</div>

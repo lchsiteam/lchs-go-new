@@ -57,8 +57,10 @@ export function getSchedule(date) {
   var localJSON = [];
 
   // Check if an override exists
-  if (Object.keys(scheduleJSON.overrides).includes(date.format("MM/DD/YYYY"))) {
-    scheduleType = scheduleJSON.overrides[date.format("MM/DD/YYYY")];
+  if (Object.keys(scheduleJSON.overrides.all).includes(date.format("MM/DD/YYYY"))) {
+    scheduleType = scheduleJSON.overrides.all[date.format("MM/DD/YYYY")];
+  } else if (Object.keys(scheduleJSON.overrides[settings.grade]).includes(date.format("MM/DD/YYYY"))) {
+    scheduleType = scheduleJSON.overrides[settings.grade][date.format("MM/DD/YYYY")];
   } else { // Check if today is in a range
     if (inRange(date, "SUMMER_BREAK")) {
       scheduleType = "SUMMER_BREAK";
@@ -80,27 +82,58 @@ export function getSchedule(date) {
   // Add the periods and passing periods the json
   if (scheduleType != "NONE" && !scheduleType.includes("BREAK")) {
     var previousEnd;
-    if (settings.grade >= 9) {
-      Object.keys(scheduleJSON.gradeLevels.highSchool[scheduleType]).forEach(
-        (period) => {
-          if (previousEnd != undefined) {
+    switch (settings.grade) {
+      case "GRADE_7":
+      case "GRADE_8":
+        Object.keys(scheduleJSON.gradeLevels.middleSchool[scheduleType]).forEach(
+          (period) => {
+            if (previousEnd != undefined) {
+              localJSON.push({
+                name: "PASSING_BEFORE," + period,
+                start: previousEnd,
+                end: scheduleJSON.gradeLevels.highSchool[scheduleType][period][0],
+                passing: true,
+              });
+            }
             localJSON.push({
-              name: "PASSING_BEFORE," + period,
-              start: previousEnd,
-              end: scheduleJSON.gradeLevels.highSchool[scheduleType][period][0],
-              passing: true,
+              name: period,
+              start: scheduleJSON.gradeLevels.highSchool[scheduleType][period][0],
+              end: scheduleJSON.gradeLevels.highSchool[scheduleType][period][1],
+              passing: false,
             });
+            previousEnd =
+              scheduleJSON.gradeLevels.highSchool[scheduleType][period][1];
           }
-          localJSON.push({
-            name: period,
-            start: scheduleJSON.gradeLevels.highSchool[scheduleType][period][0],
-            end: scheduleJSON.gradeLevels.highSchool[scheduleType][period][1],
-            passing: false,
-          });
-          previousEnd =
-            scheduleJSON.gradeLevels.highSchool[scheduleType][period][1];
-        }
-      );
+        );
+      break;
+      case "GRADE_9":
+      case "GRADE_10":
+      case "GRADE_11":
+      case "GRADE_12":
+        Object.keys(scheduleJSON.gradeLevels.highSchool[scheduleType]).forEach(
+          (period) => {
+            if (previousEnd != undefined) {
+              localJSON.push({
+                name: "PASSING_BEFORE," + period,
+                start: previousEnd,
+                end: scheduleJSON.gradeLevels.highSchool[scheduleType][period][0],
+                passing: true,
+              });
+            }
+            localJSON.push({
+              name: period,
+              start: scheduleJSON.gradeLevels.highSchool[scheduleType][period][0],
+              end: scheduleJSON.gradeLevels.highSchool[scheduleType][period][1],
+              passing: false,
+            });
+            previousEnd =
+              scheduleJSON.gradeLevels.highSchool[scheduleType][period][1];
+          }
+        );
+      break;
+    }
+    if (settings.grade >= 9) {
+      
     }
 
     // Add before and after school
@@ -122,7 +155,7 @@ export function getSchedule(date) {
   } else { // Add only no school
     localJSON = [
       {
-        name: "NO_SCHOOL",
+        name: "NONE",
         start: moment().startOf("day"),
         end: moment().endOf("day"),
         passing: false,

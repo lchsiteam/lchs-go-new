@@ -1,8 +1,11 @@
 * {
   box-sizing: border-box;
+  transition: ease-in-out;
+  transition-duration: 100ms;
 }
 .body {
   font-family: "Niramit", sans-serif;
+  color: #fff;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -30,11 +33,19 @@
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
+  align-items: center;
   justify-content: center;
   padding-top: 50px;
   padding-bottom: 50px;
 }
+.credits {
+  color: inherit;
+  text-decoration-color: white;
+  margin-top: 50px;
+  font-size: 10px;
+}
 .background {
+  transition: width 0s 0s ease;
   position: fixed;
   left: 0%;
   top: 0%;
@@ -64,7 +75,6 @@
 }
 .todays-schedule {
   margin-bottom: 30px;
-  color: #fff;
   font-size: 20px;
   font-weight: 500;
   text-align: center;
@@ -111,7 +121,6 @@
   margin-left: 15px;
   padding: 5px 10px;
   border-radius: 2px;
-  color: #fff;
   font-size: 14px;
   font-weight: 300;
   letter-spacing: 1px;
@@ -173,11 +182,11 @@
   transform: scale(1.1);
 }
 .period-details {
-  color: #fff;
-  font-weight: 300;
+  font-family: inherit;
+  font-size: 16px;
   background-color: transparent;
   border: none;
-  font: inherit;
+  color: inherit;
 }
 .period-details:focus-visible {
   outline: none;
@@ -186,7 +195,6 @@
   width: 50%;
 }
 .period-header-text {
-  color: #fff;
   font-weight: 500;
 }
 .progress-bar {
@@ -249,7 +257,6 @@
 }
 .start-end-time {
   height: 25%;
-  color: #fff;
   font-size: 30px;
   line-height: 62px;
   font-weight: 600;
@@ -257,7 +264,6 @@
   letter-spacing: 2px;
 }
 .details-name {
-  color: #fff;
   font-size: 35px;
   font-weight: 600;
   text-align: center;
@@ -266,7 +272,6 @@
   display: inline-flex;
   flex-direction: column;
   margin-top: 15px;
-  color: #fff;
   font-size: 18px;
   font-weight: 400;
 }
@@ -275,7 +280,6 @@
   font-weight: 600;
 }
 .time-left-percent {
-  color: #fff;
   font-weight: 400;
   margin-top: 15px;
 }
@@ -296,7 +300,6 @@
   height: 20px;
   position: absolute;
   background-color: rgba(255, 255, 255, 0);
-  color: hsla(0, 0%, 100%, 1);
   font-size: 15px;
   line-height: 16px;
   font-weight: 300;
@@ -446,8 +449,6 @@
   top: -3px;
   right: auto;
   bottom: auto;
-  font-family: Niramit;
-  color: white;
   font-size: 25px;
   font-weight: 600;
 }
@@ -458,7 +459,6 @@
   margin-bottom: 3px;
   background-color: rgba(0, 0, 0, 0.15);
   text-align: center;
-  color: white;
 }
 
 .schedule-popup {
@@ -489,26 +489,25 @@
   align-items: center;
 }
 .sr-title {
-  color: rgba(255, 255, 255, 0.8);
   display: inline;
   font-size: 1.2em;
   margin-right: 8px;
 }
-.sr-badge-new {
+.sr-badge-group {
   position: absolute;
   right: 0px;
-  background-color: rgba(18, 15, 43, 0.3);
-  color: rgba(255, 255, 255, 0.8);
-  border-radius: 2px;
   display: inline-block;
+}
+.sr-badge {
+  background-color: rgba(18, 15, 43, 0.3);
+  border-radius: 2px;
   font-size: 10px;
-  padding: 2px 6px;
-  margin-right: 8px;
+  padding: 2px 8px;
+  margin-right: 4px;
 }
 .sr-desc {
   font-size: 0.9em;
   display: inline;
-  color: rgba(255, 255, 255, 0.7);
 }
 .sr-option {
   font-weight: 600;
@@ -531,8 +530,8 @@
   border-radius: 2px;
   cursor: pointer;
   transition: 100ms ease;
-  color: rgba(255, 255, 255, 0.7);
   box-sizing: border-box;
+  user-select: none;
 }
 .sr-selector-option:hover {
   background: rgba(0, 0, 0, 0.05);
@@ -543,23 +542,20 @@
 }
 
 select.sr-select {
-  color: #fff;
   background: rgba(0, 0, 0, 0.2);
   padding: 5px;
   text-decoration-color: white;
   font-weight: 600;
-  font-family: Niramit, Avenir, sans-serif;
+  font-family: inherit;
+  color: inherit;
   border-color: rgba(0, 0, 0, 0);
   border-width: 1px;
   border-radius: 3px;
 }
 option.sr-select-item {
-  color: rgba(255, 255, 255, 0.6);
-  background: var(--button-menu-color, #42b983);
   padding: 5px;
   text-decoration-color: white;
-  font-weight: 600;
-  font-family: Niramit, Avenir, sans-serif;
+  font-weight: 200;
   border-color: rgba(0, 0, 0, 0);
   border-width: 1px;
   border-radius: 3px;
@@ -572,7 +568,8 @@ option.sr-select-item {
   height: 5px;
   background: -webkit-linear-gradient(
     left,
-    hsl(  0, 100%, 50%) 0%,
+    hsl(  0, 100%, 100%) 0%,
+    hsl(  0, 100%, 50%) 1%,
     hsl( 30, 100%, 50%) 8.3%,
     hsl( 60, 100%, 50%) 16.6%,
     hsl( 90, 100%, 50%) 25%,
@@ -584,7 +581,8 @@ option.sr-select-item {
     hsl(270, 100%, 50%) 75%,
     hsl(300, 100%, 50%) 83.3%,
     hsl(330, 100%, 50%) 91.6%,
-    hsl(360, 100%, 50%) 100%
+    hsl(360, 100%, 50%) 99%,
+    hsl(  0, 100%,  0%) 100%
   );
 }
 

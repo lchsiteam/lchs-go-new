@@ -64,7 +64,7 @@ PetiteVue.createApp({
   translate,
 
   // Update interval timer
-  interval: 0,
+  interval: null,
   startTimer() {
     this.update();
     changeHue(settings.colorTheme);
@@ -75,7 +75,6 @@ PetiteVue.createApp({
     }, 5000);
   },
   update() {
-    
     if (!currentPeriod.isCurrent()) {
       location.reload();
       // console.log("new Period");
@@ -196,11 +195,21 @@ function changeSetting(setting, value) {
   settings[setting] = value;
   this.changedSetting = !this.changedSetting;
   localStorage.setItem("settings", JSON.stringify(settings));
+
+  timeFormat = (settings.twentyFourHour ? "HH" : "h") + ":mm" + (settings.showAMPM ? " A" : "");
 }
 
 // Function - Called by the HTML to set the background color
 function changeHue(hue) {
-  document.getElementById("background").style.backgroundColor = hslToHex(hue, 50, 50);
+  var value = hslToHex(hue, 50, 50);
+  document.getElementById("body").style.color = 'white';
+  if (hue == 0) {
+    document.getElementById("body").style.color = 'black';
+    value = hslToHex(0, 0, 90);
+  } else if (hue == 360) {
+    value = hslToHex(0, 0, 25);
+  }
+  document.getElementById("background").style.backgroundColor = value;
 }
 
 // Function - Helper for ^ to change HSL to Hex
@@ -233,7 +242,11 @@ export function translate(translateText) {
   if (customNames[translateText] != null) {
     return customNames[translateText];
   } else {
-    return languageJSON[translateText];
+    if (languageJSON[translateText] == null) {
+      return translateText;
+    } else {
+      return languageJSON[translateText];
+    }
   }
 }
 

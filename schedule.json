@@ -1,5 +1,5 @@
 {
-  "version": 16,
+  "version": 20,
   "defaults": {
     "0": "NONE",
     "1": "REGULAR",
@@ -10,10 +10,30 @@
     "6": "NONE"
   },
   "overrides": {
-    "11/09/2021": "BLOCK_EVEN",
-    "11/11/2021": "NONE",
-    "12/08/2021": "REGULAR",
-    "12/09/2021": "REGULAR"
+    "all": {
+      "11/09/2021": "BLOCK_EVEN",
+      "11/11/2021": "NONE",
+      "12/08/2021": "REGULAR",
+      "12/09/2021": "REGULAR"
+    },
+    "GRADE_7": {
+      
+    },
+    "GRADE_8": {
+      
+    },
+    "GRADE_9": {
+      
+    },
+    "GRADE_10": {
+      
+    },
+    "GRADE_11": {
+      
+    },
+    "GRADE_12": {
+      
+    }
   },
   "dateRanges": {
     "SUMMER_BREAK":  ["06/03/2022", "08/16/2022"],
@@ -24,7 +44,7 @@
   },
   "timeOffset": "00:01:30",
   "gradeLevels": {
-    "7/8": {
+    "middleSchool": {
       "REGULAR": {
         "PERIOD_0": ["07:28 AM", "08:24 AM"],
         "PERIOD_1": ["08:30 AM", "09:26 AM"],

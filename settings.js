@@ -9,8 +9,8 @@ const defaultSettings = {
     zeroEnabled: true,
     twentyFourHour: false,
     showAMPM: false,
-    colorTheme: '',
-    grade: 9,
+    colorTheme: '1',
+    grade: 'GRADE_9',
     language: 'ENGLISH'
   }
 }
@@ -30,6 +30,7 @@ export const settingsMenu = {
     mode: 'toggle',                          // setting type
     options: [[true, "ON"], [false, "OFF"]], // options for the setting array of arrays [ [<set to value>, <language key for display>] , ... ]
     new: false,
+    experimental: true,
   },
   enableAnimations: {
     setting: "enableAnimations",
@@ -37,6 +38,7 @@ export const settingsMenu = {
     mode: 'toggle',
     options: [[true, "ON"], [false, "OFF"]],
     new: false,
+    experimental: true,
   },
   showExtraPeriods: {
     setting: "showExtraPeriods",
@@ -44,6 +46,7 @@ export const settingsMenu = {
     mode: 'toggle',
     options: [[true, "ON"], [false, "OFF"]],
     new: false,
+    experimental: true,
   },
   sixthEnabled: {
     setting: "sixthEnabled",
@@ -51,6 +54,7 @@ export const settingsMenu = {
     mode: 'toggle',
     options: [[true, "ON"], [false, "OFF"]],
     new: false,
+    experimental: false,
   },
   zeroEnabled: {
     setting: "zeroEnabled",
@@ -58,6 +62,7 @@ export const settingsMenu = {
     mode: 'toggle',
     options: [[true, "ON"], [false, "OFF"]],
     new: false,
+    experimental: false,
   },
   twentyFourHour: {
     setting: "twentyFourHour",
@@ -65,6 +70,7 @@ export const settingsMenu = {
     mode: 'toggle',
     options: [[true, "ON"], [false, "OFF"]],
     new: false,
+    experimental: false,
   },
   showAMPM: {
     setting: "showAMPM",
@@ -72,12 +78,14 @@ export const settingsMenu = {
     mode: 'toggle',
     options: [[true, "ON"], [false, "OFF"]],
     new: false,
+    experimental: false,
   },
   colorTheme: {
     setting: "colorTheme",
     key: "COLOR_THEME",
     mode: 'color-slider',
     new: true,
+    experimental: false,
   },
   grade: {
     setting: "grade",
@@ -85,6 +93,7 @@ export const settingsMenu = {
     mode: 'dropdown',
     options: ["GRADE_7", "GRADE_8", "GRADE_9", "GRADE_10", "GRADE_11", "GRADE_12"],
     new: false,
+    experimental: false,
   },
   language: {
     setting: "language",
@@ -92,5 +101,6 @@ export const settingsMenu = {
     mode: 'dropdown',
     options: ["ENGLISH", "SPANISH", "GERMAN", "FRENCH"],
     new: true,
+    experimental: true,
   }
 }

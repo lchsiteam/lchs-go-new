@@ -1,5 +1,5 @@
 {
-  "version": 13,
+  "version": 15,
   "ENGLISH": {
     "ENGLISH": "English",
     "SPANISH": "Spanish",
@@ -19,7 +19,6 @@
     "PERIOD_START": "Start",
     "PERIOD_END": "End",
 
-    "NO_SCHOOL": "No School",
     "BEFORE_SCHOOL": "Before School",
     "AFTER_SCHOOL": "After School",
     "PERIOD_0": "Period 0",
@@ -38,7 +37,7 @@
     "BLOCK_EVEN": "Block (even)",
     "STEP_ODD": "STEP (odd)",
     "STEP_EVEN": "STEP (even)",
-    "NONE": "None",
+    "NONE": "No School",
 
     "SUMMER_BREAK": "Summer Break",
     "WINTER_BREAK": "Winter Break",
