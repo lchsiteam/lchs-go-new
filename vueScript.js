@@ -108,6 +108,21 @@ function PeriodComponent(setName, setStart, setEnd, setPassing) {
       }
       return false;
     },
+    isVisible() {
+      if (this.isCurrent() || settings.showExtraPeriods) {
+        return true;
+      } else {
+        if (this.name == 'PERIOD_0' && !settings.zeroEnabled) {
+          return false;
+        } else if (this.name == 'PERIOD_6' && !settings.sixthEnabled) {
+          return false;
+        } else if (this.isPassing()) {
+          return false;
+        } else {
+          return true;
+        }
+      }
+    },
     getName() {
       if (this.passing) {
         let tempName = this.name.split(',');

@@ -49,7 +49,7 @@ I guess put a description here...
 - [ ]  Change cursor to pointer on calendar day
     - [ ]  in the `.calendar-day` class set `cursor: pointer`
 - [ ]  Add hover effect to calendar day
-    - [ ]  make a new `.calendar-day:hover` class and set `transform: scale(1.1, 1.1, 1)` (this might work, tinker with it)
+    - [ ]  make a new `.calendar-day:hover` class and set `transform: scale(1.1)` (this might work, tinker with it)
     - [ ]  And make it darker so `background: slightly-darker` or something
 
 ## Settings Page
@@ -57,11 +57,11 @@ I guess put a description here...
 - [x]  Fix language keys to use titles on settings items
     - [x]  Currently the title uses the description keys
     - [x]  set the title to have `_TITLE` instead of `_DESC` in the html
-- [ ]  Make options update live
-    - [ ]  idk - samething as the now page not updating from period to period
+- [x]  Make options update live
+    - [x]  idk - samething as the now page not updating from period to period
 - [x]  Make color theme slider work
     - [x]  when the value changes set the background hue to it
     - [x]  `hsl(<hue can be from 0 - 360>, 50, 50);`
-- [ ]  Make drop downs work
-    - [ ]  Copy the update code from the toggles and make it choose from the drop downs
+- [x]  Make drop downs work
+    - [x]  Copy the update code from the toggles and make it choose from the drop downs
 
