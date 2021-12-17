@@ -2,9 +2,9 @@
   "version": 16,
   "ENGLISH": {
     "ENGLISH": "English",
-    "SPANISH": "Spanish",
-    "GERMAN": "German",
-    "FRENCH": "French",
+    "SPANISH": "Español",
+    "GERMAN": "Deutsch",
+    "FRENCH": "Français",
 
     "NOW": "NOW",
     "CALENDAR": "CALENDAR",
@@ -83,7 +83,7 @@
     "GRADE_12": "12th Grade"
   },
   "SPANISH": {
-
+    
   },
   "GERMAN": {
 

@@ -336,72 +336,6 @@
   -ms-flex-align: center;
   align-items: center;
 }
-@media screen and (max-width: 991px) {
-  .period-information {
-    left: -22px;
-  }
-  .all-periods {
-    width: 400px;
-  }
-}
-@media screen and (max-width: 767px) {
-  .schedule-container {
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-  }
-  .period-information {
-    display: none;
-  }
-  .period.current {
-    left: 0px;
-    display: none;
-  }
-  .period-details-small {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    height: auto;
-    margin-top: 13px;
-    margin-bottom: 13px;
-    -webkit-box-pack: start;
-    -webkit-justify-content: flex-start;
-    -ms-flex-pack: start;
-    justify-content: flex-start;
-    -webkit-box-align: stretch;
-    -webkit-align-items: stretch;
-    -ms-flex-align: stretch;
-    align-items: stretch;
-    background-color: rgba(0, 0, 0, 0.25);
-    -webkit-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    transform: scale(1.1);
-  }
-  .period-details-small.current {
-    left: 0px;
-    display: none;
-  }
-  .calendar-container {
-    justify-content: center;
-    flex-wrap: nowrap;
-  }
-  .calendar-day {
-    height: 350px;
-    flex-basis: 80%;
-  }
-}
-@media screen and (max-width: 479px) {
-  .all-periods {
-    width: 315px;
-  }
-  .nav-button {
-    margin-right: 10px;
-    margin-left: 10px;
-  }
-}
-
 .calendar-container {
   display: flex;
   max-width: 85vw;
@@ -436,7 +370,7 @@
   background-color: hsla(0, 0%, 6.67%, 0.15);
 }
 .calendar-day:nth-child(odd) {
-  background-color: hsla(0, 0%, 6.67%, 0.10);
+  background-color: hsla(0, 0%, 6.67%, 0.1);
 }
 
 .calendar-day.outside {
@@ -568,11 +502,11 @@ option.sr-select-item {
   height: 5px;
   background: -webkit-linear-gradient(
     left,
-    hsl(  0, 100%, 100%) 0%,
-    hsl(  0, 100%, 50%) 1%,
-    hsl( 30, 100%, 50%) 8.3%,
-    hsl( 60, 100%, 50%) 16.6%,
-    hsl( 90, 100%, 50%) 25%,
+    hsl(0, 100%, 100%) 0%,
+    hsl(0, 100%, 50%) 1%,
+    hsl(30, 100%, 50%) 8.3%,
+    hsl(60, 100%, 50%) 16.6%,
+    hsl(90, 100%, 50%) 25%,
     hsl(120, 100%, 50%) 33.3%,
     hsl(150, 100%, 50%) 41.6%,
     hsl(180, 100%, 50%) 50%,
@@ -582,18 +516,84 @@ option.sr-select-item {
     hsl(300, 100%, 50%) 83.3%,
     hsl(330, 100%, 50%) 91.6%,
     hsl(360, 100%, 50%) 99%,
-    hsl(  0, 100%,  0%) 100%
+    hsl(0, 100%, 0%) 100%
   );
 }
 
 .sr-color-slider::-webkit-slider-thumb {
-      width: 15px;
-      -webkit-appearance: none;
-      height: 15px;
-      border-color: white;
-      border-width: 2px;
-      border-style: solid;
-      border-radius: 50px;
-      cursor: ew-resize;
-      background: rgba(255, 255, 255, 0.5);
-    }
+  width: 15px;
+  -webkit-appearance: none;
+  height: 15px;
+  border-color: white;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 50px;
+  cursor: ew-resize;
+  background: rgba(255, 255, 255, 0.5);
+}
+@media screen and (max-width: 991px) {
+  .period-information {
+    left: -22px;
+  }
+  .all-periods {
+    width: 400px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .schedule-container {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+  .period-information {
+    display: none;
+  }
+  .period.current {
+    left: 0px;
+    display: none;
+  }
+  .period-details-small {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    height: auto;
+    margin-top: 13px;
+    margin-bottom: 13px;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    background-color: rgba(0, 0, 0, 0.25);
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  .period-details-small.current {
+    left: 0px;
+    display: none;
+  }
+  .calendar-container {
+    /* justify-content: center; */
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+  }
+  .calendar-day {
+    height: 350px;
+    flex-basis: 80%;
+  }
+}
+@media screen and (max-width: 479px) {
+  .all-periods {
+    width: 315px;
+  }
+  .nav-button {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+}

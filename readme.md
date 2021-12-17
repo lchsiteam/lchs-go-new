@@ -5,6 +5,15 @@ I guess put a description here...
 # TODO
 
 ## Overall
+#### Major 
+- [ ] Add the rest of the schedules
+    - [ ] 7/8
+    - [ ] highschool
+    - [ ] elementary
+- [ ] Add languages
+    - [ ] spanish
+    - [ ] german
+    - [ ] french
 
 - [ ]  Page title with hours in time
     - [ ]  The time is already formatted for the now page
