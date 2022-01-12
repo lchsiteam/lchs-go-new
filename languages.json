@@ -10,6 +10,9 @@
     "CALENDAR": "CALENDAR",
     "SETTINGS": "SETTINGS",
 
+    "CALENDAR_TITLE": "Calendar",
+    "SETTINGS_TITLE": "App Settings",
+
     "MORNING": "Good Morning.",
     "AFTERNOON": "Good Afternoon.",
     "EVENING": "Good Evening.",
