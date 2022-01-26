@@ -1,5 +1,5 @@
 {
-  "version": 17,
+  "version": 18,
   "ENGLISH": {
     "ENGLISH": "English",
     "SPANISH": "Español",
@@ -46,7 +46,7 @@
     "WINTER_BREAK": "Winter Break",
     "SPRING_BREAK": "Spring Break",
     "FALL_BREAK": "Thanksgiving Break",
-    
+
     "UNITL_END": " until period ends",
     "PERCENT_COMPLETED": "({}% completed)",
 
@@ -86,7 +86,7 @@
     "GRADE_12": "12th Grade"
   },
   "SPANISH": {
-    
+
   },
   "GERMAN": {
 
@@ -134,7 +134,7 @@
     "WINTER_BREAK": "Vacances D'Hiver",
     "SPRING_BREAK": "Vacances de printemps'",
     "FALL_BREAK": "Vacances de Thanksgiving",
-    
+
     "UNITL_END": " jusqu'à ce que le cours terminer",
     "PERCENT_COMPLETED": "({}% terminé)",
 
