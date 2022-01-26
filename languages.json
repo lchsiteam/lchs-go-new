@@ -104,7 +104,7 @@
     "MORNING": "Guten Morgen.",
     "AFTERNOON": "Guten Nachmittag.",
     "EVENING": "Guten Abend.",
-    "TODAY_IS": "Heute ist {} Stundenplan.",
+    "TODAY_IS": "Heute ist {}.",
 
     "PERIOD_NAME": "Periode",
     "PERIOD_START": "Anfang",
@@ -123,7 +123,7 @@
     "BREAK": "Pause",
     "LUNCH": "Mittagessen",
 
-    "REGULAR": "regulärer",
+    "REGULAR": "regulärer Stundenplan",
     "BLOCK_ODD": "ungerader Block",
     "BLOCK_EVEN": "gerader Block",
     "STEP_ODD": "ungerade STEP",
