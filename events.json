@@ -1,4 +1,6 @@
 {
+  "version": 1,
+
   "2021": {
     "January": {},
     "February": {},
@@ -31,6 +33,5 @@
     "October": {},
     "November": {},
     "December": {}
-  },
-  "version": 1
+  }
 }
