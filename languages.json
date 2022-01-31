@@ -104,7 +104,7 @@
     "MORNING": "Guten Morgen.",
     "AFTERNOON": "Guten Nachmittag.",
     "EVENING": "Guten Abend.",
-    "TODAY_IS": "Heute ist {}.",
+    "TODAY_IS": "Heute ist es {}.",
 
     "PERIOD_NAME": "Stunde",
     "PERIOD_START": "Anfang",
