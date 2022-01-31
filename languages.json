@@ -163,8 +163,8 @@
     "FALSE": "falsch",
     "YES": "ja",
     "NO": "nein",
-    "ON": "aktiviert",
-    "OFF": "deaktiviert",
+    "ON": "ein",
+    "OFF": "aus",
 
     "GRADE_7": "7. Klasse",
     "GRADE_8": "8. Klasse",
