@@ -49,7 +49,7 @@
     <!-- Calendar Page - Calendar pulled from the events.json -->
     <div id="calendar" v-if="currentPage == 'calendar'">
       <div class="todays-schedule">
-        Calendar
+        {{ translate("CALENDAR_TITLE")}}
       </div>
       <div class="calendar-container">
         <div class="calendar-day" v-for="day in 35" v-bind:class="{ 'outside': date.month() !== moment().month() }"
@@ -73,7 +73,7 @@
     <!-- Settings Page - All of the user settings generated from settings.js -->
     <div id="settings-page" v-if="currentPage == 'settings'">
       <div class="todays-schedule">
-        App Settings
+        {{ translate("SETTINGS_TITLE") }}
       </div>
       <div class="settings-row" v-for="setting in settingsMenu">
         <div class="sr-head">
@@ -90,11 +90,11 @@
             <div class="sr-selector-option" v-for="option in setting.options"
               v-effect="
                 if(value == option[0]) {
-                  $el.className = 'sr-selector-option selected'; 
+                  $el.className = 'sr-selector-option selected';
                 } else {
                   $el.className = 'sr-selector-option';
                 }"
-              @click="changeSetting(setting.setting, option[0]); value = option[0]" 
+              @click="changeSetting(setting.setting, option[0]); value = option[0]"
               v-bind:class="{ 'selected': settings[setting.setting] == option[0] }">
               {{ translate(option[1]) }}
             </div>
@@ -103,10 +103,10 @@
           @change="changeSetting(setting.setting, setting.options[$el.selectedIndex])">
             <option class="sr-select-item" v-for="option in setting.options">{{ translate(option) }}</option>
           </select>
-           
-          <div class="" v-if="setting.mode == 'color-slider'">    
+
+          <div class="" v-if="setting.mode == 'color-slider'">
             <input class="sr-color-slider" id="hue" type="range" max="360" v-effect="$el.value = settings.colorTheme"
-            v-on:input="changeHue($el.value)" 
+            v-on:input="changeHue($el.value)"
             v-on:change="changeSetting('colorTheme', $el.value)">
           </div>
         </div>
@@ -166,7 +166,7 @@
       <div class="period" v-bind:class="{ current: period.isCurrent(), 'list-odd': getListCount() }"
         v-if="period.isVisible()">
         <div class="period-name">
-          <input class="period-details" v-effect="$el.value = period.getName()" 
+          <input class="period-details" v-effect="$el.value = period.getName()"
           @click="$el.focus(); $el.select();" @blur="changeClassName(period.name, $el)"/>
         </div>
         <div class="period-details">{{ period.getStart() }}</div>
