@@ -1,4 +1,6 @@
 {
+  "version": 2,
+
   "2021": {
     "January": {},
     "February": {},
@@ -20,7 +22,12 @@
   },
   "2022": {
     "January": {},
-    "February": {},
+    "February": {
+      "18": "Presidents' Weekend (No school)",
+      "19": "Presidents' Weekend (No school)",
+      "20": "Presidents' Weekend (No school)",
+      "21": "Presidents' Day (No school)"
+    },
     "March": {},
     "April": {},
     "May": {},
@@ -31,6 +38,5 @@
     "October": {},
     "November": {},
     "December": {}
-  },
-  "version": 1
+  }
 }

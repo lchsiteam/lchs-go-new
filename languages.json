@@ -1,5 +1,5 @@
 {
-  "version": 17,
+  "version": 19,
   "ENGLISH": {
     "ENGLISH": "English",
     "SPANISH": "Español",
@@ -31,6 +31,8 @@
     "PERIOD_4": "Period 4",
     "PERIOD_5": "Period 5",
     "PERIOD_6": "Period 6",
+    "STEP_ODD": "STEP (odd)",
+    "STEP_EVEN": "STEP (even)",
     "PASSING_BEFORE": "Passing before {}",
     "BREAK": "Break",
     "LUNCH": "Lunch",
@@ -38,15 +40,13 @@
     "REGULAR": "Regular",
     "BLOCK_ODD": "Block (odd)",
     "BLOCK_EVEN": "Block (even)",
-    "STEP_ODD": "STEP (odd)",
-    "STEP_EVEN": "STEP (even)",
     "NONE": "No School",
 
     "SUMMER_BREAK": "Summer Break",
     "WINTER_BREAK": "Winter Break",
     "SPRING_BREAK": "Spring Break",
     "FALL_BREAK": "Thanksgiving Break",
-    
+
     "UNITL_END": " until period ends",
     "PERCENT_COMPLETED": "({}% completed)",
 
@@ -86,10 +86,92 @@
     "GRADE_12": "12th Grade"
   },
   "SPANISH": {
-    
+
   },
   "GERMAN": {
+    "ENGLISH": "English",
+    "SPANISH": "Español",
+    "GERMAN": "Deutsch",
+    "FRENCH": "Français",
 
+    "NOW": "JETZT",
+    "CALENDAR": "KALENDER",
+    "SETTINGS": "EINSTELLUNGEN",
+
+    "CALENDAR_TITLE": "Kalender",
+    "SETTINGS_TITLE": "Einstellungen der Anwendungen",
+
+    "MORNING": "Guten Morgen.",
+    "AFTERNOON": "Guten Nachmittag.",
+    "EVENING": "Guten Abend.",
+    "TODAY_IS": "Heute ist es {}.",
+
+    "PERIOD_NAME": "Stunde",
+    "PERIOD_START": "Anfang",
+    "PERIOD_END": "Ende",
+
+    "BEFORE_SCHOOL": "bevor der Schule",
+    "AFTER_SCHOOL": "nach der Schule",
+    "PERIOD_0": "0. Stunde",
+    "PERIOD_1": "1. Stunde",
+    "PERIOD_2": "2. Stunde",
+    "PERIOD_3": "3. Stunde",
+    "PERIOD_4": "4. Stunde",
+    "PERIOD_5": "5. Stunde",
+    "PERIOD_6": "6. Stunde",
+    "STEP_ODD": "ungerade STEP Klasse",
+    "STEP_EVEN": "gerade STEP Klasse",
+    "PASSING_BEFORE": "Zwischenperiode bevor {}",
+    "BREAK": "Pause",
+    "LUNCH": "Mittagspause",
+
+    "REGULAR": "regulärer Stundenplan",
+    "BLOCK_ODD": "ungerade Blockstunden",
+    "BLOCK_EVEN": "gerade Blockstunden",
+    "NONE": "keine Schule",
+
+    "SUMMER_BREAK": "Sommerferien",
+    "WINTER_BREAK": "Winterferien",
+    "SPRING_BREAK": "Frühlingsferien",
+    "FALL_BREAK": "Erntedankfest",
+
+    "UNITL_END": " bis Klasse endet",
+    "PERCENT_COMPLETED": "({}% fertig)",
+
+    "SETTINGS_NOTIFICATION_TITLE": "Anzeigen",
+    "SETTINGS_NOTIFICATION_DESC": "Anzeigen aktivieren (experimentell)",
+    "SETTINGS_ANIMATIONS_TITLE": "Animationen",
+    "SETTINGS_ANIMATIONS_DESC": "Animationen aktivieren (experimentell)",
+    "SETTINGS_EXTRA_PERIODS_TITLE": "extra Stunden",
+    "SETTINGS_EXTRA_PERIODS_DESC": "Stellt Zwischenperioden aus",
+    "SETTINGS_SIXTH_PERIOD_TITLE": "6. Periode",
+    "SETTINGS_SIXTH_PERIOD_DESC": "Stellt 6. Periode aus",
+    "SETTINGS_ZERO_PERIOD_TITLE": "0. Periode",
+    "SETTINGS_ZERO_PERIOD_DESC": "Stellt 0. Periode aus",
+    "SETTINGS_TWENTY_FOUR_HOUR_TITLE": "24 Stunde Uhr",
+    "SETTINGS_TWENTY_FOUR_HOUR_DESC": "Stellt 24 Stunde Zeit aus",
+    "SETTINGS_AM_PM_TITLE": "AM / PM",
+    "SETTINGS_AM_PM_DESC": "Stellt AM oder PM aus",
+    "SETTINGS_COLOR_THEME_TITLE": "Farbe Thema",
+    "SETTINGS_COLOR_THEME_DESC": "Ändert die Hintergrundfarbe",
+    "SETTINGS_GRADE_LEVEL_TITLE": "Klasse",
+    "SETTINGS_GRADE_LEVEL_DESC": "Stellt der Klasse des Stundenplans",
+    "SETTINGS_LANGUAGE_TITLE": "Sprache (language)",
+    "SETTINGS_LANGUAGE_DESC": "Wählen Sie Ihre Sprache",
+
+    "TRUE": "richtig",
+    "FALSE": "falsch",
+    "YES": "ja",
+    "NO": "nein",
+    "ON": "ein",
+    "OFF": "aus",
+
+    "GRADE_7": "7. Klasse",
+    "GRADE_8": "8. Klasse",
+    "GRADE_9": "9. Klasse",
+    "GRADE_10": "10. Klasse",
+    "GRADE_11": "11. Klasse",
+    "GRADE_12": "12. Klasse"
   },
   "FRENCH": {
     "ENGLISH": "English",
@@ -119,6 +201,8 @@
     "PERIOD_4": "Cours 4",
     "PERIOD_5": "Cours 5",
     "PERIOD_6": "Cours 6",
+    "STEP_ODD": "STEP (impair)",
+    "STEP_EVEN": "STEP (pair)",
     "PASSING_BEFORE": "Passer Avant {}",
     "BREAK": "Pause",
     "LUNCH": "Déjeuner",
@@ -126,8 +210,6 @@
     "REGULAR": "Ordinaire",
     "BLOCK_ODD": "Bloc (impair)",
     "BLOCK_EVEN": "Bloc (pair)",
-    "STEP_ODD": "STEP (impair)",
-    "STEP_EVEN": "STEP (pair)",
     "NONE": "Pas D'École",
 
     "SUMMER_BREAK": "Vacances D'Été",
