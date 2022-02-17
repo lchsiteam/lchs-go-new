@@ -7,6 +7,7 @@ const defaultSettings = {
     zeroEnabled: true,
     twentyFourHour: false,
     showAMPM: false,
+    // showWeekends: true,
     colorTheme: 3,
     grade: 'GRADE_9',
     language: 'ENGLISH'
@@ -70,6 +71,14 @@ export const settingsMenu = {
     new: false,
     experimental: false,
   },
+  // showWeekends: {
+  //   setting: "showWeekends",
+  //   key: "SHOW_WEEKENDS",
+  //   mode: 'toggle',
+  //   options: [[true, "ON"], [false, "OFF"]],
+  //   new: false,
+  //   experimental: false,
+  // },
   colorTheme: {
     setting: "colorTheme",
     key: "COLOR_THEME",

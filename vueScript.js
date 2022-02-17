@@ -13,10 +13,9 @@ var timeFormat = (settings.twentyFourHour ? "HH" : "h") + ":mm" + (settings.show
 
 // Find current Period
 var currentPeriod = null;
-var periodList = formattedJSON.map((p) => {
-  return PeriodComponent(p.name, p.start, p.end, p.passing);
-});
-periodList.forEach((p) => {
+var periodListComponent = PeriodListComponent(formattedJSON);
+
+periodListComponent.listPeriod.forEach((p) => {
         if(p.isCurrent()) {
           currentPeriod = p;
         }});
@@ -30,11 +29,11 @@ PetiteVue.createApp({
 
   // All Pages
   currentPage: 'now',
-  showPopup: false,
   backgroundColor: "hsl( 0, 50, 50)",
 
   // Now Page
-  periodList,
+  // periodList,
+  periodListComponent,
   todaysGreeting: "",
   listCount: 0,
   getListCount() {
@@ -46,6 +45,11 @@ PetiteVue.createApp({
   minutesLeft: 0,
   percentCompleted: 0,
   percentCompletedText: "",
+
+  // Calendar Page
+  showPopup: false,
+  // popupSchedule: periodList,
+  popupDate: null,
 
   // Settings Page
   settingsMenu,
@@ -96,11 +100,16 @@ PetiteVue.createApp({
 
 // Component - Period - Holds the name, start, end, and if passing
 function PeriodComponent(setName, setStart, setEnd, setPassing) {
+  var varStart = moment(setStart, "hh:mm A"); //formats from the json
+  var varEnd = moment(setEnd, "hh:mm A");
+
   return {
     name: setName,
-    start: moment(setStart, "hh:mm A"), //formats from the json
-    end: moment(setEnd, "hh:mm A"),
+    start: varStart,
+    end: varEnd,
     passing: setPassing,
+    getStart: varStart.format(timeFormat),
+    getEnd: varEnd.format(timeFormat),
     isCurrent() {
       var now = moment();
       if (this.start < now && now < this.end) {
@@ -116,7 +125,7 @@ function PeriodComponent(setName, setStart, setEnd, setPassing) {
           return false;
         } else if (this.name == 'PERIOD_6' && !settings.sixthEnabled) {
           return false;
-        } else if (this.isPassing()) {
+        } else if (setPassing) {
           return false;
         } else {
           return true;
@@ -130,28 +139,16 @@ function PeriodComponent(setName, setStart, setEnd, setPassing) {
       }
       return translate(this.name);
     },
-    getStart() {
-      return this.start.format(timeFormat);
-    },
-    getEnd() {
-      return this.end.format(timeFormat);
-    },
-    isPassing() {
-      return this.passing;
-    },
   };
 }
 
 // Component - CalendarDay - Holds the schedule for the day and the date
 function CalendarDay(props) {
+  var dateM = moment().set('date', props.num - moment().startOf('month').day());
   return {
-    date: moment().set('date', props.num - moment().startOf('month').day()),
-    scheduleType() {
-      return getSchedule(this.date);
-    },
-    event() {
-      return eventsJSON[this.date.year()][moment.months()[this.date.month()]][this.date.date()];
-    }
+    date: dateM,
+    schedule: getSchedule(dateM),
+    event: eventsJSON[dateM.year()][moment.months()[dateM.month()]][dateM.date()]
   }
 }
 
@@ -163,8 +160,12 @@ function PeriodInformationComponent(props) {
 }
 
 // Component - Period List Template - Used to make a period list block
-function PeriodListComponent(props) {
+function PeriodListComponent(periods) {
+  var periodList = periods.map((p) => {
+    return PeriodComponent(p.name, p.start, p.end, p.passing);
+  });
   return {
+    listPeriod: periodList,
     $template: "#period-list-template"
   }
 }
