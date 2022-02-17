@@ -7,7 +7,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="LCHS Go - Bell Schedule App">
   <script src="https://unpkg.com/petite-vue"></script>
-  <script src="https://unpkg.com/moment@2.29.1/moment.js"></script>
+  <!-- <script src="https://unpkg.com/moment@2.29.1/moment.js"></script> -->
+  <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+  <script src="https://unpkg.com/dayjs@1.8.21/plugin/isBetween.js"></script>
+  <script src="https://unpkg.com/dayjs@1.8.21/plugin/advancedFormat.js"></script>
+  <script src="https://unpkg.com/dayjs@1.8.21/plugin/customParseFormat.js"></script>
+  <script src="https://unpkg.com/dayjs@1.8.21/plugin/localeData.js"></script>
+  <script>
+    dayjs.extend(window.dayjs_plugin_isBetween); 
+    dayjs.extend(window.dayjs_plugin_advancedFormat); 
+    dayjs.extend(window.dayjs_plugin_customParseFormat);
+    dayjs.extend(window.dayjs_plugin_localeData);
+  </script>
   <script type="module" src="scheduleFormatting.js"></script>
   <script type="module" src="vueScript.js"></script>
   <link rel="stylesheet" href="style.css" />
@@ -54,14 +65,14 @@
       </div>
       <div class="calendar-container">
         <div class="calendar-day" v-for="day in 35" v-scope="CalendarDay({num: day})" 
-          @click="console.log(day); if (popupDate == null) {popupDate = date;} else {popupDate = null;}"> <!-- @click="showPopup = true; popupSchedule = scheduleType()" opupSchedule = PeriodListComponent(scheduleType()); showPopup = true; console.log(popupSchedule)-->
-          <div class="cd-number" v-bind:class="{ 'outside': date.month() !== moment().month() }">
+          @click="if (popupDate == null) {popupDate = date;} else {popupDate = null;}"> <!-- @click="showPopup = true; popupSchedule = scheduleType()" opupSchedule = PeriodListComponent(scheduleType()); showPopup = true; console.log(popupSchedule)-->
+          <div class="cd-number" v-bind:class="{ 'outside': date.month() !== dayjs().month() }">
             {{ date.date() }}
           </div>
-          <div class="cd-tag" v-bind:class="{ 'outside': date.month() !== moment().month() }">
+          <div class="cd-tag" v-bind:class="{ 'outside': date.month() !== dayjs().month() }">
             {{ translate(schedule.scheduleType) }}
           </div>
-          <div class="cd-tag" v-if="event != null" v-bind:class="{ 'outside': date.month() !== moment().month() }">
+          <div class="cd-tag" v-if="event != null" v-bind:class="{ 'outside': date.month() !== dayjs().month() }">
             {{ event }}
           </div>
           <div class="schedule-popup" v-if="popupDate == date" style="opacity: 200%;">

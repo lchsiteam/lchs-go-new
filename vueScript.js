@@ -90,18 +90,18 @@ PetiteVue.createApp({
     }
 
     this.todaysGreeting = getTodaysGreeting();
-    this.minutesLeft = currentPeriod.end.diff(moment(), "minutes") + 1;
+    this.minutesLeft = currentPeriod.end.diff(dayjs(), "minutes") + 1;
     this.percentCompleted = 100 - (this.minutesLeft / currentPeriod.end.diff(currentPeriod.start, "minutes")) * 100;
     this.percentCompletedText = translateWithInsert( "PERCENT_COMPLETED", Math.trunc(this.percentCompleted));
-    this.currentTime = moment().format(timeFormat);
+    this.currentTime = dayjs().format(timeFormat);
     document.title = this.minutesLeft + "min. | LCHS Go";
   },
 }).mount();
 
 // Component - Period - Holds the name, start, end, and if passing
 function PeriodComponent(setName, setStart, setEnd, setPassing) {
-  var varStart = moment(setStart, "hh:mm A"); //formats from the json
-  var varEnd = moment(setEnd, "hh:mm A");
+  var varStart = dayjs(setStart, "MM:mm A"); //formats from the json
+  var varEnd = dayjs(setEnd, "hh:mm A");
 
   return {
     name: setName,
@@ -111,7 +111,7 @@ function PeriodComponent(setName, setStart, setEnd, setPassing) {
     getStart: varStart.format(timeFormat),
     getEnd: varEnd.format(timeFormat),
     isCurrent() {
-      var now = moment();
+      var now = dayjs();
       if (this.start < now && now < this.end) {
         return true;
       }
@@ -144,11 +144,11 @@ function PeriodComponent(setName, setStart, setEnd, setPassing) {
 
 // Component - CalendarDay - Holds the schedule for the day and the date
 function CalendarDay(props) {
-  var dateM = moment().set('date', props.num - moment().startOf('month').day());
+  var dateM = dayjs().set('date', props.num - dayjs().startOf('month').day());
   return {
     date: dateM,
     schedule: getSchedule(dateM),
-    event: eventsJSON[dateM.year()][moment.months()[dateM.month()]][dateM.date()]
+    event: eventsJSON[dateM.year()][dayjs.months()[dateM.month()]][dateM.date()]
   }
 }
 
@@ -181,7 +181,7 @@ export function getTodaysGreeting() {
 
 // Function - Get the time of day for the greeting
 function getGreeting() {
-  var hours = moment().hours();
+  var hours = dayjs().hour();
 
   if (hours < 12) {
     return translate("MORNING");
