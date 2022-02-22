@@ -100,7 +100,7 @@ PetiteVue.createApp({
 
 // Component - Period - Holds the name, start, end, and if passing
 function PeriodComponent(setName, setStart, setEnd, setPassing) {
-  var varStart = dayjs(setStart, "MM:mm A"); //formats from the json
+  var varStart = dayjs(setStart, "hh:mm A"); //formats from the json
   var varEnd = dayjs(setEnd, "hh:mm A");
 
   return {
@@ -112,10 +112,7 @@ function PeriodComponent(setName, setStart, setEnd, setPassing) {
     getEnd: varEnd.format(timeFormat),
     isCurrent() {
       var now = dayjs();
-      if (this.start < now && now < this.end) {
-        return true;
-      }
-      return false;
+      return now.isBetween(this.start, this.end)
     },
     isVisible() {
       if (this.isCurrent() || settings.showExtraPeriods) {

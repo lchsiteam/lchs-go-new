@@ -182,8 +182,10 @@
       <div class="period" v-bind:class="{ current: period.isCurrent(), 'list-odd': getListCount() }"
         v-if="period.isVisible()">
         <div class="period-name">
-          <input class="period-details" v-effect="$el.value = period.getName()"
-          @click="$el.focus(); $el.select();" @blur="changeClassName(period.name, $el)"/>
+          <label>
+            <input class="period-details" v-effect="$el.value = period.getName()"
+            @click="$el.focus(); $el.select();" @blur="changeClassName(period.name, $el)"/>
+          </label>
         </div>
         <div class="period-details">{{ period.getStart }}</div>
         <div class="period-details">{{ period.getEnd }}</div>
