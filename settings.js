@@ -30,6 +30,7 @@ export const settingsMenu = {
     options: ["GRADE_7", "GRADE_8", "GRADE_9", "GRADE_10", "GRADE_11", "GRADE_12"],
     new: false,
     experimental: false,
+    reload: true,
   },
   showExtraPeriods: {
     setting: "showExtraPeriods",
@@ -46,6 +47,7 @@ export const settingsMenu = {
     options: [[true, "ON"], [false, "OFF"]],
     new: false,
     experimental: false,
+    reload: false,
   },
   zeroEnabled: {
     setting: "zeroEnabled",
@@ -54,6 +56,7 @@ export const settingsMenu = {
     options: [[true, "ON"], [false, "OFF"]],
     new: false,
     experimental: false,
+    reload: false,
   },
   twentyFourHour: {
     setting: "twentyFourHour",
@@ -62,6 +65,7 @@ export const settingsMenu = {
     options: [[true, "ON"], [false, "OFF"]],
     new: false,
     experimental: false,
+    reload: false,
   },
   showAMPM: {
     setting: "showAMPM",
@@ -70,6 +74,7 @@ export const settingsMenu = {
     options: [[true, "ON"], [false, "OFF"]],
     new: false,
     experimental: false,
+    reload: false,
   },
   // showWeekends: {
   //   setting: "showWeekends",
@@ -85,6 +90,7 @@ export const settingsMenu = {
     mode: 'color-slider',
     new: true,
     experimental: false,
+    reload: false,
   },
   language: {
     setting: "language",
@@ -93,5 +99,6 @@ export const settingsMenu = {
     options: ["ENGLISH", "SPANISH", "GERMAN", "FRENCH"],
     new: true,
     experimental: true,
+    reload: true,
   }
 }

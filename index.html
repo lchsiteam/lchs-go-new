@@ -116,7 +116,7 @@
             </div>
           </div>
           <select class="sr-select" v-if="setting.mode == 'dropdown'" v-effect="$el.selectedIndex = setting.options.indexOf(settings[setting.setting])"
-          @change="changeSetting(setting.setting, setting.options[$el.selectedIndex])">
+          @change="changeSetting(setting.setting, setting.options[$el.selectedIndex]); if(setting.reload) location.reload();">
             <option class="sr-select-item" v-for="option in setting.options">{{ translate(option) }}</option>
           </select>
 
@@ -130,6 +130,8 @@
     </div>
     <div class="credits">
       Made with ❤️ by the <a href="https://lciteam.club" class="credits" target="_blank">LC iTeam</a>
+      <br>
+      <a href="https://forms.gle/R4EvwSh92B2g1qEG7" class="credits" target="_blank">Report a bug</a>
     </div>
   </div>
   <!-- Templates Section - These are templates because they are used in multiple areas -->

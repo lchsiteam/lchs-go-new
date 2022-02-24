@@ -43,6 +43,7 @@
   text-decoration-color: white;
   margin-top: 50px;
   font-size: 10px;
+  text-align: center;
 }
 .background {
   transition: width 0s 0s ease;

@@ -1,5 +1,5 @@
 {
-  "version": 19.1,
+  "version": 19.2,
   "ENGLISH": {
     "ENGLISH": "English",
     "SPANISH": "Español",
@@ -33,6 +33,7 @@
     "PERIOD_6": "Period 6",
     "STEP_ODD": "STEP (odd)",
     "STEP_EVEN": "STEP (even)",
+    "ASSEMBLY": "Assembly",
     "PASSING_BEFORE": "Passing before {}",
     "BREAK": "Break",
     "LUNCH": "Lunch",
