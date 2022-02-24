@@ -400,7 +400,7 @@
   background-color: rgba(175, 175, 175, 0.952);
   z-index: 1;
   position: fixed;
-  padding: 20% 25%;
+  padding: 20vh 30vw;
   left: 0%;
   top: 0%;
   right: 0%;
@@ -546,6 +546,9 @@ option.sr-select-item {
     -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
+  }
+  .schedule-popup {
+    padding: 5vh 15vw;
   }
   .period-information {
     display: none;

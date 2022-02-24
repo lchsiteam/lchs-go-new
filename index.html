@@ -77,7 +77,7 @@
           </div>
           <div class="schedule-popup" v-if="popupDate == date" style="opacity: 200%;">
             <!-- <div>Schedule for {{ date.locale("de").format("dddd, MMMM Do") }}</div> -->
-            <div v-scope="PeriodListComponent(schedule)"></div>
+            <div v-scope="PeriodListComponent(schedule, true)"></div>
           </div>
         </div>
       </div>
@@ -181,7 +181,7 @@
       <div class="period-header-text">{{ translate("PERIOD_END") }}</div>
     </div>
     <div v-for="period in listPeriod">
-      <div class="period" v-bind:class="{ current: period.isCurrent(), 'list-odd': getListCount() }"
+      <div class="period" v-bind:class="{ current: period.isCurrent() && !isCalendar, 'list-odd': getListCount() }"
         v-if="period.isVisible()">
         <div class="period-name">
           <label>
@@ -192,7 +192,7 @@
         <div class="period-details">{{ period.getStart }}</div>
         <div class="period-details">{{ period.getEnd }}</div>
       </div>
-      <div class="period-details-small" v-scope="PeriodInformationComponent()" v-if="period.isCurrent()"></div>
+      <div class="period-details-small" v-scope="PeriodInformationComponent()" v-if="period.isCurrent() && !isCalendar"></div>
     </div>
   </template>
 </body>
