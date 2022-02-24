@@ -1,5 +1,5 @@
 {
-  "version": 21,
+  "version": 21.1,
   "defaults": {
     "0": "NONE",
     "1": "REGULAR",
@@ -91,7 +91,9 @@
         "LUNCH":    ["12:54 PM", "01:24 PM"],
         "PERIOD_6": ["01:29 PM", "03:13 PM"]
       },
-      "ASSEMBLY": {}
+      "ASSEMBLY": {
+        "PERIOD_0": ["07:28 AM", "08:24 AM"]
+      }
     },
     "all": {}
   }

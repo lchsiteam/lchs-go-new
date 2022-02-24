@@ -373,7 +373,7 @@
   background-color: hsla(0, 0%, 6.67%, 0.1);
 }
 
-.calendar-day.outside {
+.outside {
   opacity: 50%;
 }
 
@@ -396,7 +396,7 @@
 }
 
 .schedule-popup {
-  background-color: rgba(36, 167, 167, 0.842);
+  background-color: rgba(175, 175, 175, 0.952);
   z-index: 1;
   position: fixed;
   padding: 20% 25%;

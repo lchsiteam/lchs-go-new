@@ -1,5 +1,5 @@
 {
-  "version": 19,
+  "version": 19.1,
   "ENGLISH": {
     "ENGLISH": "English",
     "SPANISH": "Español",
@@ -64,6 +64,8 @@
     "SETTINGS_TWENTY_FOUR_HOUR_DESC": "Displays 24 hour time",
     "SETTINGS_AM_PM_TITLE": "AM / PM",
     "SETTINGS_AM_PM_DESC": "Shows AM and PM on the times",
+    "SETTINGS_SHOW_WEEKENDS_TITLE": "Weekends",
+    "SETTINGS_SHOW_WEEKENDS_DESC": "Shows the weekends on the calendar",
     "SETTINGS_COLOR_THEME_TITLE": "Color Theme",
     "SETTINGS_COLOR_THEME_DESC": "Changes the background color",
     "SETTINGS_GRADE_LEVEL_TITLE": "Grade Level",
