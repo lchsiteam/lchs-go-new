@@ -541,6 +541,9 @@ option.sr-select-item {
   }
 }
 @media screen and (max-width: 767px) {
+  .app-container {
+    padding-top: 5px;
+  }
   .schedule-container {
     -webkit-box-pack: center;
     -webkit-justify-content: center;
