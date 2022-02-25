@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="LCHS Go - Bell Schedule App">
+  <meta name="theme-color" content="#333">
   <script src="https://unpkg.com/petite-vue"></script>
   <!-- <script src="https://unpkg.com/moment@2.29.1/moment.js"></script> -->
   <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
@@ -22,6 +23,7 @@
   <script type="module" src="scheduleFormatting.js"></script>
   <script type="module" src="vueScript.js"></script>
   <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="/manifest.json">
   <link
     href="https://fonts.googleapis.com/css?family=Niramit:300,regular,500,600"
     rel="stylesheet" />
@@ -77,7 +79,7 @@
           </div>
           <div class="schedule-popup" v-if="popupDate == date" style="opacity: 200%;">
             <!-- <div>Schedule for {{ date.locale("de").format("dddd, MMMM Do") }}</div> -->
-            <div v-scope="PeriodListComponent(schedule)"></div>
+            <div v-scope="PeriodListComponent(schedule, true)"></div>
           </div>
         </div>
       </div>
@@ -116,7 +118,7 @@
             </div>
           </div>
           <select class="sr-select" v-if="setting.mode == 'dropdown'" v-effect="$el.selectedIndex = setting.options.indexOf(settings[setting.setting])"
-          @change="changeSetting(setting.setting, setting.options[$el.selectedIndex])">
+          @change="changeSetting(setting.setting, setting.options[$el.selectedIndex]); if(setting.reload) location.reload();">
             <option class="sr-select-item" v-for="option in setting.options">{{ translate(option) }}</option>
           </select>
 
@@ -130,6 +132,8 @@
     </div>
     <div class="credits">
       Made with ❤️ by the <a href="https://lciteam.club" class="credits" target="_blank">LC iTeam</a>
+      <br>
+      <a href="https://forms.gle/R4EvwSh92B2g1qEG7" class="credits" target="_blank">Report a bug</a>
     </div>
   </div>
   <!-- Templates Section - These are templates because they are used in multiple areas -->
@@ -179,7 +183,7 @@
       <div class="period-header-text">{{ translate("PERIOD_END") }}</div>
     </div>
     <div v-for="period in listPeriod">
-      <div class="period" v-bind:class="{ current: period.isCurrent(), 'list-odd': getListCount() }"
+      <div class="period" v-bind:class="{ current: period.isCurrent() && !isCalendar, 'list-odd': getListCount() }"
         v-if="period.isVisible()">
         <div class="period-name">
           <label>
@@ -190,7 +194,7 @@
         <div class="period-details">{{ period.getStart }}</div>
         <div class="period-details">{{ period.getEnd }}</div>
       </div>
-      <div class="period-details-small" v-scope="PeriodInformationComponent()" v-if="period.isCurrent()"></div>
+      <div class="period-details-small" v-scope="PeriodInformationComponent()" v-if="period.isCurrent() && !isCalendar"></div>
     </div>
   </template>
 </body>

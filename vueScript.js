@@ -13,7 +13,7 @@ var timeFormat = (settings.twentyFourHour ? "HH" : "h") + ":mm" + (settings.show
 
 // Find current Period
 var currentPeriod = null;
-var periodListComponent = PeriodListComponent(formattedJSON);
+var periodListComponent = PeriodListComponent(formattedJSON, false);
 
 periodListComponent.listPeriod.forEach((p) => {
         if(p.isCurrent()) {
@@ -157,11 +157,12 @@ function PeriodInformationComponent(props) {
 }
 
 // Component - Period List Template - Used to make a period list block
-function PeriodListComponent(periods) {
+function PeriodListComponent(periods, isCal) {
   var periodList = periods.map((p) => {
     return PeriodComponent(p.name, p.start, p.end, p.passing);
   });
   return {
+    isCalendar: isCal,
     listPeriod: periodList,
     $template: "#period-list-template"
   }
