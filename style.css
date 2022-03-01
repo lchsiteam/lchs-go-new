@@ -43,6 +43,7 @@
   text-decoration-color: white;
   margin-top: 50px;
   font-size: 10px;
+  text-align: center;
 }
 .background {
   transition: width 0s 0s ease;
@@ -373,7 +374,7 @@
   background-color: hsla(0, 0%, 6.67%, 0.1);
 }
 
-.calendar-day.outside {
+.outside {
   opacity: 50%;
 }
 
@@ -396,10 +397,10 @@
 }
 
 .schedule-popup {
-  background-color: rgba(36, 167, 167, 0.842);
+  background-color: rgba(175, 175, 175, 0.952);
   z-index: 1;
   position: fixed;
-  padding: 20% 25%;
+  padding: 20vh 30vw;
   left: 0%;
   top: 0%;
   right: 0%;
@@ -503,7 +504,7 @@ option.sr-select-item {
   background: -webkit-linear-gradient(
     left,
     hsl(0, 100%, 100%) 0%,
-    hsl(0, 100%, 50%) 1%,
+    hsl(0, 100%, 50%) 2%,
     hsl(30, 100%, 50%) 8.3%,
     hsl(60, 100%, 50%) 16.6%,
     hsl(90, 100%, 50%) 25%,
@@ -515,7 +516,7 @@ option.sr-select-item {
     hsl(270, 100%, 50%) 75%,
     hsl(300, 100%, 50%) 83.3%,
     hsl(330, 100%, 50%) 91.6%,
-    hsl(360, 100%, 50%) 99%,
+    hsl(360, 100%, 50%) 98%,
     hsl(0, 100%, 0%) 100%
   );
 }
@@ -540,11 +541,17 @@ option.sr-select-item {
   }
 }
 @media screen and (max-width: 767px) {
+  .app-container {
+    padding-top: 5px;
+  }
   .schedule-container {
     -webkit-box-pack: center;
     -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
+  }
+  .schedule-popup {
+    padding: 5vh 15vw;
   }
   .period-information {
     display: none;
