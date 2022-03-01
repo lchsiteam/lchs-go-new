@@ -7,6 +7,7 @@ const defaultSettings = {
     zeroEnabled: true,
     twentyFourHour: false,
     showAMPM: false,
+    inlinePeriodDetails: false,
     // showWeekends: true,
     colorTheme: 3,
     grade: 'GRADE_9',
@@ -70,6 +71,15 @@ export const settingsMenu = {
   showAMPM: {
     setting: "showAMPM",
     key: "AM_PM",
+    mode: 'toggle',
+    options: [[true, "ON"], [false, "OFF"]],
+    new: false,
+    experimental: false,
+    reload: false,
+  },
+  inlinePeriodDetails: {
+    setting: "inlinePeriodDetails",
+    key: "INLINE_DETAILS",
     mode: 'toggle',
     options: [[true, "ON"], [false, "OFF"]],
     new: false,

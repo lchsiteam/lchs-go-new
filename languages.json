@@ -1,5 +1,5 @@
 {
-  "version": 19.2,
+  "version": 19.3,
   "ENGLISH": {
     "ENGLISH": "English",
     "SPANISH": "Español",
@@ -65,6 +65,8 @@
     "SETTINGS_TWENTY_FOUR_HOUR_DESC": "Displays 24 hour time",
     "SETTINGS_AM_PM_TITLE": "AM / PM",
     "SETTINGS_AM_PM_DESC": "Shows AM and PM on the times",
+    "SETTINGS_INLINE_DETAILS_TITLE": "Inline Period Details",
+    "SETTINGS_INLINE_DETAILS_DESC": "Shows the period details in the period list on small screens",
     "SETTINGS_SHOW_WEEKENDS_TITLE": "Weekends",
     "SETTINGS_SHOW_WEEKENDS_DESC": "Shows the weekends on the calendar",
     "SETTINGS_COLOR_THEME_TITLE": "Color Theme",
