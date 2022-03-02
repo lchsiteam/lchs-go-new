@@ -65,11 +65,15 @@
     </div>
     <!-- Calendar Page - Calendar pulled from the events.json -->
     <div id="calendar" v-if="currentPage == 'calendar'">
-      <div class="todays-schedule">
+      <div @click="monthOffset--">LEFt</div>
+      <div class="todays-schedule" v-effect="$el.textContent = getMonthText(dayjs().month() + monthOffset)">
         {{ translate("CALENDAR_TITLE")}}
       </div>
+      <div @click="monthOffset++; console.log(monthOffset)">LEFtBUtLESS LEFT</div>
       <div class="calendar-container">
-        <div class="calendar-day-wrap" v-for="day in 35" v-scope="CalendarDay({num: day})" 
+        <div class="calendar-day-wrap" v-for="day in 35" v-scope="CalendarDay({num: day})"
+        <div class="calendar-day-wrap" v-for="day in 35" v-scope="CalendarDay(day, monthOffset)" 
+          v-effect="monthOffset"
           @click="if (popupDate == null) {popupDate = date;} else {popupDate = null;}"> <!-- @click="showPopup = true; popupSchedule = scheduleType()" opupSchedule = PeriodListComponent(scheduleType()); showPopup = true; console.log(popupSchedule)-->
           <div class="calendar-day" v-bind:class="{ 'today': date.date() == dayjs().date() && date.month() == dayjs().month() }">
             <div class="cd-number" v-bind:class="{ 'outside': date.month() !== dayjs().month() }">

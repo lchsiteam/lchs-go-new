@@ -50,6 +50,7 @@ PetiteVue.createApp({
   showPopup: false,
   // popupSchedule: periodList,
   popupDate: null,
+  monthOffset: 0,
 
   // Settings Page
   settingsMenu,
@@ -66,6 +67,7 @@ PetiteVue.createApp({
   changeClassName,
   translateWithInsert, 
   translate,
+  getMonthText,
 
   // Update interval timer
   interval: null,
@@ -94,7 +96,7 @@ PetiteVue.createApp({
     this.percentCompleted = 100 - (this.minutesLeft / currentPeriod.end.diff(currentPeriod.start, "minutes")) * 100;
     this.percentCompletedText = translateWithInsert( "PERCENT_COMPLETED", Math.trunc(this.percentCompleted));
     this.currentTime = dayjs().format(timeFormat);
-    document.title = this.minutesLeft + "min. | LCHS Go";
+    document.title = this.minutesLeft + "min. | LCHS Go"
   },
 }).mount();
 
@@ -140,8 +142,12 @@ function PeriodComponent(setName, setStart, setEnd, setPassing) {
 }
 
 // Component - CalendarDay - Holds the schedule for the day and the date
-function CalendarDay(props) {
-  var dateM = dayjs().set('date', props.num - dayjs().startOf('month').day());
+function CalendarDay(day,monthOffset) {
+  
+  var dateS  = dayjs().add(monthOffset,'month').startOf('month')
+  dateS = dayjs().month(dayjs().month() + monthOffset)
+  console.log(dateS)
+  var dateM = dayjs().set('date', day - dateS.day())
   return {
     date: dateM,
     schedule: getSchedule(dateM),
@@ -174,6 +180,27 @@ export function getTodaysGreeting() {
     getGreeting() +
     " " +
     translateWithInsert("TODAY_IS", translate(formattedJSON.scheduleType))
+  );
+}
+
+// Function - Get the translated current month for the calendar
+export function getMonthText(month) {
+  var monthsDict = {
+    0 : "JANUARY",
+    1 : "FEBURARY",
+    2 : "MARCH",
+    3 : "APRIL",
+    4 : "MAY",
+    5 : "JUNE",
+    6 : "JULY",
+    7 : "AUGUST",
+    8 : "SEPTEMBER",
+    9 : "OCTOBER",
+    10 : "NOVEMBER",
+    11 : "DECEMBER",
+  }
+  return (
+    translate(monthsDict[dayjs().month(month).month()])
   );
 }
 
