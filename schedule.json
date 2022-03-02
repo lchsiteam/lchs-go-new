@@ -1,5 +1,5 @@
 {
-  "version": 20,
+  "version": 22,
   "defaults": {
     "0": "NONE",
     "1": "REGULAR",
@@ -14,25 +14,29 @@
       "11/09/2021": "BLOCK_EVEN",
       "11/11/2021": "NONE",
       "12/08/2021": "REGULAR",
-      "12/09/2021": "REGULAR"
+      "12/09/2021": "REGULAR",
+
+      "02/11/2022": "ASSEMBLY",
+      "02/18/2022": "NONE",
+      "02/21/2022": "NONE"
     },
     "GRADE_7": {
-      
+
     },
     "GRADE_8": {
-      
+
     },
     "GRADE_9": {
-      
+
     },
     "GRADE_10": {
-      
+
     },
     "GRADE_11": {
-      
+
     },
     "GRADE_12": {
-      
+
     }
   },
   "dateRanges": {
@@ -55,6 +59,36 @@
         "LUNCH":    ["12:41 PM", "01:11 PM"],
         "PERIOD_5": ["01:16 PM", "02:12 PM"],
         "PERIOD_6": ["02:18 PM", "03:14 PM"]
+      },
+      "BLOCK_ODD": {
+        "PERIOD_0": ["07:28 AM", "08:24 AM"],
+        "PERIOD_1": ["08:30 AM", "10:14 AM"],
+        "BREAK":    ["10:14 AM", "10:24 AM"],
+        "PERIOD_3": ["10:29 AM", "12:13 PM"],
+        "LUNCH":    ["12:13 PM", "12:43 PM"],
+        "STEP_ODD": ["12:48 PM", "01:23 PM"],
+        "PERIOD_5": ["01:29 PM", "03:13 PM"]
+      },
+      "BLOCK_EVEN": {
+        "PERIOD_0": ["07:28 AM", "08:24 AM"],
+        "PERIOD_2": ["08:30 AM", "10:14 AM"],
+        "BREAK":    ["10:14 AM", "10:24 AM"],
+        "PERIOD_4": ["10:29 AM", "12:13 PM"],
+        "LUNCH":    ["12:13 PM", "12:43 PM"],
+        "STEP_EVEN":["12:48 PM", "01:23 PM"],
+        "PERIOD_6": ["01:29 PM", "03:13 PM"]
+      },
+      "ASSEMBLY": {
+        "PERIOD_0": ["07:27 AM", "08:15 AM"],
+        "PERIOD_1": ["08:30 AM", "09:18 AM"],
+        "PERIOD_2": ["09:24 AM", "10:12 AM"],
+        "ASSEMBLY": ["10:12 AM", "11:00 AM"],
+        "BREAK":    ["11:00 AM", "11:09 AM"],
+        "PERIOD_3": ["11:15 AM", "12:03 PM"],
+        "LUNCH":    ["12:03 PM", "12:33 PM"],
+        "PERIOD_4": ["12:39 PM", "01:27 PM"],
+        "PERIOD_5": ["01:33 PM", "02:21 PM"],
+        "PERIOD_6": ["02:27 PM", "03:15 PM"]
       }
     },
     "highSchool": {
@@ -87,7 +121,18 @@
         "LUNCH":    ["12:54 PM", "01:24 PM"],
         "PERIOD_6": ["01:29 PM", "03:13 PM"]
       },
-      "ASSEMBLY": {}
+      "ASSEMBLY": {
+        "PERIOD_0": ["07:28 AM", "08:15 AM"],
+        "PERIOD_1": ["08:30 AM", "09:18 AM"],
+        "PERIOD_2": ["09:24 AM", "10:12 AM"],
+        "ASSEMBLY": ["10:12 AM", "11:00 AM"],
+        "BREAK":    ["11:00 AM", "11:09 AM"],
+        "PERIOD_3": ["11:15 AM", "12:03 PM"],
+        "PERIOD_4": ["12:09 PM", "12:57 PM"],
+        "LUNCH":    ["12:57 PM", "01:27 PM"],
+        "PERIOD_5": ["01:33 PM", "02:21 PM"],
+        "PERIOD_6": ["02:27 PM", "03:15 PM"]
+      }
     },
     "all": {}
   }

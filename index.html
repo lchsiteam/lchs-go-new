@@ -5,11 +5,25 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="LCHS Go - Bell Schedule App">
+  <meta name="theme-color" content="#333">
   <script src="https://unpkg.com/petite-vue"></script>
-  <script src="https://unpkg.com/moment@2.29.1/moment.js"></script>
+  <!-- <script src="https://unpkg.com/moment@2.29.1/moment.js"></script> -->
+  <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+  <script src="https://unpkg.com/dayjs@1.8.21/plugin/isBetween.js"></script>
+  <script src="https://unpkg.com/dayjs@1.8.21/plugin/advancedFormat.js"></script>
+  <script src="https://unpkg.com/dayjs@1.8.21/plugin/customParseFormat.js"></script>
+  <script src="https://unpkg.com/dayjs@1.8.21/plugin/localeData.js"></script>
+  <script>
+    dayjs.extend(window.dayjs_plugin_isBetween); 
+    dayjs.extend(window.dayjs_plugin_advancedFormat); 
+    dayjs.extend(window.dayjs_plugin_customParseFormat);
+    dayjs.extend(window.dayjs_plugin_localeData);
+  </script>
   <script type="module" src="scheduleFormatting.js"></script>
   <script type="module" src="vueScript.js"></script>
   <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="/manifest.json">
   <link
     href="https://fonts.googleapis.com/css?family=Niramit:300,regular,500,600"
     rel="stylesheet" />
@@ -43,37 +57,46 @@
       </div>
       <div class="schedule-container">
         <div class="period-information" v-scope="PeriodInformationComponent()"></div>
-        <div class="all-periods" v-scope="PeriodListComponent()"></div>
+        <div class="all-periods" v-scope="periodListComponent">
+          <div style="margin-bottom: 30px;" class="period-details-small" v-scope="PeriodInformationComponent()" 
+          v-if="!settings.inlinePeriodDetails"></div>
+        </div>
       </div>
     </div>
     <!-- Calendar Page - Calendar pulled from the events.json -->
     <div id="calendar" v-if="currentPage == 'calendar'">
       <div class="todays-schedule">
-        Calendar
+        {{ translate("CALENDAR_TITLE")}}
       </div>
       <div class="calendar-container">
-        <div class="calendar-day" v-for="day in 35" v-bind:class="{ 'outside': date.month() !== moment().month() }"
-          v-scope="CalendarDay({num: day})"> <!-- @click="showPopup = true; popupSchedule = scheduleType()" -->
-          <div class="cd-number">
-            {{ date.date() }}
+        <div class="calendar-day-wrap" v-for="day in 35" v-scope="CalendarDay({num: day})" 
+          @click="if (popupDate == null) {popupDate = date;} else {popupDate = null;}"> <!-- @click="showPopup = true; popupSchedule = scheduleType()" opupSchedule = PeriodListComponent(scheduleType()); showPopup = true; console.log(popupSchedule)-->
+          <div class="calendar-day" v-bind:class="{ 'today': date.date() == dayjs().date() && date.month() == dayjs().month() }">
+            <div class="cd-number" v-bind:class="{ 'outside': date.month() !== dayjs().month() }">
+              {{ date.date() }}
+            </div>
+            <div class="cd-tag" v-bind:class="{ 'outside': date.month() !== dayjs().month() }">
+              {{ translate(schedule.scheduleType) }}
+            </div>
+            <div class="cd-tag" v-if="event != null" v-bind:class="{ 'outside': date.month() !== dayjs().month() }">
+              {{ event }}
+            </div>
           </div>
-          <div class="cd-tag">
-            {{ translate(scheduleType().scheduleType) }}
-          </div>
-          <div class="cd-tag" v-if="event() != null">
-            {{ event() }}
+          <div class="schedule-popup" v-if="popupDate == date" style="opacity: 200%;">
+            <!-- <div>Schedule for {{ date.locale("de").format("dddd, MMMM Do") }}</div> -->
+            <div v-scope="PeriodListComponent(schedule, true)"></div>
           </div>
         </div>
       </div>
     </div>
     <!-- Schedule Popup - Shows up when clicked on a calendar day (To be removed until fixed) -->
-    <div class="schedule-popup" v-if="showPopup" @click="showPopup = false;">
-      <div v-scope="PeriodListComponent()"></div>
-    </div>
+    <!-- <div class="schedule-popup" v-if="showPopup" @click="showPopup = false;"> -->
+      <!-- <div v-scope="popupSchedule"></div> -->
+    <!-- </div> -->
     <!-- Settings Page - All of the user settings generated from settings.js -->
     <div id="settings-page" v-if="currentPage == 'settings'">
       <div class="todays-schedule">
-        App Settings
+        {{ translate("SETTINGS_TITLE") }}
       </div>
       <div class="settings-row" v-for="setting in settingsMenu">
         <div class="sr-head">
@@ -90,23 +113,23 @@
             <div class="sr-selector-option" v-for="option in setting.options"
               v-effect="
                 if(value == option[0]) {
-                  $el.className = 'sr-selector-option selected'; 
+                  $el.className = 'sr-selector-option selected';
                 } else {
                   $el.className = 'sr-selector-option';
                 }"
-              @click="changeSetting(setting.setting, option[0]); value = option[0]" 
+              @click="changeSetting(setting.setting, option[0]); value = option[0]"
               v-bind:class="{ 'selected': settings[setting.setting] == option[0] }">
               {{ translate(option[1]) }}
             </div>
           </div>
           <select class="sr-select" v-if="setting.mode == 'dropdown'" v-effect="$el.selectedIndex = setting.options.indexOf(settings[setting.setting])"
-          @change="changeSetting(setting.setting, setting.options[$el.selectedIndex])">
+          @change="changeSetting(setting.setting, setting.options[$el.selectedIndex]); if(setting.reload) location.reload();">
             <option class="sr-select-item" v-for="option in setting.options">{{ translate(option) }}</option>
           </select>
-           
-          <div class="" v-if="setting.mode == 'color-slider'">    
+
+          <div class="" v-if="setting.mode == 'color-slider'">
             <input class="sr-color-slider" id="hue" type="range" max="360" v-effect="$el.value = settings.colorTheme"
-            v-on:input="changeHue($el.value)" 
+            v-on:input="changeHue($el.value)"
             v-on:change="changeSetting('colorTheme', $el.value)">
           </div>
         </div>
@@ -114,6 +137,8 @@
     </div>
     <div class="credits">
       Made with ❤️ by the <a href="https://lciteam.club" class="credits" target="_blank">LC iTeam</a>
+      <br>
+      <a href="https://forms.gle/R4EvwSh92B2g1qEG7" class="credits" target="_blank">Report a bug</a>
     </div>
   </div>
   <!-- Templates Section - These are templates because they are used in multiple areas -->
@@ -128,11 +153,12 @@
       <div class="circle"></div>
     </div>
     <div class="period-information-content">
-      <div class="start-end-time" v-effect="currentPeriod">{{ currentPeriod.getStart() }}</div>
+      <div class="start-end-time" v-effect="currentPeriod">{{ currentPeriod.getStart }}</div>
       <div class="time-left">
         <div class="divider-bar" style="margin-bottom: 10px;"></div>
         <div class="time-left-group">
-          <div class="details-name">{{ currentPeriod.getName() }}</div>
+          <marquee v-if="currentPeriod.getName().length > 20" class="details-name">{{ currentPeriod.getName() }}</marquee>
+          <div v-if="!(currentPeriod.getName() > 20)" class="details-name">{{ currentPeriod.getName() }}</div>
           <div class="time-left-text">
             <div style="display: inline-flex; justify-content: center; flex-wrap: wrap;">
               <div style="margin-right: 5px;" v-if="Math.trunc(minutesLeft / 60) > 0">
@@ -150,7 +176,7 @@
         </div>
         <div class="divider-bar" style="margin-top: 20px;"></div>
       </div>
-      <div class="start-end-time">{{ currentPeriod.getEnd() }}</div>
+      <div class="start-end-time">{{ currentPeriod.getEnd }}</div>
     </div>
   </template>
   <!-- Period List Template - Holds the list of periods -->
@@ -162,17 +188,19 @@
       <div class="period-header-text">{{ translate("PERIOD_START") }}</div>
       <div class="period-header-text">{{ translate("PERIOD_END") }}</div>
     </div>
-    <div v-for="period in periodList">
-      <div class="period" v-bind:class="{ current: period.isCurrent(), 'list-odd': getListCount() }"
+    <div v-for="period in listPeriod">
+      <div class="period" v-bind:class="{ current: period.isCurrent() && !isCalendar, 'list-odd': getListCount() }"
         v-if="period.isVisible()">
         <div class="period-name">
-          <input class="period-details" v-effect="$el.value = period.getName()" 
-          @click="$el.focus(); $el.select();" @blur="changeClassName(period.name, $el)"/>
+          <label>
+            <input class="period-details" v-effect="$el.value = period.getName()"
+            @click="$el.focus(); $el.select();" @blur="changeClassName(period.name, $el)"/>
+          </label>
         </div>
-        <div class="period-details">{{ period.getStart() }}</div>
-        <div class="period-details">{{ period.getEnd() }}</div>
+        <div class="period-details">{{ period.getStart }}</div>
+        <div class="period-details">{{ period.getEnd }}</div>
       </div>
-      <div class="period-details-small" v-scope="PeriodInformationComponent()" v-if="period.isCurrent()"></div>
+      <div class="period-details-small" v-scope="PeriodInformationComponent()" v-if="period.isCurrent() && !isCalendar && settings.inlinePeriodDetails"></div>
     </div>
   </template>
 </body>

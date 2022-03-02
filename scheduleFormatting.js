@@ -48,9 +48,9 @@ fetch("./events.json")
   });
 
 // Create and export the formattedJSON for today
-export var formattedJSON = getSchedule(moment());
+export var formattedJSON = getSchedule(dayjs());
 
-// Function - get the formatted schedule json for a specific day - pass in a moment() object
+// Function - get the formatted schedule json for a specific day - pass in a dayjs() object
 export function getSchedule(date) {
   if (date == null) return;
   var scheduleType;
@@ -71,7 +71,7 @@ export function getSchedule(date) {
     } else if(inRange(date, "FALL_BREAK")) {
       scheduleType = "FALL_BREAK";
     } else {
-      scheduleType = scheduleJSON.defaults[date.format("e")];
+      scheduleType = scheduleJSON.defaults[date.day()];
     }
     if(inRange(date, "BLOCK_SWITCH")) {
       if (scheduleType == "BLOCK_EVEN") { scheduleType = "BLOCK_ODD"; }
@@ -140,7 +140,7 @@ export function getSchedule(date) {
     localJSON = [
       {
         name: "BEFORE_SCHOOL",
-        start: moment().startOf("day"),
+        start: dayjs().startOf("day"),
         end: localJSON[0].start,
         passing: true,
       },
@@ -148,7 +148,7 @@ export function getSchedule(date) {
       {
         name: "AFTER_SCHOOL",
         start: localJSON[localJSON.length - 1].end,
-        end: moment().endOf("day"),
+        end: dayjs().endOf("day"),
         passing: true,
       },
     ];
@@ -156,8 +156,8 @@ export function getSchedule(date) {
     localJSON = [
       {
         name: "NONE",
-        start: moment().startOf("day"),
-        end: moment().endOf("day"),
+        start: dayjs().startOf("day"),
+        end: dayjs().endOf("day"),
         passing: false,
       },
     ];
@@ -170,5 +170,5 @@ export function getSchedule(date) {
 
 // Function - Check if a date is in a date from the schedule.json
 function inRange(date, range) {
-  return date.isBetween(moment(scheduleJSON.dateRanges[range][0], "MM/DD/YYYY").startOf('day'), moment(scheduleJSON.dateRanges[range][1], "MM/DD/YYYY").endOf('day'));
+  return date.isBetween(dayjs(scheduleJSON.dateRanges[range][0], "MM/DD/YYYY").startOf('day'), dayjs(scheduleJSON.dateRanges[range][1], "MM/DD/YYYY").endOf('day'));
 }

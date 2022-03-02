@@ -36,13 +36,14 @@
   align-items: center;
   justify-content: center;
   padding-top: 50px;
-  padding-bottom: 50px;
+  /* padding-bottom: 50px; */
 }
 .credits {
   color: inherit;
   text-decoration-color: white;
   margin-top: 50px;
   font-size: 10px;
+  text-align: center;
 }
 .background {
   transition: width 0s 0s ease;
@@ -154,18 +155,24 @@
   transform: scale(1.1);
 }
 .period {
-  display: -webkit-box;
+  /* display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
-  display: flex;
+  display: flex; */
   height: 40px;
-  -webkit-justify-content: space-around;
+  /* -webkit-justify-content: space-around;
   -ms-flex-pack: distribute;
   justify-content: space-around;
   -webkit-box-align: center;
   -webkit-align-items: center;
-  -ms-flex-align: center;
+  -ms-flex-align: center; */
   align-items: center;
+  justify-content: center;
+  display: grid;
+  grid-template-columns: 3.5fr repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
   background-color: rgba(0, 0, 0, 0.05);
 }
 .period.list-odd {
@@ -187,6 +194,8 @@
   background-color: transparent;
   border: none;
   color: inherit;
+  margin-left: 15%;
+  cursor: pointer;
 }
 .period-details:focus-visible {
   outline: none;
@@ -267,6 +276,7 @@
   font-size: 35px;
   font-weight: 600;
   text-align: center;
+  width: 100%;
 }
 .time-left-text {
   display: inline-flex;
@@ -348,11 +358,7 @@
 .calendar-day {
   position: relative;
   display: flex;
-  height: auto;
-  margin-top: 2px;
-  margin-right: 2px;
-  margin-bottom: 2px;
-  margin-left: 2px;
+  height: 100%;
   padding-top: 40px;
   padding-right: 10px;
   padding-bottom: 10px;
@@ -363,24 +369,46 @@
   flex-grow: 1;
   flex-shrink: 0;
   flex-basis: 13%;
+  cursor: pointer;
   /* background-color: hsla(0, 0%, 6.67%, 0.15); */
 }
 
-.calendar-day:nth-child(even) {
+.calendar-day-wrap {
+  position: relative;
+  height: auto;
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 13%;
+  margin-top: 2px;
+  margin-right: 2px;
+  margin-bottom: 2px;
+  margin-left: 2px;
+}
+
+.calendar-day:hover {
+  transform: scale(1.1);
+}
+
+.today {
+  transform: scale(1.1);
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.calendar-day-wrap:nth-child(even) {
   background-color: hsla(0, 0%, 6.67%, 0.15);
 }
-.calendar-day:nth-child(odd) {
+.calendar-day-wrap:nth-child(odd) {
   background-color: hsla(0, 0%, 6.67%, 0.1);
 }
 
-.calendar-day.outside {
+.outside {
   opacity: 50%;
 }
 
 .cd-number {
   position: absolute;
-  left: 5px;
-  top: -3px;
+  left: 6px;
+  top: -2px;
   right: auto;
   bottom: auto;
   font-size: 25px;
@@ -396,10 +424,10 @@
 }
 
 .schedule-popup {
-  background-color: rgba(36, 167, 167, 0.842);
+  background-color: rgba(175, 175, 175, 0.952);
   z-index: 1;
   position: fixed;
-  padding: 20% 25%;
+  padding: 20vh 30vw;
   left: 0%;
   top: 0%;
   right: 0%;
@@ -503,7 +531,7 @@ option.sr-select-item {
   background: -webkit-linear-gradient(
     left,
     hsl(0, 100%, 100%) 0%,
-    hsl(0, 100%, 50%) 1%,
+    hsl(0, 100%, 50%) 2%,
     hsl(30, 100%, 50%) 8.3%,
     hsl(60, 100%, 50%) 16.6%,
     hsl(90, 100%, 50%) 25%,
@@ -515,7 +543,7 @@ option.sr-select-item {
     hsl(270, 100%, 50%) 75%,
     hsl(300, 100%, 50%) 83.3%,
     hsl(330, 100%, 50%) 91.6%,
-    hsl(360, 100%, 50%) 99%,
+    hsl(360, 100%, 50%) 98%,
     hsl(0, 100%, 0%) 100%
   );
 }
@@ -540,11 +568,17 @@ option.sr-select-item {
   }
 }
 @media screen and (max-width: 767px) {
+  .app-container {
+    padding-top: 5px;
+  }
   .schedule-container {
     -webkit-box-pack: center;
     -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
+  }
+  .schedule-popup {
+    padding: 5vh 15vw;
   }
   .period-information {
     display: none;
@@ -582,10 +616,12 @@ option.sr-select-item {
     /* justify-content: center; */
     flex-wrap: nowrap;
     overflow-x: scroll;
+    flex-direction: column;
   }
-  .calendar-day {
-    height: 350px;
+  .calendar-day {    
+    height: auto;
     flex-basis: 80%;
+    width: 90vw;
   }
 }
 @media screen and (max-width: 479px) {

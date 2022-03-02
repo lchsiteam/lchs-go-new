@@ -2,14 +2,14 @@
 const defaultSettings = {
   settings: {
     setting: "settings",
-    notificationsOn: true,
-    enableAnimations: true,
     showExtraPeriods: false,
     sixthEnabled: true,
     zeroEnabled: true,
     twentyFourHour: false,
     showAMPM: false,
-    colorTheme: '1',
+    inlinePeriodDetails: false,
+    // showWeekends: true,
+    colorTheme: 3,
     grade: 'GRADE_9',
     language: 'ENGLISH'
   }
@@ -31,22 +31,7 @@ export const settingsMenu = {
     options: ["GRADE_7", "GRADE_8", "GRADE_9", "GRADE_10", "GRADE_11", "GRADE_12"],
     new: false,
     experimental: false,
-  },
-  notificationsOn: {                         // setting id (same as ^)
-    setting: "notificationsOn",              // setting id (same as ^)
-    key: "NOTIFICATION",                     // language translation key
-    mode: 'toggle',                          // setting type
-    options: [[true, "ON"], [false, "OFF"]], // options for the setting array of arrays [ [<set to value>, <language key for display>] , ... ]
-    new: false,
-    experimental: true,
-  },
-  enableAnimations: {
-    setting: "enableAnimations",
-    key: "ANIMATIONS",
-    mode: 'toggle',
-    options: [[true, "ON"], [false, "OFF"]],
-    new: false,
-    experimental: true,
+    reload: true,
   },
   showExtraPeriods: {
     setting: "showExtraPeriods",
@@ -63,6 +48,7 @@ export const settingsMenu = {
     options: [[true, "ON"], [false, "OFF"]],
     new: false,
     experimental: false,
+    reload: false,
   },
   zeroEnabled: {
     setting: "zeroEnabled",
@@ -71,6 +57,7 @@ export const settingsMenu = {
     options: [[true, "ON"], [false, "OFF"]],
     new: false,
     experimental: false,
+    reload: false,
   },
   twentyFourHour: {
     setting: "twentyFourHour",
@@ -79,6 +66,7 @@ export const settingsMenu = {
     options: [[true, "ON"], [false, "OFF"]],
     new: false,
     experimental: false,
+    reload: false,
   },
   showAMPM: {
     setting: "showAMPM",
@@ -87,13 +75,32 @@ export const settingsMenu = {
     options: [[true, "ON"], [false, "OFF"]],
     new: false,
     experimental: false,
+    reload: false,
   },
+  inlinePeriodDetails: {
+    setting: "inlinePeriodDetails",
+    key: "INLINE_DETAILS",
+    mode: 'toggle',
+    options: [[true, "ON"], [false, "OFF"]],
+    new: false,
+    experimental: false,
+    reload: false,
+  },
+  // showWeekends: {
+  //   setting: "showWeekends",
+  //   key: "SHOW_WEEKENDS",
+  //   mode: 'toggle',
+  //   options: [[true, "ON"], [false, "OFF"]],
+  //   new: false,
+  //   experimental: false,
+  // },
   colorTheme: {
     setting: "colorTheme",
     key: "COLOR_THEME",
     mode: 'color-slider',
     new: true,
     experimental: false,
+    reload: false,
   },
   language: {
     setting: "language",
@@ -102,5 +109,6 @@ export const settingsMenu = {
     options: ["ENGLISH", "SPANISH", "GERMAN", "FRENCH"],
     new: true,
     experimental: true,
+    reload: true,
   }
 }
