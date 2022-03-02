@@ -66,11 +66,11 @@
     <!-- Calendar Page - Calendar pulled from the events.json --> 
     <div id="calendar" v-if="currentPage == 'calendar'" v-effect="console.log(toggle); toggle=true; console.log(toggle);">
       <div class="calendar-title">
-        <div class ="month-select" @click="monthOffset--; toggle=false; setTimeout(() => {toggle=true;}, 10);">◀</div>
-        <div class="todays-schedule" v-effect="$el.textContent = getMonthText(dayjs().month() + monthOffset)">
+        <div class ="month-select-left" @click="monthOffset--; toggle=false; setTimeout(() => {toggle=true;}, 10);">◀</div>
+        <div class="calendar-month" v-effect="$el.textContent = getMonthText(dayjs().month() + monthOffset)">
           {{ translate("CALENDAR_TITLE")}}
         </div>
-        <div class="month-select" @click="monthOffset++; toggle=false; setTimeout(() => { toggle=true;}, 70)">►</div>
+        <div class="month-select-right" @click="monthOffset++; toggle=false; setTimeout(() => { toggle=true;}, 70)">►</div>
       </div>
       <div class="calendar-container"  v-if="toggle">
         <div class="calendar-day-wrap" v-for="day in 35" v-scope="CalendarDay(day, monthOffset)" 
