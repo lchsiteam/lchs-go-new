@@ -51,6 +51,7 @@ PetiteVue.createApp({
   // popupSchedule: periodList,
   popupDate: null,
   monthOffset: 0,
+  toggle: true,
 
   // Settings Page
   settingsMenu,
@@ -146,8 +147,8 @@ function CalendarDay(day,monthOffset) {
   
   var dateS  = dayjs().add(monthOffset,'month').startOf('month')
   dateS = dayjs().month(dayjs().month() + monthOffset)
-  console.log(dateS)
-  var dateM = dayjs().set('date', day - dateS.day())
+  
+  var dateM = dateS.set('date', day+1 - dateS.day())
   return {
     date: dateM,
     schedule: getSchedule(dateM),
