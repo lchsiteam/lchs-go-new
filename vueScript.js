@@ -251,6 +251,15 @@ function changeHue(hue) {
     value = hslToHex(0, 0, 25);
   }
   document.getElementById("background").style.backgroundColor = value;
+
+  var iconImage
+  if (settings.colorTheme == 0)
+    iconImage = "/favicons/favicon0.ico"
+  else if (settings.colorTheme == 360)
+    iconImage = "/favicons/favicon18.ico"
+  else
+    iconImage = ("/favicons/favicon" + Math.floor(settings.colorTheme / 360 * 17 + 1) + ".ico");
+  changeIcon(iconImage);
 }
 
 // Function - Helper for ^ to change HSL to Hex
@@ -263,6 +272,18 @@ function hslToHex(h, s, l) {
     return Math.round(255 * color).toString(16).padStart(2, '0');   // convert to Hex and prefix "0" if needed
   };
   return `#${f(0)}${f(8)}${f(4)}`;
+}
+
+function changeIcon(src) {
+  var link = document.createElement('link'),
+    oldLink = document.getElementById('dynamic-favicon');
+  link.id = 'dynamic-favicon';
+  link.rel = 'shortcut icon';
+  link.href = src;
+  if (oldLink) {
+  document.head.removeChild(oldLink);
+  }
+  document.head.appendChild(link);
 }
 
 // Function - Update the local storage for the customNames to the new custom names

@@ -57,7 +57,10 @@
       </div>
       <div class="schedule-container">
         <div class="period-information" v-scope="PeriodInformationComponent()"></div>
-        <div class="all-periods" v-scope="periodListComponent"></div>
+        <div class="all-periods" v-scope="periodListComponent">
+          <div style="margin-bottom: 30px;" class="period-details-small" v-scope="PeriodInformationComponent()" 
+          v-if="!settings.inlinePeriodDetails"></div>
+        </div>
       </div>
     </div>
     <!-- Calendar Page - Calendar pulled from the events.json -->
@@ -68,17 +71,20 @@
       </div>
       <div @click="monthOffset++; console.log(monthOffset)">LEFtBUtLESS LEFT</div>
       <div class="calendar-container">
-        <div class="calendar-day" v-for="day in 35" v-scope="CalendarDay(day, monthOffset)" 
+        <div class="calendar-day-wrap" v-for="day in 35" v-scope="CalendarDay({num: day})"
+        <div class="calendar-day-wrap" v-for="day in 35" v-scope="CalendarDay(day, monthOffset)" 
           v-effect="monthOffset"
           @click="if (popupDate == null) {popupDate = date;} else {popupDate = null;}"> <!-- @click="showPopup = true; popupSchedule = scheduleType()" opupSchedule = PeriodListComponent(scheduleType()); showPopup = true; console.log(popupSchedule)-->
-          <div class="cd-number" v-bind:class="{ 'outside': date.month() !== dayjs().month() }">
-            {{ date.date() }}
-          </div>
-          <div class="cd-tag" v-bind:class="{ 'outside': date.month() !== dayjs().month() }">
-            {{ translate(schedule.scheduleType) }}
-          </div>
-          <div class="cd-tag" v-if="event != null" v-bind:class="{ 'outside': date.month() !== dayjs().month() }">
-            {{ event }}
+          <div class="calendar-day" v-bind:class="{ 'today': date.date() == dayjs().date() && date.month() == dayjs().month() }">
+            <div class="cd-number" v-bind:class="{ 'outside': date.month() !== dayjs().month() }">
+              {{ date.date() }}
+            </div>
+            <div class="cd-tag" v-bind:class="{ 'outside': date.month() !== dayjs().month() }">
+              {{ translate(schedule.scheduleType) }}
+            </div>
+            <div class="cd-tag" v-if="event != null" v-bind:class="{ 'outside': date.month() !== dayjs().month() }">
+              {{ event }}
+            </div>
           </div>
           <div class="schedule-popup" v-if="popupDate == date" style="opacity: 200%;">
             <!-- <div>Schedule for {{ date.locale("de").format("dddd, MMMM Do") }}</div> -->
@@ -155,7 +161,8 @@
       <div class="time-left">
         <div class="divider-bar" style="margin-bottom: 10px;"></div>
         <div class="time-left-group">
-          <div class="details-name">{{ currentPeriod.getName() }}</div>
+          <marquee v-if="currentPeriod.getName().length > 20" class="details-name">{{ currentPeriod.getName() }}</marquee>
+          <div v-if="!(currentPeriod.getName() > 20)" class="details-name">{{ currentPeriod.getName() }}</div>
           <div class="time-left-text">
             <div style="display: inline-flex; justify-content: center; flex-wrap: wrap;">
               <div style="margin-right: 5px;" v-if="Math.trunc(minutesLeft / 60) > 0">
@@ -197,7 +204,7 @@
         <div class="period-details">{{ period.getStart }}</div>
         <div class="period-details">{{ period.getEnd }}</div>
       </div>
-      <div class="period-details-small" v-scope="PeriodInformationComponent()" v-if="period.isCurrent() && !isCalendar"></div>
+      <div class="period-details-small" v-scope="PeriodInformationComponent()" v-if="period.isCurrent() && !isCalendar && settings.inlinePeriodDetails"></div>
     </div>
   </template>
 </body>
