@@ -346,6 +346,14 @@
   -ms-flex-align: center;
   align-items: center;
 }
+.calendar-title{
+  display:flex;
+  align-items: flex-start;
+}
+.month-select{
+  cursor: pointer;
+  margin: 0 auto;
+}
 .calendar-container {
   display: flex;
   max-width: 85vw;
