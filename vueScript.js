@@ -1,5 +1,5 @@
 // Importing the Schedule, Settings, and Languages
-import {formattedJSON, eventsJSON, languageJSON, getSchedule } from "./scheduleFormatting.js";
+import {formattedJSON, languageJSON, getSchedule, getEvent } from "./scheduleFormatting.js";
 import { settings, settingsMenu } from "./settings.js";
 
 // Basically and import
@@ -69,6 +69,7 @@ PetiteVue.createApp({
   translateWithInsert, 
   translate,
   getMonthText,
+  mod,
 
   // Update interval timer
   interval: null,
@@ -144,15 +145,14 @@ function PeriodComponent(setName, setStart, setEnd, setPassing) {
 
 // Component - CalendarDay - Holds the schedule for the day and the date
 function CalendarDay(day,monthOffset) {
+
+  var dateS = dayjs().month(dayjs().month() + monthOffset).startOf('month')
   
-  var dateS  = dayjs().add(monthOffset,'month').startOf('month')
-  dateS = dayjs().month(dayjs().month() + monthOffset)
-  
-  var dateM = dateS.set('date', day+1 - dateS.day())
+  var dateM = dateS.set('date', day - dateS.day())
   return {
     date: dateM,
     schedule: getSchedule(dateM),
-    event: eventsJSON[dateM.year()][dayjs.months()[dateM.month()]][dateM.date()]
+    event: getEvent(dateM)
   }
 }
 
@@ -321,4 +321,15 @@ export function translateWithInsert(translateText, insertString) {
     return translate(translateText);
   }
   return returnText.slice(0, index) + insertString + returnText.slice(index + 2);
+}
+
+export function mod(bigNum, smallNum) {
+  var output;
+  if (bigNum < 0){
+    output = smallNum - (-bigNum % smallNum)
+  } else {
+    output = bigNum % smallNum
+  }
+  console.log(bigNum + " " + smallNum + " " + output)
+  return output
 }

@@ -172,3 +172,10 @@ export function getSchedule(date) {
 function inRange(date, range) {
   return date.isBetween(dayjs(scheduleJSON.dateRanges[range][0], "MM/DD/YYYY").startOf('day'), dayjs(scheduleJSON.dateRanges[range][1], "MM/DD/YYYY").endOf('day'));
 }
+
+export function getEvent(date) {
+  if (date.year() in eventsJSON){
+    return eventsJSON[date.year()][dayjs.months()[date.month()]][date.date()]
+  }
+  return undefined
+}
