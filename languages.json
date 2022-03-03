@@ -88,7 +88,21 @@
     "GRADE_9": "9th Grade",
     "GRADE_10": "10th Grade",
     "GRADE_11": "11th Grade",
-    "GRADE_12": "12th Grade"
+    "GRADE_12": "12th Grade",
+
+    "JANUARY": "January",
+    "FEBURARY": "February",
+    "MARCH": "March",
+    "APRIL": "April",
+    "MAY": "May",
+    "JUNE": "June",
+    "JULY": "July",
+    "AUGUST": "August",
+    "SEPTEMBER": "September",
+    "OCTOBER": "October",
+    "NOVEMBER": "November",
+    "DECEMBER": "December"
+
   },
   "SPANISH": {
 
@@ -259,6 +273,7 @@
     "GRADE_10": "10e Année",
     "GRADE_11": "11e Année",
     "GRADE_12": "12e Année"
+
 
   },
   "ITALIAN": {

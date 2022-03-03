@@ -91,18 +91,18 @@ export function getSchedule(date) {
               localJSON.push({
                 name: "PASSING_BEFORE," + period,
                 start: previousEnd,
-                end: scheduleJSON.gradeLevels.highSchool[scheduleType][period][0],
+                end: scheduleJSON.gradeLevels.middleSchool[scheduleType][period][0],
                 passing: true,
               });
             }
             localJSON.push({
               name: period,
-              start: scheduleJSON.gradeLevels.highSchool[scheduleType][period][0],
-              end: scheduleJSON.gradeLevels.highSchool[scheduleType][period][1],
+              start: scheduleJSON.gradeLevels.middleSchool[scheduleType][period][0],
+              end: scheduleJSON.gradeLevels.middleSchool[scheduleType][period][1],
               passing: false,
             });
             previousEnd =
-              scheduleJSON.gradeLevels.highSchool[scheduleType][period][1];
+              scheduleJSON.gradeLevels.middleSchool[scheduleType][period][1];
           }
         );
       break;
@@ -171,4 +171,11 @@ export function getSchedule(date) {
 // Function - Check if a date is in a date from the schedule.json
 function inRange(date, range) {
   return date.isBetween(dayjs(scheduleJSON.dateRanges[range][0], "MM/DD/YYYY").startOf('day'), dayjs(scheduleJSON.dateRanges[range][1], "MM/DD/YYYY").endOf('day'));
+}
+
+export function getEvent(date) {
+  if (date.year() in eventsJSON){
+    return eventsJSON[date.year()][dayjs.months()[date.month()]][date.date()]
+  }
+  return undefined
 }

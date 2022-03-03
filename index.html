@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="LCHS Go - Bell Schedule App">
   <meta name="theme-color" content="#333">
-  <script src="https://unpkg.com/petite-vue"></script>
+  <script src="https://unpkg.com/petite-vue" defer></script>
   <!-- <script src="https://unpkg.com/moment@2.29.1/moment.js"></script> -->
   <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
   <script src="https://unpkg.com/dayjs@1.8.21/plugin/isBetween.js"></script>
@@ -63,22 +63,27 @@
         </div>
       </div>
     </div>
-    <!-- Calendar Page - Calendar pulled from the events.json -->
-    <div id="calendar" v-if="currentPage == 'calendar'">
-      <div class="todays-schedule">
-        {{ translate("CALENDAR_TITLE")}}
+    <!-- Calendar Page - Calendar pulled from the events.json --> 
+    <div id="calendar" v-if="currentPage == 'calendar'" v-effect="toggle=true;">
+      <div class="calendar-title">
+        <div class ="month-select-left" @click="monthOffset--; toggle=false; setTimeout(() => {toggle=true;}, 10);">◀</div>
+        <div class="calendar-month" v-effect="$el.textContent = getMonthText(dayjs().month() + monthOffset) + ' ' + Math.floor((dayjs().year() + (dayjs().month() + monthOffset) / 12))">
+          {{ translate("CALENDAR_TITLE")}}
+        </div>
+        <div class="month-select-right" @click="monthOffset++; toggle=false; setTimeout(() => { toggle=true;}, 10)">►</div>
       </div>
-      <div class="calendar-container">
-        <div class="calendar-day-wrap" v-for="day in 35" v-scope="CalendarDay({num: day})" 
+      <div class="calendar-container"  v-if="toggle">
+        <div class="calendar-day-wrap" v-for="day in 35" v-scope="CalendarDay(day, monthOffset)" 
+           
           @click="if (popupDate == null) {popupDate = date;} else {popupDate = null;}"> <!-- @click="showPopup = true; popupSchedule = scheduleType()" opupSchedule = PeriodListComponent(scheduleType()); showPopup = true; console.log(popupSchedule)-->
-          <div class="calendar-day" v-bind:class="{ 'today': date.date() == dayjs().date() && date.month() == dayjs().month() }">
-            <div class="cd-number" v-bind:class="{ 'outside': date.month() !== dayjs().month() }">
+          <div class="calendar-day" v-bind:class="{ 'today': date.date() == dayjs().date() && date.month() == dayjs().month() && date.year() == dayjs().year(), 'outside': date.month() !== mod(dayjs().month() + monthOffset,12) }">
+            <div class="cd-number">
               {{ date.date() }}
             </div>
-            <div class="cd-tag" v-bind:class="{ 'outside': date.month() !== dayjs().month() }">
+            <div class="cd-tag">
               {{ translate(schedule.scheduleType) }}
             </div>
-            <div class="cd-tag" v-if="event != null" v-bind:class="{ 'outside': date.month() !== dayjs().month() }">
+            <div class="cd-tag" v-if="event != null" >
               {{ event }}
             </div>
           </div>
