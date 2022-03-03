@@ -91,18 +91,18 @@ export function getSchedule(date) {
               localJSON.push({
                 name: "PASSING_BEFORE," + period,
                 start: previousEnd,
-                end: scheduleJSON.gradeLevels.highSchool[scheduleType][period][0],
+                end: scheduleJSON.gradeLevels.middleSchool[scheduleType][period][0],
                 passing: true,
               });
             }
             localJSON.push({
               name: period,
-              start: scheduleJSON.gradeLevels.highSchool[scheduleType][period][0],
-              end: scheduleJSON.gradeLevels.highSchool[scheduleType][period][1],
+              start: scheduleJSON.gradeLevels.middleSchool[scheduleType][period][0],
+              end: scheduleJSON.gradeLevels.middleSchool[scheduleType][period][1],
               passing: false,
             });
             previousEnd =
-              scheduleJSON.gradeLevels.highSchool[scheduleType][period][1];
+              scheduleJSON.gradeLevels.middleSchool[scheduleType][period][1];
           }
         );
       break;
