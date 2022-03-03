@@ -330,6 +330,5 @@ export function mod(bigNum, smallNum) {
   } else {
     output = bigNum % smallNum
   }
-  console.log(bigNum + " " + smallNum + " " + output)
   return output
 }
