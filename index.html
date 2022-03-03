@@ -70,13 +70,13 @@
         <div class="calendar-month" v-effect="$el.textContent = getMonthText(dayjs().month() + monthOffset) + ' ' + Math.floor((dayjs().year() + (dayjs().month() + monthOffset) / 12))">
           {{ translate("CALENDAR_TITLE")}}
         </div>
-        <div class="month-select-right" @click="monthOffset++; toggle=false; setTimeout(() => { toggle=true;}, 70)">►</div>
+        <div class="month-select-right" @click="monthOffset++; toggle=false; setTimeout(() => { toggle=true;}, 10)">►</div>
       </div>
       <div class="calendar-container"  v-if="toggle">
         <div class="calendar-day-wrap" v-for="day in 35" v-scope="CalendarDay(day, monthOffset)" 
            
           @click="if (popupDate == null) {popupDate = date;} else {popupDate = null;}"> <!-- @click="showPopup = true; popupSchedule = scheduleType()" opupSchedule = PeriodListComponent(scheduleType()); showPopup = true; console.log(popupSchedule)-->
-          <div class="calendar-day" v-bind:class="{ 'today': date.date() == dayjs().date() && date.month() == dayjs().month(), 'outside': date.month() !== mod(dayjs().month() + monthOffset,12) }">
+          <div class="calendar-day" v-bind:class="{ 'today': date.date() == dayjs().date() && date.month() == dayjs().month() && date.year() == dayjs().year(), 'outside': date.month() !== mod(dayjs().month() + monthOffset,12) }">
             <div class="cd-number">
               {{ date.date() }}
             </div>
