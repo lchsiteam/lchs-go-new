@@ -356,13 +356,15 @@
   cursor: pointer;
   margin-left: auto;
   margin-right: 0;
-    margin-top: 3px;
+  margin-top: 3px;
+  user-select: none;
 }
 .month-select-right{
   cursor: pointer;
   margin-right: auto;
   margin-left: 0;
-    margin-top: 3px;
+  margin-top: 3px;
+  user-select: none;
 }
 .calendar-container {
   display: grid;

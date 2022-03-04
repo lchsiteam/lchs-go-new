@@ -30,6 +30,7 @@ PetiteVue.createApp({
   // All Pages
   currentPage: 'now',
   backgroundColor: "hsl( 0, 50, 50)",
+  updatePage: true,
 
   // Now Page
   // periodList,
@@ -51,7 +52,7 @@ PetiteVue.createApp({
   // popupSchedule: periodList,
   popupDate: null,
   monthOffset: 0,
-  toggle: true,
+  calendarToggle: true,
 
   // Settings Page
   settingsMenu,
@@ -83,8 +84,15 @@ PetiteVue.createApp({
     }, 5000);
   },
   update() {
-    if (!currentPeriod.isCurrent()) {
-      location.reload();
+    if (!this.currentPeriod.isCurrent()) {
+      // location.reload();
+      this.updatePage = false;
+      periodListComponent.listPeriod.forEach((p) => {
+        if(p.isCurrent()) {
+          this.currentPeriod = p;
+        }});
+
+      setTimeout(() => { this.updatePage = true; }, 10);
       // console.log("new Period");
       // periodList.forEach((p) => {
       //   if(p.isCurrent()) {
@@ -94,8 +102,8 @@ PetiteVue.createApp({
     }
 
     this.todaysGreeting = getTodaysGreeting();
-    this.minutesLeft = currentPeriod.end.diff(dayjs(), "minutes") + 1;
-    this.percentCompleted = 100 - (this.minutesLeft / currentPeriod.end.diff(currentPeriod.start, "minutes")) * 100;
+    this.minutesLeft = this.currentPeriod.end.diff(dayjs(), "minutes") + 1;
+    this.percentCompleted = 100 - (this.minutesLeft / this.currentPeriod.end.diff(this.currentPeriod.start, "minutes")) * 100;
     this.percentCompletedText = translateWithInsert( "PERCENT_COMPLETED", Math.trunc(this.percentCompleted));
     this.currentTime = dayjs().format(timeFormat);
     document.title = (this.minutesLeft >= 60 ? (Math.trunc(this.minutesLeft / 60) + "hr. ") : "") + this.minutesLeft % 60 + "min. | LCHS Go";
