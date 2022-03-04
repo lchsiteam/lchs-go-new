@@ -101,8 +101,7 @@ export function getSchedule(date) {
               end: scheduleJSON.gradeLevels.middleSchool[scheduleType][period][1],
               passing: false,
             });
-            previousEnd =
-              scheduleJSON.gradeLevels.middleSchool[scheduleType][period][1];
+            previousEnd = scheduleJSON.gradeLevels.middleSchool[scheduleType][period][1];
           }
         );
       break;

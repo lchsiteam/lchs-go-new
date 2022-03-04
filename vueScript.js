@@ -98,7 +98,7 @@ PetiteVue.createApp({
     this.percentCompleted = 100 - (this.minutesLeft / currentPeriod.end.diff(currentPeriod.start, "minutes")) * 100;
     this.percentCompletedText = translateWithInsert( "PERCENT_COMPLETED", Math.trunc(this.percentCompleted));
     this.currentTime = dayjs().format(timeFormat);
-    document.title = this.minutesLeft + "min. | LCHS Go"
+    document.title = (this.minutesLeft >= 60 ? (Math.trunc(this.minutesLeft / 60) + "hr. ") : "") + this.minutesLeft % 60 + "min. | LCHS Go";
   },
 }).mount();
 
@@ -112,8 +112,8 @@ function PeriodComponent(setName, setStart, setEnd, setPassing) {
     start: varStart,
     end: varEnd,
     passing: setPassing,
-    getStart: varStart.format(timeFormat),
-    getEnd: varEnd.format(timeFormat),
+    getStart() { return varStart.format(timeFormat) },
+    getEnd() { return varEnd.format(timeFormat) },
     isCurrent() {
       var now = dayjs();
       return now.isBetween(this.start, this.end)

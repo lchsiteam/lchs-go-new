@@ -158,7 +158,7 @@
       <div class="circle"></div>
     </div>
     <div class="period-information-content">
-      <div class="start-end-time" v-effect="currentPeriod">{{ currentPeriod.getStart }}</div>
+      <div class="start-end-time" v-effect="currentPeriod">{{ currentPeriod.getStart() }}</div>
       <div class="time-left">
         <div class="divider-bar" style="margin-bottom: 10px;"></div>
         <div class="time-left-group">
@@ -181,7 +181,7 @@
         </div>
         <div class="divider-bar" style="margin-top: 20px;"></div>
       </div>
-      <div class="start-end-time">{{ currentPeriod.getEnd }}</div>
+      <div class="start-end-time">{{ currentPeriod.getEnd() }}</div>
     </div>
   </template>
   <!-- Period List Template - Holds the list of periods -->
@@ -202,8 +202,8 @@
             @click="$el.focus(); $el.select();" @blur="changeClassName(period.name, $el)"/>
           </label>
         </div>
-        <div class="period-details">{{ period.getStart }}</div>
-        <div class="period-details">{{ period.getEnd }}</div>
+        <div class="period-details">{{ period.getStart() }}</div>
+        <div class="period-details">{{ period.getEnd() }}</div>
       </div>
       <div class="period-details-small" v-scope="PeriodInformationComponent()" v-if="period.isCurrent() && !isCalendar && settings.inlinePeriodDetails"></div>
     </div>
