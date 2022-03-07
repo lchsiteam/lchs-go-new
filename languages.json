@@ -1,5 +1,5 @@
 {
-  "version": 19.3,
+  "version": 19.5,
   "ENGLISH": {
     "ENGLISH": "English",
     "SPANISH": "Español",
@@ -17,6 +17,9 @@
     "AFTERNOON": "Good Afternoon.",
     "EVENING": "Good Evening.",
     "TODAY_IS": "Today is {} schedule.",
+
+    "HOUR_ABBREVIATION": "hr.",
+    "MINUTE_ABBREVIATION": "min.",
 
     "PERIOD_NAME": "Period",
     "PERIOD_START": "Start",
@@ -125,6 +128,9 @@
     "EVENING": "Guten Abend.",
     "TODAY_IS": "Heute ist es {}.",
 
+    "HOUR_ABBREVIATION": "std.",
+    "MINUTE_ABBREVIATION": "min.",
+
     "PERIOD_NAME": "Stunde",
     "PERIOD_START": "Anfang",
     "PERIOD_END": "Ende",
@@ -206,6 +212,9 @@
     "AFTERNOON": "Bonjour.",
     "EVENING": "Bonsoir.",
     "TODAY_IS": "Aujourd'hui est l'horaire de {}.",
+
+    "HOUR_ABBREVIATION": "h.",
+    "MINUTE_ABBREVIATION": "mn.",
 
     "PERIOD_NAME": "Cours",
     "PERIOD_START": "Début",
