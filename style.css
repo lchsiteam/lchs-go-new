@@ -356,19 +356,29 @@
   cursor: pointer;
   margin-left: auto;
   margin-right: 0;
+  margin-top: 3px;
+  user-select: none;
 }
 .month-select-right{
   cursor: pointer;
   margin-right: auto;
   margin-left: 0;
+  margin-top: 3px;
+  user-select: none;
 }
 .calendar-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
+
+  /* display: flex; */
   max-width: 85vw;
-  flex-direction: row;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  align-items: stretch;
+  /* flex-direction: row; */
+  /* justify-content: flex-start; */
+  /* flex-wrap: wrap; */
+  /* align-items: stretch; */
 }
 .calendar-month {
   width:160px;
@@ -401,10 +411,6 @@
   flex-grow: 1;
   flex-shrink: 0;
   flex-basis: 13%;
-  margin-top: 2px;
-  margin-right: 2px;
-  margin-bottom: 2px;
-  margin-left: 2px;
 }
 
 .calendar-day:hover {
@@ -607,7 +613,6 @@ option.sr-select-item {
   }
   .period.current {
     left: 0px;
-    display: none;
   }
   .period-details-small {
     display: -webkit-box;
@@ -615,7 +620,7 @@ option.sr-select-item {
     display: -ms-flexbox;
     display: flex;
     height: auto;
-    margin-top: 13px;
+    margin-top: 20px;
     margin-bottom: 13px;
     -webkit-box-pack: start;
     -webkit-justify-content: flex-start;
@@ -637,13 +642,16 @@ option.sr-select-item {
   .calendar-container {
     /* justify-content: center; */
     flex-wrap: nowrap;
-    overflow-x: scroll;
+    overflow: auto;
     flex-direction: column;
+    display: flex;
   }
   .calendar-day {    
     height: auto;
     flex-basis: 80%;
-    width: 90vw;
+    width: 70vw;
+    margin-left: 15px;
+    margin-right: 15px;
   }
 }
 @media screen and (max-width: 479px) {

@@ -33,7 +33,7 @@
 <body class="body" id="body" v-scope v-effect="startTimer()">
   <!-- Background - Used to do the color -->
   <div class="background" id="background"></div>
-  <div class="app-container">
+  <div class="app-container" v-if="updatePage">
     <div class="header">
       <!-- Navigation - Holds the page buttons -->
       <div class="navigation">
@@ -64,15 +64,15 @@
       </div>
     </div>
     <!-- Calendar Page - Calendar pulled from the events.json --> 
-    <div id="calendar" v-if="currentPage == 'calendar'" v-effect="toggle=true;">
+    <div id="calendar" v-if="currentPage == 'calendar'">
       <div class="calendar-title">
-        <div class ="month-select-left" @click="monthOffset--; toggle=false; setTimeout(() => {toggle=true;}, 10);">◀</div>
+        <div class ="month-select-left" @click="monthOffset--; calendarToggle=false; setTimeout( () => { calendarToggle = true; }, 10);">◀</div>
         <div class="calendar-month" v-effect="$el.textContent = getMonthText(dayjs().month() + monthOffset) + ' ' + Math.floor((dayjs().year() + (dayjs().month() + monthOffset) / 12))">
           {{ translate("CALENDAR_TITLE")}}
         </div>
-        <div class="month-select-right" @click="monthOffset++; toggle=false; setTimeout(() => { toggle=true;}, 10)">►</div>
+        <div class="month-select-right" @click="monthOffset++; calendarToggle = false; setTimeout( () => { calendarToggle = true; }, 10)">►</div>
       </div>
-      <div class="calendar-container"  v-if="toggle">
+      <div class="calendar-container"  v-if="calendarToggle">
         <div class="calendar-day-wrap" v-for="day in 35" v-scope="CalendarDay(day, monthOffset)" 
            
           @click="if (popupDate == null) {popupDate = date;} else {popupDate = null;}"> <!-- @click="showPopup = true; popupSchedule = scheduleType()" opupSchedule = PeriodListComponent(scheduleType()); showPopup = true; console.log(popupSchedule)-->
@@ -158,7 +158,7 @@
       <div class="circle"></div>
     </div>
     <div class="period-information-content">
-      <div class="start-end-time" v-effect="currentPeriod">{{ currentPeriod.getStart }}</div>
+      <div class="start-end-time" v-effect="currentPeriod">{{ currentPeriod.getStart() }}</div>
       <div class="time-left">
         <div class="divider-bar" style="margin-bottom: 10px;"></div>
         <div class="time-left-group">
@@ -181,7 +181,7 @@
         </div>
         <div class="divider-bar" style="margin-top: 20px;"></div>
       </div>
-      <div class="start-end-time">{{ currentPeriod.getEnd }}</div>
+      <div class="start-end-time">{{ currentPeriod.getEnd() }}</div>
     </div>
   </template>
   <!-- Period List Template - Holds the list of periods -->
@@ -202,8 +202,8 @@
             @click="$el.focus(); $el.select();" @blur="changeClassName(period.name, $el)"/>
           </label>
         </div>
-        <div class="period-details">{{ period.getStart }}</div>
-        <div class="period-details">{{ period.getEnd }}</div>
+        <div class="period-details">{{ period.getStart() }}</div>
+        <div class="period-details">{{ period.getEnd() }}</div>
       </div>
       <div class="period-details-small" v-scope="PeriodInformationComponent()" v-if="period.isCurrent() && !isCalendar && settings.inlinePeriodDetails"></div>
     </div>
