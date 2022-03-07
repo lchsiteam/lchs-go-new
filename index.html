@@ -37,14 +37,15 @@
     <div class="header">
       <!-- Navigation - Holds the page buttons -->
       <div class="navigation">
-        <div @click="currentPage = 'now'" class="nav-button" v-bind:class="{'selected': currentPage == 'now'}">
+        <div @click="switchPage('now')" class="nav-button" 
+          v-bind:class="{'selected': currentPage == 'now'}">
           {{ translate("NOW") }}
         </div>
-        <div @click="currentPage = 'calendar'" class="nav-button"
+        <div @click="switchPage('calendar')" class="nav-button"
           v-bind:class="{'selected': currentPage == 'calendar'}">
           {{ translate("CALENDAR") }}
         </div>
-        <div @click="currentPage = 'settings'" class="nav-button"
+        <div @click="switchPage('settings')" class="nav-button"
           v-bind:class="{'selected': currentPage == 'settings'}">
           {{ translate("SETTINGS") }}
         </div>
@@ -133,9 +134,11 @@
           </select>
 
           <div class="" v-if="setting.mode == 'color-slider'">
-            <input class="sr-color-slider" id="hue" type="range" max="360" v-effect="$el.value = settings.colorTheme"
-            v-on:input="changeHue($el.value)"
-            v-on:change="changeSetting('colorTheme', $el.value)">
+            <label>
+              <input class="sr-color-slider" id="hue" type="range" max="360" v-effect="$el.value = settings.colorTheme"
+              v-on:input="changeHue($el.value)"
+              v-on:change="changeSetting('colorTheme', $el.value)">
+            </label>
           </div>
         </div>
       </div>
@@ -163,7 +166,7 @@
         <div class="divider-bar" style="margin-bottom: 10px;"></div>
         <div class="time-left-group">
           <marquee v-if="currentPeriod.getName().length > 20" class="details-name">{{ currentPeriod.getName() }}</marquee>
-          <div v-if="!(currentPeriod.getName() > 20)" class="details-name">{{ currentPeriod.getName() }}</div>
+          <div v-if="!(currentPeriod.getName().length > 20)" class="details-name">{{ currentPeriod.getName() }}</div>
           <div class="time-left-text">
             <div style="display: inline-flex; justify-content: center; flex-wrap: wrap;">
               <div style="margin-right: 5px;" v-if="Math.trunc(minutesLeft / 60) > 0">

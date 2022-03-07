@@ -7,7 +7,7 @@ const defaultSettings = {
     zeroEnabled: true,
     twentyFourHour: false,
     showAMPM: false,
-    inlinePeriodDetails: false,
+    inlinePeriodDetails: true,
     // showWeekends: true,
     colorTheme: 3,
     grade: 'GRADE_9',

@@ -60,10 +60,16 @@ PetiteVue.createApp({
   changedSetting: true,
 
   // Functions
-  switchToNowPage,
-  switchToCalendarPage,
-  switchToSettingsPage,
-  switchToChange,
+  switchPage(page) {
+    if (page == 'now' || page == 'calendar' || page == 'settings')
+      this.currentPage = page;
+    else {
+      this.currentPage = 'now';
+    }
+
+    window.history.pushState("", this.currentPage, "/?" + this.currentPage);
+    // location.search = currentPage;
+  },
   changeSetting,
   changeHue,
   changeClassName,
@@ -75,6 +81,8 @@ PetiteVue.createApp({
   // Update interval timer
   interval: null,
   startTimer() {
+    var url = new URLSearchParams(location.search);
+    this.switchPage(url.keys().next().value);
     this.update();
     changeHue(settings.colorTheme);
 
@@ -224,20 +232,6 @@ function getGreeting() {
   } else {
     return translate("EVENING");
   }
-}
-
-// Function - Page switching
-function switchToNowPage() {
-  this.currentPage = "now";
-}
-function switchToCalendarPage() {
-  this.currentPage = "calendar";
-}
-function switchToSettingsPage() {
-  this.currentPage = "settings";
-}
-function switchToChange(){
-  this.currentPage = "change"
 }
 
 // Function - Set the local storage settings with an updated user setting
