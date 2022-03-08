@@ -9,16 +9,20 @@
   <meta name="theme-color" content="#333">
   <script src="https://unpkg.com/petite-vue" defer></script>
   <!-- <script src="https://unpkg.com/moment@2.29.1/moment.js"></script> -->
-  <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
-  <script src="https://unpkg.com/dayjs@1.8.21/plugin/isBetween.js"></script>
-  <script src="https://unpkg.com/dayjs@1.8.21/plugin/advancedFormat.js"></script>
-  <script src="https://unpkg.com/dayjs@1.8.21/plugin/customParseFormat.js"></script>
-  <script src="https://unpkg.com/dayjs@1.8.21/plugin/localeData.js"></script>
+  <script src="https://unpkg.com/dayjs@1.10.8/dayjs.min.js"></script>
+  <script src="https://unpkg.com/dayjs@1.10.8/plugin/isBetween.js"></script>
+  <script src="https://unpkg.com/dayjs@1.10.8/plugin/advancedFormat.js"></script>
+  <script src="https://unpkg.com/dayjs@1.10.8/plugin/customParseFormat.js"></script>
+  <script src="https://unpkg.com/dayjs@1.10.8/plugin/localeData.js"></script>
+  <script src="https://unpkg.com/dayjs@1.10.8/plugin/utc.js"></script>
+  <script src="https://unpkg.com/dayjs@1.10.8/plugin/timezone.js"></script>
   <script>
     dayjs.extend(window.dayjs_plugin_isBetween); 
     dayjs.extend(window.dayjs_plugin_advancedFormat); 
     dayjs.extend(window.dayjs_plugin_customParseFormat);
     dayjs.extend(window.dayjs_plugin_localeData);
+    dayjs.extend(window.dayjs_plugin_utc);
+    dayjs.extend(window.dayjs_plugin_timezone);
   </script>
   <script type="module" src="scheduleFormatting.js"></script>
   <script type="module" src="vueScript.js"></script>
