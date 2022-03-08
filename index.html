@@ -171,11 +171,11 @@
             <div style="display: inline-flex; justify-content: center; flex-wrap: wrap;">
               <div style="margin-right: 5px;" v-if="Math.trunc(minutesLeft / 60) > 0">
                 <span class="time-left-number">{{ Math.trunc(minutesLeft / 60) }}</span>
-                hr.
+                {{ translate("HOUR_ABBREVIATION") }}
               </div>
               <div style="margin-right: 5px;">
                 <span class="time-left-number">{{ minutesLeft % 60 }}</span>
-                min.
+                {{ translate("MINUTE_ABBREVIATION") }}
               </div>
             </div>
             {{ translate('UNITL_END') }}
