@@ -120,8 +120,8 @@ PetiteVue.createApp({
 
 // Component - Period - Holds the name, start, end, and if passing
 function PeriodComponent(setName, setStart, setEnd, setPassing) {
-  var varStart = dayjs(setStart, "hh:mm A"); //formats from the json
-  var varEnd = dayjs(setEnd, "hh:mm A");
+  var varStart = dayjs(setStart, "hh:mm A").tz("America/Los_Angeles",true); //formats from the json
+  var varEnd = dayjs(setEnd, "hh:mm A").tz("America/Los_Angeles",true);
 
   return {
     name: setName,
