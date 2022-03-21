@@ -169,8 +169,7 @@
       <div class="time-left">
         <div class="divider-bar" style="margin-bottom: 10px;"></div>
         <div class="time-left-group">
-          <marquee v-if="currentPeriod.getName().length > 20" class="details-name">{{ currentPeriod.getName() }}</marquee>
-          <div v-if="!(currentPeriod.getName().length > 20)" class="details-name">{{ currentPeriod.getName() }}</div>
+          <div class="details-name">{{ currentPeriod.getName() }}</div>
           <div class="time-left-text">
             <div style="display: inline-flex; justify-content: center; flex-wrap: wrap;">
               <div style="margin-right: 5px;" v-if="Math.trunc(minutesLeft / 60) > 0">

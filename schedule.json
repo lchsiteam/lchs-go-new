@@ -46,7 +46,7 @@
     "FALL_BREAK":     ["11/22/2021", "11/26/2021"],
     "BLOCK_SWITCH":   ["11/17/2021", "02/17/2022"]
   },
-  "timeOffset": "00:01:30",
+  "timeOffset": "00:00:30",
   "gradeLevels": {
     "middleSchool": {
       "REGULAR": {
