@@ -95,6 +95,9 @@ PetiteVue.createApp({
   },
   update() {
     if (!this.currentPeriod.isCurrent()) {
+      if (this.currentPeriod.start.day() != dayjs().day()) {
+        location.reload();
+     }  
       // location.reload();
       this.updatePage = false;
       periodListComponent.listPeriod.forEach((p) => {
