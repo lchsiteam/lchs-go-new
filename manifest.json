@@ -10,10 +10,16 @@
     {
       "src": "/faviconLarge.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/faviconLargeLarge.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ],
-  "start_url": "/",
+  "start_url": "/?now",
   "background_color": "#333",
   "display": "standalone",
   "scope": "/",
