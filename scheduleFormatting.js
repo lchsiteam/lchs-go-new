@@ -8,7 +8,9 @@ export var eventsJSON = JSON.parse(localStorage.getItem("eventsJSON"));
 
 dayjs.tz.setDefault("America/Los_Angeles")
 
+var reload = false;
 // Fetch the schedule.json for updates
+var fetchSchedule = true;
 fetch("./schedule.json")
   .then((response) => response.json())
   .then((serverScheduleJSON) => {
@@ -18,11 +20,14 @@ fetch("./schedule.json")
     ) {
       localStorage.setItem("scheduleJSON", JSON.stringify(serverScheduleJSON));
       scheduleJSON = serverScheduleJSON;
-      location.reload();
+      reload = true;
     }
+    fetchSchedule = false;
+    refresh();
   });
 
 // Fetch the language.json for update
+var fetchLang = true;
 fetch("./languages.json")
   .then((response) => response.json())
   .then((serverLanguageJSON) => {
@@ -35,19 +40,33 @@ fetch("./languages.json")
       tempJSON.version = serverLanguageJSON.version;
       tempJSON.language = settings.language;
       localStorage.setItem("languageJSON", JSON.stringify(tempJSON));
-      location.reload();
+      reload = true;
     }
+    fetchLang = false;
+    refresh();
   });
 
 // Fetch the events.json for updates
+var fetchEvents = true;
 fetch("./events.json")
   .then((response) => response.json())
   .then((serverEventsJSON) => {
     if (eventsJSON == null || eventsJSON.version < serverEventsJSON.version) {
       localStorage.setItem("eventsJSON", JSON.stringify(serverEventsJSON));
       eventsJSON = serverEventsJSON;
+      reload = true;
     }
+    fetchEvents = false;
+    refresh();
   });
+
+function refresh() {
+  if (!fetchSchedule && !fetchLang && !fetchEvents) {
+    if (reload) {
+      location.reload();
+    }
+  }
+}
 
 // Create and export the formattedJSON for today
 export var formattedJSON = getSchedule(dayjs());

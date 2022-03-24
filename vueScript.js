@@ -1,5 +1,5 @@
 // Importing the Schedule, Settings, and Languages
-import {formattedJSON, languageJSON, getSchedule, getEvent } from "./scheduleFormatting.js";
+import {formattedJSON, languageJSON, scheduleJSON, getSchedule, getEvent } from "./scheduleFormatting.js";
 import { settings, settingsMenu } from "./settings.js";
 
 // Basically and import
@@ -7,6 +7,8 @@ var customNames = JSON.parse(localStorage.getItem("customNamesJSON"));
 if (customNames == null) {
   customNames = {};
 }
+
+var timeOffeset = dayjs(scheduleJSON.timeOffset, "HH:mm:ss");
 
 // Stores the user preference for how they display time
 var timeFormat = (settings.twentyFourHour ? "HH" : "h") + ":mm" + (settings.showAMPM ? " A" : "");
@@ -58,33 +60,57 @@ PetiteVue.createApp({
   settingsMenu,
   settings,
   changedSetting: true,
+  shareLink: "",
 
   // Functions
   switchPage(page) {
-    if (page == 'now' || page == 'calendar' || page == 'settings')
+    if (page == 'now' || page == 'calendar' || page == 'settings' || page == 'data')
       this.currentPage = page;
     else {
       this.currentPage = 'now';
     }
 
     window.history.pushState("", this.currentPage, "/?" + this.currentPage);
-    // location.search = currentPage;
+    this.popupDate = "";
+    this.shareLink = "";
   },
   changeSetting,
   changeHue,
+  themeChange,
   changeClassName,
   translateWithInsert, 
   translate,
   getMonthText,
   mod,
+  shareSettings,
+  shareClassNames,
 
   // Update interval timer
   interval: null,
   startTimer() {
     var url = new URLSearchParams(location.search);
-    this.switchPage(url.keys().next().value);
-    this.update();
+    var startReload = false;
+    if (url.has("setSettings")) {
+      localStorage.setItem("settings", url.get("setSettings"));
+      startReload = true;
+    }
+    if (url.has("setClassNames")) {
+      localStorage.setItem("customNamesJSON", url.get("setClassNames"));
+      startReload = true;
+    }
+    if (url.has("calendar")) {
+      this.switchPage("calendar");
+    } else if (url.has("settings")) {
+      this.switchPage("settings");
+    } else if (url.has("data")) {
+      this.switchPage("data");
+    } else {
+      this.switchPage("now");
+    }
+    if (startReload) location.reload();
+  
     changeHue(settings.colorTheme);
+    this.update();
 
     clearInterval(this.interval);
     this.interval = setInterval(() => {
@@ -114,8 +140,8 @@ PetiteVue.createApp({
 
     this.todaysGreeting = getTodaysGreeting();
     this.minutesLeft = this.currentPeriod.end.diff(dayjs(), "minutes") + 1;
-    this.percentCompleted = 100 - (this.minutesLeft / this.currentPeriod.end.diff(this.currentPeriod.start, "minutes")) * 100;
-    this.percentCompletedText = translateWithInsert( "PERCENT_COMPLETED", Math.trunc(this.percentCompleted));
+    this.percentCompleted = Math.trunc(100 - (this.minutesLeft / this.currentPeriod.end.diff(this.currentPeriod.start, "minutes")) * 100);
+    this.percentCompletedText = translateWithInsert( "PERCENT_COMPLETED", this.percentCompleted);
     this.currentTime = dayjs().format(timeFormat);
     document.title = (this.minutesLeft >= 60 ? (Math.trunc(this.minutesLeft / 60) + "hr. ") : "") + this.minutesLeft % 60 + "min. | LCHS Go";
   },
@@ -123,8 +149,8 @@ PetiteVue.createApp({
 
 // Component - Period - Holds the name, start, end, and if passing
 function PeriodComponent(setName, setStart, setEnd, setPassing) {
-  var varStart = dayjs(setStart, "hh:mm A").tz("America/Los_Angeles",true); //formats from the json
-  var varEnd = dayjs(setEnd, "hh:mm A").tz("America/Los_Angeles",true);
+  var varStart = dayjs(setStart, "hh:mm A"); //formats from the json
+  var varEnd = dayjs(setEnd, "hh:mm A");
 
   return {
     name: setName,
@@ -134,7 +160,7 @@ function PeriodComponent(setName, setStart, setEnd, setPassing) {
     getStart() { return varStart.format(timeFormat) },
     getEnd() { return varEnd.format(timeFormat) },
     isCurrent() {
-      var now = dayjs();
+      var now = dayjs().add(timeOffeset.hour(), 'hour').add(timeOffeset.minute(), 'minute').add(timeOffeset.second(), 'second');
       return now.isBetween(this.start, this.end)
     },
     isVisible() {
@@ -255,17 +281,50 @@ function changeHue(hue) {
     value = hslToHex(0, 0, 90);
   } else if (hue == 360) {
     value = hslToHex(0, 0, 25);
+  } else if (hue == 359) {
+    value = hslToHex(0, 0, 0);
   }
   document.getElementById("background").style.backgroundColor = value;
 
-  var iconImage
-  if (settings.colorTheme == 0)
-    iconImage = "/favicons/favicon0.ico"
-  else if (settings.colorTheme == 360)
-    iconImage = "/favicons/favicon18.ico"
-  else
-    iconImage = ("/favicons/favicon" + Math.floor(settings.colorTheme / 360 * 17 + 1) + ".ico");
-  changeIcon(iconImage);
+  var canvas = document.createElement('canvas');
+  canvas.width = 48;canvas.height = 48;
+  var ctx = canvas.getContext('2d');
+  var img = new Image();
+  img.src = '/faviconClear.png';
+  img.onload = function() {
+      ctx.fillStyle = value;
+      ctx.beginPath();
+      ctx.arc(24, 24, 24, 0, 2 * Math.PI);
+      ctx.fill();
+      if (hue == 0) {
+        ctx.filter = 'invert(1)';
+      }
+      ctx.drawImage(img, 0, 0);
+
+      var link = document.createElement('link');
+      link.type = 'image/x-icon';
+      link.rel = 'shortcut icon';
+      link.href = canvas.toDataURL("image/x-icon");
+      document.getElementsByTagName('head')[0].appendChild(link);
+  }
+
+  // var iconImage
+  // if (settings.colorTheme == 0)
+  //   iconImage = "/favicons/favicon0.ico"
+  // else if (settings.colorTheme >= 359)
+  //   iconImage = "/favicons/favicon18.ico"
+  // else
+  //   iconImage = ("/favicons/favicon" + Math.floor(settings.colorTheme / 360 * 17 + 1) + ".ico");
+  // changeIcon(iconImage);
+}
+
+var prevTime = Date.now();
+function themeChange() {
+  if (Date.now() - prevTime < 100) {
+    document.getElementById("background").style.backgroundColor = "";
+    document.getElementById("background").style.backgroundImage = "linear-gradient(0,rgba(255, 0, 0, 1) 0%,rgba(255, 154, 0, 1) 10%,rgba(208, 222, 33, 1) 20%,rgba(79, 220, 74, 1) 30%,rgba(63, 218, 216, 1) 40%,rgba(47, 201, 226, 1) 50%,rgba(28, 127, 238, 1) 60%,rgba(95, 21, 242, 1) 70%,rgba(186, 12, 248, 1) 80%,rgba(251, 7, 217, 1) 90%,rgba(255, 0, 0, 1) 100%)"
+  }
+  prevTime = Date.now()
 }
 
 // Function - Helper for ^ to change HSL to Hex
@@ -303,6 +362,20 @@ function changeClassName(periodId, element) {
     customNames[periodId] = newValue;
   }
   localStorage.setItem("customNamesJSON", JSON.stringify(customNames));
+}
+
+function shareSettings() {
+  var link = new URL(location.origin);
+  console.log(settings);
+  link.searchParams.set("setSettings", JSON.stringify(settings));
+  this.shareLink = link.href + "&settings";
+}
+
+function shareClassNames() {
+  var link = new URL(location.origin);
+  console.log(settings);
+  link.searchParams.set("setClassNames", JSON.stringify(customNames));
+  this.shareLink = link.href + "&settings";
 }
 
 // Function - Used to translate a key to the selected language.

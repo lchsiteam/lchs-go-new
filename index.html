@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="LCHS Go - Bell Schedule App">
+  <link rel="apple-touch-icon" href="/faviconLarge.png">
   <meta name="theme-color" content="#333">
   <script src="https://unpkg.com/petite-vue" defer></script>
   <!-- <script src="https://unpkg.com/moment@2.29.1/moment.js"></script> -->
@@ -69,13 +70,13 @@
       </div>
     </div>
     <!-- Calendar Page - Calendar pulled from the events.json --> 
-    <div id="calendar" v-if="currentPage == 'calendar'">
+    <div id="calendar-page" v-if="currentPage == 'calendar'">
       <div class="calendar-title">
-        <div class ="month-select-left" @click="monthOffset--; calendarToggle=false; setTimeout( () => { calendarToggle = true; }, 10);">◀</div>
+        <div class ="month-select-left" @click="monthOffset--; calendarToggle=false; setTimeout( () => { calendarToggle = true; }, 10);">⇦</div>
         <div class="calendar-month" v-effect="$el.textContent = getMonthText(dayjs().month() + monthOffset) + ' ' + Math.floor((dayjs().year() + (dayjs().month() + monthOffset) / 12))">
           {{ translate("CALENDAR_TITLE")}}
         </div>
-        <div class="month-select-right" @click="monthOffset++; calendarToggle = false; setTimeout( () => { calendarToggle = true; }, 10)">►</div>
+        <div class="month-select-right" @click="monthOffset++; calendarToggle = false; setTimeout( () => { calendarToggle = true; }, 10)">⇨</div>
       </div>
       <div class="calendar-container"  v-if="calendarToggle">
         <div class="calendar-day-wrap" v-for="day in 35" v-scope="CalendarDay(day, monthOffset)" 
@@ -99,10 +100,6 @@
         </div>
       </div>
     </div>
-    <!-- Schedule Popup - Shows up when clicked on a calendar day (To be removed until fixed) -->
-    <!-- <div class="schedule-popup" v-if="showPopup" @click="showPopup = false;"> -->
-      <!-- <div v-scope="popupSchedule"></div> -->
-    <!-- </div> -->
     <!-- Settings Page - All of the user settings generated from settings.js -->
     <div id="settings-page" v-if="currentPage == 'settings'">
       <div class="todays-schedule">
@@ -117,7 +114,6 @@
           <b class="sr-title">{{ translate("SETTINGS_" + setting.key + "_TITLE") }}</b>
           <span class="sr-desc">{{ translate("SETTINGS_" + setting.key + "_DESC") }}</span>
         </div>
-
         <div class="sr-option">
           <div class="sr-selector" v-if="setting.mode == 'toggle'" v-scope="{ value: settings[setting.setting] }">
             <div class="sr-selector-option" v-for="option in setting.options"
@@ -136,16 +132,57 @@
           @change="changeSetting(setting.setting, setting.options[$el.selectedIndex]); if(setting.reload) location.reload();">
             <option class="sr-select-item" v-for="option in setting.options">{{ translate(option) }}</option>
           </select>
-
           <div class="" v-if="setting.mode == 'color-slider'">
             <label>
               <input class="sr-color-slider" id="hue" type="range" max="360" v-effect="$el.value = settings.colorTheme"
-              v-on:input="changeHue($el.value)"
+              v-on:input="changeHue($el.value)" @click="themeChange()"
               v-on:change="changeSetting('colorTheme', $el.value)">
             </label>
           </div>
         </div>
       </div>
+      <div class="settings-row" style="position: relative; z-index: 999;">
+        <div class="sr-head">
+          <b class="sr-title">Reset</b>
+          <span class="sr-desc">Reset any of the data stored in your local storage. Try using this if the page isn't working. (Try reloading first)</span>
+        </div>
+        <div class="sr-option">
+          <div class="sr-selector">
+            <div class="sr-selector-option" onclick="localStorage.removeItem('settings'); location.reload()">Reset Settings</div>
+          </div>
+          <div class="sr-selector">
+            <div class="sr-selector-option" onclick="localStorage.removeItem('customNamesJSON'); location.reload()">Reset Class Names</div>
+          </div>
+          <div class="sr-selector">
+            <div class="sr-selector-option" onclick="localStorage.removeItem('scheduleJSON'); localStorage.removeItem('eventsJSON'); localStorage.removeItem('languageJSON'); location.reload()">Reset Stored JSON</div>
+          </div>
+        </div>
+      </div>
+      <div class="settings-row">
+        <div class="sr-head">
+          <b class="sr-title">Share</b>
+          <span class="sr-desc">Share your settings or class names with a link</span>
+        </div>
+        <div class="sr-option">
+          <div class="sr-selector">
+            <div class="sr-selector-option" @click="shareSettings()">Share Settings</div>
+          </div>
+          <div class="sr-selector">
+            <div class="sr-selector-option" @click="shareClassNames()">Share Class Names</div>
+          </div>
+          <div class="share-link" v-effect="$el.textContent = shareLink" @click="$el.focus(); $el.select();"></div>
+        </div>
+      </div>
+    </div>
+    <div id="data-page" v-if="currentPage == 'data'">
+      <div id="hoursLeft">{{ Math.trunc(minutesLeft / 60) }}</div>
+      <div id="minutesLeft">{{ minutesLeft % 60 }}</div>
+      <div id="minutesLeftTotal">{{ minutesLeft }}</div>
+      <div id="percentComplete">{{ percentCompleted }}</div>
+      <div id="periodName">{{ currentPeriod.getName() }}</div>
+      <div id="periodStart">{{ currentPeriod.getStart() }}</div>
+      <div id="periodEnd">{{ currentPeriod.getEnd() }}</div>
+      <div id="isPassing">{{ currentPeriod.passing }}</div>
     </div>
     <div class="credits">
       Made with ❤️ by the <a href="https://lciteam.club" class="credits" target="_blank">LC iTeam</a>
@@ -169,8 +206,7 @@
       <div class="time-left">
         <div class="divider-bar" style="margin-bottom: 10px;"></div>
         <div class="time-left-group">
-          <marquee v-if="currentPeriod.getName().length > 20" class="details-name">{{ currentPeriod.getName() }}</marquee>
-          <div v-if="!(currentPeriod.getName().length > 20)" class="details-name">{{ currentPeriod.getName() }}</div>
+          <div class="details-name">{{ currentPeriod.getName() }}</div>
           <div class="time-left-text">
             <div style="display: inline-flex; justify-content: center; flex-wrap: wrap;">
               <div style="margin-right: 5px;" v-if="Math.trunc(minutesLeft / 60) > 0">
@@ -215,6 +251,17 @@
       <div class="period-details-small" v-scope="PeriodInformationComponent()" v-if="period.isCurrent() && !isCalendar && settings.inlinePeriodDetails"></div>
     </div>
   </template>
+  <!-- Service Worker Startup -->
+  <script>
+      if('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/serviceWorker.js', { scope: '/' })
+          .then(function(registration) {
+                // idk what to put here but it is needed for a pwa
+          });
+
+        navigator.serviceWorker.ready.then(function(registration) {});
+      }
+    </script>
 </body>
 
 </html>
