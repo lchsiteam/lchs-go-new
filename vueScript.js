@@ -71,8 +71,6 @@ PetiteVue.createApp({
     }
 
     window.history.pushState("", this.currentPage, "/?" + this.currentPage);
-    this.popupDate = "";
-    this.shareLink = "";
   },
   changeSetting,
   changeHue,
@@ -366,14 +364,12 @@ function changeClassName(periodId, element) {
 
 function shareSettings() {
   var link = new URL(location.origin);
-  console.log(settings);
   link.searchParams.set("setSettings", JSON.stringify(settings));
   this.shareLink = link.href + "&settings";
 }
 
 function shareClassNames() {
   var link = new URL(location.origin);
-  console.log(settings);
   link.searchParams.set("setClassNames", JSON.stringify(customNames));
   this.shareLink = link.href + "&settings";
 }

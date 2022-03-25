@@ -45,7 +45,6 @@
   text-align: center;
 }
 .background {
-  transition: width 0s 0s ease;
   position: fixed;
   left: 0%;
   top: 0%;
@@ -55,8 +54,7 @@
   width: 100vw;
   height: 100vh;
   background-color: #466272;
-  transition: ease-in-out;
-  transition-duration: 100ms;
+  transition: background-color ease-in-out;
 }
 .header {
   margin-bottom: 30px;
@@ -459,7 +457,6 @@
 }
 
 .schedule-popup {
-  background-color: rgba(175, 175, 175, 0.952);
   z-index: 1;
   position: fixed;
   padding: 20vh 30vw;
@@ -518,6 +515,7 @@
   display: inline-block;
   padding: 4px 4px;
   border-radius: 2px;
+    margin-top: 5px;
 }
 .sr-selector-option {
   background: rgba(0, 0, 0, 0);

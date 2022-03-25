@@ -38,7 +38,7 @@
 <body class="body" id="body" v-scope v-effect="startTimer()">
   <!-- Background - Used to do the color -->
   <div class="background" id="background"></div>
-  <div class="app-container" v-if="updatePage">
+  <div class="app-container">
     <div class="header">
       <!-- Navigation - Holds the page buttons -->
       <div class="navigation">
@@ -57,7 +57,7 @@
       </div>
     </div>
     <!-- Now Page - Has the period list and the times -->
-    <div id="now-page" v-if="currentPage == 'now'">
+    <div id="now-page" v-if="currentPage == 'now' && updatePage">
       <div class="todays-schedule" v-effect="$el.textContent = todaysGreeting">
         Hello. Things are broken :)
       </div>
@@ -80,22 +80,27 @@
       </div>
       <div class="calendar-container"  v-if="calendarToggle">
         <div class="calendar-day-wrap" v-for="day in 35" v-scope="CalendarDay(day, monthOffset)" 
-           
-          @click="if (popupDate == null) {popupDate = date;} else {popupDate = null;}"> <!-- @click="showPopup = true; popupSchedule = scheduleType()" opupSchedule = PeriodListComponent(scheduleType()); showPopup = true; console.log(popupSchedule)-->
-          <div class="calendar-day" v-bind:class="{ 'today': date.date() == dayjs().date() && date.month() == dayjs().month() && date.year() == dayjs().year(), 'outside': date.month() !== mod(dayjs().month() + monthOffset,12) }">
+          @click="if (popupDate == null) {popupDate = date;} else {popupDate = null;}"> 
+          <div class="calendar-day" v-if="popupDate == null"
+          v-bind:class="{ 'today': date.date() == dayjs().date() && date.month() == dayjs().month() && date.year() == dayjs().year(), 'outside': date.month() !== mod(dayjs().month() + monthOffset,12) }">
             <div class="cd-number">
               {{ date.date() }}
             </div>
             <div class="cd-tag">
               {{ translate(schedule.scheduleType) }}
             </div>
-            <div class="cd-tag" v-if="event != null" >
+            <div class="cd-tag" v-if="event != null">
               {{ event }}
             </div>
           </div>
           <div class="schedule-popup" v-if="popupDate == date" style="opacity: 200%;">
-            <!-- <div>Schedule for {{ date.locale("de").format("dddd, MMMM Do") }}</div> -->
+            <div class="cd-tag" v-if="event != null" style="margin-bottom: 10px; padding: 10px;">
+              {{ event }}
+            </div>
             <div v-scope="PeriodListComponent(schedule, true)"></div>
+            <div class="credits">
+              <a href="https://forms.gle/R4EvwSh92B2g1qEG7" class="credits" target="_blank">Submit a missing event</a>
+            </div>
           </div>
         </div>
       </div>
@@ -184,7 +189,7 @@
       <div id="periodEnd">{{ currentPeriod.getEnd() }}</div>
       <div id="isPassing">{{ currentPeriod.passing }}</div>
     </div>
-    <div class="credits">
+    <div class="credits" v-if="popupDate == null">
       Made with ❤️ by the <a href="https://lciteam.club" class="credits" target="_blank">LC iTeam</a>
       <br>
       <a href="https://forms.gle/R4EvwSh92B2g1qEG7" class="credits" target="_blank">Report a bug</a>
