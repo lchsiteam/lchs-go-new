@@ -137,7 +137,7 @@ PetiteVue.createApp({
     }
 
     this.todaysGreeting = getTodaysGreeting();
-    this.minutesLeft = this.currentPeriod.end.diff(dayjs(), "minutes") + 1;
+    this.minutesLeft = this.currentPeriod.end.diff(dayjs().add(timeOffeset.hour(), 'hour').add(timeOffeset.minute(), 'minute').add(timeOffeset.second(), 'second'), "minutes") + 1;
     this.percentCompleted = Math.trunc(100 - (this.minutesLeft / this.currentPeriod.end.diff(this.currentPeriod.start, "minutes")) * 100);
     this.percentCompletedText = translateWithInsert( "PERCENT_COMPLETED", this.percentCompleted);
     this.currentTime = dayjs().format(timeFormat);
