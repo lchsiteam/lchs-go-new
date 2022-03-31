@@ -39,7 +39,7 @@
 }
 .credits {
   color: inherit;
-  text-decoration-color: white;
+  /* text-decoration-color: white; */
   margin-top: 50px;
   font-size: 10px;
   text-align: center;
