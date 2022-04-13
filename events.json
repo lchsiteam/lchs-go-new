@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3.2,
 
   "2021": {
     "January": {},
@@ -29,7 +29,9 @@
       "21": "Presidents' Day (No school)"
     },
     "March": {},
-    "April": {},
+    "April": {
+      "14": "Open House"
+    },
     "May": {},
     "June": {},
     "July": {},

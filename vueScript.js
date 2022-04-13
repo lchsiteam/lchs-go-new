@@ -69,8 +69,14 @@ PetiteVue.createApp({
     else {
       this.currentPage = 'now';
     }
-
+    
     window.history.pushState("", this.currentPage, "/?" + this.currentPage);
+    if (window.innerWidth <= 767) {
+      if (page == 'now') {
+        let el = document.getElementsByClassName("period-details-small")[0];
+        if (el != null) el.scrollIntoView({behavior: "smooth", block: "center"});
+      }
+    }
   },
   changeSetting,
   changeHue,

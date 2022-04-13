@@ -626,6 +626,9 @@ option.sr-select-item {
   .period.current {
     left: 0px;
   }
+  .outside {
+    display: none;
+  }
   .period-details-small {
     display: -webkit-box;
     display: -webkit-flex;

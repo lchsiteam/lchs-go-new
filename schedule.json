@@ -1,5 +1,5 @@
 {
-  "version": 24.4,
+  "version": 24.6,
   "defaults": {
     "0": "NONE",
     "1": "REGULAR",
@@ -18,7 +18,8 @@
 
       "02/11/2022": "ASSEMBLY",
       "02/18/2022": "NONE",
-      "02/21/2022": "NONE"
+      "02/21/2022": "NONE",
+      "04/15/2022": "MINIMUM"
     },
     "GRADE_7": {
 
@@ -48,7 +49,7 @@
     "FALL_BREAK":     ["11/22/2021", "11/26/2021"],
     "BLOCK_SWITCH":   ["11/17/2021", "02/17/2022"]
   },
-  "timeOffset": "00:00:30",
+  "timeOffset": "00:00:00",
   "gradeLevels": {
     "middleSchool": {
       "REGULAR": {
@@ -106,6 +107,15 @@
         "PERIOD_3": ["08:30 AM", "10:35 AM"],
         "BREAK":    ["10:35 AM", "10:54 AM"],
         "PERIOD_6": ["11:00 AM", "01:05 AM"]
+      },
+      "MINIMUM": {
+        "PERIOD_1": ["08:30 AM", "09:08 AM"],
+        "PERIOD_2": ["09:15 AM", "09:53 AM"],
+        "PERIOD_3": ["10:00 AM", "10:38 AM"],
+        "BREAK":    ["10:38 AM", "10:48 AM"],
+        "PERIOD_4": ["10:55 AM", "11:33 AM"],
+        "PERIOD_5": ["11:40 AM", "12:18 AM"],
+        "PERIOD_6": ["12:25 AM", "01:03 AM"]
       }
     },
     "highSchool": {
@@ -164,8 +174,16 @@
         "PERIOD_3": ["08:30 AM", "10:35 AM"],
         "BREAK":    ["10:35 AM", "10:54 AM"],
         "PERIOD_6": ["11:00 AM", "01:05 AM"]
+      },
+      "MINIMUM": {
+        "PERIOD_1": ["08:30 AM", "09:08 AM"],
+        "PERIOD_2": ["09:15 AM", "09:53 AM"],
+        "PERIOD_3": ["10:00 AM", "10:38 AM"],
+        "BREAK":    ["10:38 AM", "10:48 AM"],
+        "PERIOD_4": ["10:55 AM", "11:33 AM"],
+        "PERIOD_5": ["11:40 AM", "12:18 AM"],
+        "PERIOD_6": ["12:25 AM", "01:03 AM"]
       }
-    },
-    "all": {}
+    }
   }
 }
