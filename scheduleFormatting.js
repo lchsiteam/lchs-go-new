@@ -190,7 +190,7 @@ export function getSchedule(date) {
 
 // Function - Check if a date is in a date from the schedule.json
 function inRange(date, range) {
-  return date.isBetween(dayjs(scheduleJSON.dateRanges[range][0], "MM/DD/YYYY").startOf('day'), dayjs(scheduleJSON.dateRanges[range][1], "MM/DD/YYYY").endOf('day'));
+  return date.startOf().add(1, 'hour').isBetween(dayjs(scheduleJSON.dateRanges[range][0], "MM/DD/YYYY").startOf('day'), dayjs(scheduleJSON.dateRanges[range][1], "MM/DD/YYYY").endOf('day'));
 }
 
 export function getEvent(date) {

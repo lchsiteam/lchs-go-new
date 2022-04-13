@@ -1,5 +1,5 @@
 {
-  "version": 19.5,
+  "version": 19.6,
   "ENGLISH": {
     "ENGLISH": "English",
     "SPANISH": "Español",
@@ -45,6 +45,7 @@
     "BLOCK_ODD": "Block (odd)",
     "BLOCK_EVEN": "Block (even)",
     "NONE": "No School",
+    "MINIMUM": "Half Day",
 
     "SUMMER_BREAK": "Summer Break",
     "WINTER_BREAK": "Winter Break",

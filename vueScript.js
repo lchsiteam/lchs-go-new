@@ -69,10 +69,14 @@ PetiteVue.createApp({
     else {
       this.currentPage = 'now';
     }
-
+    
     window.history.pushState("", this.currentPage, "/?" + this.currentPage);
-    this.popupDate = "";
-    this.shareLink = "";
+    if (window.innerWidth <= 767) {
+      if (page == 'now') {
+        let el = document.getElementsByClassName("period-details-small")[0];
+        if (el != null) el.scrollIntoView({behavior: "smooth", block: "center"});
+      }
+    }
   },
   changeSetting,
   changeHue,
@@ -139,7 +143,7 @@ PetiteVue.createApp({
     }
 
     this.todaysGreeting = getTodaysGreeting();
-    this.minutesLeft = this.currentPeriod.end.diff(dayjs(), "minutes") + 1;
+    this.minutesLeft = this.currentPeriod.end.diff(dayjs().add(timeOffeset.hour(), 'hour').add(timeOffeset.minute(), 'minute').add(timeOffeset.second(), 'second'), "minutes") + 1;
     this.percentCompleted = Math.trunc(100 - (this.minutesLeft / this.currentPeriod.end.diff(this.currentPeriod.start, "minutes")) * 100);
     this.percentCompletedText = translateWithInsert( "PERCENT_COMPLETED", this.percentCompleted);
     this.currentTime = dayjs().format(timeFormat);
@@ -366,14 +370,12 @@ function changeClassName(periodId, element) {
 
 function shareSettings() {
   var link = new URL(location.origin);
-  console.log(settings);
   link.searchParams.set("setSettings", JSON.stringify(settings));
   this.shareLink = link.href + "&settings";
 }
 
 function shareClassNames() {
   var link = new URL(location.origin);
-  console.log(settings);
   link.searchParams.set("setClassNames", JSON.stringify(customNames));
   this.shareLink = link.href + "&settings";
 }
