@@ -1,5 +1,4 @@
 // Default settings JSON
-
 const defaultSettings = {
   settings: {
     setting: "settings",
