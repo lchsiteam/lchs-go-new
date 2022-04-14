@@ -1,4 +1,5 @@
 // Default settings JSON
+
 const defaultSettings = {
   settings: {
     setting: "settings",
@@ -106,7 +107,7 @@ export const settingsMenu = {
     setting: "language",
     key: "LANGUAGE",
     mode: 'dropdown',
-    options: ["ENGLISH", "SPANISH", "GERMAN", "FRENCH", "ITALIAN", "LOLCAT"],
+    options: ["ENGLISH", "GERMAN", "FRENCH", "ITALIAN", "LOLCAT"],
     new: true,
     experimental: true,
     reload: true,

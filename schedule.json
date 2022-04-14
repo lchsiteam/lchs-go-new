@@ -82,7 +82,7 @@
         "PERIOD_6": ["01:29 PM", "03:13 PM"]
       },
       "ASSEMBLY": {
-        "PERIOD_0": ["07:27 AM", "08:15 AM"],
+        "PERIOD_0": ["07:28 AM", "08:24 AM"],
         "PERIOD_1": ["08:30 AM", "09:18 AM"],
         "PERIOD_2": ["09:24 AM", "10:12 AM"],
         "ASSEMBLY": ["10:12 AM", "11:00 AM"],
@@ -109,6 +109,7 @@
         "PERIOD_6": ["11:00 AM", "01:05 AM"]
       },
       "MINIMUM": {
+        "PERIOD_0": ["07:28 AM", "08:24 AM"],
         "PERIOD_1": ["08:30 AM", "09:08 AM"],
         "PERIOD_2": ["09:15 AM", "09:53 AM"],
         "PERIOD_3": ["10:00 AM", "10:38 AM"],
@@ -149,7 +150,7 @@
         "PERIOD_6": ["01:29 PM", "03:13 PM"]
       },
       "ASSEMBLY": {
-        "PERIOD_0": ["07:28 AM", "08:15 AM"],
+        "PERIOD_0": ["07:28 AM", "08:24 AM"],
         "PERIOD_1": ["08:30 AM", "09:18 AM"],
         "PERIOD_2": ["09:24 AM", "10:12 AM"],
         "ASSEMBLY": ["10:12 AM", "11:00 AM"],
@@ -176,6 +177,7 @@
         "PERIOD_6": ["11:00 AM", "01:05 AM"]
       },
       "MINIMUM": {
+        "PERIOD_0": ["07:28 AM", "08:24 AM"],
         "PERIOD_1": ["08:30 AM", "09:08 AM"],
         "PERIOD_2": ["09:15 AM", "09:53 AM"],
         "PERIOD_3": ["10:00 AM", "10:38 AM"],
