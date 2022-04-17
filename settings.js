@@ -106,7 +106,7 @@ export const settingsMenu = {
     setting: "language",
     key: "LANGUAGE",
     mode: 'dropdown',
-    options: ["ENGLISH", "GERMAN", "FRENCH", "ITALIAN", "LOLCAT"],
+    options: ["ENGLISH", "SPANISH", "GERMAN", "FRENCH", "ITALIAN", "LOLCAT"],
     new: true,
     experimental: true,
     reload: true,
