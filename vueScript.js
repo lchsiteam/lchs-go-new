@@ -69,7 +69,7 @@ PetiteVue.createApp({
     else {
       this.currentPage = 'now';
     }
-    
+
     window.history.pushState("", this.currentPage, "/?" + this.currentPage);
     if (window.innerWidth <= 767) {
       if (page == 'now') {
@@ -82,7 +82,7 @@ PetiteVue.createApp({
   changeHue,
   themeChange,
   changeClassName,
-  translateWithInsert, 
+  translateWithInsert,
   translate,
   getMonthText,
   mod,
@@ -112,7 +112,7 @@ PetiteVue.createApp({
       this.switchPage("now");
     }
     if (startReload) location.reload();
-  
+
     changeHue(settings.colorTheme);
     this.update();
 
@@ -125,7 +125,7 @@ PetiteVue.createApp({
     if (!this.currentPeriod.isCurrent()) {
       if (this.currentPeriod.start.day() != dayjs().day()) {
         location.reload();
-     }  
+     }
       // location.reload();
       this.updatePage = false;
       periodListComponent.listPeriod.forEach((p) => {
@@ -196,7 +196,7 @@ function PeriodComponent(setName, setStart, setEnd, setPassing) {
 function CalendarDay(day,monthOffset) {
 
   var dateS = dayjs().month(dayjs().month() + monthOffset).startOf('month')
-  
+
   var dateM = dateS.set('date', day - dateS.day())
   return {
     date: dateM,
@@ -271,6 +271,10 @@ function getGreeting() {
 function changeSetting(setting, value) {
   settings[setting] = value;
   this.changedSetting = !this.changedSetting;
+
+  // Send a message for the extension to pick up on when the settings change
+  window.postMessage({settingsChanged: true});
+
   localStorage.setItem("settings", JSON.stringify(settings));
 
   timeFormat = (settings.twentyFourHour ? "HH" : "h") + ":mm" + (settings.showAMPM ? " A" : "");
