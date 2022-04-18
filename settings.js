@@ -19,6 +19,10 @@ const defaultSettings = {
 export var settings = JSON.parse(localStorage.getItem("settings"));
 if (settings == null) {
   settings = defaultSettings.settings;
+
+  // Send a message for the extension to pick up on when the settings change
+  window.postMessage({settingsChanged: true});
+
   localStorage.setItem("settings", JSON.stringify(settings));
 }
 
