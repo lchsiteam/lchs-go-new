@@ -82,7 +82,7 @@
         "PERIOD_6": ["01:29 PM", "03:13 PM"]
       },
       "ASSEMBLY": {
-        "PERIOD_0": ["07:27 AM", "08:15 AM"],
+        "PERIOD_0": ["07:28 AM", "08:24 AM"],
         "PERIOD_1": ["08:30 AM", "09:18 AM"],
         "PERIOD_2": ["09:24 AM", "10:12 AM"],
         "ASSEMBLY": ["10:12 AM", "11:00 AM"],
@@ -109,13 +109,14 @@
         "PERIOD_6": ["11:00 AM", "01:05 AM"]
       },
       "MINIMUM": {
+        "PERIOD_0": ["07:28 AM", "08:24 AM"],
         "PERIOD_1": ["08:30 AM", "09:08 AM"],
         "PERIOD_2": ["09:15 AM", "09:53 AM"],
         "PERIOD_3": ["10:00 AM", "10:38 AM"],
         "BREAK":    ["10:38 AM", "10:48 AM"],
         "PERIOD_4": ["10:55 AM", "11:33 AM"],
-        "PERIOD_5": ["11:40 AM", "12:18 AM"],
-        "PERIOD_6": ["12:25 AM", "01:03 AM"]
+        "PERIOD_5": ["11:40 AM", "12:18 PM"],
+        "PERIOD_6": ["12:25 PM", "01:03 PM"]
       }
     },
     "highSchool": {
@@ -149,7 +150,7 @@
         "PERIOD_6": ["01:29 PM", "03:13 PM"]
       },
       "ASSEMBLY": {
-        "PERIOD_0": ["07:28 AM", "08:15 AM"],
+        "PERIOD_0": ["07:28 AM", "08:24 AM"],
         "PERIOD_1": ["08:30 AM", "09:18 AM"],
         "PERIOD_2": ["09:24 AM", "10:12 AM"],
         "ASSEMBLY": ["10:12 AM", "11:00 AM"],
@@ -176,13 +177,14 @@
         "PERIOD_6": ["11:00 AM", "01:05 AM"]
       },
       "MINIMUM": {
+        "PERIOD_0": ["07:28 AM", "08:24 AM"],
         "PERIOD_1": ["08:30 AM", "09:08 AM"],
         "PERIOD_2": ["09:15 AM", "09:53 AM"],
         "PERIOD_3": ["10:00 AM", "10:38 AM"],
         "BREAK":    ["10:38 AM", "10:48 AM"],
         "PERIOD_4": ["10:55 AM", "11:33 AM"],
-        "PERIOD_5": ["11:40 AM", "12:18 AM"],
-        "PERIOD_6": ["12:25 AM", "01:03 AM"]
+        "PERIOD_5": ["11:40 AM", "12:18 PM"],
+        "PERIOD_6": ["12:25 PM", "01:03 PM"]
       }
     }
   }
