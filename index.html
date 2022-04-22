@@ -35,7 +35,7 @@
   <title>LCHS Go</title>
 </head>
 
-<body class="body" id="body" v-scope v-effect1="startTimer()">
+<body class="body" id="body" v-scope v-effect="startTimer()">
   <!-- Background - Used to do the color -->
   <div class="background" id="background"></div>
   <div class="app-container">
@@ -68,9 +68,9 @@
           v-if="!settings.inlinePeriodDetails"></div>
         </div>
       </div>
-      <div class="todays-events" v-scope="{ event: getEvent(dayjs()) }" v-if="event != null">
-        <div class="cd-tag" style="margin-bottom: 10px; padding: 10px;">
-          {{ event }}
+      <div class="todays-events" v-scope="{ 'eventD': getEvent(dayjs()) }">
+        <div class="cd-tag" style="padding: 10px;" v-if="eventD != undefined">
+          {{ eventD }}
         </div>
       </div>
     </div>

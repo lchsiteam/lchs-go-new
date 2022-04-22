@@ -88,6 +88,7 @@ PetiteVue.createApp({
   mod,
   shareSettings,
   shareClassNames,
+  getEvent,
 
   // Update interval timer
   interval: null,
