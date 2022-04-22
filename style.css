@@ -48,6 +48,9 @@
   font-size: 10px;
   text-align: center;
 }
+.todays-events {
+  margin-top: 20px;
+}
 .background {
   position: fixed;
   left: 0%;
