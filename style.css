@@ -1,5 +1,10 @@
 * {
   box-sizing: border-box;
+  color: inherit;
+  font: inherit;
+  border: none;
+  background-color: transparent;
+  padding: 0px;
 }
 .body {
   font-family: "Niramit", sans-serif;
@@ -38,7 +43,6 @@
   /* padding-bottom: 50px; */
 }
 .credits {
-  color: inherit;
   /* text-decoration-color: white; */
   margin-top: 50px;
   font-size: 10px;
@@ -190,11 +194,8 @@
   transform: scale(1.1);
 }
 .period-details {
-  font-family: inherit;
   font-size: 16px;
   background-color: transparent;
-  border: none;
-  color: inherit;
   margin-left: 15%;
   cursor: pointer;
 }
@@ -488,6 +489,8 @@
   display: inline;
   font-size: 1.2em;
   margin-right: 12px;
+  font-size: 19.2px;
+  font-weight: 700;
 }
 .sr-badge-group {
   position: absolute;
@@ -543,8 +546,7 @@ select.sr-select {
   padding: 5px;
   text-decoration-color: white;
   font-weight: 600;
-  font-family: inherit;
-  color: inherit;
+  font-size: 13px;
   border-color: rgba(0, 0, 0, 0);
   border-width: 1px;
   border-radius: 3px;
@@ -618,7 +620,7 @@ option.sr-select-item {
     justify-content: center;
   }
   .schedule-popup {
-    padding: 5vh 15vw;
+    padding: 16vh 7vw;
   }
   .period-information {
     display: none;
