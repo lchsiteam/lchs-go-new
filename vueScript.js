@@ -369,6 +369,9 @@ function changeClassName(periodId, element) {
   } else {
     customNames[periodId] = newValue;
   }
+  // Send a message to the extension to update custom names
+  window.postMessage({namesChanged: true});
+
   localStorage.setItem("customNamesJSON", JSON.stringify(customNames));
 }
 
