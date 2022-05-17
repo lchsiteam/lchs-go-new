@@ -68,6 +68,11 @@
           v-if="!settings.inlinePeriodDetails"></div>
         </div>
       </div>
+      <div class="todays-events" v-scope="{ 'eventD': getEvent(dayjs()) }">
+        <div class="cd-tag" style="padding: 10px;" v-if="eventD != undefined">
+          {{ eventD }}
+        </div>
+      </div>
     </div>
     <!-- Calendar Page - Calendar pulled from the events.json --> 
     <div id="calendar-page" v-if="currentPage == 'calendar'">
