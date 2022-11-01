@@ -1,5 +1,5 @@
 {
-  "version": 25,
+  "version": 26,
   "defaults": {
     "0": "NONE",
     "1": "REGULAR",
@@ -7,6 +7,15 @@
     "3": "BLOCK_ODD",
     "4": "BLOCK_EVEN",
     "5": "REGULAR",
+    "6": "NONE"
+  },
+  "pilot": {
+    "0": "NONE",
+    "1": "PILOT_REGULAR",
+    "2": "PILOT_BLOCK_A",
+    "3": "PILOT_BLOCK_B",
+    "4": "PILOT_BLOCK_C",
+    "5": "PILOT_REGULAR",
     "6": "NONE"
   },
   "overrides": {
@@ -62,7 +71,8 @@
     "WINTER_BREAK":   ["12/18/2022", "01/03/2023"],
     "SPRING_BREAK":   ["04/03/2023", "04/07/2023"],
     "FALL_BREAK":     ["11/21/2022", "11/25/2022"],
-    "BLOCK_SWITCH":   ["11/13/2022", "02/18/2023"]
+    "BLOCK_SWITCH":   ["11/13/2022", "02/18/2023"],
+    "PILOT_SCHEDULE":   ["01/23/2023", "02/10/2023"]
   },
   "timeOffset": "00:00:00",
   "gradeLevels": {
@@ -202,6 +212,46 @@
         "PERIOD_4": ["10:55 AM", "11:33 AM"],
         "PERIOD_5": ["11:40 AM", "12:18 PM"],
         "PERIOD_6": ["12:25 PM", "01:03 PM"]
+      },
+      "PILOT_REGULAR": {
+        "PERIOD_0": ["07:30 AM", "08:24 AM"],
+        "PERIOD_1": ["08:30 AM", "09:24 AM"],
+        "PERIOD_2": ["09:34 AM", "10:28 AM"],
+        "PERIOD_3": ["10:38 AM", "11:32 AM"],
+        "PERIOD_4": ["11:42 AM", "12:36 PM"],
+        "LUNCH":    ["12:36 PM", "01:11 PM"],
+        "PERIOD_5": ["01:16 PM", "02:10 PM"],
+        "PERIOD_6": ["02:20 PM", "03:14 PM"]
+      },
+      "PILOT_BLOCK_A": {
+        "PERIOD_0": ["07:30 AM", "08:24 AM"],
+        "PERIOD_1": ["08:30 AM", "09:42 AM"],
+        "BREAK":    ["09:42 AM", "09:52 AM"],
+        "PERIOD_2": ["09:57 AM", "11:09 AM"],
+        "PERIOD_3": ["11:19 AM", "12:31 PM"],
+        "LUNCH":    ["12:31 PM", "01:06 PM"],
+        "STEP":     ["01:16 PM", "01:51 PM"],
+        "PERIOD_5": ["02:01 PM", "03:13 PM"]
+      },
+      "PILOT_BLOCK_B": {
+        "PERIOD_0": ["07:30 AM", "08:24 AM"],
+        "PERIOD_1": ["08:30 AM", "09:42 AM"],
+        "BREAK":    ["09:42 AM", "09:52 AM"],
+        "PERIOD_2": ["09:57 AM", "11:09 AM"],
+        "PERIOD_4": ["11:19 AM", "12:31 PM"],
+        "LUNCH":    ["12:31 PM", "01:06 PM"],
+        "STEP":     ["01:16 PM", "01:51 PM"],
+        "PERIOD_6": ["02:01 PM", "03:13 PM"]
+      },
+      "PILOT_BLOCK_C": {
+        "PERIOD_0": ["07:30 AM", "08:24 AM"],
+        "PERIOD_3": ["08:30 AM", "09:42 AM"],
+        "BREAK":    ["09:42 AM", "09:52 AM"],
+        "PERIOD_4": ["09:57 AM", "11:09 AM"],
+        "PERIOD_5": ["11:19 AM", "12:31 PM"],
+        "LUNCH":    ["12:31 PM", "01:06 PM"],
+        "STEP":     ["01:16 PM", "01:51 PM"],
+        "PERIOD_6": ["02:01 PM", "03:13 PM"]
       }
     }
   }

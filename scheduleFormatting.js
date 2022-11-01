@@ -91,6 +91,8 @@ export function getSchedule(date) {
       scheduleType = "SPRING_BREAK";
     } else if(inRange(date, "FALL_BREAK")) {
       scheduleType = "FALL_BREAK";
+    } else if(inRange(date, "PILOT_SCHEDULE")) {
+      scheduleType = scheduleJSON.pilot[date.day()];    // I see potential for refactoring this in the future, but this is a slight hack for now
     } else {
       scheduleType = scheduleJSON.defaults[date.day()];
     }
