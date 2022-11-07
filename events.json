@@ -1,25 +1,6 @@
 {
-  "version": 3.2,
-
-  "2021": {
-    "January": {},
-    "February": {},
-    "March": {},
-    "April": {},
-    "May": {},
-    "June": {},
-    "July": {},
-    "August": {},
-    "September": {},
-    "October": {},
-    "November": {
-      "11": "Veterans Day (No school)",
-      "12": "Band Friends and Family Show",
-      "25": "Thanksgiving Day",
-      "30": "Choral Holiday Concert"
-    },
-    "December": {}
-  },
+  "version": 4.0,
+  
   "2022": {
     "January": {},
     "February": {
@@ -38,7 +19,32 @@
     "August": {},
     "September": {},
     "October": {},
+    "November": {
+      "11": "Veterans Day (No school)",
+      "18": "Band Friends and Family Show",
+      "24": "Thanksgiving Day"
+    },
+    "December": {
+      "12": "Band Winter Spectacular Concert",
+      "24": "Christmas Eve",
+      "25": "Christmas",
+      "31": "New Year's Eve"
+    }
+  },
+  "2023": {
+    "January": {
+      "1": "New Year's"
+    },
+    "February": {},
+    "March": {},
+    "April": {},
+    "May": {},
+    "June": {},
+    "July": {},
+    "August": {},
+    "September": {},
+    "October": {},
     "November": {},
-    "December": {}
+    "December": {},
   }
 }
