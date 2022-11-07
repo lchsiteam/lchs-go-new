@@ -1,5 +1,5 @@
 {
-  "version": 26.1,
+  "version": 26.2,
   "defaults": {
     "0": "NONE",
     "1": "REGULAR",
@@ -20,8 +20,7 @@
   },
   "overrides": {
     "all": {
-      "11/09/2021": "BLOCK_EVEN",
-      "11/11/2021": "NONE",
+      "11/11/2022": "NONE",
       "12/08/2021": "REGULAR",
       "12/09/2021": "REGULAR",
 
