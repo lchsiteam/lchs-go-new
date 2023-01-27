@@ -9,8 +9,8 @@
     "5": "REGULAR",
     "6": "NONE"
   },
-  "otherWeeks" {
-    "BLOCK_SWITCH" : {
+  "otherWeeks": {
+    "BLOCK_SWITCH": {
       "0": "NONE",
       "1": "REGULAR",
       "2": "REGULAR",
