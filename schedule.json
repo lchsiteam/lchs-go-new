@@ -27,6 +27,15 @@
       "4": "PILOT_BLOCK_C",
       "5": "PILOT_REGULAR",
       "6": "NONE"
+    },
+    "TEST_SCHEDULE: {
+      "0": "REGULAR",
+      "1": "BLOCK_ODD",
+      "2": "BLOCK_EVEN",
+      "3": "PILOT_REGULAR",
+      "4": "PILOT_BLOCK_A",
+      "5": "PILOT_BLOCK_B",
+      "6": "PILOT_BLOCK_C",
     }
   },
   "overrides": {
@@ -90,11 +99,14 @@
       "SUMMER_BREAK":   ["06/03/2022", "08/13/2022"],
       "WINTER_BREAK":   ["12/18/2022", "01/03/2023"],
       "SPRING_BREAK":   ["04/03/2023", "04/07/2023"],
-      "FALL_BREAK":     ["11/21/2022", "11/25/2022"]
+      "FALL_BREAK":     ["11/21/2022", "11/25/2022"],
+      "TEST_BREAK":     ["03/1/2023", "03/15/2023"]
+      
     },
     "customWeeks": {
-      "BLOCK_SWITCH":   ["11/13/2022", "02/18/2023"],
-      "PILOT_SCHEDULE":   ["01/01/1970", "01/01/1970"]
+      "BLOCK_SWITCH":     ["11/13/2022", "02/18/2023"],
+      "PILOT_SCHEDULE":   ["01/01/1970", "01/01/1970"],
+      "TEST_SCHEDULE":    ["03/15/2023", "03/31/2023"]
     }
   },
   "timeOffset": "00:00:00",
