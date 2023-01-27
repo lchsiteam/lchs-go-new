@@ -9,7 +9,7 @@
     "5": "REGULAR",
     "6": "NONE"
   },
-  "otherWeeks": {
+  "customWeeks": {
     "BLOCK_SWITCH": {
       "0": "NONE",
       "1": "REGULAR",
@@ -92,7 +92,7 @@
       "SPRING_BREAK":   ["04/03/2023", "04/07/2023"],
       "FALL_BREAK":     ["11/21/2022", "11/25/2022"]
     },
-    "otherWeeks": {
+    "customWeeks": {
       "BLOCK_SWITCH":   ["11/13/2022", "02/18/2023"],
       "PILOT_SCHEDULE":   ["01/01/1970", "01/01/1970"]
     }
