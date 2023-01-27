@@ -28,7 +28,7 @@
       "5": "PILOT_REGULAR",
       "6": "NONE"
     },
-    "TEST_SCHEDULE: {
+    "TEST_SCHEDULE": {
       "0": "REGULAR",
       "1": "BLOCK_ODD",
       "2": "BLOCK_EVEN",
