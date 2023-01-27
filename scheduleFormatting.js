@@ -185,7 +185,7 @@ export function getSchedule(date) {
 // Function - Check if a date is in a break from the schedule.json and get that break if so
 function inBreak(date) {
   var breakType = false;
-  for (range in scheduleJSON.dateRanges.breaks) {
+  for (var range in scheduleJSON.dateRanges.breaks) {
     if (date.startOf().add(1, 'hour').isBetween(dayjs(scheduleJSON.dateRanges.breaks[range][0], "MM/DD/YYYY").startOf('day'), dayjs(scheduleJSON.dateRanges.breaks[range][1], "MM/DD/YYYY").endOf('day'))) {
       breakType = range;
       break;
@@ -197,7 +197,7 @@ function inBreak(date) {
 // Function - Check if a date is in a custom week from the schedule.json and get that break if so
 function inCustomWeek(date) {
   var weekType = false;
-  for (range in scheduleJSON.dateRanges.customWeeks) {
+  for (var range in scheduleJSON.dateRanges.customWeeks) {
     if (date.startOf().add(1, 'hour').isBetween(dayjs(scheduleJSON.dateRanges.customWeeks[range][0], "MM/DD/YYYY").startOf('day'), dayjs(scheduleJSON.dateRangescustomWeeks[range][1], "MM/DD/YYYY").endOf('day'))) {
       weekType = range;
       break;
