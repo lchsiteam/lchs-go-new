@@ -9,14 +9,25 @@
     "5": "REGULAR",
     "6": "NONE"
   },
-  "pilot": {
-    "0": "NONE",
-    "1": "PILOT_REGULAR",
-    "2": "PILOT_BLOCK_A",
-    "3": "PILOT_BLOCK_B",
-    "4": "PILOT_BLOCK_C",
-    "5": "PILOT_REGULAR",
-    "6": "NONE"
+  "otherWeeks" {
+    "BLOCK_SWITCH" : {
+      "0": "NONE",
+      "1": "REGULAR",
+      "2": "REGULAR",
+      "3": "BLOCK_EVEN",
+      "4": "BLOCK_ODD",
+      "5": "REGULAR",
+      "6": "NONE"
+    },
+    "PILOT_SCHEDULE": {
+      "0": "NONE",
+      "1": "PILOT_REGULAR",
+      "2": "PILOT_BLOCK_A",
+      "3": "PILOT_BLOCK_B",
+      "4": "PILOT_BLOCK_C",
+      "5": "PILOT_REGULAR",
+      "6": "NONE"
+    }
   },
   "overrides": {
     "all": {
@@ -75,12 +86,16 @@
     }
   },
   "dateRanges": {
-    "SUMMER_BREAK":   ["06/03/2022", "08/13/2022"],
-    "WINTER_BREAK":   ["12/18/2022", "01/03/2023"],
-    "SPRING_BREAK":   ["04/03/2023", "04/07/2023"],
-    "FALL_BREAK":     ["11/21/2022", "11/25/2022"],
-    "BLOCK_SWITCH":   ["11/13/2022", "02/18/2023"],
-    "PILOT_SCHEDULE":   ["01/01/1970", "01/01/1970"]
+    "breaks": {
+      "SUMMER_BREAK":   ["06/03/2022", "08/13/2022"],
+      "WINTER_BREAK":   ["12/18/2022", "01/03/2023"],
+      "SPRING_BREAK":   ["04/03/2023", "04/07/2023"],
+      "FALL_BREAK":     ["11/21/2022", "11/25/2022"]
+    },
+    "otherWeeks": {
+      "BLOCK_SWITCH":   ["11/13/2022", "02/18/2023"],
+      "PILOT_SCHEDULE":   ["01/01/1970", "01/01/1970"]
+    }
   },
   "timeOffset": "00:00:00",
   "gradeLevels": {
