@@ -194,7 +194,7 @@ function inBreak(date) {
   return breakType;
 }
 
-// Function - Check if a date is in a custom week from the schedule.json and get that break if so
+// Function - Check if a date is in a custom week from the schedule.json and get that week if so
 function inCustomWeek(date) {
   var weekType = false;
   for (var range in scheduleJSON.dateRanges.customWeeks) {
