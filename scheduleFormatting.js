@@ -74,7 +74,7 @@ export var formattedJSON = getSchedule(dayjs());
 // Function - get the formatted schedule json for a specific day - pass in a dayjs() object
 export function getSchedule(date) {
   if (date == null) return;
-  var scheduleType = null;
+  var scheduleType;
   var localJSON = [];
 
   // Check if an override exists
