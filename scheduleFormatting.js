@@ -87,7 +87,7 @@ export function getSchedule(date) {
     var isCustomWeek = inCustomWeek(date);
     if (isBreak) {
       scheduleType = isBreak;
-    } else if(isCustomWeek) {
+    } else if (isCustomWeek) {
       scheduleType = scheduleJSON.customWeeks[isCustomWeek][date.day()];
     } else {
       scheduleType = scheduleJSON.defaults[date.day()];
