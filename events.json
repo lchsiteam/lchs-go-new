@@ -1,5 +1,5 @@
 {
-  "version": 4.0,
+  "version": 4.1,
   
   "2022": {
     "January": {},
@@ -35,7 +35,12 @@
     "January": {
       "1": "New Year's"
     },
-    "February": {},
+    "February": {
+      "17": "Presidents' Weekend (No school)",
+      "18": "Presidents' Weekend (No school)",
+      "19": "Presidents' Weekend (No school)",
+      "20": "Presidents' Day (No school)"
+    },
     "March": {},
     "April": {},
     "May": {},
