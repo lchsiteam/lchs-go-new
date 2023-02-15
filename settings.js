@@ -102,7 +102,7 @@ export const settingsMenu = {
     setting: "colorTheme",
     key: "COLOR_THEME",
     mode: 'color-slider',
-    new: true,
+    new: false,
     experimental: false,
     reload: false,
   },
