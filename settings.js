@@ -11,7 +11,8 @@ const defaultSettings = {
     // showWeekends: true,
     colorTheme: 3,
     grade: 'GRADE_9',
-    language: 'ENGLISH'
+    language: 'ENGLISH',
+    notifications: false
   }
 }
 
@@ -114,5 +115,14 @@ export const settingsMenu = {
     new: true,
     experimental: true,
     reload: true,
-  }
+  },
+  notificationsEnabled: {
+    setting: "notifications",
+    key: "NOTIFICATIONS",
+    mode: 'toggle',
+    options: [[true, "ON"], [false, "OFF"]],
+    new: false,
+    experimental: true,
+    reload: false,
+  },
 }
