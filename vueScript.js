@@ -17,6 +17,9 @@ var timeFormat = (settings.twentyFourHour ? "HH" : "h") + ":mm" + (settings.show
 var currentPeriod = null;
 var periodListComponent = PeriodListComponent(formattedJSON, false);
 
+// Stores if a notification has been sent already
+var notified = false;
+
 periodListComponent.listPeriod.forEach((p) => {
         if(p.isCurrent()) {
           currentPeriod = p;
@@ -141,6 +144,7 @@ PetiteVue.createApp({
       //     currentPeriod = p;
       //   }});
       // periodList = periodList;
+      notified = false;
     }
 
     this.todaysGreeting = getTodaysGreeting();
@@ -149,6 +153,7 @@ PetiteVue.createApp({
     this.percentCompletedText = translateWithInsert( "PERCENT_COMPLETED", this.percentCompleted);
     this.currentTime = dayjs().format(timeFormat);
     document.title = (this.minutesLeft >= 60 ? (Math.trunc(this.minutesLeft / 60) + "hr. ") : "") + this.minutesLeft % 60 + "min. | LCHS Go";
+    sendNotification(this.currentPeriod, this.minutesLeft);
   },
 }).mount();
 
@@ -279,6 +284,28 @@ function changeSetting(setting, value) {
   localStorage.setItem("settings", JSON.stringify(settings));
 
   timeFormat = (settings.twentyFourHour ? "HH" : "h") + ":mm" + (settings.showAMPM ? " A" : "");
+  
+  if (setting == "notificationToggle" && value) {
+      if (!("Notification" in window)) {
+      // Check if the browser supports notifications
+      alert(translate("NOTIFY_UNSUPPORTED"));
+    } else if (Notification.permission === "granted") {
+      // Check whether notification permissions have already been granted;
+      // if so, create a notification
+      const notification = new Notification("LCHS Go", { body: translate("NOTIFY_ENABLED"), icon: "/faviconLarge.png" } );
+      // …
+    } else if (Notification.permission !== "denied") {
+      // We need to ask the user for permission
+      Notification.requestPermission().then((permission) => {
+        // If the user accepts, let's create a notification
+        if (permission === "granted") {
+          const notification = new Notification("LCHS Go", { body: translate("NOTIFY_ENABLED"), icon: "/faviconLarge.png" } );
+          // …
+        }
+      });
+    }
+  }
+  
 }
 
 // Function - Called by the HTML to set the background color
@@ -409,6 +436,25 @@ export function translateWithInsert(translateText, insertString) {
     return translate(translateText);
   }
   return returnText.slice(0, index) + insertString + returnText.slice(index + 2);
+}
+
+// Notify the user before period starts or ends
+export function sendNotification(period, timeLeft) {
+  if (settings.notificationToggle && !notified) {
+    var nextPeriod = null;
+    periodListComponent.listPeriod.forEach((p) => {
+      if(p.getStart() == period.getEnd()) {
+        nextPeriod = p;
+    }});
+    if (nextPeriod && !nextPeriod.passing && nextPeriod.isVisible() && timeLeft == parseInt(settings.notificationStart)) { // period start notif
+      const notification = new Notification("LCHS Go", { body: nextPeriod.getName() + translateWithInsert("NOTIFY_START", translate(settings.notificationStart)), icon: "/faviconLarge.png" } );
+      notified = true;
+    }
+    else if (!period.passing && period.isVisible() && timeLeft == parseInt(settings.notificationEnd)) { // period end notif
+      const notification = new Notification("LCHS Go", { body: period.getName() + translateWithInsert("NOTIFY_END", translate(settings.notificationEnd)), icon: "/faviconLarge.png" } );
+      notified = true;
+    }
+  }
 }
 
 export function mod(bigNum, smallNum) {
