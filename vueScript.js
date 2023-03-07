@@ -281,7 +281,7 @@ function changeSetting(setting, value) {
 
   timeFormat = (settings.twentyFourHour ? "HH" : "h") + ":mm" + (settings.showAMPM ? " A" : "");
   
-  if (setting == "notificationToggle" && notificationToggle) {
+  if (setting == "notificationToggle" && value) {
       if (!("Notification" in window)) {
       // Check if the browser supports notifications
       alert(translate("NOTIFY_UNSUPPORTED"));
