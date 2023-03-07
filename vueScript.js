@@ -416,10 +416,10 @@ export function translateWithInsert(translateText, insertString) {
 export function sendNotification(period, timeLeft) {
   if (settings.notificationToggle) {
     if (period.passing && timeLeft == parseInt(settings.notificationStart)) { // period start notif
-      const notification = new Notification("LCHS Go", { body: period.getName() + translateWithInsert("NOTIFY_START", translate(settings.notificationStart))), icon: "/faviconLarge.png" } );
+      const notification = new Notification("LCHS Go", { body: period.getName() + translateWithInsert("NOTIFY_START", translate(settings.notificationStart)), icon: "/faviconLarge.png" } );
     }
     else if (!period.passing && timeLeft == parseInt(settings.notificationEnd)) { // period end notif
-      const notification = new Notification("LCHS Go", { body: period.getName() + translateWithInsert("NOTIFY_END", translate(settings.notificationEnd))), icon: "/faviconLarge.png" } );
+      const notification = new Notification("LCHS Go", { body: period.getName() + translateWithInsert("NOTIFY_END", translate(settings.notificationEnd)), icon: "/faviconLarge.png" } );
     }
   }
 }
