@@ -17,6 +17,9 @@ var timeFormat = (settings.twentyFourHour ? "HH" : "h") + ":mm" + (settings.show
 var currentPeriod = null;
 var periodListComponent = PeriodListComponent(formattedJSON, false);
 
+// Stores if a notification has been sent already
+var notified = false;
+
 periodListComponent.listPeriod.forEach((p) => {
         if(p.isCurrent()) {
           currentPeriod = p;
@@ -141,6 +144,7 @@ PetiteVue.createApp({
       //     currentPeriod = p;
       //   }});
       // periodList = periodList;
+      notified = false;
     }
 
     this.todaysGreeting = getTodaysGreeting();
@@ -436,12 +440,19 @@ export function translateWithInsert(translateText, insertString) {
 
 // Notify the user before period starts or ends
 export function sendNotification(period, timeLeft) {
-  if (settings.notificationToggle) {
-    if (period.passing && timeLeft == parseInt(settings.notificationStart)) { // period start notif
-      const notification = new Notification("LCHS Go", { body: period.getName() + translateWithInsert("NOTIFY_START", translate(settings.notificationStart)), icon: "/faviconLarge.png" } );
+  if (settings.notificationToggle && !notified) {
+    var nextPeriod = null;
+    periodListComponent.listPeriod.forEach((p) => {
+      if(p.get()) {
+        nextPeriod = p;
+    }});
+    if (nextPeriod && !nextPeriod.passing && nextPeriod.isVisible() && timeLeft == parseInt(settings.notificationStart)) { // period start notif
+      const notification = new Notification("LCHS Go", { body: nextPeriod.getName() + translateWithInsert("NOTIFY_START", translate(settings.notificationStart)), icon: "/faviconLarge.png" } );
+      notified = true;
     }
-    else if (!period.passing && timeLeft == parseInt(settings.notificationEnd)) { // period end notif
+    else if (!period.passing && period.isVisible() && timeLeft == parseInt(settings.notificationEnd)) { // period end notif
       const notification = new Notification("LCHS Go", { body: period.getName() + translateWithInsert("NOTIFY_END", translate(settings.notificationEnd)), icon: "/faviconLarge.png" } );
+      notified = true;
     }
   }
 }
