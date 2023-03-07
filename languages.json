@@ -114,6 +114,8 @@
     "DECEMBER": "December",
     "NOTIFY_START": " is starting in {}.",
     "NOTIFY_END": " is ending in {}.",
+    "NOTIFY_ENABLED": "Success! Notifications are enabled!",
+    "NOTIFY_UNSUPPORTED": "This browser does not support notifications.",    
     "0_MIN": "0 minutes",
     "1_MIN": "1 minute",
     "2_MIN": "2 minutes",
