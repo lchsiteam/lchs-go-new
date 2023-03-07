@@ -280,6 +280,31 @@ function changeSetting(setting, value) {
   localStorage.setItem("settings", JSON.stringify(settings));
 
   timeFormat = (settings.twentyFourHour ? "HH" : "h") + ":mm" + (settings.showAMPM ? " A" : "");
+  
+  if (setting == "notificationToggle" && notificationToggle) {
+      if (!("Notification" in window)) {
+      // Check if the browser supports notifications
+      alert(translate("NOTIFY_UNSUPPORTED"));
+      changeSetting("notificationToggle", false);
+    } else if (Notification.permission === "granted") {
+      // Check whether notification permissions have already been granted;
+      // if so, create a notification
+      const notification = new Notification("LCHS Go", { body: translate("NOTIFY_ENABLED")), icon: "/faviconLarge.png" } );
+      // …
+    } else if (Notification.permission !== "denied") {
+      // We need to ask the user for permission
+      Notification.requestPermission().then((permission) => {
+        // If the user accepts, let's create a notification
+        if (permission === "granted") {
+          const notification = new Notification("LCHS Go", { body: translate("NOTIFY_ENABLED")), icon: "/faviconLarge.png" } );
+          // …
+        } else {
+          changeSetting("notificationToggle", false);
+        }
+      });
+    }
+  }
+  
 }
 
 // Function - Called by the HTML to set the background color
