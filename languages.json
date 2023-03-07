@@ -1,5 +1,5 @@
 {
-  "version": 25.0,
+  "version": 26.0,
   "ENGLISH": {
     "ENGLISH": "English",
     "SPANISH": "Español",
@@ -82,6 +82,12 @@
     "SETTINGS_GRADE_LEVEL_DESC": "Changes the grade level for the schedule",
     "SETTINGS_LANGUAGE_TITLE": "Language",
     "SETTINGS_LANGUAGE_DESC": "Change your language",
+    "SETTINGS_NOTIFICATIONS_TOGGLE_TITLE": "Desktop Notifications",
+    "SETTINGS_NOTIFICATIONS_TOGGLE_DESC": "Enable or disable desktop notifications",
+    "SETTINGS_NOTIFICATIONS_START_TITLE": "Notification Time Before Period Starts",
+    "SETTINGS_NOTIFICATIONS_START_DESC": "Change when to be notified before the period starts",
+    "SETTINGS_NOTIFICATIONS_END_TITLE": "Notification Time Before Period Ends",
+    "SETTINGS_NOTIFICATIONS_END_DESC": "Change when to be notified before the period ends",
     "TRUE": "True",
     "FALSE": "False",
     "YES": "Yes",
