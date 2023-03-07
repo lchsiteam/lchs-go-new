@@ -285,7 +285,7 @@ function changeSetting(setting, value) {
       if (!("Notification" in window)) {
       // Check if the browser supports notifications
       alert(translate("NOTIFY_UNSUPPORTED"));
-      changeSetting("notificationToggle", false);
+      changeSetting(setting, !value);
     } else if (Notification.permission === "granted") {
       // Check whether notification permissions have already been granted;
       // if so, create a notification
@@ -299,7 +299,7 @@ function changeSetting(setting, value) {
           const notification = new Notification("LCHS Go", { body: translate("NOTIFY_ENABLED"), icon: "/faviconLarge.png" } );
           // …
         } else {
-          changeSetting("notificationToggle", false);
+          changeSetting(setting, !value);
         }
       });
     }
