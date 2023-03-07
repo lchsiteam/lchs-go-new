@@ -12,7 +12,9 @@ const defaultSettings = {
     colorTheme: 3,
     grade: 'GRADE_9',
     language: 'ENGLISH',
-    notifications: false
+    notificationToggle: false,
+    notificationStart: '3_MIN',
+    notificationEnd: '2_MIN'
   }
 }
 
@@ -116,11 +118,29 @@ export const settingsMenu = {
     experimental: true,
     reload: true,
   },
-  notificationsEnabled: {
-    setting: "notifications",
-    key: "NOTIFICATIONS",
+  notificationToggle: {
+    setting: "notificationToggle",
+    key: "NOTIFICATIONS_TOGGLE",
     mode: 'toggle',
     options: [[true, "ON"], [false, "OFF"]],
+    new: false,
+    experimental: true,
+    reload: false,
+  },
+  notificationStart: {
+    setting: "notificationStart",
+    key: "NOTIFICATIONS_START",
+    mode: 'dropdown',
+    options: ["0_MIN", "1_MIN", "2_MIN", "3_MIN", "4_MIN", "5_MIN", "6_MIN", "7_MIN", "8_MIN", "9_MIN", "10_MIN", ],
+    new: false,
+    experimental: true,
+    reload: false,
+  },
+  notificationStart: {
+    setting: "notificationEnd",
+    key: "NOTIFICATIONS_END",
+    mode: 'dropdown',
+    options: ["0_MIN", "1_MIN", "2_MIN", "3_MIN", "4_MIN", "5_MIN", "6_MIN", "7_MIN", "8_MIN", "9_MIN", "10_MIN", ],
     new: false,
     experimental: true,
     reload: false,
