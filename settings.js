@@ -136,7 +136,7 @@ export const settingsMenu = {
     experimental: true,
     reload: false,
   },
-  notificationStart: {
+  notificationEnd: {
     setting: "notificationEnd",
     key: "NOTIFICATIONS_END",
     mode: 'dropdown',
