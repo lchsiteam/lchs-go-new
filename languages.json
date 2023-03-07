@@ -105,7 +105,22 @@
     "SEPTEMBER": "September",
     "OCTOBER": "October",
     "NOVEMBER": "November",
-    "DECEMBER": "December"
+    "DECEMBER": "December",
+    "NOTIFY_START": " is starting in {}.",
+    "NOTIFY_END": " is ending in {}.",
+    "0_MIN": "0 minutes"
+    "1_MIN": "1 minute"
+    "2_MIN": "2 minutes"
+    "3_MIN": "3 minutes"
+    "4_MIN": "4 minutes"
+    "5_MIN": "5 minutes"
+    "6_MIN": "6 minutes"
+    "7_MIN": "7 minutes"
+    "8_MIN": "8 minutes"
+    "9_MIN": "9 minutes"
+    "10_MIN": "10 minutes"
+    "DISABLED": "Disabled"
+    "ENABLED": "Enabled"
   },
   "SPANISH": {
     "ENGLISH": "Inglés",
