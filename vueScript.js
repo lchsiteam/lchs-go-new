@@ -149,6 +149,7 @@ PetiteVue.createApp({
     this.percentCompletedText = translateWithInsert( "PERCENT_COMPLETED", this.percentCompleted);
     this.currentTime = dayjs().format(timeFormat);
     document.title = (this.minutesLeft >= 60 ? (Math.trunc(this.minutesLeft / 60) + "hr. ") : "") + this.minutesLeft % 60 + "min. | LCHS Go";
+    sendNotification(p, minutesLeft);
   },
 }).mount();
 
@@ -409,6 +410,18 @@ export function translateWithInsert(translateText, insertString) {
     return translate(translateText);
   }
   return returnText.slice(0, index) + insertString + returnText.slice(index + 2);
+}
+
+// Notify the user before period starts or ends
+export function sendNotification(period, timeLeft) {
+  if (settings.notificationToggle) {
+    if (period.passing && timeLeft == parseInt(settings.notificationStart)) { // period start notif
+      const notification = new Notification("LCHS Go", { body: period.getName() + translateWithInsert("NOTIFY_START", translate(settings.notificationStart))), icon: "/faviconLarge.png" } );
+    }
+    else if (!period.passing && timeLeft == parseInt(settings.notificationEnd)) { // period end notif
+      const notification = new Notification("LCHS Go", { body: period.getName() + translateWithInsert("NOTIFY_END", translate(settings.notificationEnd))), icon: "/faviconLarge.png" } );
+    }
+  }
 }
 
 export function mod(bigNum, smallNum) {
