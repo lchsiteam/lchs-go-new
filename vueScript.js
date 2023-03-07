@@ -443,7 +443,7 @@ export function sendNotification(period, timeLeft) {
   if (settings.notificationToggle && !notified) {
     var nextPeriod = null;
     periodListComponent.listPeriod.forEach((p) => {
-      if(p.get()) {
+      if(p.getStart() == period.getEnd()) {
         nextPeriod = p;
     }});
     if (nextPeriod && !nextPeriod.passing && nextPeriod.isVisible() && timeLeft == parseInt(settings.notificationStart)) { // period start notif
