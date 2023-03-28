@@ -761,17 +761,17 @@
     "NOTIFY_END": " gon in {}.",
     "NOTIFY_ENABLED": "yay!!! can send nobeefz!!! :)",
     "NOTIFY_UNSUPPORTED": "bad brows, no nobeefz :(",
-    "0_MIN": "no memez",
-    "1_MIN": "on meme",
-    "2_MIN": "wo memez",
-    "3_MIN": "tree memez",
+    "0_MIN": "0 memez",
+    "1_MIN": "òn meme",
+    "2_MIN": "too memez",
+    "3_MIN": "twee memez",
     "4_MIN": "fo memez",
-    "5_MIN": "fev memez",
-    "6_MIN": "see memez",
-    "7_MIN": "ven memez",
+    "5_MIN": "fife memez",
+    "6_MIN": "sicks memez",
+    "7_MIN": "see memez",
     "8_MIN": "ate memez",
-    "9_MIN": "nin minutos",
-    "10_MIN": "ton memez"
+    "9_MIN": "nya minutos",
+    "10_MIN": "toon memez"
   },
   "DEVELOPER": {
   }
