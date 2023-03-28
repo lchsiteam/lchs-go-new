@@ -422,7 +422,7 @@ export function translate(translateText) {
   if (customNames[translateText] != null) {
     return customNames[translateText];
   } else {
-    translateNoCustom(translateText);
+    return translateNoCustom(translateText);
   }
 }
 
