@@ -1,12 +1,7 @@
 // Importing the Schedule, Settings, and Languages
 import {formattedJSON, languageJSON, scheduleJSON, getSchedule, getEvent } from "./scheduleFormatting.js";
 import { settings, settingsMenu } from "./settings.js";
-
-// Basically and import
-var customNames = JSON.parse(localStorage.getItem("customNamesJSON"));
-if (customNames == null) {
-  customNames = {};
-}
+import { customNames, namesMenu } from "./classNames.js";
 
 var timeOffeset = dayjs(scheduleJSON.timeOffset, "HH:mm:ss");
 
@@ -64,6 +59,10 @@ PetiteVue.createApp({
   settings,
   changedSetting: true,
   shareLink: "",
+  
+  // Class Names Page
+  namesMenu,
+  customNames,
 
   // Functions
   switchPage(page) {
