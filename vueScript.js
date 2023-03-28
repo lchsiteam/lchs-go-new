@@ -86,6 +86,7 @@ PetiteVue.createApp({
   changeClassName,
   translateWithInsert,
   translate,
+  translateNoCustom,
   getMonthText,
   mod,
   shareSettings,
@@ -421,11 +422,7 @@ export function translate(translateText) {
   if (customNames[translateText] != null) {
     return customNames[translateText];
   } else {
-    if (languageJSON[translateText] == null) {
-      return translateText;
-    } else {
-      return languageJSON[translateText];
-    }
+    translateNoCustom(translateText);
   }
 }
 
