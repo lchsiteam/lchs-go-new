@@ -109,6 +109,8 @@ PetiteVue.createApp({
       this.switchPage("calendar");
     } else if (url.has("settings")) {
       this.switchPage("settings");
+    } else if (url.has("classNames")) {
+      this.switchPage("classNames");
     } else if (url.has("data")) {
       this.switchPage("data");
     } else {
