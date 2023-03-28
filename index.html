@@ -184,6 +184,32 @@
         </div>
       </div>
     </div>
+    <!-- Class Names Page - All of the class names generated from classNames.js -->
+    <div id="names-page" v-if="currentPage == 'classNames'">
+      <div class="todays-schedule">
+        {{ translate("NAMES_TITLE") }}
+      </div>
+      <div class="settings-row" v-for="customName in namesMenu">
+        <div class="sr-head">
+          <b class="sr-title">{{ translate("SETTINGS_NAMES_" + customName) }}</b>
+        </div>
+        <div class="sr-option">
+          <input class="sr-text" v-effect="$el.value = customNames[customName]"
+          @change="changeClassName(customName, $el);">
+            {{ translate(customName) }}
+          </input>
+          // end
+        </div>
+      </div>
+      <div class="settings-row">
+        <div class="sr-option">
+          <div class="sr-selector">
+            <div class="sr-selector-option" @click="switchPage('settings')" tabindex="0">{{ translate("SETTINGS_TITLE") }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of Pages -->
     <div id="data-page" v-if="currentPage == 'data'">
       <div id="hoursLeft">{{ Math.trunc(minutesLeft / 60) }}</div>
       <div id="minutesLeft">{{ minutesLeft % 60 }}</div>
