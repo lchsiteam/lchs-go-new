@@ -101,6 +101,8 @@
     "SETTINGS_NAMES_PERIOD_4": "Period 4",
     "SETTINGS_NAMES_PERIOD_5": "Period 5",
     "SETTINGS_NAMES_PERIOD_6": "Period 6",
+    "SETTINGS_NAMES_STEP_ODD": "STEP (odd)",
+    "SETTINGS_NAMES_STEP_EVEN": "STEP (even)",
     "RETURN_SETTINGS": "Return to Settings",
     "TRUE": "True",
     "FALSE": "False",
