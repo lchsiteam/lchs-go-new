@@ -66,7 +66,7 @@ PetiteVue.createApp({
 
   // Functions
   switchPage(page) {
-    if (page == 'now' || page == 'calendar' || page == 'settings' || page == 'data')
+    if (page == 'now' || page == 'calendar' || page == 'settings' || page == 'classNames' || page == 'data')
       this.currentPage = page;
     else {
       this.currentPage = 'now';
