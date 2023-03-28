@@ -151,6 +151,32 @@
           </div>
         </div>
       </div>
+      <div class="settings-row">
+        <div class="sr-head">
+          <b class="sr-title">{{ translate("SETTINGS_CLASS_NAMES_TITLE") }}</b>
+          <span class="sr-desc">{{ translate("SETTINGS_CLASS_NAMES_DESC") }}</span>
+        </div>
+        <div class="sr-option">
+          <div class="sr-selector">
+            <div class="sr-selector-option" @click="switchPage('classNames')" tabindex="0">{{ translate("CONFIGURE") }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="settings-row">
+        <div class="sr-head">
+          <b class="sr-title">{{ translate("SETTINGS_SHARE_TITLE") }}</b>
+          <span class="sr-desc">{{ translate("SETTINGS_SHARE_DESC") }}</span>
+        </div>
+        <div class="sr-option">
+          <div class="sr-selector">
+            <div class="sr-selector-option" @click="shareSettings()" tabindex="0">{{ translate("SHARE_SETTINGS") }}</div>
+          </div>
+          <div class="sr-selector">
+            <div class="sr-selector-option" @click="shareClassNames()" tabindex="0">{{ translate("SHARE_CLASS_NAMES") }}</div>
+          </div>
+          <div class="share-link" v-effect="$el.textContent = shareLink" @click="$el.focus(); $el.select();" tabindex="0"></div>
+        </div>
+      </div>
       <div class="settings-row" style="position: relative; z-index: 999;">
         <div class="sr-head">
           <b class="sr-title">Reset</b>
@@ -168,26 +194,11 @@
           </div>
         </div>
       </div>
-      <div class="settings-row">
-        <div class="sr-head">
-          <b class="sr-title">Share</b>
-          <span class="sr-desc">Share your settings or class names with a link</span>
-        </div>
-        <div class="sr-option">
-          <div class="sr-selector">
-            <div class="sr-selector-option" @click="shareSettings()" tabindex="0">Share Settings</div>
-          </div>
-          <div class="sr-selector">
-            <div class="sr-selector-option" @click="shareClassNames()" tabindex="0">Share Class Names</div>
-          </div>
-          <div class="share-link" v-effect="$el.textContent = shareLink" @click="$el.focus(); $el.select();" tabindex="0"></div>
-        </div>
-      </div>
     </div>
     <!-- Class Names Page - All of the class names generated from classNames.js -->
     <div id="names-page" v-if="currentPage == 'classNames'">
       <div class="todays-schedule">
-        {{ translate("NAMES_TITLE") }}
+        {{ translate("CLASS_NAMES_TITLE") }}
       </div>
       <div class="settings-row" v-for="periodId in namesMenu">
         <div class="sr-head">
@@ -200,9 +211,12 @@
         </div>
       </div>
       <div class="settings-row">
+        <div class="sr-head">
+          <b class="sr-title">{{ translate("RETURN_SETTINGS") }}</b>
+        </div>
         <div class="sr-option">
           <div class="sr-selector">
-            <div class="sr-selector-option" @click="switchPage('settings')" tabindex="0">{{ translate("SETTINGS_TITLE") }}</div>
+            <div class="sr-selector-option" @click="switchPage('settings')" tabindex="0">{{ translate("Return") }}</div>
           </div>
         </div>
       </div>
