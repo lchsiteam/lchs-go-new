@@ -429,6 +429,14 @@ export function translate(translateText) {
   }
 }
 
+export function translateNoCustom(translateText) {
+  if (languageJSON[translateText] == null) {
+    return translateText;
+  } else {
+    return languageJSON[translateText];
+  }
+}
+
 // Function - Used to translate a key to the selected language and insert other text if possible.
 export function translateWithInsert(translateText, insertString) {
   var returnText = translate(translateText);

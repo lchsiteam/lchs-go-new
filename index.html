@@ -202,7 +202,7 @@
       </div>
       <div class="settings-row" v-for="periodId in namesMenu">
         <div class="sr-head">
-          <b class="sr-title">{{ translate("SETTINGS_NAMES_" + periodId) }}</b>
+          <b class="sr-title">{{ translateNoCustom(periodId) }}</b>
         </div>
         <div class="sr-option">
           <input class="sr-text" v-effect="$el.value = translate(periodId)"
