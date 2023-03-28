@@ -189,16 +189,14 @@
       <div class="todays-schedule">
         {{ translate("NAMES_TITLE") }}
       </div>
-      <div class="settings-row" v-for="customName in namesMenu">
+      <div class="settings-row" v-for="periodId in namesMenu">
         <div class="sr-head">
-          <b class="sr-title">{{ translate("SETTINGS_NAMES_" + customName) }}</b>
+          <b class="sr-title">{{ translate("SETTINGS_NAMES_" + periodId) }}</b>
         </div>
         <div class="sr-option">
-          <input class="sr-text" v-effect="$el.value = customNames[customName]"
-          @change="changeClassName(customName, $el);">
-            {{ translate(customName) }}
+          <input class="sr-text" v-effect="$el.value = translate(periodId)"
+          @change="changeClassName(periodId, $el);">
           </input>
-          // end
         </div>
       </div>
       <div class="settings-row">
