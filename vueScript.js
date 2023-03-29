@@ -1,12 +1,7 @@
 // Importing the Schedule, Settings, and Languages
 import {formattedJSON, languageJSON, scheduleJSON, getSchedule, getEvent } from "./scheduleFormatting.js";
 import { settings, settingsMenu } from "./settings.js";
-
-// Basically and import
-var customNames = JSON.parse(localStorage.getItem("customNamesJSON"));
-if (customNames == null) {
-  customNames = {};
-}
+import { customNames, namesMenu } from "./classNames.js";
 
 var timeOffeset = dayjs(scheduleJSON.timeOffset, "HH:mm:ss");
 
@@ -64,10 +59,14 @@ PetiteVue.createApp({
   settings,
   changedSetting: true,
   shareLink: "",
+  
+  // Class Names Page
+  namesMenu,
+  customNames,
 
   // Functions
   switchPage(page) {
-    if (page == 'now' || page == 'calendar' || page == 'settings' || page == 'data')
+    if (page == 'now' || page == 'calendar' || page == 'settings' || page == 'classNames' || page == 'data')
       this.currentPage = page;
     else {
       this.currentPage = 'now';
@@ -87,6 +86,7 @@ PetiteVue.createApp({
   changeClassName,
   translateWithInsert,
   translate,
+  translateNoCustom,
   getMonthText,
   mod,
   shareSettings,
@@ -110,6 +110,8 @@ PetiteVue.createApp({
       this.switchPage("calendar");
     } else if (url.has("settings")) {
       this.switchPage("settings");
+    } else if (url.has("classNames")) {
+      this.switchPage("classNames");
     } else if (url.has("data")) {
       this.switchPage("data");
     } else {
@@ -420,11 +422,15 @@ export function translate(translateText) {
   if (customNames[translateText] != null) {
     return customNames[translateText];
   } else {
-    if (languageJSON[translateText] == null) {
-      return translateText;
-    } else {
-      return languageJSON[translateText];
-    }
+    return translateNoCustom(translateText);
+  }
+}
+
+export function translateNoCustom(translateText) {
+  if (languageJSON[translateText] == null) {
+    return translateText;
+  } else {
+    return languageJSON[translateText];
   }
 }
 
