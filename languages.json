@@ -755,7 +755,7 @@
     "PILOT_BLOCK_B": "not big cwas B",
     "PILOT_BLOCK_C": "not big cwas C",
     "SBAC_BLOCK_ODD": "big cwas (no ewen) (snacc)",
-    "SBAC_BLOCK_EVEN": "big cwas (no ewen) (snacc)",
+    "SBAC_BLOCK_EVEN": "big cwas (ewen) (snacc)",
     "FINALS_3_4": "fish (3, 4)",
     "FINALS_1_6": "fish (1, 6)",
     "FINALS_2_5": "fish (2, 5)",
