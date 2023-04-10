@@ -1,5 +1,5 @@
 {
-  "version": 4.1,
+  "version": 4.2,
   
   "2022": {
     "January": {},
@@ -42,7 +42,9 @@
       "20": "Presidents' Day (No school)"
     },
     "March": {},
-    "April": {},
+    "April": {
+      "13": "Open House"
+    },
     "May": {},
     "June": {},
     "July": {},
