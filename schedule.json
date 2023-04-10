@@ -32,7 +32,7 @@
       "0": "NONE",
       "1": "BLOCK_ODD",
       "2": "BLOCK_EVEN",
-      "3": "PILOT_BLOCK_ODD",
+      "3": "SBAC_BLOCK_ODD",
       "4": "SBAC_BLOCK_EVEN",
       "5": "REGULAR",
       "6": "NONE"
