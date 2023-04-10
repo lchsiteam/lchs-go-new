@@ -464,8 +464,9 @@
   z-index: 1;
   position: fixed;
   padding: 20vh 30vw;
+  padding-top: 0%;
   left: 0%;
-  top: 0%;
+  top: 115px;
   right: 0%;
   bottom: 0%;
 }
@@ -635,6 +636,8 @@ option.sr-select-item {
   }
   .schedule-popup {
     padding: 16vh 7vw;
+    padding-top: 0%;
+    top: 75px;
   }
   .period-information {
     display: none;
