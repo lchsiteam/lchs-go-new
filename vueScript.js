@@ -71,6 +71,7 @@ PetiteVue.createApp({
     else {
       this.currentPage = 'now';
     }
+    this.popupDate = null;
 
     window.history.pushState("", this.currentPage, "/?" + this.currentPage);
     if (window.innerWidth <= 767) {
