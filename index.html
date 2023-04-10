@@ -76,7 +76,7 @@
     </div>
     <!-- Calendar Page - Calendar pulled from the events.json --> 
     <div id="calendar-page" v-if="currentPage == 'calendar'">
-      <div class="calendar-title">
+      <div class="calendar-title" v-if="popupDate == null">
         <div class ="month-select-left" @click="monthOffset--; calendarToggle=false; setTimeout( () => { calendarToggle = true; }, 10);" tabindex="0">⇦</div>
         <div class="calendar-month" v-effect="$el.textContent = getMonthText(dayjs().month() + monthOffset) + ' ' + Math.floor((dayjs().year() + (dayjs().month() + monthOffset) / 12))">
           {{ translate("CALENDAR_TITLE")}}
