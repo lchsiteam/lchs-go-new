@@ -6,8 +6,7 @@ export var scheduleJSON = JSON.parse(localStorage.getItem("scheduleJSON"));
 export var languageJSON = JSON.parse(localStorage.getItem("languageJSON"));
 export var eventsJSON = JSON.parse(localStorage.getItem("eventsJSON"));
 
-export const TIMEZONE = "America/Los_Angeles"
-dayjs.tz.setDefault(TIMEZONE)
+dayjs.tz.setDefault("America/Los_Angeles")
 
 var reload = false;
 // Fetch the schedule.json for updates
@@ -187,7 +186,7 @@ export function getSchedule(date) {
 function inBreak(date) {
   var breakType = false;
   for (var range in scheduleJSON.dateRanges.breaks) {
-    if (date.startOf().add(1, 'hour').isBetween(dayjs.tz(scheduleJSON.dateRanges.breaks[range][0], "MM/DD/YYYY", TIMEZONE).startOf('day'), dayjs.tz(scheduleJSON.dateRanges.breaks[range][1], "MM/DD/YYYY", TIMEZONE).endOf('day'))) {
+    if (date.startOf().add(1, 'hour').isBetween(dayjs(scheduleJSON.dateRanges.breaks[range][0], "MM/DD/YYYY").tz().startOf('day'), dayjs(scheduleJSON.dateRanges.breaks[range][1], "MM/DD/YYYY").tz().endOf('day'))) {
       breakType = range;
       break;
     }
@@ -199,7 +198,7 @@ function inBreak(date) {
 function inCustomWeek(date) {
   var weekType = false;
   for (var range in scheduleJSON.dateRanges.customWeeks) {
-    if (date.startOf().add(1, 'hour').isBetween(dayjs.tz(scheduleJSON.dateRanges.customWeeks[range][0], "MM/DD/YYYY", TIMEZONE).startOf('day'), dayjs.tz(scheduleJSON.dateRanges.customWeeks[range][1], "MM/DD/YYYY", TIMEZONE).endOf('day'))) {
+    if (date.startOf().add(1, 'hour').isBetween(dayjs(scheduleJSON.dateRanges.customWeeks[range][0], "MM/DD/YYYY").tz().startOf('day'), dayjs(scheduleJSON.dateRanges.customWeeks[range][1], "MM/DD/YYYY").tz().endOf('day'))) {
       weekType = range;
       break;
     }

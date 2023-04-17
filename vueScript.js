@@ -1,9 +1,9 @@
 // Importing the Schedule, Settings, and Languages
-import {formattedJSON, languageJSON, scheduleJSON, getSchedule, getEvent, TIMEZONE } from "./scheduleFormatting.js";
+import {formattedJSON, languageJSON, scheduleJSON, getSchedule, getEvent } from "./scheduleFormatting.js";
 import { settings, settingsMenu } from "./settings.js";
 import { customNames, namesMenu } from "./classNames.js";
 
-var timeOffeset = dayjs.tz(scheduleJSON.timeOffset, "HH:mm:ss", TIMEZONE);
+var timeOffeset = dayjs(scheduleJSON.timeOffset, "HH:mm:ss").tz();
 
 // Stores the user preference for how they display time
 var timeFormat = (settings.twentyFourHour ? "HH" : "h") + ":mm" + (settings.showAMPM ? " A" : "");
@@ -163,8 +163,8 @@ PetiteVue.createApp({
 
 // Component - Period - Holds the name, start, end, and if passing
 function PeriodComponent(setName, setStart, setEnd, setPassing) {
-  var varStart = dayjs.tz(setStart, "hh:mm A"); //formats from the json
-  var varEnd = dayjs.tz(setEnd, "hh:mm A");
+  var varStart = dayjs(setStart, "hh:mm A").tz(); //formats from the json
+  var varEnd = dayjs(setEnd, "hh:mm A").tz();
 
   return {
     name: setName,
