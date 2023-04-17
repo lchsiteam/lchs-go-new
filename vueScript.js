@@ -3,8 +3,7 @@ import {formattedJSON, languageJSON, scheduleJSON, getSchedule, getEvent, TIMEZO
 import { settings, settingsMenu } from "./settings.js";
 import { customNames, namesMenu } from "./classNames.js";
 
-//var timeOffeset = dayjs.tz(scheduleJSON.timeOffset, "HH:mm:ss", TIMEZONE).local();
-var timeOffeset = dayjs(scheduleJSON.timeOffset, "HH:mm:ss");
+var timeOffeset = dayjs.tz(scheduleJSON.timeOffset, "HH:mm:ss", TIMEZONE).local();
 
 // Stores the user preference for how they display time
 var timeFormat = (settings.twentyFourHour ? "HH" : "h") + ":mm" + (settings.showAMPM ? " A" : "");
@@ -152,7 +151,7 @@ PetiteVue.createApp({
     }
 
     this.todaysGreeting = getTodaysGreeting();
-    this.minutesLeft = this.currentPeriod.end.diff(dayjs().add(timeOffeset.hour(), 'hour').add(timeOffeset.minute(), 'minute').add(timeOffeset.second(), 'second'), "minutes") + 1;
+    this.minutesLeft = this.currentPeriod.end.diff(dayjs().subtract(timeOffeset.hour(), 'hour').subtract(timeOffeset.minute(), 'minute').subtract(timeOffeset.second(), 'second'), "minutes") + 1;
     this.percentCompleted = Math.trunc(100 - (this.minutesLeft / this.currentPeriod.end.diff(this.currentPeriod.start, "minutes")) * 100);
     this.percentCompletedText = translateWithInsert( "PERCENT_COMPLETED", this.percentCompleted);
     this.currentTime = dayjs().format(timeFormat);
@@ -174,7 +173,7 @@ function PeriodComponent(setName, setStart, setEnd, setPassing) {
     getStart() { return varStart.format(timeFormat) },
     getEnd() { return varEnd.format(timeFormat) },
     isCurrent() {
-      var now = dayjs().add(timeOffeset.hour(), 'hour').add(timeOffeset.minute(), 'minute').add(timeOffeset.second(), 'second');
+      var now = dayjs().subtract(timeOffeset.hour(), 'hour').subtract(timeOffeset.minute(), 'minute').subtract(timeOffeset.second(), 'second');
       return now.isBetween(this.start, this.end)
     },
     isVisible() {
