@@ -15,6 +15,9 @@ var periodListComponent = PeriodListComponent(formattedJSON, false);
 // Stores if a notification has been sent already
 var notified = false;
 
+// Set Timezone
+dayjs.tz.setDefault("America/Los_Angeles");
+
 periodListComponent.listPeriod.forEach((p) => {
         if(p.isCurrent()) {
           currentPeriod = p;
