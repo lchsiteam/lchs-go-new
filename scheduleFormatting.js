@@ -6,7 +6,9 @@ export var scheduleJSON = JSON.parse(localStorage.getItem("scheduleJSON"));
 export var languageJSON = JSON.parse(localStorage.getItem("languageJSON"));
 export var eventsJSON = JSON.parse(localStorage.getItem("eventsJSON"));
 
-dayjs.tz.setDefault("America/Los_Angeles")
+// Set up timezone stuff
+export const TIMEZONE = "America/Los_Angeles";
+dayjs.tz.setDefault(TIMEZONE);
 
 var reload = false;
 // Fetch the schedule.json for updates
