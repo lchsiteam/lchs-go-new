@@ -3,7 +3,8 @@ import {formattedJSON, languageJSON, scheduleJSON, getSchedule, getEvent, TIMEZO
 import { settings, settingsMenu } from "./settings.js";
 import { customNames, namesMenu } from "./classNames.js";
 
-var timeOffeset = dayjs.tz(scheduleJSON.timeOffset, "HH:mm:ss", TIMEZONE).local();
+//var timeOffeset = dayjs.tz(scheduleJSON.timeOffset, "HH:mm:ss", TIMEZONE).local();
+var timeOffeset = dayjs(scheduleJSON.timeOffset, "HH:mm:ss");
 
 // Stores the user preference for how they display time
 var timeFormat = (settings.twentyFourHour ? "HH" : "h") + ":mm" + (settings.showAMPM ? " A" : "");
