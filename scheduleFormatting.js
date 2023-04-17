@@ -69,9 +69,9 @@ function refresh() {
 }
 
 // Create and export the formattedJSON for today
-export var formattedJSON = getSchedule(days.tz());
+export var formattedJSON = getSchedule(dayjs.tz());
 
-// Function - get the formatted schedule json for a specific day - pass in a days.tz() object
+// Function - get the formatted schedule json for a specific day - pass in a dayjs.tz() object
 export function getSchedule(date) {
   if (date == null) return;
   var scheduleType;
@@ -154,7 +154,7 @@ export function getSchedule(date) {
     localJSON = [
       {
         name: "BEFORE_SCHOOL",
-        start: days.tz().startOf("day"),
+        start: dayjs.tz().startOf("day"),
         end: localJSON[0].start,
         passing: true,
       },
@@ -162,7 +162,7 @@ export function getSchedule(date) {
       {
         name: "AFTER_SCHOOL",
         start: localJSON[localJSON.length - 1].end,
-        end: days.tz().endOf("day"),
+        end: dayjs.tz().endOf("day"),
         passing: true,
       },
     ];
@@ -170,8 +170,8 @@ export function getSchedule(date) {
     localJSON = [
       {
         name: "NONE",
-        start: days.tz().startOf("day"),
-        end: days.tz().endOf("day"),
+        start: dayjs.tz().startOf("day"),
+        end: dayjs.tz().endOf("day"),
         passing: false,
       },
     ];

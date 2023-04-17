@@ -130,7 +130,7 @@ PetiteVue.createApp({
   },
   update() {
     if (!this.currentPeriod.isCurrent()) {
-      if (this.currentPeriod.start.day() != days.tz().day()) {
+      if (this.currentPeriod.start.day() != dayjs.tz().day()) {
         location.reload();
      }
       // location.reload();
@@ -151,10 +151,10 @@ PetiteVue.createApp({
     }
 
     this.todaysGreeting = getTodaysGreeting();
-    this.minutesLeft = this.currentPeriod.end.diff(days.tz().add(timeOffeset.hour(), 'hour').add(timeOffeset.minute(), 'minute').add(timeOffeset.second(), 'second'), "minutes") + 1;
+    this.minutesLeft = this.currentPeriod.end.diff(dayjs.tz().add(timeOffeset.hour(), 'hour').add(timeOffeset.minute(), 'minute').add(timeOffeset.second(), 'second'), "minutes") + 1;
     this.percentCompleted = Math.trunc(100 - (this.minutesLeft / this.currentPeriod.end.diff(this.currentPeriod.start, "minutes")) * 100);
     this.percentCompletedText = translateWithInsert( "PERCENT_COMPLETED", this.percentCompleted);
-    this.currentTime = days.tz().format(timeFormat);
+    this.currentTime = dayjs.tz().format(timeFormat);
     document.title = (this.minutesLeft >= 60 ? (Math.trunc(this.minutesLeft / 60) + "hr. ") : "") + this.minutesLeft % 60 + "min. | LCHS Go";
     sendNotification(this.currentPeriod, this.minutesLeft);
   },
@@ -173,7 +173,7 @@ function PeriodComponent(setName, setStart, setEnd, setPassing) {
     getStart() { return varStart.format(timeFormat) },
     getEnd() { return varEnd.format(timeFormat) },
     isCurrent() {
-      var now = days.tz().add(timeOffeset.hour(), 'hour').add(timeOffeset.minute(), 'minute').add(timeOffeset.second(), 'second');
+      var now = dayjs.tz().add(timeOffeset.hour(), 'hour').add(timeOffeset.minute(), 'minute').add(timeOffeset.second(), 'second');
       return now.isBetween(this.start, this.end)
     },
     isVisible() {
@@ -204,7 +204,7 @@ function PeriodComponent(setName, setStart, setEnd, setPassing) {
 // Component - CalendarDay - Holds the schedule for the day and the date
 function CalendarDay(day,monthOffset) {
 
-  var dateS = days.tz().month(days.tz().month() + monthOffset).startOf('month')
+  var dateS = dayjs.tz().month(dayjs.tz().month() + monthOffset).startOf('month')
 
   var dateM = dateS.set('date', day - dateS.day())
   return {
@@ -259,13 +259,13 @@ export function getMonthText(month) {
     11 : "DECEMBER",
   }
   return (
-    translate(monthsDict[days.tz().month(month).month()])
+    translate(monthsDict[dayjs.tz().month(month).month()])
   );
 }
 
 // Function - Get the time of day for the greeting
 function getGreeting() {
-  var hours = days.tz().hour();
+  var hours = dayjs.tz().hour();
 
   if (hours < 12) {
     return translate("MORNING");
