@@ -157,8 +157,8 @@ PetiteVue.createApp({
     this.currentTime = dayjs.utc().tz(TIMEZONE).format(timeFormat);
     document.title = (this.minutesLeft >= 60 ? (Math.trunc(this.minutesLeft / 60) + "hr. ") : "") + this.minutesLeft % 60 + "min. | LCHS Go";
     sendNotification(this.currentPeriod, this.minutesLeft);
-    console.log(dayjs.utc());
-    console.log(dayjs.utc().tz(TIMEZONE));
+    console.log(dayjs.utc().format());
+    console.log(dayjs.utc().tz(TIMEZONE).format());
   },
 }).mount();
 
