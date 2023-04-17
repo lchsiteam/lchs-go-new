@@ -130,7 +130,7 @@ PetiteVue.createApp({
   },
   update() {
     if (!this.currentPeriod.isCurrent()) {
-      if (this.currentPeriod.start.day() != dayjs.utc().tz(TIMEZONE).day()) {
+      if (this.currentPeriod.start.day() != dayjs().day()) {
         location.reload();
      }
       // location.reload();
@@ -157,6 +157,8 @@ PetiteVue.createApp({
     this.currentTime = dayjs.utc().tz(TIMEZONE).format(timeFormat);
     document.title = (this.minutesLeft >= 60 ? (Math.trunc(this.minutesLeft / 60) + "hr. ") : "") + this.minutesLeft % 60 + "min. | LCHS Go";
     sendNotification(this.currentPeriod, this.minutesLeft);
+    console.log(dayjs.utc());
+    console.log(dayjs.utc().tz(TIMEZONE));
   },
 }).mount();
 
