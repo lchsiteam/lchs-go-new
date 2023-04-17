@@ -186,7 +186,7 @@ export function getSchedule(date) {
 function inBreak(date) {
   var breakType = false;
   for (var range in scheduleJSON.dateRanges.breaks) {
-    if (date.startOf().add(1, 'hour').isBetween(dayjs(scheduleJSON.dateRanges.breaks[range][0], "MM/DD/YYYY").startOf('day'), dayjs(scheduleJSON.dateRanges.breaks[range][1], "MM/DD/YYYY").endOf('day'))) {
+    if (date.startOf().add(1, 'hour').isBetween(dayjs.tz(scheduleJSON.dateRanges.breaks[range][0], "MM/DD/YYYY").startOf('day'), dayjs.tz(scheduleJSON.dateRanges.breaks[range][1], "MM/DD/YYYY").endOf('day'))) {
       breakType = range;
       break;
     }
@@ -198,7 +198,7 @@ function inBreak(date) {
 function inCustomWeek(date) {
   var weekType = false;
   for (var range in scheduleJSON.dateRanges.customWeeks) {
-    if (date.startOf().add(1, 'hour').isBetween(dayjs(scheduleJSON.dateRanges.customWeeks[range][0], "MM/DD/YYYY").startOf('day'), dayjs(scheduleJSON.dateRanges.customWeeks[range][1], "MM/DD/YYYY").endOf('day'))) {
+    if (date.startOf().add(1, 'hour').isBetween(dayjs.tz(scheduleJSON.dateRanges.customWeeks[range][0], "MM/DD/YYYY").startOf('day'), dayjs.tz(scheduleJSON.dateRanges.customWeeks[range][1], "MM/DD/YYYY").endOf('day'))) {
       weekType = range;
       break;
     }

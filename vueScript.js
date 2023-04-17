@@ -3,7 +3,7 @@ import {formattedJSON, languageJSON, scheduleJSON, getSchedule, getEvent } from 
 import { settings, settingsMenu } from "./settings.js";
 import { customNames, namesMenu } from "./classNames.js";
 
-var timeOffeset = dayjs(scheduleJSON.timeOffset, "HH:mm:ss");
+var timeOffeset = dayjs.tz(scheduleJSON.timeOffset, "HH:mm:ss");
 
 // Stores the user preference for how they display time
 var timeFormat = (settings.twentyFourHour ? "HH" : "h") + ":mm" + (settings.showAMPM ? " A" : "");
@@ -163,8 +163,8 @@ PetiteVue.createApp({
 
 // Component - Period - Holds the name, start, end, and if passing
 function PeriodComponent(setName, setStart, setEnd, setPassing) {
-  var varStart = dayjs(setStart, "hh:mm A"); //formats from the json
-  var varEnd = dayjs(setEnd, "hh:mm A");
+  var varStart = dayjs.tz(setStart, "hh:mm A"); //formats from the json
+  var varEnd = dayjs.tz(setEnd, "hh:mm A");
 
   return {
     name: setName,
