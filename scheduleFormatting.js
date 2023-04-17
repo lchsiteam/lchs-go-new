@@ -7,7 +7,7 @@ export var languageJSON = JSON.parse(localStorage.getItem("languageJSON"));
 export var eventsJSON = JSON.parse(localStorage.getItem("eventsJSON"));
 
 // Force Time Zone
-var TIMEZONE = "America/Los_Angeles";
+export const TIMEZONE = "America/Los_Angeles";
 dayjs.tz.setDefault(TIMEZONE);
 
 var reload = false;
