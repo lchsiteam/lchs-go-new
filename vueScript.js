@@ -130,7 +130,7 @@ PetiteVue.createApp({
   },
   update() {
     if (!this.currentPeriod.isCurrent()) {
-      if (this.currentPeriod.start.day() != dayjs().tz(TIMEZONE).day()) {
+      if (this.currentPeriod.start.day() != dayjs.utc().tz(TIMEZONE).day()) {
         location.reload();
      }
       // location.reload();
@@ -151,10 +151,10 @@ PetiteVue.createApp({
     }
 
     this.todaysGreeting = getTodaysGreeting();
-    this.minutesLeft = this.currentPeriod.end.diff(dayjs().tz(TIMEZONE).add(timeOffeset.hour(), 'hour').add(timeOffeset.minute(), 'minute').add(timeOffeset.second(), 'second'), "minutes") + 1;
+    this.minutesLeft = this.currentPeriod.end.diff(dayjs.utc().tz(TIMEZONE).add(timeOffeset.hour(), 'hour').add(timeOffeset.minute(), 'minute').add(timeOffeset.second(), 'second'), "minutes") + 1;
     this.percentCompleted = Math.trunc(100 - (this.minutesLeft / this.currentPeriod.end.diff(this.currentPeriod.start, "minutes")) * 100);
     this.percentCompletedText = translateWithInsert( "PERCENT_COMPLETED", this.percentCompleted);
-    this.currentTime = dayjs().tz(TIMEZONE).format(timeFormat);
+    this.currentTime = dayjs.utc().tz(TIMEZONE).format(timeFormat);
     document.title = (this.minutesLeft >= 60 ? (Math.trunc(this.minutesLeft / 60) + "hr. ") : "") + this.minutesLeft % 60 + "min. | LCHS Go";
     sendNotification(this.currentPeriod, this.minutesLeft);
   },
@@ -173,7 +173,7 @@ function PeriodComponent(setName, setStart, setEnd, setPassing) {
     getStart() { return varStart.format(timeFormat) },
     getEnd() { return varEnd.format(timeFormat) },
     isCurrent() {
-      var now = dayjs().tz(TIMEZONE).add(timeOffeset.hour(), 'hour').add(timeOffeset.minute(), 'minute').add(timeOffeset.second(), 'second');
+      var now = dayjs.utc().tz(TIMEZONE).add(timeOffeset.hour(), 'hour').add(timeOffeset.minute(), 'minute').add(timeOffeset.second(), 'second');
       return now.isBetween(this.start, this.end)
     },
     isVisible() {
