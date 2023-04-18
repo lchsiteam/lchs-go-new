@@ -1,5 +1,5 @@
 {
-  "version": 28.2,
+  "version": 29.0,
   "defaults": {
     "0": "NONE",
     "1": "REGULAR",
@@ -98,6 +98,7 @@
     }
   },
   "timeOffset": "00:00:00",
+  "timezone": "America/Los_Angeles",
   "gradeLevels": {
     "middleSchool": {
       "REGULAR": {
