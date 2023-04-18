@@ -1,9 +1,9 @@
 // Importing the Schedule, Settings, and Languages
-import {formattedJSON, languageJSON, scheduleJSON, getSchedule, getEvent, TIMEZONE } from "./scheduleFormatting.js";
+import {formattedJSON, languageJSON, scheduleJSON, getSchedule, getEvent } from "./scheduleFormatting.js";
 import { settings, settingsMenu } from "./settings.js";
 import { customNames, namesMenu } from "./classNames.js";
 
-var timeOffeset = dayjs.tz(scheduleJSON.timeOffset, "HH:mm:ss", TIMEZONE).local();
+var timeOffeset = dayjs.tz(scheduleJSON.timeOffset, "HH:mm:ss", scheduleJSON.timezone).local();
 
 // Stores the user preference for how they display time
 var timeFormat = (settings.twentyFourHour ? "HH" : "h") + ":mm" + (settings.showAMPM ? " A" : "");
