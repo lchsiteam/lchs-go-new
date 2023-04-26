@@ -6,8 +6,6 @@ export var scheduleJSON = JSON.parse(localStorage.getItem("scheduleJSON"));
 export var languageJSON = JSON.parse(localStorage.getItem("languageJSON"));
 export var eventsJSON = JSON.parse(localStorage.getItem("eventsJSON"));
 
-dayjs.tz.setDefault(scheduleJSON.timezone);
-
 var reload = false;
 // Fetch the schedule.json for updates
 var fetchSchedule = true;
@@ -25,6 +23,9 @@ fetch("./schedule.json")
     fetchSchedule = false;
     refresh();
   });
+
+// Set timezone AFTER schedule JSON is loaded
+dayjs.tz.setDefault(scheduleJSON.timezone);
 
 // Fetch the language.json for update
 var fetchLang = true;
