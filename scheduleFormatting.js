@@ -24,9 +24,6 @@ fetch("./schedule.json")
     refresh();
   });
 
-// Set timezone AFTER schedule JSON is loaded
-dayjs.tz.setDefault(scheduleJSON.timezone);
-
 // Fetch the language.json for update
 var fetchLang = true;
 fetch("./languages.json")
@@ -71,6 +68,9 @@ function refresh() {
 
 // Create and export the formattedJSON for today
 export var formattedJSON = getSchedule(dayjs());
+
+// Set timezone for dayjs (not sure if it does anything)
+dayjs.tz.setDefault(scheduleJSON.timezone);
 
 // Function - get the formatted schedule json for a specific day - pass in a dayjs() object
 export function getSchedule(date) {
