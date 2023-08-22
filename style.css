@@ -1,3 +1,5 @@
+/* ideal w/h = 680/600px */
+
 * {
   box-sizing: border-box;
   color: inherit;
@@ -190,13 +192,13 @@
 }
 .period.current {
   position: relative;
-  left: -12px;
+  left: -19.6px;
   margin-top: 2px;
   margin-bottom: 2px;
   background-color: rgba(0, 0, 0, 0.25);
   -webkit-transform: scale(1.1, 1.1);
   -ms-transform: scale(1.1, 1.1);
-  transform: scale(1.152, 1.1);
+  transform: scale(1.1);
 }
 .period-details {
   font-size: 16px;
@@ -724,6 +726,12 @@ option.sr-select-item {
   .period.current {
     left: -12px;
     transform: scale(1.1, 1.1)
+  }
+}
+
+@media screen and (max-height: 615px) {
+  .app-container {
+    padding-top: 30px;
   }
 }
 
