@@ -633,6 +633,9 @@ option.sr-select-item {
   }
 } */
 @media screen and (max-width: 670px) {
+  .all-periods {
+    width: 200;
+  }
   .app-container {
     padding-top: 5px;
   }
@@ -701,6 +704,13 @@ option.sr-select-item {
     width: 90vw;
   }
 }
+
+@media screen and (max-width: 670px) and (min-width: 610px) {
+  .all-periods {
+    width: 450px !important;
+  }
+}
+
 @media screen and (min-width: 850px) {
   .all-periods {
     width: 450px;
