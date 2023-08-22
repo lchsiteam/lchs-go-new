@@ -37,7 +37,7 @@ PetiteVue.createApp({
   periodListComponent,
   todaysGreeting: "",
   listCount: 0,
-  getListCount() {
+  getListAlternation() {
     this.listCount++;
     return this.listCount % 2 == 0;
   },

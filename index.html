@@ -245,8 +245,9 @@
   <template id="period-information-template">
     <div class="progress-bar">
       <div class="circle"></div><!--                             percent max  min          min-->
-      <div class="moving-time" v-bind:style="{ top: percentCompleted * (85 - 12) / 100 + 12 + '%' }"
-        v-effect="$el.textContent = currentTime"></div>
+      <div class="moving-time" v-bind:style="{ top: percentCompleted * (85 - 12) / 100 + 12 + '%' }">
+        <span v-effect="$el.textContent = currentTime"></span>
+      </div>
       <!--12 - 85-->
       <div class="vertical-bar"></div>
       <div class="circle"></div>
@@ -287,7 +288,7 @@
       <div class="period-header-text">{{ translate("PERIOD_END") }}</div>
     </div>
     <div v-for="period in listPeriod">
-      <div class="period" v-bind:class="{ current: period.isCurrent() && !isCalendar, 'list-odd': getListCount() }"
+      <div class="period" v-bind:class="{ current: period.isCurrent() && !isCalendar, 'list-odd': getListAlternation() }"
         v-if="period.isVisible()">
         <div class="period-name">
           <label>
