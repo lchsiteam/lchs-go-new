@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -10,6 +9,8 @@
   <meta name="theme-color" content="#333">
   <script src="https://unpkg.com/petite-vue" defer></script>
   <!-- <script src="https://unpkg.com/moment@2.29.1/moment.js"></script> -->
+
+  <!-- Should find a way to reduce this number of addons -->
   <script src="https://unpkg.com/dayjs@1.10.8/dayjs.min.js"></script>
   <script src="https://unpkg.com/dayjs@1.10.8/plugin/isBetween.js"></script>
   <script src="https://unpkg.com/dayjs@1.10.8/plugin/advancedFormat.js"></script>
@@ -27,8 +28,8 @@
   </script>
   <script type="module" src="scheduleFormatting.js"></script>
   <script type="module" src="vueScript.js"></script>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" href="/public/style.css" />
+  <link rel="manifest" href="/public/manifest.json">
   <link
     href="https://fonts.googleapis.com/css?family=Niramit:300,regular,500,600"
     rel="stylesheet" />
@@ -59,6 +60,7 @@
     <!-- Now Page - Has the period list and the times -->
     <div id="now-page" v-if="currentPage == 'now' && updatePage">
       <div class="todays-schedule" v-effect="$el.textContent = todaysGreeting">
+        <!-- This should only display when things are broken but might durring slow page loads -->
         Hello. Things are broken :)
       </div>
       <div class="schedule-container">
@@ -221,7 +223,6 @@
         </div>
       </div>
     </div>
-    <!-- End of Pages -->
     <div id="data-page" v-if="currentPage == 'data'">
       <div id="hoursLeft">{{ Math.trunc(minutesLeft / 60) }}</div>
       <div id="minutesLeft">{{ minutesLeft % 60 }}</div>
@@ -232,6 +233,7 @@
       <div id="periodEnd">{{ currentPeriod.getEnd() }}</div>
       <div id="isPassing">{{ currentPeriod.passing }}</div>
     </div>
+    <!-- End of Pages -->
     <div class="credits" v-if="popupDate == null">
       Made with ❤️ by the <a href="https://lciteam.club" class="credits" target="_blank">LC iTeam</a>
       <br>
@@ -240,7 +242,9 @@
       <a href="https://chrome.google.com/webstore/detail/lchs-go-beta/bddnpkadgjcbafnmbampfbaiijafealk" class="credits" target="_blank">Install the Extension</a>
     </div>
   </div>
+
   <!-- Templates Section - These are templates because they are used in multiple areas -->
+  <!-- AKA components from other frameworks -->
   <!-- Period Information Template - Holds the time left -->
   <template id="period-information-template">
     <div class="progress-bar">
@@ -308,7 +312,6 @@
           .then(function(registration) {
                 // idk what to put here but it is needed for a pwa
           });
-
         navigator.serviceWorker.ready.then(function(registration) {});
       }
     </script>

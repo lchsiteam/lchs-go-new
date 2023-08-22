@@ -6,7 +6,7 @@ import { customNames, namesMenu } from "./classNames.js";
 var timeOffeset = dayjs.tz(scheduleJSON.timeOffset, "HH:mm:ss", scheduleJSON.timezone).local();
 
 // Stores the user preference for how they display time
-var timeFormat = (settings.twentyFourHour ? "HH" : "h") + ":mm" + (settings.showAMPM ? " A" : "");
+const timeFormat = (settings.twentyFourHour ? "HH" : "h") + ":mm" + (settings.showAMPM ? " A" : "");
 
 // Find current Period
 var currentPeriod = null;
@@ -19,6 +19,8 @@ periodListComponent.listPeriod.forEach((p) => {
         if(p.isCurrent()) {
           currentPeriod = p;
         }});
+
+const pages = ['now', 'calendar', 'settings', 'classNames', 'data']
 
 // Petite Vue interface
 PetiteVue.createApp({
@@ -66,6 +68,7 @@ PetiteVue.createApp({
 
   // Functions
   switchPage(page) {
+    
     if (page == 'now' || page == 'calendar' || page == 'settings' || page == 'classNames' || page == 'data')
       this.currentPage = page;
     else {

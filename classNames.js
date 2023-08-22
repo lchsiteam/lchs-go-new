@@ -1,3 +1,10 @@
+/**
+ * External dataloading for classnames
+ * 
+ * customNames are user's names in localstorage
+ * namesMenu are HARD CODED final key values
+ */
+
 // Export the current settings JSON
 export var customNames = JSON.parse(localStorage.getItem("customNamesJSON"));
 if (customNames == null) {
