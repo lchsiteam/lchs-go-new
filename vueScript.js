@@ -81,6 +81,9 @@ PetiteVue.createApp({
       }
     }
   },
+  getCurrentPage() {
+    return this.currentPage
+  },
   changeSetting,
   changeHue,
   themeChange,

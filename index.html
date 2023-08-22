@@ -18,8 +18,8 @@
   <script src="https://unpkg.com/dayjs@1.10.8/plugin/utc.js"></script>
   <script src="https://unpkg.com/dayjs@1.10.8/plugin/timezone.js"></script>
   <script>
-    dayjs.extend(window.dayjs_plugin_isBetween); 
-    dayjs.extend(window.dayjs_plugin_advancedFormat); 
+    dayjs.extend(window.dayjs_plugin_isBetween);
+    dayjs.extend(window.dayjs_plugin_advancedFormat);
     dayjs.extend(window.dayjs_plugin_customParseFormat);
     dayjs.extend(window.dayjs_plugin_localeData);
     dayjs.extend(window.dayjs_plugin_utc);
@@ -29,9 +29,7 @@
   <script type="module" src="vueScript.js"></script>
   <link rel="stylesheet" href="style.css" />
   <link rel="manifest" href="/manifest.json">
-  <link
-    href="https://fonts.googleapis.com/css?family=Niramit:300,regular,500,600"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Niramit:300,regular,500,600" rel="stylesheet" />
   <title>LCHS Go</title>
 </head>
 
@@ -42,8 +40,7 @@
     <div class="header">
       <!-- Navigation - Holds the page buttons -->
       <div class="navigation">
-        <button @click="switchPage('now')" class="nav-button"
-          v-bind:class="{'selected': currentPage == 'now'}">
+        <button @click="switchPage('now')" class="nav-button" v-bind:class="{'selected': currentPage == 'now'}">
           {{ translate("NOW") }}
         </button>
         <button @click="switchPage('calendar')" class="nav-button"
@@ -63,9 +60,9 @@
       </div>
       <div class="schedule-container">
         <div class="period-information" v-scope="PeriodInformationComponent()"></div>
-        <div class="all-periods" v-scope="periodListComponent">
-          <div style="margin-bottom: 30px;" class="period-details-small" v-scope="PeriodInformationComponent()" 
-          v-if="!settings.inlinePeriodDetails"></div>
+        <div class="{ all-periods }" v-scope="periodListComponent">
+          <div style="margin-bottom: 30px;" class="period-details-small" v-scope="PeriodInformationComponent()"
+            v-if="!settings.inlinePeriodDetails"></div>
         </div>
       </div>
       <div class="todays-events" v-scope="{ 'eventD': getEvent(dayjs()) }">
@@ -74,20 +71,25 @@
         </div>
       </div>
     </div>
-    <!-- Calendar Page - Calendar pulled from the events.json --> 
+    <!-- Calendar Page - Calendar pulled from the events.json -->
     <div id="calendar-page" v-if="currentPage == 'calendar'">
       <div class="calendar-title" v-if="popupDate == null">
-        <div class ="month-select-left" @click="monthOffset--; calendarToggle=false; setTimeout( () => { calendarToggle = true; }, 10);" tabindex="0">⇦</div>
-        <div class="calendar-month" v-effect="$el.textContent = getMonthText(dayjs().month() + monthOffset) + ' ' + Math.floor((dayjs().year() + (dayjs().month() + monthOffset) / 12))">
+        <div class="month-select-left"
+          @click="monthOffset--; calendarToggle=false; setTimeout( () => { calendarToggle = true; }, 10);" tabindex="0">
+          ⇦</div>
+        <div class="calendar-month"
+          v-effect="$el.textContent = getMonthText(dayjs().month() + monthOffset) + ' ' + Math.floor((dayjs().year() + (dayjs().month() + monthOffset) / 12))">
           {{ translate("CALENDAR_TITLE")}}
         </div>
-        <div class="month-select-right" @click="monthOffset++; calendarToggle = false; setTimeout( () => { calendarToggle = true; }, 10)" tabindex="0">⇨</div>
+        <div class="month-select-right"
+          @click="monthOffset++; calendarToggle = false; setTimeout( () => { calendarToggle = true; }, 10)"
+          tabindex="0">⇨</div>
       </div>
-      <div class="calendar-container"  v-if="calendarToggle">
+      <div class="calendar-container" v-if="calendarToggle">
         <button class="calendar-day-wrap" v-for="day in 35" v-scope="CalendarDay(day, monthOffset)"
-          @click="if (popupDate == null) {popupDate = date;} else {popupDate = null;}"> 
+          @click="if (popupDate == null) {popupDate = date;} else {popupDate = null;}">
           <div class="calendar-day" v-if="popupDate == null"
-          v-bind:class="{ 'today': date.date() == dayjs().date() && date.month() == dayjs().month() && date.year() == dayjs().year(), 'outside': date.month() !== mod(dayjs().month() + monthOffset,12) }">
+            v-bind:class="{ 'today': date.date() == dayjs().date() && date.month() == dayjs().month() && date.year() == dayjs().year(), 'outside': date.month() !== mod(dayjs().month() + monthOffset,12) }">
             <div class="cd-number">
               {{ date.date() }}
             </div>
@@ -126,27 +128,26 @@
         </div>
         <div class="sr-option">
           <div class="sr-selector" v-if="setting.mode == 'toggle'" v-scope="{ value: settings[setting.setting] }">
-            <div class="sr-selector-option" v-for="option in setting.options" tabindex="0"
-              v-effect="
+            <div class="sr-selector-option" v-for="option in setting.options" tabindex="0" v-effect="
                 if(value == option[0]) {
                   $el.className = 'sr-selector-option selected';
                 } else {
                   $el.className = 'sr-selector-option';
-                }"
-              @click="changeSetting(setting.setting, option[0]); value = option[0]"
+                }" @click="changeSetting(setting.setting, option[0]); value = option[0]"
               v-bind:class="{ 'selected': settings[setting.setting] == option[0] }">
               {{ translate(option[1]) }}
             </div>
           </div>
-          <select class="sr-select" v-if="setting.mode == 'dropdown'" v-effect="$el.selectedIndex = setting.options.indexOf(settings[setting.setting])"
-          @change="changeSetting(setting.setting, setting.options[$el.selectedIndex]); if(setting.reload) location.reload();">
+          <select class="sr-select" v-if="setting.mode == 'dropdown'"
+            v-effect="$el.selectedIndex = setting.options.indexOf(settings[setting.setting])"
+            @change="changeSetting(setting.setting, setting.options[$el.selectedIndex]); if(setting.reload) location.reload();">
             <option class="sr-select-item" v-for="option in setting.options">{{ translate(option) }}</option>
           </select>
           <div class="" v-if="setting.mode == 'color-slider'">
             <label>
               <input class="sr-color-slider" id="hue" type="range" max="360" v-effect="$el.value = settings.colorTheme"
-              v-on:input="changeHue($el.value)" @click="themeChange()"
-              v-on:change="changeSetting('colorTheme', $el.value)">
+                v-on:input="changeHue($el.value)" @click="themeChange()"
+                v-on:change="changeSetting('colorTheme', $el.value)">
             </label>
           </div>
         </div>
@@ -158,7 +159,8 @@
         </div>
         <div class="sr-option">
           <div class="sr-selector">
-            <div class="sr-selector-option" @click="switchPage('classNames')" tabindex="0">{{ translate("CONFIGURE") }}</div>
+            <div class="sr-selector-option" @click="switchPage('classNames')" tabindex="0">{{ translate("CONFIGURE") }}
+            </div>
           </div>
         </div>
       </div>
@@ -169,28 +171,36 @@
         </div>
         <div class="sr-option">
           <div class="sr-selector">
-            <div class="sr-selector-option" @click="shareSettings()" tabindex="0">{{ translate("SHARE_SETTINGS") }}</div>
+            <div class="sr-selector-option" @click="shareSettings()" tabindex="0">{{ translate("SHARE_SETTINGS") }}
+            </div>
           </div>
           <div class="sr-selector">
-            <div class="sr-selector-option" @click="shareClassNames()" tabindex="0">{{ translate("SHARE_CLASS_NAMES") }}</div>
+            <div class="sr-selector-option" @click="shareClassNames()" tabindex="0">{{ translate("SHARE_CLASS_NAMES") }}
+            </div>
           </div>
-          <div class="share-link" v-effect="$el.textContent = shareLink" @click="$el.focus(); $el.select();" tabindex="0"></div>
+          <div class="share-link" v-effect="$el.textContent = shareLink" @click="$el.focus(); $el.select();"
+            tabindex="0"></div>
         </div>
       </div>
       <div class="settings-row" style="position: relative; z-index: 999;">
         <div class="sr-head">
           <b class="sr-title">Reset</b>
-          <span class="sr-desc">Reset any of the data stored in your local storage. Try using this if the page isn't working. (Try reloading first)</span>
+          <span class="sr-desc">Reset any of the data stored in your local storage. Try using this if the page isn't
+            working. (Try reloading first)</span>
         </div>
         <div class="sr-option">
           <div class="sr-selector">
-            <div class="sr-selector-option" onclick="localStorage.removeItem('settings'); location.reload()" tabindex="0">Reset Settings</div>
+            <div class="sr-selector-option" onclick="localStorage.removeItem('settings'); location.reload()"
+              tabindex="0">Reset Settings</div>
           </div>
           <div class="sr-selector">
-            <div class="sr-selector-option" onclick="localStorage.removeItem('customNamesJSON'); location.reload()" tabindex="0">Reset Class Names</div>
+            <div class="sr-selector-option" onclick="localStorage.removeItem('customNamesJSON'); location.reload()"
+              tabindex="0">Reset Class Names</div>
           </div>
           <div class="sr-selector">
-            <div class="sr-selector-option" onclick="localStorage.removeItem('scheduleJSON'); localStorage.removeItem('eventsJSON'); localStorage.removeItem('languageJSON'); location.reload()" tabindex="0">Reset Local Storage</div>
+            <div class="sr-selector-option"
+              onclick="localStorage.removeItem('scheduleJSON'); localStorage.removeItem('eventsJSON'); localStorage.removeItem('languageJSON'); location.reload()"
+              tabindex="0">Reset Local Storage</div>
           </div>
         </div>
       </div>
@@ -205,8 +215,7 @@
           <b class="sr-title">{{ translateNoCustom(periodId) }}</b>
         </div>
         <div class="sr-option">
-          <input class="sr-text" v-effect="$el.value = translate(periodId)"
-          @change="changeClassName(periodId, $el);">
+          <input class="sr-text" v-effect="$el.value = translate(periodId)" @change="changeClassName(periodId, $el);">
           </input>
         </div>
       </div>
@@ -237,7 +246,8 @@
       <br>
       <a href="https://forms.gle/BgFW4MgL9RGpezdw7" class="credits" target="_blank">Report a bug</a>
       <br>
-      <a href="https://chrome.google.com/webstore/detail/lchs-go-beta/bddnpkadgjcbafnmbampfbaiijafealk" class="credits" target="_blank">Install the Extension</a>
+      <a href="https://chrome.google.com/webstore/detail/lchs-go-beta/bddnpkadgjcbafnmbampfbaiijafealk" class="credits"
+        target="_blank">Install the Extension</a>
     </div>
   </div>
   <!-- Templates Section - These are templates because they are used in multiple areas -->
@@ -288,31 +298,33 @@
       <div class="period-header-text">{{ translate("PERIOD_END") }}</div>
     </div>
     <div v-for="period in listPeriod">
-      <div class="period" v-bind:class="{ current: period.isCurrent() && !isCalendar, 'list-odd': getListAlternation() }"
+      <div class="period"
+        v-bind:class="{ current: period.isCurrent() && !isCalendar, 'list-odd': getListAlternation() }"
         v-if="period.isVisible()">
         <div class="period-name">
           <label>
-            <input class="period-details" v-effect="$el.value = period.getName()"
-            @click="$el.focus(); $el.select();" @blur="changeClassName(period.name, $el)"/>
+            <input class="period-details" v-effect="$el.value = period.getName()" @click="$el.focus(); $el.select();"
+              @blur="changeClassName(period.name, $el)" />
           </label>
         </div>
         <div class="period-details">{{ period.getStart() }}</div>
         <div class="period-details">{{ period.getEnd() }}</div>
       </div>
-      <div class="period-details-small" v-scope="PeriodInformationComponent()" v-if="period.isCurrent() && !isCalendar && settings.inlinePeriodDetails"></div>
+      <div class="period-details-small" v-scope="PeriodInformationComponent()"
+        v-if="period.isCurrent() && !isCalendar && settings.inlinePeriodDetails"></div>
     </div>
   </template>
   <!-- Service Worker Startup -->
   <script>
-      if('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/serviceWorker.js', { scope: '/' })
-          .then(function(registration) {
-                // idk what to put here but it is needed for a pwa
-          });
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/serviceWorker.js', { scope: '/' })
+        .then(function (registration) {
+          // idk what to put here but it is needed for a pwa
+        });
 
-        navigator.serviceWorker.ready.then(function(registration) {});
-      }
-    </script>
+      navigator.serviceWorker.ready.then(function (registration) { });
+    }
+  </script>
 </body>
 
 </html>
