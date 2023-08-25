@@ -67,15 +67,17 @@
   background-color: #466272;
   transition: background-color ease-in-out;
 }
-.background .animated {
+.background.animated {
   animation: hueChange 10s infinite alternate;
 }
+
 @keyframes hueChange {
   0% {
-    filter: hue-rotate(0deg);
+    filter: hue-rotate(calc(var(--animated-background-intensity) * -1));
   }
+
   100% {
-    filter: hue-rotate(180deg);
+    filter: hue-rotate(var(--animated-background-intensity));
   }
 }
 .header {

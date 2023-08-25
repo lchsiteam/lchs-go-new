@@ -1,5 +1,5 @@
 {
-  "version": 27.1,
+  "version": 27.2,
   "ENGLISH": {
     "ENGLISH": "English",
     "SPANISH": "Español",
@@ -82,6 +82,10 @@
     "SETTINGS_SHOW_WEEKENDS_DESC": "Shows the weekends on the calendar",
     "SETTINGS_COLOR_THEME_TITLE": "Color Theme",
     "SETTINGS_COLOR_THEME_DESC": "Changes the background color",
+    "SETTINGS_THEME_ANIMATION_TITLE": "Theme Animation",
+    "SETTINGS_THEME_ANIMATION_DESC": "Enables the theme animation",
+    "SETTINGS_THEME_ANIMATION_INTENSITY_TITLE": "Theme Animation Intensity",
+    "SETTINGS_THEME_ANIMATION_INTENSITY_DESC": "Changes the intensity of the theme animation",
     "SETTINGS_GRADE_LEVEL_TITLE": "Grade Level",
     "SETTINGS_GRADE_LEVEL_DESC": "Changes the grade level for the schedule",
     "SETTINGS_LANGUAGE_TITLE": "Language",

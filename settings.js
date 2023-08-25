@@ -123,7 +123,7 @@ export const settingsMenu = {
     ],
     new: false,
     experimental: false,
-    reload: false,
+    reload: true,
   },
   themeAnimationIntensity: {
     setting: "themeAnimationIntensity",
