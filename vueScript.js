@@ -4,6 +4,7 @@ import { settings, settingsMenu } from "./settings.js";
 import { customNames, namesMenu } from "./classNames.js";
 
 var timeOffeset = dayjs.tz(scheduleJSON.timeOffset, "HH:mm:ss", scheduleJSON.timezone).local();
+const rootStyle = document.querySelector(":root").style;
 
 // Stores the user preference for how they display time
 var timeFormat = (settings.twentyFourHour ? "HH" : "h") + ":mm" + (settings.showAMPM ? " A" : "");
@@ -288,6 +289,7 @@ function changeSetting(setting, value) {
 
   timeFormat = (settings.twentyFourHour ? "HH" : "h") + ":mm" + (settings.showAMPM ? " A" : "");
   
+  if (setting == "themeAnimationIntensity") rootStyle.setProperty("--animated-background-intensity", value + "deg");
   if (setting == "notificationToggle" && value) {
       if (!("Notification" in window)) {
       // Check if the browser supports notifications
