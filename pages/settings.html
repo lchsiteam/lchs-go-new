@@ -1,12 +1,12 @@
 <!-- Settings Page - All of the user settings generated from settings.js -->
 
 <div class="page-title">{{ translate("SETTINGS_TITLE") }}</div>
-<div class="setting" v-for="setting in settingsMenu">
+<div class="setting" v-for="[key, setting] in settings.entries()">
   <div>
-    <span class="title">{{ translate("SETTINGS_" + setting.key + "_TITLE") }}</span>
+    <span class="title">{{ translate("SETTINGS_" + key + "_TITLE") }}</span>
     <span class="badge" v-if="setting.new">NEW</span>
     <span class="badge experimental" v-if="setting.experimental">!</span>
-    <div class="description">{{ translate("SETTINGS_" + setting.key + "_DESC") }}</div>
+    <div class="description">{{ translate("SETTINGS_" + key + "_DESC") }}</div>
   </div>
   <div>
     <div class="toggle" v-if="setting.mode == 'toggle'" v-scope="{ value: settings[setting.setting] }">
@@ -19,8 +19,8 @@
     </select>
     <div v-if="setting.mode == 'color-slider'">
       <!-- SLIDER Settings -->
-      <input v-if="setting.setting == 'colorTheme'" class="color-slider" :id="setting.key" type="range" :max="setting.max" :min="setting.min" :value="settings[setting.setting]" v-on:input="changeHue($el.value)" @click="themeChange()" v-on:change="changeSetting(setting.setting, $el.value)" />
-      <input v-if="setting.setting == 'themeAnimationIntensity'" class="slider" :id="setting.key" type="range" :max="setting.max" :min="setting.min" :value="settings[setting.setting]" v-on:change="changeSetting(setting.setting, $el.value)" />
+      <input v-if="setting.setting == 'colorTheme'" class="color-slider" :id="key" type="range" :max="setting.max" :min="setting.min" :value="settings[setting.setting]" v-on:input="changeHue($el.value)" @click="themeChange()" v-on:change="changeSetting(setting.setting, $el.value)" />
+      <input v-if="setting.setting == 'themeAnimationIntensity'" class="slider" :id="key" type="range" :max="setting.max" :min="setting.min" :value="settings[setting.setting]" v-on:change="changeSetting(setting.setting, $el.value)" />
     </div>
   </div>
 </div>

@@ -1,10 +1,10 @@
 // Importing the Schedule, Settings, and Languages
 import { formattedJSON, languageJSON, scheduleJSON, getSchedule, getEvent } from "./schedule.js";
-import { settings, settingsMenu } from "./settings.js";
+import { userSettings, settings } from "./settings.js";
 
 // Stores the user preference for how they display time
 const timeOffeset = dayjs.tz(scheduleJSON.timeOffset, "HH:mm:ss", scheduleJSON.timezone).local();
-let timeFormat = (settings.twentyFourHour ? "HH" : "h") + ":mm" + (settings.showAMPM ? " A" : "");
+let timeFormat = (userSettings.twentyFourHour ? "HH" : "h") + ":mm" + (userSettings.showAMPM ? " A" : "");
 
 const rootStyle = document.querySelector(":root").style;
 
@@ -76,8 +76,8 @@ PetiteVue.createApp({
   calendarToggle: true,
 
   // Settings Page
-  settingsMenu,
-  settings,
+  settingsMenu: settings,
+  settings: userSettings,
   changedSetting: true,
   shareLink: "",
 
@@ -124,7 +124,7 @@ PetiteVue.createApp({
 
     if (startReload) location.reload();
 
-    changeHue(settings.colorTheme);
+    changeHue(userSettings.colorTheme);
     this.update();
 
     clearInterval(this.interval);
@@ -175,10 +175,10 @@ function PeriodComponent(setName, setStart, setEnd, setPassing) {
       return now.isBetween(this.start, this.end);
     },
     isVisible() {
-      if (this.isCurrent() || settings.showExtraPeriods) return true;
+      if (this.isCurrent() || userSettings.showExtraPeriods) return true;
       else {
-        if (this.name == "PERIOD_0" && !settings.zeroEnabled) return false;
-        else if (this.name == "PERIOD_6" && !settings.sixthEnabled) return false;
+        if (this.name == "PERIOD_0" && !userSettings.zeroEnabled) return false;
+        else if (this.name == "PERIOD_6" && !userSettings.sixthEnabled) return false;
         else if (setPassing) return false;
         else return true;
       }
@@ -264,15 +264,15 @@ function getGreeting() {
 
 // Function - Set the local storage settings with an updated user setting
 function changeSetting(setting, value) {
-  settings[setting] = value;
+  userSettings[setting] = value;
   this.changedSetting = !this.changedSetting;
 
   // Send a message for the extension to pick up on when the settings change
   window.postMessage({ settingsChanged: true });
 
-  localStorage.setItem("settings", JSON.stringify(settings));
+  localStorage.setItem("settings", JSON.stringify(userSettings));
 
-  timeFormat = (settings.twentyFourHour ? "HH" : "h") + ":mm" + (settings.showAMPM ? " A" : "");
+  timeFormat = (userSettings.twentyFourHour ? "HH" : "h") + ":mm" + (userSettings.showAMPM ? " A" : "");
 
   if (setting == "themeAnimationIntensity") rootStyle.setProperty("--animated-background-intensity", value + "deg");
 
@@ -377,7 +377,7 @@ function changeClassName(periodId, element) {
 
 function shareSettings() {
   var link = new URL(location.origin);
-  link.searchParams.set("setSettings", JSON.stringify(settings));
+  link.searchParams.set("setSettings", JSON.stringify(userSettings));
   this.shareLink = link.href + "&settings";
 }
 
@@ -428,20 +428,20 @@ export function translateWithInsert(translateText, insertString) {
 
 // Notify the user before period starts or ends
 export function sendNotification(period, timeLeft) {
-  if (settings.notificationToggle && !notified) {
+  if (userSettings.notificationToggle && !notified) {
     var nextPeriod = null;
     periodListComponent.listPeriod.forEach((p) => {
       if (p.getStart() == period.getEnd()) {
         nextPeriod = p;
       }
     });
-    if (nextPeriod && !nextPeriod.passing && nextPeriod.isVisible() && timeLeft == parseInt(settings.notificationStart)) {
+    if (nextPeriod && !nextPeriod.passing && nextPeriod.isVisible() && timeLeft == parseInt(userSettings.notificationStart)) {
       // period start notif
-      const notification = new Notification("LCHS Go", { body: nextPeriod.getName() + translateWithInsert("NOTIFY_START", translate(settings.notificationStart)), icon: "/faviconLarge.png" });
+      const notification = new Notification("LCHS Go", { body: nextPeriod.getName() + translateWithInsert("NOTIFY_START", translate(userSettings.notificationStart)), icon: "/faviconLarge.png" });
       notified = true;
-    } else if (!period.passing && period.isVisible() && timeLeft == parseInt(settings.notificationEnd)) {
+    } else if (!period.passing && period.isVisible() && timeLeft == parseInt(userSettings.notificationEnd)) {
       // period end notif
-      const notification = new Notification("LCHS Go", { body: period.getName() + translateWithInsert("NOTIFY_END", translate(settings.notificationEnd)), icon: "/faviconLarge.png" });
+      const notification = new Notification("LCHS Go", { body: period.getName() + translateWithInsert("NOTIFY_END", translate(userSettings.notificationEnd)), icon: "/faviconLarge.png" });
       notified = true;
     }
   }
