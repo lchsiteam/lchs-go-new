@@ -1,0 +1,10 @@
+<!-- Data Page - Used for the extenstion to get all the data it needs  -->
+
+<div id="hoursLeft">{{ Math.trunc(minutesLeft / 60) }}</div>
+<div id="minutesLeft">{{ minutesLeft % 60 }}</div>
+<div id="minutesLeftTotal">{{ minutesLeft }}</div>
+<div id="percentComplete">{{ percentCompleted }}</div>
+<div id="periodName">{{ currentPeriod.getName() }}</div>
+<div id="periodStart">{{ currentPeriod.getStart() }}</div>
+<div id="periodEnd">{{ currentPeriod.getEnd() }}</div>
+<div id="isPassing">{{ currentPeriod.passing }}</div>

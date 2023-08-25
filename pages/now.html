@@ -1,0 +1,15 @@
+<!-- Now Page - Has the period list and the times -->
+
+<div class="page-title" v-effect="$el.textContent = todaysGreeting">
+  <!-- This should only display when things are broken but might durring slow page loads -->
+  Hello. Things are broken :)
+</div>
+<div class="schedule-container">
+  <div class="period-information" v-scope="PeriodInformationComponent()"></div>
+  <div class="all-periods" v-scope="periodListComponent">
+    <div style="margin-bottom: 30px" class="period-details-small" v-scope="PeriodInformationComponent()" v-if="!settings.inlinePeriodDetails"></div>
+  </div>
+</div>
+<div class="todays-events" v-scope="{ 'eventD': getEvent(dayjs()) }">
+  <div class="cd-tag" style="padding: 10px" v-if="eventD != undefined">{{ eventD }}</div>
+</div>
