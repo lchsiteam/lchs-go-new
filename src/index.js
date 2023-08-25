@@ -4,10 +4,10 @@ import { userSettings, settings } from "./settings.js";
 
 // Stores the user preference for how they display time
 const timeOffeset = dayjs.tz(scheduleJSON.timeOffset, "HH:mm:ss", scheduleJSON.timezone).local();
-let timeFormat = (userSettings.twentyFourHour ? "HH" : "h") + ":mm" + (userSettings.showAMPM ? " A" : "");
+let timeFormat = (userSettings.TWENTY_FOUR_HOUR ? "HH" : "h") + ":mm" + (userSettings.AM_PM ? " A" : "");
 
 const rootStyle = document.querySelector(":root").style;
-rootStyle.setProperty("--animated-background-intensity", settings.themeAnimationIntensity + "deg");
+rootStyle.setProperty("--animated-background-intensity", settings.THEME_ANIMATION_INTENSITY + "deg");
 
 // Export the current settings JSON
 let customNames = JSON.parse(localStorage.getItem("customNamesJSON"));
@@ -124,7 +124,7 @@ PetiteVue.createApp({
 
     if (startReload) location.reload();
 
-    changeHue(userSettings.colorTheme);
+    changeHue(userSettings.COLOR_THEME);
     this.update();
 
     clearInterval(this.interval);
@@ -175,10 +175,10 @@ function PeriodComponent(setName, setStart, setEnd, setPassing) {
       return now.isBetween(this.start, this.end);
     },
     isVisible() {
-      if (this.isCurrent() || userSettings.showExtraPeriods) return true;
+      if (this.isCurrent() || userSettings.EXTRA_PERIODS) return true;
       else {
-        if (this.name == "PERIOD_0" && !userSettings.zeroEnabled) return false;
-        else if (this.name == "PERIOD_6" && !userSettings.sixthEnabled) return false;
+        if (this.name == "PERIOD_0" && !userSettings.ZERO_PERIOD) return false;
+        else if (this.name == "PERIOD_6" && !userSettings.SIXTH_PERIOD) return false;
         else if (setPassing) return false;
         else return true;
       }
@@ -269,9 +269,9 @@ function changeSetting(setting, value) {
   // Send a message for the extension to pick up on when the settings change
   window.postMessage({ settingsChanged: true });
   localStorage.setItem("settings", JSON.stringify(userSettings));
-  timeFormat = (userSettings.twentyFourHour ? "HH" : "h") + ":mm" + (userSettings.showAMPM ? " A" : "");
+  timeFormat = (userSettings.TWENTY_FOUR_HOUR ? "HH" : "h") + ":mm" + (userSettings.AM_PM ? " A" : "");
+  rootStyle.setProperty("--animated-background-intensity", userSettings.THEME_ANIMATION_INTENSITY + "deg");
 
-  if (setting == "themeAnimationIntensity") rootStyle.setProperty("--animated-background-intensity", value + "deg");
   if (setting == "notificationToggle" && value) {
     if (!("Notification" in window)) {
       // Check if the browser supports notifications
@@ -424,31 +424,21 @@ export function translateWithInsert(translateText, insertString) {
 
 // Notify the user before period starts or ends
 export function sendNotification(period, timeLeft) {
-  if (userSettings.notificationToggle && !notified) {
+  if (userSettings.NOTIFICATIONS_TOGGLE && !notified) {
     var nextPeriod = null;
     periodListComponent.listPeriod.forEach((p) => {
       if (p.getStart() == period.getEnd()) {
         nextPeriod = p;
       }
     });
-    if (nextPeriod && !nextPeriod.passing && nextPeriod.isVisible() && timeLeft == parseInt(userSettings.notificationStart)) {
+    if (nextPeriod && !nextPeriod.passing && nextPeriod.isVisible() && timeLeft == parseInt(userSettings.NOTIFICATIONS_START)) {
       // period start notif
-      const notification = new Notification("LCHS Go", { body: nextPeriod.getName() + translateWithInsert("NOTIFY_START", translate(userSettings.notificationStart)), icon: "/faviconLarge.png" });
+      const notification = new Notification("LCHS Go", { body: nextPeriod.getName() + translateWithInsert("NOTIFY_START", translate(userSettings.NOTIFICATIONS_START)), icon: "/faviconLarge.png" });
       notified = true;
-    } else if (!period.passing && period.isVisible() && timeLeft == parseInt(userSettings.notificationEnd)) {
+    } else if (!period.passing && period.isVisible() && timeLeft == parseInt(userSettings.NOTIFICATIONS_END)) {
       // period end notif
-      const notification = new Notification("LCHS Go", { body: period.getName() + translateWithInsert("NOTIFY_END", translate(userSettings.notificationEnd)), icon: "/faviconLarge.png" });
+      const notification = new Notification("LCHS Go", { body: period.getName() + translateWithInsert("NOTIFY_END", translate(userSettings.NOTIFICATIONS_END)), icon: "/faviconLarge.png" });
       notified = true;
     }
   }
-}
-
-export function mod(bigNum, smallNum) {
-  var output;
-  if (bigNum < 0) {
-    output = smallNum - (-bigNum % smallNum);
-  } else {
-    output = bigNum % smallNum;
-  }
-  return output;
 }

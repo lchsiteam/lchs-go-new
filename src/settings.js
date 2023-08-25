@@ -1,4 +1,6 @@
 // Settings menu data
+// Feel free to remove these types if they prove, not useful
+// I was mostly just experimenting with jsdoc
 /**
  * @typedef {Object} Dropdown
  * @property {"dropdown"} mode - The mode of the setting

@@ -7,7 +7,7 @@
 <div class="schedule-container">
   <div class="period-information" v-scope="PeriodInformationComponent()"></div>
   <div class="all-periods" v-scope="periodListComponent">
-    <div style="margin-bottom: 30px" class="period-details-small" v-scope="PeriodInformationComponent()" v-if="!settings.inlinePeriodDetails"></div>
+    <div style="margin-bottom: 30px" class="period-details-small" v-scope="PeriodInformationComponent()" v-if="!userSettings.INLINE_DETAILS"></div>
   </div>
 </div>
 <div class="todays-events" v-scope="{ 'eventD': getEvent(dayjs()) }">

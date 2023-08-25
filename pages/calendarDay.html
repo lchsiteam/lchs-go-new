@@ -1,7 +1,7 @@
 <div v-scope="PeriodListComponent(selectedCalendarDay, true) || periodListComponent"></div>
 <div class="setting">
   <div>
-    <div class="title">{{ translate("RETURN_CALENDAR") }}</div>
+    <div class="title">{{ translateWithInsert("RETURN_TO", "CALENDAR") }}</div>
   </div>
   <div>
     <div class="button" @click="switchPage(Pages.Calendar)" tabindex="0">{{ translate("RETURN") }}</div>

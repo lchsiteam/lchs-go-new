@@ -44,7 +44,7 @@
   <div class="button-wrapper">
     <div class="button" @click="shareSettings()" tabindex="0">{{ translate("SHARE_SETTINGS") }}</div>
     <div class="button" @click="shareClassNames()" tabindex="0">{{ translate("SHARE_CLASS_NAMES") }}</div>
-    <div class="share-link" v-effect="$el.textContent = shareLink" @click="$el.focus(); $el.select();" tabindex="0"></div>
+    <div class="share-link" :textContent="shareLink" @click="$el.focus(); $el.select();" tabindex="0"></div>
   </div>
 </div>
 <div class="setting" style="position: relative; z-index: 999">

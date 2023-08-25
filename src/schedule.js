@@ -79,7 +79,7 @@ export function getSchedule(date) {
   // Add the periods and passing periods the json
   if (scheduleType != "NONE" && !Object.keys(scheduleJSON.dateRanges.breaks).includes(scheduleType)) {
     var previousEnd;
-    switch (userSettings.grade) {
+    switch (userSettings.GRADE_LEVEL) {
       case "GRADE_7":
       case "GRADE_8":
         Object.keys(scheduleJSON.gradeLevels.middleSchool[scheduleType]).forEach((period) => {
@@ -122,8 +122,6 @@ export function getSchedule(date) {
           previousEnd = scheduleJSON.gradeLevels.highSchool[scheduleType][period][1];
         });
         break;
-    }
-    if (userSettings.grade >= 9) {
     }
 
     // Add before and after school
