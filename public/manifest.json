@@ -1,0 +1,28 @@
+{
+  "short_name": "LCHS Go",
+  "name": "LCHS Go",
+  "icons": [
+    {
+      "src": "/public/favicon.ico",
+      "type": "image/ico",
+      "sizes": "48x48"
+    },
+    {
+      "src": "/public/faviconLarge.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/public/faviconLargeLarge.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/?now",
+  "background_color": "#333",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#333",
+  "description": "A bell schedule app for LCHS"
+}
