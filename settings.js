@@ -128,7 +128,7 @@ export const settingsMenu = {
   themeAnimationIntensity: {
     setting: "themeAnimationIntensity",
     key: "THEME_ANIMATION_INTENSITY",
-    mode: "color-slider",
+    mode: "slider",
     max: 180,
     min: 10,
     new: false,
