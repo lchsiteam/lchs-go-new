@@ -11,7 +11,7 @@
   <div>
     <div class="toggle" v-if="setting.mode == 'toggle'" v-scope="{ value: userSettings[key] }">
       <!-- TOGGLE Setting -->
-      <div class="toggle-option" v-for="option in setting.options" tabindex="0" v-bind:class="{ 'selected': value == option[0] }" @click="changeSetting(key, option[0]); value = option[0]; if(setting.reload) location.reload();" v-bind:class="{ 'selected': userSettings[key] == option.value }">{{ translate(option.text) }}</div>
+      <div class="toggle-option" v-for="option in setting.options" tabindex="0" v-bind:class="{ 'selected': value == option.value }" @click="changeSetting(key, option[0]); value = option[0]; if(setting.reload) location.reload();">{{ translate(option.text) }}</div>
     </div>
     <select class="select" v-if="setting.mode == 'dropdown'" :selectedIndex="setting.options.indexOf(userSettings[key])" @change="changeSetting(key, setting.options[$el.selectedIndex]); if(setting.reload) location.reload();">
       <!-- DROPDOWN Setting -->
@@ -44,7 +44,7 @@
   <div class="button-wrapper">
     <div class="button" @click="shareSettings()" tabindex="0">{{ translate("SHARE_SETTINGS") }}</div>
     <div class="button" @click="shareClassNames()" tabindex="0">{{ translate("SHARE_CLASS_NAMES") }}</div>
-    <div class="share-link" :textContent="shareLink" @click="$el.focus(); $el.select();" tabindex="0"></div>
+    <div class="share-link" v-if="shareLink" v-effect="$el.textContent = shareLink" @click="navigator.clipboard.writeText(shareLink)" tabindex="0"></div>
   </div>
 </div>
 <div class="setting" style="position: relative; z-index: 999">

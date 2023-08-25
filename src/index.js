@@ -105,7 +105,6 @@ PetiteVue.createApp({
   translate,
   translateNoCustom,
   getMonthText,
-  mod,
   shareSettings,
   shareClassNames,
   getEvent,
@@ -389,11 +388,7 @@ function shareClassNames() {
  * @returns {string} - The translated text.
  */
 export function translate(translateText) {
-  if (customNames[translateText] != null) {
-    return customNames[translateText];
-  } else {
-    return translateNoCustom(translateText);
-  }
+  return customNames[translateText] != null ? customNames[translateText] : translateNoCustom(translateText);
 }
 
 /**
@@ -402,11 +397,7 @@ export function translate(translateText) {
  * @returns {string} - The translated text.
  */
 export function translateNoCustom(translateText) {
-  if (languageJSON[translateText] == null) {
-    return translateText;
-  } else {
-    return languageJSON[translateText];
-  }
+  return languageJSON[translateText] == null ? translateText : languageJSON[translateText];
 }
 
 /**
@@ -418,7 +409,7 @@ export function translateNoCustom(translateText) {
 export function translateWithInsert(translateText, insertString) {
   var returnText = translate(translateText);
   var index = returnText.indexOf("{}");
-  if (index < 0) return translate(translateText);
+  if (index < 0) return returnText;
   return returnText.slice(0, index) + insertString + returnText.slice(index + 2);
 }
 
