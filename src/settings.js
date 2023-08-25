@@ -1,10 +1,29 @@
 // Settings menu data
-
 /**
- * The grade level setting
- * @typedef {Object} SettingsItem
- * @property {string} mode - The mode of the setting
+ * @typedef {Object} Dropdown
+ * @property {"dropdown"} mode - The mode of the setting
+ * @property {string[]} options - The options of the setting
  * @property {string} default - The default value of the setting
+ * @property {boolean} new - Whether the setting is new
+ * @property {boolean} experimental - Whether the setting is experimental
+ * @property {boolean} reload - Whether the setting requires a reload
+ */
+/**
+ * @typedef {Object} Toggle
+ * @property {"toggle"} mode - The mode of the setting
+ * @property {{value: number | boolean, text: string}[]} options - The options of the setting
+ * @property {boolean} default - The default value of the setting
+ * @property {boolean} new - Whether the setting is new
+ * @property {boolean} experimental - Whether the setting is experimental
+ * @property {boolean} reload - Whether the setting requires a reload
+ */
+/**
+ * @typedef {Object} Slider
+ * @extends SettingsItem
+ * @property {"slider"} mode - The mode of the setting
+ * @property {number} max - The max value of the setting
+ * @property {number} min - The min value of the setting
+ * @property {number} default - The default value of the setting
  * @property {boolean} new - Whether the setting is new
  * @property {boolean} experimental - Whether the setting is experimental
  * @property {boolean} reload - Whether the setting requires a reload
@@ -13,26 +32,23 @@
 /**
  * The settings menu data
  * @typedef {Object} Settings
- * @property {SettingsItem} GRADE_LEVEL - The grade level setting
- * @property {SettingsItem} EXTRA_PERIODS - The extra periods setting
- * @property {SettingsItem} SIXTH_PERIOD - The sixth period setting
- * @property {SettingsItem} ZERO_PERIOD - The zero period setting
- * @property {SettingsItem} TWENTY_FOUR_HOUR - The 24 hour setting
- * @property {SettingsItem} AM_PM - The AM/PM setting
- * @property {SettingsItem} INLINE_DETAILS - The inline details setting
- * @property {SettingsItem} COLOR_THEME - The color theme setting
- * @property {SettingsItem} THEME_ANIMATION - The theme animation setting
- * @property {SettingsItem} THEME_ANIMATION_INTENSITY - The theme animation intensity setting
- * @property {SettingsItem} LANGUAGE - The language setting
- * @property {SettingsItem} NOTIFICATIONS_TOGGLE - The notifications toggle setting
- * @property {SettingsItem} NOTIFICATIONS_START - The notifications start setting
- * @property {SettingsItem} NOTIFICATIONS_END - The notifications end setting
+ * @property {Dropdown} GRADE_LEVEL - The grade level setting
+ * @property {Toggle} EXTRA_PERIODS - The extra periods setting
+ * @property {Toggle} SIXTH_PERIOD - The sixth period setting
+ * @property {Toggle} ZERO_PERIOD - The zero period setting
+ * @property {Toggle} TWENTY_FOUR_HOUR - The 24 hour setting
+ * @property {Toggle} AM_PM - The AM/PM setting
+ * @property {Toggle} INLINE_DETAILS - The inline details setting
+ * @property {Slider} COLOR_THEME - The color theme setting
+ * @property {Toggle} THEME_ANIMATION - The theme animation setting
+ * @property {Slider} THEME_ANIMATION_INTENSITY - The theme animation intensity setting
+ * @property {Dropdown} LANGUAGE - The language setting
+ * @property {Toggle} NOTIFICATIONS_TOGGLE - The notifications toggle setting
+ * @property {Dropdown} NOTIFICATIONS_START - The notifications start setting
+ * @property {Dropdown} NOTIFICATIONS_END - The notifications end setting
  */
 
-/**
- * The settings menu data
- * @type {Settings}
- */
+/** @type {Settings} */
 export const settings = {
   GRADE_LEVEL: {
     mode: "dropdown",
@@ -45,8 +61,8 @@ export const settings = {
   EXTRA_PERIODS: {
     mode: "toggle",
     options: [
-      [true, "ON"],
-      [false, "OFF"],
+      { value: true, text: "ON" },
+      { value: false, text: "OFF" },
     ],
     default: false,
     new: false,
@@ -56,8 +72,8 @@ export const settings = {
   SIXTH_PERIOD: {
     mode: "toggle",
     options: [
-      [true, "ON"],
-      [false, "OFF"],
+      { value: true, text: "ON" },
+      { value: false, text: "OFF" },
     ],
     default: true,
     new: false,
@@ -67,8 +83,8 @@ export const settings = {
   ZERO_PERIOD: {
     mode: "toggle",
     options: [
-      [true, "ON"],
-      [false, "OFF"],
+      { value: true, text: "ON" },
+      { value: false, text: "OFF" },
     ],
     default: true,
     new: false,
@@ -78,8 +94,8 @@ export const settings = {
   TWENTY_FOUR_HOUR: {
     mode: "toggle",
     options: [
-      [true, "ON"],
-      [false, "OFF"],
+      { value: true, text: "ON" },
+      { value: false, text: "OFF" },
     ],
     default: false,
     new: false,
@@ -89,8 +105,8 @@ export const settings = {
   AM_PM: {
     mode: "toggle",
     options: [
-      [true, "ON"],
-      [false, "OFF"],
+      { value: true, text: "ON" },
+      { value: false, text: "OFF" },
     ],
     default: false,
     new: false,
@@ -100,8 +116,8 @@ export const settings = {
   INLINE_DETAILS: {
     mode: "toggle",
     options: [
-      [true, "ON"],
-      [false, "OFF"],
+      { value: true, text: "ON" },
+      { value: false, text: "OFF" },
     ],
     default: true,
     new: false,
@@ -109,7 +125,7 @@ export const settings = {
     reload: false,
   },
   COLOR_THEME: {
-    mode: "color-slider",
+    mode: "slider",
     max: 360,
     min: 0,
     default: 3,
@@ -120,8 +136,8 @@ export const settings = {
   THEME_ANIMATION: {
     mode: "toggle",
     options: [
-      [true, "ON"],
-      [false, "OFF"],
+      { value: true, text: "ON" },
+      { value: false, text: "OFF" },
     ],
     default: false,
     new: false,
@@ -129,7 +145,7 @@ export const settings = {
     reload: false,
   },
   THEME_ANIMATION_INTENSITY: {
-    mode: "color-slider",
+    mode: "slider",
     max: 180,
     min: 10,
     default: 15,
@@ -148,8 +164,8 @@ export const settings = {
   NOTIFICATIONS_TOGGLE: {
     mode: "toggle",
     options: [
-      [true, "ON"],
-      [false, "OFF"],
+      { value: true, text: "ON" },
+      { value: false, text: "OFF" },
     ],
     default: false,
     new: false,
@@ -175,6 +191,25 @@ export const settings = {
 };
 
 // Export the current settings JSON
+/**
+ * The user's settings
+ * @typedef {Object} UserSettings
+ * @property {string} GRADE_LEVEL - The grade level setting
+ * @property {boolean} EXTRA_PERIODS - The extra periods setting
+ * @property {boolean} SIXTH_PERIOD - The sixth period setting
+ * @property {boolean} ZERO_PERIOD - The zero period setting
+ * @property {boolean} TWENTY_FOUR_HOUR - The 24 hour setting
+ * @property {boolean} AM_PM - The AM/PM setting
+ * @property {boolean} INLINE_DETAILS - The inline details setting
+ * @property {number} COLOR_THEME - The color theme setting
+ * @property {boolean} THEME_ANIMATION - The theme animation setting
+ * @property {number} THEME_ANIMATION_INTENSITY - The theme animation intensity setting
+ * @property {string} LANGUAGE - The language setting
+ * @property {boolean} NOTIFICATIONS_TOGGLE - The notifications toggle setting
+ * @property {string} NOTIFICATIONS_START - The notifications start setting
+ * @property {string} NOTIFICATIONS_END - The notifications end setting
+ */
+/** @type {UserSettings} */
 export let userSettings = JSON.parse(localStorage.getItem("settings"));
 if (userSettings == null) {
   userSettings = Object.fromEntries(Object.entries(settings).map(([key, value]) => [key, value.default]));

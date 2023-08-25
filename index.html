@@ -54,7 +54,7 @@
 
   <body id="body" v-scope v-effect="startTimer()">
     <!-- Background - Used to do the color -->
-    <div class="background" id="background" v-bind:class="{ 'animated': settings.themeAnimation }"></div>
+    <div class="background" id="background" v-bind:class="{ 'animated': userSettings.themeAnimation }"></div>
     <div class="app-container">
       <!-- Navigation - Holds the page buttons -->
       <div class="navigation">
@@ -139,7 +139,7 @@
         <!-- <script v-else>
           document.currentScript.parentElement.remove();
         </script> -->
-        <div class="period-information-small" v-scope="PeriodInformationComponent()" v-if="period.isCurrent() && !isCalendar && settings.inlinePeriodDetails"></div>
+        <div class="period-information-small" v-scope="PeriodInformationComponent()" v-if="period.isCurrent() && !isCalendar && userSettings.INLINE_DETAILS"></div>
       </div>
     </template>
     <!-- Service Worker Startup -->

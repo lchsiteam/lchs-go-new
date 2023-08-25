@@ -1,7 +1,7 @@
 <!-- Settings Page - All of the user settings generated from settings.js -->
 
 <div class="page-title">{{ translate("SETTINGS_TITLE") }}</div>
-<div class="setting" v-for="[key, setting] in settings.entries()">
+<div class="setting" v-for="(setting, key) in settings">
   <div>
     <span class="title">{{ translate("SETTINGS_" + key + "_TITLE") }}</span>
     <span class="badge" v-if="setting.new">NEW</span>
@@ -9,18 +9,18 @@
     <div class="description">{{ translate("SETTINGS_" + key + "_DESC") }}</div>
   </div>
   <div>
-    <div class="toggle" v-if="setting.mode == 'toggle'" v-scope="{ value: settings[setting.setting] }">
+    <div class="toggle" v-if="setting.mode == 'toggle'" v-scope="{ value: userSettings[key] }">
       <!-- TOGGLE Setting -->
-      <div class="toggle-option" v-for="option in setting.options" tabindex="0" v-bind:class="{ 'selected': value == option[0] }" @click="changeSetting(setting.setting, option[0]); value = option[0]" v-bind:class="{ 'selected': settings[setting.setting] == option[0] }">{{ translate(option[1]) }}</div>
+      <div class="toggle-option" v-for="option in setting.options" tabindex="0" v-bind:class="{ 'selected': value == option[0] }" @click="changeSetting(key, option[0]); value = option[0]; if(setting.reload) location.reload();" v-bind:class="{ 'selected': userSettings[key] == option.value }">{{ translate(option.text) }}</div>
     </div>
-    <select class="select" v-if="setting.mode == 'dropdown'" :selectedIndex="setting.options.indexOf(settings[setting.setting])" @change="changeSetting(setting.setting, setting.options[$el.selectedIndex]); if(setting.reload) location.reload();">
+    <select class="select" v-if="setting.mode == 'dropdown'" :selectedIndex="setting.options.indexOf(userSettings[key])" @change="changeSetting(key, setting.options[$el.selectedIndex]); if(setting.reload) location.reload();">
       <!-- DROPDOWN Setting -->
       <option class="select-option" v-for="option in setting.options">{{ translate(option) }}</option>
     </select>
-    <div v-if="setting.mode == 'color-slider'">
+    <div v-if="setting.mode == 'slider'">
       <!-- SLIDER Settings -->
-      <input v-if="setting.setting == 'colorTheme'" class="color-slider" :id="key" type="range" :max="setting.max" :min="setting.min" :value="settings[setting.setting]" v-on:input="changeHue($el.value)" @click="themeChange()" v-on:change="changeSetting(setting.setting, $el.value)" />
-      <input v-if="setting.setting == 'themeAnimationIntensity'" class="slider" :id="key" type="range" :max="setting.max" :min="setting.min" :value="settings[setting.setting]" v-on:change="changeSetting(setting.setting, $el.value)" />
+      <input v-if="key == 'COLOR_THEME'" class="color-slider" :id="key" type="range" :max="setting.max" :min="setting.min" :value="userSettings[key]" v-on:input="changeHue($el.value)" @click="themeChange()" v-on:change="changeSetting(key, $el.value)" />
+      <input v-else class="slider" :id="key" type="range" :max="setting.max" :min="setting.min" :value="userSettings[key]" v-on:change="changeSetting(key, $el.value)" />
     </div>
   </div>
 </div>
