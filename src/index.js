@@ -7,6 +7,7 @@ const timeOffeset = dayjs.tz(scheduleJSON.timeOffset, "HH:mm:ss", scheduleJSON.t
 let timeFormat = (userSettings.twentyFourHour ? "HH" : "h") + ":mm" + (userSettings.showAMPM ? " A" : "");
 
 const rootStyle = document.querySelector(":root").style;
+rootStyle.setProperty("--animated-background-intensity", settings.themeAnimationIntensity + "deg");
 
 // Export the current settings JSON
 let customNames = JSON.parse(localStorage.getItem("customNamesJSON"));
@@ -76,9 +77,8 @@ PetiteVue.createApp({
   calendarToggle: true,
 
   // Settings Page
-  settingsMenu: settings,
-  settings: userSettings,
-  changedSetting: true,
+  settings,
+  userSettings,
   shareLink: "",
 
   // Class Names Page
@@ -265,17 +265,13 @@ function getGreeting() {
 // Function - Set the local storage settings with an updated user setting
 function changeSetting(setting, value) {
   userSettings[setting] = value;
-  this.changedSetting = !this.changedSetting;
 
   // Send a message for the extension to pick up on when the settings change
   window.postMessage({ settingsChanged: true });
-
   localStorage.setItem("settings", JSON.stringify(userSettings));
-
   timeFormat = (userSettings.twentyFourHour ? "HH" : "h") + ":mm" + (userSettings.showAMPM ? " A" : "");
 
   if (setting == "themeAnimationIntensity") rootStyle.setProperty("--animated-background-intensity", value + "deg");
-
   if (setting == "notificationToggle" && value) {
     if (!("Notification" in window)) {
       // Check if the browser supports notifications

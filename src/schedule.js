@@ -1,5 +1,4 @@
-// Import the user settings
-import { settings } from "./settings.js";
+import { userSettings } from "./settings.js";
 
 // Export the JSON parsed in this file
 export var scheduleJSON = JSON.parse(localStorage.getItem("scheduleJSON"));
@@ -26,9 +25,9 @@ Promise.allSettled([
   fetch("/data/languages.json")
     .then((r) => checkDataVersion(r, languageJSON))
     .then((serverLanguageJSON) => {
-      var tempJSON = serverLanguageJSON[settings.language];
+      var tempJSON = serverLanguageJSON[userSettings.LANGUAGE];
       tempJSON.version = serverLanguageJSON.version;
-      tempJSON.language = settings.language;
+      tempJSON.language = userSettings.LANGUAGE;
       localStorage.setItem("languageJSON", JSON.stringify(tempJSON));
     }),
 
@@ -62,8 +61,8 @@ export function getSchedule(date) {
   // Check if an override exists for the date
   if (Object.keys(scheduleJSON.overrides.all).includes(date.format("MM/DD/YYYY"))) {
     scheduleType = scheduleJSON.overrides.all[date.format("MM/DD/YYYY")];
-  } else if (Object.keys(scheduleJSON.overrides[settings.grade]).includes(date.format("MM/DD/YYYY"))) {
-    scheduleType = scheduleJSON.overrides[settings.grade][date.format("MM/DD/YYYY")];
+  } else if (Object.keys(scheduleJSON.overrides[userSettings.GRADE_LEVEL]).includes(date.format("MM/DD/YYYY"))) {
+    scheduleType = scheduleJSON.overrides[userSettings.GRADE_LEVEL][date.format("MM/DD/YYYY")];
   } else {
     // Check if today is in a range
     var isBreak = inBreak(date);
@@ -80,7 +79,7 @@ export function getSchedule(date) {
   // Add the periods and passing periods the json
   if (scheduleType != "NONE" && !Object.keys(scheduleJSON.dateRanges.breaks).includes(scheduleType)) {
     var previousEnd;
-    switch (settings.grade) {
+    switch (userSettings.grade) {
       case "GRADE_7":
       case "GRADE_8":
         Object.keys(scheduleJSON.gradeLevels.middleSchool[scheduleType]).forEach((period) => {
@@ -124,7 +123,7 @@ export function getSchedule(date) {
         });
         break;
     }
-    if (settings.grade >= 9) {
+    if (userSettings.grade >= 9) {
     }
 
     // Add before and after school
