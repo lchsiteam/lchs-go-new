@@ -19,12 +19,12 @@ if (!customNames) {
 
 // Find current Period
 let currentPeriod = null;
-let periodListComponent = PeriodListComponent(formattedJSON, false);
+let todaysPeriodList = PeriodListComponent(formattedJSON, getEvent(dayjs()), false);
 
 // Stores if a notification has been sent already
 let notified = false;
 
-periodListComponent.listPeriod.forEach((p) => {
+todaysPeriodList.listPeriod.forEach((p) => {
   if (p.isCurrent()) {
     currentPeriod = p;
   }
@@ -57,24 +57,21 @@ PetiteVue.createApp({
   backgroundColor: "hsl( 0, 50, 50)",
 
   // Now Page
-  periodListComponent,
-  todaysGreeting: "",
-  listCount: 0,
-  getListCount() {
-    return this.listCount++, this.listCount % 2 == 0;
-  },
+  todaysPeriodList,
+  getTodaysGreeting,
   currentPeriod,
   currentTime: 0,
   minutesLeft: 0,
   percentCompleted: 0,
-  percentCompletedText: "",
 
   // Calendar Page
-  showPopup: false,
-  // popupSchedule: periodList,
+  /** @type {dayjs | null} */
   selectedCalendarDay: null,
   monthOffset: 0,
-  calendarToggle: true,
+  refreshCalendar() {
+    this.selectedCalendarDay = "";
+    setTimeout(() => (this.selectedCalendarDay = null), 1);
+  },
 
   // Settings Page
   settings,
@@ -87,8 +84,6 @@ PetiteVue.createApp({
   // Functions
   switchPage(page) {
     this.currentPage = Pages.contains(page) ? page : Pages.Now;
-    this.popupDate = null;
-
     window.history.pushState("", this.currentPage, "/?" + this.currentPage);
 
     // If on smaller window scroll down to the period details box
@@ -107,6 +102,7 @@ PetiteVue.createApp({
   getMonthText,
   shareSettings,
   shareClassNames,
+  getSchedule,
   getEvent,
 
   // Update interval timer
@@ -135,7 +131,7 @@ PetiteVue.createApp({
     if (!this.currentPeriod.isCurrent()) {
       if (this.currentPeriod.start.day() != dayjs().day()) location.reload();
 
-      periodListComponent.listPeriod.forEach((p) => {
+      todaysPeriodList.listPeriod.forEach((p) => {
         if (p.isCurrent()) {
           this.currentPeriod = p;
         }
@@ -143,10 +139,8 @@ PetiteVue.createApp({
       notified = false;
     }
 
-    this.todaysGreeting = getTodaysGreeting();
     this.minutesLeft = this.currentPeriod.end.diff(dayjs().subtract(timeOffeset.hour(), "hour").subtract(timeOffeset.minute(), "minute").subtract(timeOffeset.second(), "second"), "minutes") + 1;
     this.percentCompleted = Math.trunc(100 - (this.minutesLeft / this.currentPeriod.end.diff(this.currentPeriod.start, "minutes")) * 100);
-    this.percentCompletedText = translateWithInsert("PERCENT_COMPLETED", this.percentCompleted);
     this.currentTime = dayjs().format(timeFormat);
     document.title = (this.minutesLeft >= 60 ? Math.trunc(this.minutesLeft / 60) + "hr. " : "") + (this.minutesLeft % 60) + "min. | LCHS Go";
     sendNotification(this.currentPeriod, this.minutesLeft);
@@ -201,8 +195,6 @@ function CalendarDay(day, monthOffset) {
   var dateM = dateS.set("date", day - dateS.day());
   return {
     date: dateM,
-    schedule: getSchedule(dateM),
-    event: getEvent(dateM),
   };
 }
 
@@ -214,7 +206,7 @@ function PeriodInformationComponent(props) {
 }
 
 // Component - Period List Template - Used to make a period list block
-function PeriodListComponent(periods, isCal) {
+function PeriodListComponent(periods, event, isCal) {
   if (periods == null && isCal) return {};
   var periodList = periods
     .map((p) => {
@@ -224,13 +216,16 @@ function PeriodListComponent(periods, isCal) {
   return {
     isCalendar: isCal,
     listPeriod: periodList,
+    event,
     $template: "#period-list-template",
   };
 }
 
 // Function - Get the translated greeting and schedule for the day
 export function getTodaysGreeting() {
-  return getGreeting() + " " + translateWithInsert("TODAY_IS", translate(formattedJSON.scheduleType));
+  var hours = dayjs().hour();
+  const greeting = hours < 12 ? translate("MORNING") : hours < 18 ? translate("AFTERNOON") : translate("EVENING");
+  return greeting + " " + translateWithInsert("TODAY_IS", translate(formattedJSON.scheduleType));
 }
 
 // Function - Get the translated current month for the calendar
@@ -250,15 +245,6 @@ export function getMonthText(month) {
     11: "DECEMBER",
   };
   return translate(monthsDict[dayjs().month(month).month()]);
-}
-
-// Function - Get the time of day for the greeting
-function getGreeting() {
-  var hours = dayjs().hour();
-
-  if (hours < 12) return translate("MORNING");
-  else if (hours < 18) return translate("AFTERNOON");
-  else return translate("EVENING");
 }
 
 // Function - Set the local storage settings with an updated user setting
@@ -417,7 +403,7 @@ export function translateWithInsert(translateText, insertString) {
 export function sendNotification(period, timeLeft) {
   if (userSettings.NOTIFICATIONS_TOGGLE && !notified) {
     var nextPeriod = null;
-    periodListComponent.listPeriod.forEach((p) => {
+    todaysPeriodList.listPeriod.forEach((p) => {
       if (p.getStart() == period.getEnd()) {
         nextPeriod = p;
       }

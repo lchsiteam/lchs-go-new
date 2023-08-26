@@ -110,7 +110,7 @@
             </span>
           </div>
           <div class="time-left-text">{{ translate('UNITL_END') }}</div>
-          <div class="time-left-text percent">{{ percentCompletedText }}</div>
+          <div class="time-left-text percent">{{ translateWithInsert("PERCENT_COMPLETED", percentCompleted) }}</div>
         </div>
         <div>
           <div class="divider-bar" style="margin-bottom: 1rem"></div>
@@ -141,6 +141,7 @@
         </script> -->
         <div class="period-information-small" v-scope="PeriodInformationComponent()" v-if="period.isCurrent() && !isCalendar && userSettings.INLINE_DETAILS"></div>
       </div>
+      <div class="event-listing">{{ event }}</div>
     </template>
     <!-- Service Worker Startup -->
     <script>

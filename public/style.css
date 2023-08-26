@@ -220,7 +220,7 @@ body {
   background-color: var(--10);
 }
 
-.all-periods div:nth-last-child(1)>.period {
+.all-periods div:nth-last-child(2)>.period:not(.current) {
   border-radius: 0 0 0.5rem 0.5rem;
 }
 
@@ -228,14 +228,31 @@ body {
   cursor: pointer;
 }
 
+.event-listing {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  padding: 0.5rem 1rem;
+  margin: 0 2rem;
+  border-radius: 0.5rem;
+  background-color: var(--10);
+}
+
+.event-listing:empty {
+  background-color: transparent;
+  backdrop-filter: none;
+}
+
 /* CALENDAR PAGE */
 
 .calendar-title {
   display: flex;
-  justify-content: space-between;
-  padding: 0 30%;
+  justify-content: center;
   gap: 1rem;
   font-size: 1.5rem;
+}
+
+.calendar-title .page-title {
+  width: 16rem;
 }
 
 .month-select-left,
@@ -281,6 +298,10 @@ body {
   font-size: 1rem;
   border-radius: 0.3rem;
   background-color: var(--5);
+}
+
+.calendar-day-tag:empty {
+  display: none;
 }
 
 /* SETTINGS PAGE */

@@ -1,21 +1,13 @@
 <!-- Calendar Page - Calendar pulled from the events.json -->
-<div class="calendar-title" v-if="popupDate == null">
-  <div class="month-select-left" @click="monthOffset--; calendarToggle=false; setTimeout( () => { calendarToggle = true; }, 1);" tabindex="0">⇦</div>
+<div class="calendar-title">
+  <div class="month-select-left" @click="monthOffset--; refreshCalendar()" tabindex="0">⇦</div>
   <div class="page-title" v-effect="$el.textContent = getMonthText(dayjs().month() + monthOffset) + ' ' + Math.floor((dayjs().year() + (dayjs().month() + monthOffset) / 12))">{{ translate("CALENDAR_TITLE")}}</div>
-  <div class="month-select-right" @click="monthOffset++; calendarToggle = false; setTimeout( () => { calendarToggle = true; }, 1)" tabindex="0">⇨</div>
+  <div class="month-select-right" @click="monthOffset++; refreshCalendar()" tabindex="0">⇨</div>
 </div>
-<div class="calendar-container" v-if="calendarToggle">
-  <div class="calendar-day" v-for="day in 35" v-scope="CalendarDay(day, monthOffset)" @click="selectedCalendarDay = schedule; switchPage(Pages.CalendarDay)" v-bind:class="{ 'today': date.date() == dayjs().date() && date.month() == dayjs().month() && date.year() == dayjs().year(), 'outside': date.month() !== (dayjs().month() + monthOffset % 12) }">
+<div class="calendar-container" v-if="selectedCalendarDay != ''">
+  <div class="calendar-day" v-for="day in 35" v-scope="CalendarDay(day, monthOffset)" @click="selectedCalendarDay = date; switchPage(Pages.CalendarDay)" v-bind:class="{ 'today': date.date() == dayjs().date() && date.month() == dayjs().month() && date.year() == dayjs().year(), 'outside': date.month() !== (dayjs().month() + monthOffset % 12) }">
     <div class="calendar-day-number">{{ date.date() }}</div>
-    <div class="calendar-day-tag">{{ translate(schedule.scheduleType) }}</div>
-    <div class="calendar-day-tag" v-if="event != null">{{ event }}</div>
-
-    <!-- <div class="schedule-popup" v-if="popupDate == date" style="opacity: 200%">
-      <div class="cd-tag" v-if="event != null" style="margin-bottom: 10px; padding: 10px">{{ event }}</div>
-      <div v-scope="PeriodListComponent(schedule, true)"></div>
-      <div class="credits">
-        <a href="https://forms.gle/BgFW4MgL9RGpezdw7" class="credits" target="_blank">Submit a missing event</a>
-      </div>
-    </div> -->
+    <div class="calendar-day-tag">{{ translate(getSchedule(date).scheduleType) }}</div>
+    <div class="calendar-day-tag">{{ getEvent(date) }}</div>
   </div>
 </div>
