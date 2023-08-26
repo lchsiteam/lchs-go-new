@@ -160,10 +160,12 @@ export function getSchedule(date) {
 // Function - Check if a date is in a break from the schedule.json and get that break if so
 function inBreak(date) {
   var breakType = false;
-  for (var range in scheduleJSON.dateRanges.breaks) {
-    if (date.startOf().add(1, "hour").isBetween(dayjs(scheduleJSON.dateRanges.breaks[range][0], "MM/DD/YYYY").startOf("day"), dayjs(scheduleJSON.dateRanges.breaks[range][1], "MM/DD/YYYY").endOf("day"))) {
-      breakType = range;
-      break;
+  for (const ranges in scheduleJSON.dateRanges.breaks) {
+    for (const range of scheduleJSON.dateRanges.breaks[ranges]) {
+      if (date.startOf().add(1, "hour").isBetween(dayjs(range[0], "MM/DD/YYYY").startOf("day"), dayjs(range[1], "MM/DD/YYYY").endOf("day"))) {
+        breakType = ranges;
+        break;
+      }
     }
   }
   return breakType;
