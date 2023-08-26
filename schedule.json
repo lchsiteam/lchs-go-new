@@ -1,5 +1,5 @@
 {
-  "version": 30.2,
+  "version": 30.3,
   "defaults": {
     "0": "NONE",
     "1": "REGULAR",
@@ -52,7 +52,7 @@
 
       "08/25/2023": "ASSEMBLY",
       
-      "09/05/2022": "NONE",
+      "09/04/2023": "NONE",
       
       "12/07/2022": "REGULAR",
       "12/08/2022": "REGULAR",

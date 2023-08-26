@@ -37,7 +37,7 @@
 
 <body class="body" id="body" v-scope v-effect="startTimer()">
   <!-- Background - Used to do the color -->
-  <div class="background" id="background"></div>
+  <div class="background" id="background" v-bind:class="{ 'animated': settings.themeAnimation }"></div>
   <div class="app-container">
     <div class="header">
       <!-- Navigation - Holds the page buttons -->
@@ -133,7 +133,7 @@
                 } else {
                   $el.className = 'sr-selector-option';
                 }"
-              @click="changeSetting(setting.setting, option[0]); value = option[0]"
+                @click="changeSetting(setting.setting, option[0]); value = option[0]; if(setting.reload) location.reload();"
               v-bind:class="{ 'selected': settings[setting.setting] == option[0] }">
               {{ translate(option[1]) }}
             </div>
@@ -142,12 +142,11 @@
           @change="changeSetting(setting.setting, setting.options[$el.selectedIndex]); if(setting.reload) location.reload();">
             <option class="sr-select-item" v-for="option in setting.options">{{ translate(option) }}</option>
           </select>
-          <div class="" v-if="setting.mode == 'color-slider'">
-            <label>
-              <input class="sr-color-slider" id="hue" type="range" max="360" v-effect="$el.value = settings.colorTheme"
-              v-on:input="changeHue($el.value)" @click="themeChange()"
-              v-on:change="changeSetting('colorTheme', $el.value)">
-            </label>
+          <div v-if="setting.mode == 'color-slider'">
+            <input class="sr-color-slider" :id="setting.key" type="range" :max="setting.max" :min="setting.min" :value="settings[setting.setting]" v-on:input="changeHue($el.value)" @click="themeChange()" v-on:change="changeSetting(setting.setting, $el.value)" />
+          </div>
+          <div v-if="setting.mode == 'slider'">
+            <input class="sr-slider" :id="setting.key" type="range" :max="setting.max" :min="setting.min" :value="settings[setting.setting]" v-on:change="changeSetting(setting.setting, $el.value)" />
           </div>
         </div>
       </div>
