@@ -188,11 +188,11 @@ function PeriodComponent(setName, setStart, setEnd, setPassing) {
 
 // Component - CalendarDay - Holds the schedule for the day and the date
 function CalendarDay(day, monthOffset) {
-  var dateS = dayjs()
+  const dateS = dayjs()
     .month(dayjs().month() + monthOffset)
     .startOf("month");
 
-  var dateM = dateS.set("date", day - dateS.day());
+  const dateM = dateS.set("date", day - dateS.day());
   return {
     date: dateM,
   };
@@ -208,7 +208,7 @@ function PeriodInformationComponent(props) {
 // Component - Period List Template - Used to make a period list block
 function PeriodListComponent(periods, event, isCal) {
   if (periods == null && isCal) return {};
-  var periodList = periods
+  const periodList = periods
     .map((p) => {
       return PeriodComponent(p.name, p.start, p.end, p.passing);
     })
@@ -223,14 +223,14 @@ function PeriodListComponent(periods, event, isCal) {
 
 // Function - Get the translated greeting and schedule for the day
 export function getTodaysGreeting() {
-  var hours = dayjs().hour();
+  const hours = dayjs().hour();
   const greeting = hours < 12 ? translate("MORNING") : hours < 18 ? translate("AFTERNOON") : translate("EVENING");
   return greeting + " " + translateWithInsert("TODAY_IS", translate(formattedJSON.scheduleType));
 }
 
 // Function - Get the translated current month for the calendar
 export function getMonthText(month) {
-  var monthsDict = {
+  const monthsDict = {
     0: "JANUARY",
     1: "FEBURARY",
     2: "MARCH",
@@ -249,6 +249,7 @@ export function getMonthText(month) {
 
 // Function - Set the local storage settings with an updated user setting
 function changeSetting(setting, value) {
+  console.log(setting, value);
   userSettings[setting] = value;
 
   // Send a message for the extension to pick up on when the settings change
@@ -282,7 +283,7 @@ function changeSetting(setting, value) {
 // Function - Called by the HTML to set the background color
 function changeHue(hue) {
   // Set the background color to the hue, with 50% saturation and 50% lightness
-  var hslValue = [hue, 50, 50];
+  let hslValue = [hue, 50, 50];
   rootStyle.setProperty("--text-color", "white");
 
   // Overrides for certain colors
@@ -305,11 +306,11 @@ function changeHue(hue) {
   Then it draws the favicon on top of the circle
   Then it sets the favicon to the canvas using a data URL
   */
-  var canvas = document.createElement("canvas");
+  const canvas = document.createElement("canvas");
   canvas.width = 48;
   canvas.height = 48;
-  var ctx = canvas.getContext("2d");
-  var img = new Image();
+  const ctx = canvas.getContext("2d");
+  const img = new Image();
   img.src = "/public/faviconClear.png";
   img.onload = function () {
     ctx.fillStyle = hslString;
@@ -320,7 +321,7 @@ function changeHue(hue) {
 
     ctx.drawImage(img, 0, 0);
 
-    var link = document.createElement("link");
+    const link = document.createElement("link");
     link.type = "image/x-icon";
     link.rel = "shortcut icon";
     link.href = canvas.toDataURL("image/x-icon");
@@ -331,7 +332,7 @@ function changeHue(hue) {
 /**
  * Function - Change the theme of the page based on the time of day
  */
-var prevTime = Date.now();
+let prevTime = Date.now();
 function themeChange() {
   if (Date.now() - prevTime < 100) {
     rootStyle.setProperty("--background-color", "transparent");
@@ -342,7 +343,7 @@ function themeChange() {
 
 // Function - Update the local storage for the customNames to the new custom names
 function changeClassName(periodId, element) {
-  var newValue = element.value;
+  let newValue = element.value;
   if (newValue == languageJSON[periodId] || newValue == "") {
     newValue = languageJSON[periodId];
     delete customNames[periodId];
@@ -357,13 +358,13 @@ function changeClassName(periodId, element) {
 }
 
 function shareSettings() {
-  var link = new URL(location.origin);
+  const link = new URL(location.origin);
   link.searchParams.set("setSettings", JSON.stringify(userSettings));
   this.shareLink = link.href + "&settings";
 }
 
 function shareClassNames() {
-  var link = new URL(location.origin);
+  const link = new URL(location.origin);
   link.searchParams.set("setClassNames", JSON.stringify(customNames));
   this.shareLink = link.href + "&settings";
 }
@@ -393,8 +394,8 @@ export function translateNoCustom(translateText) {
  * @returns {string} - The translated text.
  */
 export function translateWithInsert(translateText, insertString) {
-  var returnText = translate(translateText);
-  var index = returnText.indexOf("{}");
+  const returnText = translate(translateText);
+  const index = returnText.indexOf("{}");
   if (index < 0) return returnText;
   return returnText.slice(0, index) + insertString + returnText.slice(index + 2);
 }
@@ -402,7 +403,7 @@ export function translateWithInsert(translateText, insertString) {
 // Notify the user before period starts or ends
 export function sendNotification(period, timeLeft) {
   if (userSettings.NOTIFICATIONS_TOGGLE && !notified) {
-    var nextPeriod = null;
+    let nextPeriod = null;
     todaysPeriodList.listPeriod.forEach((p) => {
       if (p.getStart() == period.getEnd()) {
         nextPeriod = p;

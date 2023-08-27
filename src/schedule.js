@@ -1,11 +1,11 @@
 import { userSettings } from "./settings.js";
 
 // Export the JSON parsed in this file
-export var scheduleJSON = JSON.parse(localStorage.getItem("scheduleJSON"));
-export var languageJSON = JSON.parse(localStorage.getItem("languageJSON"));
-export var eventsJSON = JSON.parse(localStorage.getItem("eventsJSON"));
+export let scheduleJSON = JSON.parse(localStorage.getItem("scheduleJSON"));
+export let languageJSON = JSON.parse(localStorage.getItem("languageJSON"));
+export let eventsJSON = JSON.parse(localStorage.getItem("eventsJSON"));
 
-var reload = false;
+let reload = false;
 async function checkDataVersion(response, existingData) {
   const data = await response.json();
   if (existingData == null || existingData.version < data.version) return (reload = true), data;
@@ -25,7 +25,7 @@ Promise.allSettled([
   fetch("/data/languages.json")
     .then((r) => checkDataVersion(r, languageJSON))
     .then((serverLanguageJSON) => {
-      var tempJSON = serverLanguageJSON[userSettings.LANGUAGE];
+      const tempJSON = serverLanguageJSON[userSettings.LANGUAGE];
       tempJSON.version = serverLanguageJSON.version;
       tempJSON.language = userSettings.LANGUAGE;
       localStorage.setItem("languageJSON", JSON.stringify(tempJSON));
@@ -43,7 +43,7 @@ Promise.allSettled([
 });
 
 // Create and export the formattedJSON for today
-export var formattedJSON = getSchedule(dayjs());
+export const formattedJSON = getSchedule(dayjs());
 
 // Set timezone for dayjs (not sure if it does anything)
 dayjs.tz.setDefault(scheduleJSON.timezone);
