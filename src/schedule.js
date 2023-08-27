@@ -1,6 +1,30 @@
 import { userSettings } from "./settings.js";
 
-// Export the JSON parsed in this file
+/**
+ * @typedef GradeLevel
+ * @property {[PeriodName: timeString[]]} ScheduleType - The grade levels for each schedule type
+ *
+ * Schedule JSON
+ * @typedef {Object} ScheduleJSON
+ * @property {number} version - The version of the schedule.json
+ * @property {string} timezone - The timezone of the host
+ * @property {string} timeOffeset - The time offset
+ * @property {[number: ScheduleType]} defaults - The default schedule for each day of the week
+ * @property {Object} overrides - The overrides for each day of the week
+ * @property {[dateString: scheduleNameString]} overrides.all - The overrides for all grade levels
+ * @property {[dateString: scheduleNameString]} overrides.GRADE_7 - The overrides for grade 7
+ * @property {[dateString: scheduleNameString]} overrides.GRADE_8 - The overrides for grade 8
+ * @property {[dateString: scheduleNameString]} overrides.GRADE_9 - The overrides for grade 9
+ * @property {[dateString: scheduleNameString]} overrides.GRADE_10 - The overrides for grade 10
+ * @property {[dateString: scheduleNameString]} overrides.GRADE_11 - The overrides for grade 11
+ * @property {[dateString: scheduleNameString]} overrides.GRADE_12 - The overrides for grade 12
+ * @property {Object} dateRanges - The date ranges for breaks and custom weeks
+ * @property {[ScheduleType: dateString[][]]} dateRanges.breaks - The date ranges for breaks
+ * @property {[CustomWeek: ScheduleType]} dateRanges.customWeeks - The date ranges for custom weeks
+ * @property {[CustomWeek: [number: ScheduleType]]} customWeeks - The custom weeks for each custom week
+ * @property {Object} gradeLevels - The grade levels for each schedule type
+ */
+/** @type {ScheduleJSON} */
 export let scheduleJSON = JSON.parse(localStorage.getItem("scheduleJSON"));
 export let languageJSON = JSON.parse(localStorage.getItem("languageJSON"));
 export let eventsJSON = JSON.parse(localStorage.getItem("eventsJSON"));
@@ -42,107 +66,58 @@ Promise.allSettled([
   if (reload) location.reload();
 });
 
-// Create and export the formattedJSON for today
-export const formattedJSON = getSchedule(dayjs());
-
-// Set timezone for dayjs (not sure if it does anything)
-dayjs.tz.setDefault(scheduleJSON.timezone);
+/**
+ * Period JSON
+ * @typedef {Object} Period
+ * @property {string} name - The name of the period
+ * @property {dayjs} start - The start time of the period
+ * @property {dayjs} end - The end time of the period
+ * @property {boolean} passing - If the period is a passing period
+ */
+/**
+ * Schedule JSON
+ * @typedef {Object} Schedule
+ * @property {dayjs} date - The date of the schedule
+ * @property {string} scheduleType - The type of schedule for the day
+ * @property {string} override - The override for the day
+ * @property {Array<Period>} periods - The periods for the day
+ */
 
 /**
  * Get the formatted schedule json for a specific day
- * @param {dayjs()} date - The date to get the schedule for
- * @returns {JSON} - The formatted schedule json
+ * @param {dayjs} date - The date to get the schedule for
+ * @returns {Schedule} - The formatted schedule json
  */
 export function getSchedule(date) {
-  if (date == null) return;
-  var scheduleType;
-  var localJSON = [];
+  const schedule = {
+    date: date,
+    scheduleType: "",
+    override: "",
+    periods: [],
+  };
+  if (date == null) schedule;
+  const scheduleTypes = getScheduleTypes(date);
+  schedule.scheduleType = scheduleTypes.scheduleOverride || scheduleTypes.scheduleDefault;
+  schedule.override = scheduleTypes.scheduleOverride ? scheduleTypes.scheduleDefault : null;
 
-  // Check if an override exists for the date
-  if (Object.keys(scheduleJSON.overrides.all).includes(date.format("MM/DD/YYYY"))) {
-    scheduleType = scheduleJSON.overrides.all[date.format("MM/DD/YYYY")];
-  } else if (Object.keys(scheduleJSON.overrides[userSettings.GRADE_LEVEL]).includes(date.format("MM/DD/YYYY"))) {
-    scheduleType = scheduleJSON.overrides[userSettings.GRADE_LEVEL][date.format("MM/DD/YYYY")];
-  } else {
-    // Check if today is in a range
-    var isBreak = inBreak(date);
-    var isCustomWeek = inCustomWeek(date);
-    if (isBreak) {
-      scheduleType = isBreak;
-    } else if (isCustomWeek) {
-      scheduleType = scheduleJSON.customWeeks[isCustomWeek][date.day()];
-    } else {
-      scheduleType = scheduleJSON.defaults[date.day()];
-    }
-  }
+  const periodList = getPeriods(schedule.scheduleType);
+  const periods = getPeriodsJSON(periodList);
+  schedule.periods = periods;
 
-  // Add the periods and passing periods the json
-  if (scheduleType != "NONE" && !Object.keys(scheduleJSON.dateRanges.breaks).includes(scheduleType)) {
-    var previousEnd;
-    switch (userSettings.GRADE_LEVEL) {
-      case "GRADE_7":
-      case "GRADE_8":
-        Object.keys(scheduleJSON.gradeLevels.middleSchool[scheduleType]).forEach((period) => {
-          if (previousEnd != undefined) {
-            localJSON.push({
-              name: "PASSING_BEFORE," + period,
-              start: previousEnd,
-              end: scheduleJSON.gradeLevels.middleSchool[scheduleType][period][0],
-              passing: true,
-            });
-          }
-          localJSON.push({
-            name: period,
-            start: scheduleJSON.gradeLevels.middleSchool[scheduleType][period][0],
-            end: scheduleJSON.gradeLevels.middleSchool[scheduleType][period][1],
-            passing: false,
-          });
-          previousEnd = scheduleJSON.gradeLevels.middleSchool[scheduleType][period][1];
-        });
-        break;
-      case "GRADE_9":
-      case "GRADE_10":
-      case "GRADE_11":
-      case "GRADE_12":
-        Object.keys(scheduleJSON.gradeLevels.highSchool[scheduleType]).forEach((period) => {
-          if (previousEnd != undefined) {
-            localJSON.push({
-              name: "PASSING_BEFORE," + period,
-              start: previousEnd,
-              end: scheduleJSON.gradeLevels.highSchool[scheduleType][period][0],
-              passing: true,
-            });
-          }
-          localJSON.push({
-            name: period,
-            start: scheduleJSON.gradeLevels.highSchool[scheduleType][period][0],
-            end: scheduleJSON.gradeLevels.highSchool[scheduleType][period][1],
-            passing: false,
-          });
-          previousEnd = scheduleJSON.gradeLevels.highSchool[scheduleType][period][1];
-        });
-        break;
-    }
+  return schedule;
+}
 
-    // Add before and after school
-    localJSON = [
-      {
-        name: "BEFORE_SCHOOL",
-        start: dayjs().startOf("day"),
-        end: localJSON[0].start,
-        passing: true,
-      },
-      ...localJSON,
-      {
-        name: "AFTER_SCHOOL",
-        start: localJSON[localJSON.length - 1].end,
-        end: dayjs().endOf("day"),
-        passing: true,
-      },
-    ];
-  } else {
-    // Add only no school
-    localJSON = [
+function getPeriods(scheduleType) {
+  if (scheduleType == null || "NONE") return "NONE";
+  const periods = scheduleJSON.gradeLevels[userSettings.GRADE_LEVEL][scheduleType];
+  const inheritsFrom = scheduleJSON.gradeLevels[userSettings.GRADE_LEVEL].inheritsFrom;
+  const inheritedPeriods = scheduleJSON.gradeLevels[inheritsFrom][scheduleType];
+  return periods || inheritedPeriods || "NONE";
+}
+
+function getPeriodsJSON(periodList) {
+  if (periodList == "NONE")
+    return [
       {
         name: "NONE",
         start: dayjs().startOf("day"),
@@ -150,11 +125,69 @@ export function getSchedule(date) {
         passing: false,
       },
     ];
+
+  const periods = [];
+  let previousEnd = undefined;
+  for (const period in periodList) {
+    if (previousEnd) {
+      periods.push({
+        name: "PASSING_BEFORE," + period,
+        start: previousEnd,
+        end: dayjs(periodList[period][0], "HH:mm A"),
+        passing: true,
+      });
+    }
+    periods.push({
+      name: period,
+      start: dayjs(periodList[period][0], "HH:mm A"),
+      end: dayjs(periodList[period][1], "HH:mm A"),
+      passing: false,
+    });
+
+    previousEnd = dayjs(periodList[period][1], "HH:mm A");
   }
 
-  // Add the scheduleType to the json
-  localJSON.scheduleType = scheduleType;
-  return localJSON;
+  return [
+    {
+      name: "BEFORE_SCHOOL",
+      start: dayjs().startOf("day"),
+      end: periods[0].start,
+      passing: true,
+    },
+    ...periods,
+    {
+      name: "AFTER_SCHOOL",
+      start: periods[periods.length - 1].end,
+      end: dayjs().endOf("day"),
+      passing: true,
+    },
+  ];
+}
+
+function getScheduleTypes(date) {
+  // Check if the date is in a break range
+  const breakType = inBreak(date);
+  if (breakType) return { scheduleOverride: breakType };
+
+  // Check if the date is in a custom week range and get the schedule type for that day
+  const week = inCustomWeek(date);
+  if (week) return { scheduleOverride: scheduleJSON.customWeeks[week][date.day()] };
+
+  const scheduleOverride = (() => {
+    const dateKey = date.format("MM/DD/YYYY");
+    if (Object.keys(scheduleJSON.overrides[userSettings.GRADE_LEVEL]).includes(dateKey)) return scheduleJSON.overrides[userSettings.GRADE_LEVEL][dateKey];
+    if (Object.keys(scheduleJSON.overrides.all).includes(dateKey)) return scheduleJSON.overrides.all[dateKey];
+    return undefined;
+  })();
+
+  const scheduleDefault = scheduleJSON.defaults[date.day()];
+
+  return { scheduleOverride, scheduleDefault };
+}
+
+export function getScheduleType(date) {
+  const scheduleTypes = getScheduleTypes(date);
+  return scheduleTypes.scheduleOverride || scheduleTypes.scheduleDefault;
 }
 
 // Function - Check if a date is in a break from the schedule.json and get that break if so
@@ -184,8 +217,6 @@ function inCustomWeek(date) {
 }
 
 export function getEvent(date) {
-  if (date.year() in eventsJSON) {
-    return eventsJSON[date.year()][dayjs.months()[date.month()]][date.date()];
-  }
-  return undefined;
+  const year = eventsJSON[date.year()];
+  return year ? year[dayjs.months()[date.month()]][date.date()] : undefined;
 }

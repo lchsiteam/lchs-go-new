@@ -1,4 +1,4 @@
-<div v-scope="PeriodListComponent(getSchedule(selectedCalendarDay), getEvent(selectedCalendarDay), true) || todaysPeriodList"></div>
+<div v-scope="PeriodListComponent(selectedCalendarDay, true) || todaysPeriodList"></div>
 <div class="setting">
   <div>
     <div class="title">{{ translateWithInsert("RETURN_TO", translate("CALENDAR_TITLE")) }}</div>

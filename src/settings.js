@@ -215,7 +215,6 @@ export const settings = {
 export let userSettings = JSON.parse(localStorage.getItem("settings"));
 if (userSettings == null) {
   userSettings = Object.fromEntries(Object.entries(settings).map(([key, value]) => [key, value.default]));
-  console.log(userSettings);
 
   // Send a message for the extension to pick up on when the settings change
   window.postMessage({ settingsChanged: true });

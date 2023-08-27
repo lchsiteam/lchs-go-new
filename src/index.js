@@ -1,7 +1,10 @@
 // Importing the Schedule, Settings, and Languages
-import { formattedJSON, languageJSON, scheduleJSON, getSchedule, getEvent } from "./schedule.js";
+import { createApp } from "https://unpkg.com/petite-vue@0.2.2/dist/petite-vue.es.js";
+import { languageJSON, scheduleJSON, getSchedule, getScheduleType, getEvent } from "./schedule.js";
 import { userSettings, settings } from "./settings.js";
 
+// Set timezone for dayjs (not sure if it does anything)
+dayjs.tz.setDefault(scheduleJSON.timezone);
 // Stores the user preference for how they display time
 const timeOffeset = dayjs.tz(scheduleJSON.timeOffset, "HH:mm:ss", scheduleJSON.timezone).local();
 let timeFormat = (userSettings.TWENTY_FOUR_HOUR ? "HH" : "h") + ":mm" + (userSettings.AM_PM ? " A" : "");
@@ -19,7 +22,7 @@ if (!customNames) {
 
 // Find current Period
 let currentPeriod = null;
-let todaysPeriodList = PeriodListComponent(formattedJSON, getEvent(dayjs()), false);
+let todaysPeriodList = PeriodListComponent(dayjs(), false);
 
 // Stores if a notification has been sent already
 let notified = false;
@@ -45,7 +48,7 @@ export const Pages = {
 
 // Petite Vue interface
 // Anything in here is accessible in the HTML
-PetiteVue.createApp({
+createApp({
   // Components
   PeriodInformationComponent,
   PeriodListComponent,
@@ -103,11 +106,13 @@ PetiteVue.createApp({
   shareSettings,
   shareClassNames,
   getSchedule,
+  getScheduleType,
   getEvent,
 
   // Update interval timer
   interval: null,
   startTimer() {
+    if (this.interval) return;
     const url = new URLSearchParams(location.search);
     let startReload = false;
     if (url.has("setSettings")) localStorage.setItem("settings", url.get("setSettings")), (startReload = true);
@@ -149,19 +154,16 @@ PetiteVue.createApp({
 
 // Component - Period - Holds the name, start, end, and if passing
 function PeriodComponent(setName, setStart, setEnd, setPassing) {
-  const varStart = dayjs(setStart, "hh:mm A"); //formats from the json
-  const varEnd = dayjs(setEnd, "hh:mm A");
-
   return {
     name: setName,
-    start: varStart,
-    end: varEnd,
+    start: setStart,
+    end: setEnd,
     passing: setPassing,
     getStart() {
-      return varStart.format(timeFormat);
+      return setStart.format(timeFormat);
     },
     getEnd() {
-      return varEnd.format(timeFormat);
+      return setEnd.format(timeFormat);
     },
     isCurrent() {
       const now = dayjs().subtract(timeOffeset.hour(), "hour").subtract(timeOffeset.minute(), "minute").subtract(timeOffeset.second(), "second");
@@ -206,8 +208,8 @@ function PeriodInformationComponent(props) {
 }
 
 // Component - Period List Template - Used to make a period list block
-function PeriodListComponent(periods, event, isCal) {
-  if (periods == null && isCal) return {};
+function PeriodListComponent(date, isCal) {
+  const periods = getSchedule(date).periods;
   const periodList = periods
     .map((p) => {
       return PeriodComponent(p.name, p.start, p.end, p.passing);
@@ -216,7 +218,7 @@ function PeriodListComponent(periods, event, isCal) {
   return {
     isCalendar: isCal,
     listPeriod: periodList,
-    event,
+    event: getEvent(date),
     $template: "#period-list-template",
   };
 }
@@ -225,7 +227,7 @@ function PeriodListComponent(periods, event, isCal) {
 export function getTodaysGreeting() {
   const hours = dayjs().hour();
   const greeting = hours < 12 ? translate("MORNING") : hours < 18 ? translate("AFTERNOON") : translate("EVENING");
-  return greeting + " " + translateWithInsert("TODAY_IS", translate(formattedJSON.scheduleType));
+  return greeting + " " + translateWithInsert("TODAY_IS", translate(getScheduleType(dayjs())));
 }
 
 // Function - Get the translated current month for the calendar
@@ -310,7 +312,7 @@ function changeHue(hue) {
   canvas.width = 48;
   canvas.height = 48;
   const ctx = canvas.getContext("2d");
-  const img = new Image();
+  let img = new Image();
   img.src = "/public/faviconClear.png";
   img.onload = function () {
     ctx.fillStyle = hslString;

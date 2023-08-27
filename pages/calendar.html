@@ -7,7 +7,7 @@
 <div class="calendar-container" v-if="selectedCalendarDay != ''">
   <div class="calendar-day" v-for="day in 35" v-scope="CalendarDay(day, monthOffset)" @click="selectedCalendarDay = date; switchPage(Pages.CalendarDay)" v-bind:class="{ 'today': date.date() == dayjs().date() && date.month() == dayjs().month() && date.year() == dayjs().year(), 'outside': date.month() !== (dayjs().month() + monthOffset % 12) }">
     <div class="calendar-day-number">{{ date.date() }}</div>
-    <div class="calendar-day-tag">{{ translate(getSchedule(date).scheduleType) }}</div>
+    <div class="calendar-day-tag">{{ translate(getScheduleType(date)) }}</div>
     <div class="calendar-day-tag">{{ getEvent(date) }}</div>
   </div>
 </div>
