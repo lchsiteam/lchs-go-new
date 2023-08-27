@@ -144,11 +144,11 @@ export const settings = {
     default: false,
     new: false,
     experimental: false,
-    reload: false,
+    reload: true,
   },
   THEME_ANIMATION_INTENSITY: {
     mode: "slider",
-    max: 180,
+    max: 179,
     min: 10,
     default: 15,
     new: false,

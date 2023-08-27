@@ -9,7 +9,7 @@ const timeOffeset = dayjs.tz(scheduleJSON.timeOffset, "HH:mm:ss", scheduleJSON.t
 let timeFormat = (userSettings.TWENTY_FOUR_HOUR ? "HH" : "h") + ":mm" + (userSettings.AM_PM ? " A" : "");
 
 const rootStyle = document.querySelector(":root").style;
-rootStyle.setProperty("--animated-background-intensity", settings.THEME_ANIMATION_INTENSITY + "deg");
+rootStyle.setProperty("--animated-background-intensity", userSettings.THEME_ANIMATION_INTENSITY + "deg");
 
 // Export the current settings JSON
 let customNames = JSON.parse(localStorage.getItem("customNamesJSON"));

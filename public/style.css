@@ -159,6 +159,7 @@ body {
 }
 
 .time-left-name {
+  margin: 0 1rem;
   font-size: 2rem;
   font-weight: 700;
   text-align: center;
