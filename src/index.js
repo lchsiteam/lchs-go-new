@@ -9,7 +9,8 @@ const timeOffeset = dayjs.tz(scheduleJSON.timeOffset, "HH:mm:ss", scheduleJSON.t
 let timeFormat = (userSettings.TWENTY_FOUR_HOUR ? "HH" : "h") + ":mm" + (userSettings.AM_PM ? " A" : "");
 
 const rootStyle = document.querySelector(":root").style;
-rootStyle.setProperty("--animated-background-intensity", userSettings.THEME_ANIMATION_INTENSITY + "deg");
+rootStyle.setProperty("--animated-background-intensity", `${userSettings.THEME_ANIMATION_INTENSITY}deg`);
+rootStyle.setProperty("--background-emoji", `'${userSettings.EMOJI_RAIN}'`);
 
 // Export the current settings JSON
 let customNames = JSON.parse(localStorage.getItem("customNamesJSON"));
@@ -260,7 +261,6 @@ export function getMonthText(month) {
 
 // Function - Set the local storage settings with an updated user setting
 function changeSetting(setting, value) {
-  console.log(setting, value);
   userSettings[setting] = value;
 
   // Send a message for the extension to pick up on when the settings change
@@ -268,6 +268,7 @@ function changeSetting(setting, value) {
   localStorage.setItem("settings", JSON.stringify(userSettings));
   timeFormat = (userSettings.TWENTY_FOUR_HOUR ? "HH" : "h") + ":mm" + (userSettings.AM_PM ? " A" : "");
   rootStyle.setProperty("--animated-background-intensity", userSettings.THEME_ANIMATION_INTENSITY + "deg");
+  if (setting == "EMOJI_RAIN" && /\p{Extended_Pictographic}/u.test(value)) rootStyle.setProperty("--background-emoji", `'${value}'`);
 
   if (setting == "notificationToggle" && value) {
     if (!("Notification" in window)) {

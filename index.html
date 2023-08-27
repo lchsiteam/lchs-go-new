@@ -27,7 +27,9 @@
       dayjs.extend(window.dayjs_plugin_timezone);
     </script>
     <script>
-      console.log(" _    ___   _ _____               \n| |  / __| (_)_   _|__ __ _ _ __  \n| |_| (__  | | | |/ -_) _` | '  \\ \n|____\\___| |_| |_|\\___\\__,_|_|_|_|\n\nhttps://github.com/lchsiteam/lchs-go-new");
+      const welcome = " _    ___   _ _____               \n| |  / __| (_)_   _|__ __ _ _ __  \n| |_| (__  | | | |/ -_) _` | '  \\ \n|____\\___| |_| |_|\\___\\__,_|_|_|_|\n\nhttps://github.com/lchsiteam/lchs-go-new";
+      console.log(welcome);
+
       // Automatically saturate the background based on the background color
       const styledBackgroundVariables = Array.from(document.styleSheets[0].rules[0].style)
         .map((e) => e.replace("--", ""))
@@ -45,7 +47,9 @@
 
   <body id="body" v-scope v-effect="startTimer()">
     <!-- Background - Used to do the color -->
-    <div class="background" id="background" v-bind:class="{ 'animated': userSettings.THEME_ANIMATION }"></div>
+    <div class="background" id="background" v-bind:class="{ 'animated': userSettings.THEME_ANIMATION }">
+      <div v-for="i in 100" class="emoji" v-bind:style="{ '--i': (userSettings.EMOJI_DISTRIBUTION == 'RANDOM' ? Math.random() * 60 + 's' : (i % 10 - 1) + 's'), left: (userSettings.EMOJI_DISTRIBUTION == 'RANDOM' ? `calc(${Math.random() * 100}vw - 2rem)` : (i - 3 + (i % 2) * 3) + 'vw') }">{{ emoji[Math.floor(Math.random() * emoji.length)] }}</div>
+    </div>
     <div class="app-container">
       <!-- Navigation - Holds the page buttons -->
       <div class="navigation">

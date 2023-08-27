@@ -44,6 +44,7 @@
  * @property {Slider} COLOR_THEME - The color theme setting
  * @property {Toggle} THEME_ANIMATION - The theme animation setting
  * @property {Slider} THEME_ANIMATION_INTENSITY - The theme animation intensity setting
+ * @property {Text} EMOJI_RAIN - The emoji rain setting
  * @property {Dropdown} LANGUAGE - The language setting
  * @property {Toggle} NOTIFICATIONS_TOGGLE - The notifications toggle setting
  * @property {Dropdown} NOTIFICATIONS_START - The notifications start setting
@@ -155,6 +156,26 @@ export const settings = {
     experimental: false,
     reload: false,
   },
+  EMOJI_RAIN: {
+    mode: "text",
+    max: 2,
+    min: 0,
+    default: "",
+    new: true,
+    experimental: true,
+    reload: false,
+  },
+  EMOJI_DISTRIBUTION: {
+    mode: "toggle",
+    options: [
+      { value: "RANDOM", text: "RANDOM" },
+      { value: "UNIFORM", text: "UNIFORM" },
+    ],
+    default: "RANDOM",
+    new: true,
+    experimental: true,
+    reload: true,
+  },
   LANGUAGE: {
     mode: "dropdown",
     options: ["ENGLISH", "SPANISH", "GERMAN", "FRENCH", "ITALIAN", "LOLCAT", "DEVELOPER"],
@@ -206,6 +227,8 @@ export const settings = {
  * @property {number} COLOR_THEME - The color theme setting
  * @property {boolean} THEME_ANIMATION - The theme animation setting
  * @property {number} THEME_ANIMATION_INTENSITY - The theme animation intensity setting
+ * @property {string} EMOJI_RAIN - The emoji rain setting
+ * @property {string} EMOJI_DISTRIBUTION - The emoji rain setting
  * @property {string} LANGUAGE - The language setting
  * @property {boolean} NOTIFICATIONS_TOGGLE - The notifications toggle setting
  * @property {string} NOTIFICATIONS_START - The notifications start setting

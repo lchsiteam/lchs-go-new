@@ -32,8 +32,8 @@ export let eventsJSON = JSON.parse(localStorage.getItem("eventsJSON"));
 let reload = false;
 async function checkDataVersion(response, existingData) {
   const data = await response.json();
-  if (existingData == null || existingData.version < data.version) return (reload = true), data;
-  return Promise.reject();
+  if (existingData == null || existingData.version < data.version || (existingData.language && userSettings.LANGUAGE != existingData.language)) return (reload = true), data;
+  return Promise.reject(); // Reject if the data is up to date
 }
 
 Promise.allSettled([
@@ -53,6 +53,7 @@ Promise.allSettled([
       tempJSON.version = serverLanguageJSON.version;
       tempJSON.language = userSettings.LANGUAGE;
       localStorage.setItem("languageJSON", JSON.stringify(tempJSON));
+      languageJSON = tempJSON;
     }),
 
   // Fetch the events.json for updates

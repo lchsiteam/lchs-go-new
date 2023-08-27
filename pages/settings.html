@@ -13,13 +13,15 @@
       <!-- TOGGLE Setting -->
       <div class="toggle-option" v-for="option in setting.options" tabindex="0" v-bind:class="{ 'selected': value == option.value }" @click="changeSetting(key, option.value); value = option.value; if(setting.reload) location.reload();">{{ translate(option.text) }}</div>
     </div>
-    <select class="select" v-if="setting.mode == 'dropdown'" :selectedIndex="setting.options.indexOf(userSettings[key])" @change="changeSetting(key, setting.options[$el.selectedIndex]); if(setting.reload) location.reload();">
+    <select class="select" v-if="setting.mode == 'dropdown'" @change="changeSetting(key, setting.options[$el.selectedIndex]); if(setting.reload) location.reload();">
       <!-- DROPDOWN Setting -->
-      <option class="select-option" v-for="option in setting.options">{{ translate(option) }}</option>
+      <option class="select-option" v-for="option in setting.options" :selected="option == userSettings[key]">{{ translate(option) }}</option>
     </select>
     <!-- SLIDER Settings -->
     <input v-if="setting.mode == 'slider' && key == 'COLOR_THEME'" class="slider color" :id="key" type="range" :max="setting.max" :min="setting.min" :value="userSettings[key]" v-on:input="changeHue($el.value)" @click="themeChange()" v-on:change="changeSetting(key, $el.value)" />
     <input v-else-if="setting.mode == 'slider'" class="slider" :id="key" type="range" :max="setting.max" :min="setting.min" :value="userSettings[key]" v-on:change="changeSetting(key, $el.value)" />
+    <!-- TEXT Setting -->
+    <input v-if="setting.mode == 'text'" class="text" type="text" :value="userSettings[key]" v-on:input="changeSetting(key, $el.value)" :maxLength="setting.max" :minLength="setting.min" />
   </div>
 </div>
 

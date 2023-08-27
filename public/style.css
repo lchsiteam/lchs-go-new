@@ -1,6 +1,7 @@
 :root {
   --developer-green: #39a976;
   --background-color: var(--developer-green);
+  --background-emoji: "👨‍💻";
   --animated-background-intensity: 15deg;
   --text-color: white;
 
@@ -48,6 +49,30 @@ body {
   100% {
     filter: hue-rotate(var(--animated-background-intensity));
   }
+}
+
+.background .emoji {
+  position: absolute;
+  top: -10rem;
+  left: -20rem;
+  animation: emojiMove 10s infinite var(--i) ease-in;
+  font-size: 5rem;
+  width: 5rem;
+  height: 5rem;
+}
+
+@keyframes emojiMove {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(0, calc(100vh + 20rem));
+  }
+}
+
+.background .emoji::before {
+  content: var(--background-emoji);
 }
 
 .app-container {
@@ -478,6 +503,17 @@ body {
   border-radius: 1rem;
   cursor: ew-resize;
   background-color: color-mix(in srgb, var(--text-color) 60%, transparent);
+}
+
+.setting .text {
+  font-size: 2rem;
+  font-weight: 400;
+  text-align: center;
+  appearance: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  background-color: var(--10);
+  width: 4rem;
 }
 
 @media screen and (max-width: 767px) {
