@@ -17,11 +17,9 @@
       <!-- DROPDOWN Setting -->
       <option class="select-option" v-for="option in setting.options">{{ translate(option) }}</option>
     </select>
-    <div v-if="setting.mode == 'slider'">
-      <!-- SLIDER Settings -->
-      <input v-if="key == 'COLOR_THEME'" class="color-slider" :id="key" type="range" :max="setting.max" :min="setting.min" :value="userSettings[key]" v-on:input="changeHue($el.value)" @click="themeChange()" v-on:change="changeSetting(key, $el.value)" />
-      <input v-else class="slider" :id="key" type="range" :max="setting.max" :min="setting.min" :value="userSettings[key]" v-on:change="changeSetting(key, $el.value)" />
-    </div>
+    <!-- SLIDER Settings -->
+    <input v-if="setting.mode == 'slider' && key == 'COLOR_THEME'" class="slider color" :id="key" type="range" :max="setting.max" :min="setting.min" :value="userSettings[key]" v-on:input="changeHue($el.value)" @click="themeChange()" v-on:change="changeSetting(key, $el.value)" />
+    <input v-else-if="setting.mode == 'slider'" class="slider" :id="key" type="range" :max="setting.max" :min="setting.min" :value="userSettings[key]" v-on:change="changeSetting(key, $el.value)" />
   </div>
 </div>
 

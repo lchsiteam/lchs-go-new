@@ -10,6 +10,7 @@
     <link rel="manifest" href="/public/manifest.json" />
     <link rel="stylesheet" href="/public/style.css" />
     <link href="https://fonts.googleapis.com/css?family=Niramit:300,regular,500,600" rel="stylesheet" />
+    <script src="https://unpkg.com/petite-vue@0.2.2/dist/petite-vue.iife.js" defer></script>
     <script src="https://unpkg.com/dayjs@1.10.8/dayjs.min.js"></script>
     <script src="https://unpkg.com/dayjs@1.10.8/plugin/isBetween.js"></script>
     <script src="https://unpkg.com/dayjs@1.10.8/plugin/advancedFormat.js"></script>
@@ -54,21 +55,8 @@
       </div>
 
       <div id="pages">
-        <!-- Loads pages from external files - check script below -->
+        <!-- Loads pages from external files -->
       </div>
-      <script type="module" async>
-        // ^ type="module" and async so the script is lazy loaded then run when it is loaded and can use await
-        const Pages = ["now", "calendar", "calendarDay", "settings", "classNames", "data"];
-        const pagesElement = document.getElementById("pages");
-        await Promise.allSettled(
-          Pages.map(function (page) {
-            fetch(`/pages/${page}.html`)
-              .then((response) => response.text())
-              .then((html) => ({ page, html }))
-              .then((page) => pagesElement.insertAdjacentHTML("beforeend", `<div id="${page.page}-page" v-if="currentPage == '${page.page}'">${page.html}</div>`));
-          })
-        );
-      </script>
 
       <!-- End of Pages -->
       <div class="credits">
@@ -120,11 +108,11 @@
     <!-- Period List Template - Holds the list of periods -->
     <template id="period-list-template">
       <div class="periods-header">
-        <div class="period-name">
-          <div class="period-header-text">{{ translate("PERIOD_NAME") }}</div>
+        <div>
+          <div>{{ translate("PERIOD_NAME") }}</div>
         </div>
-        <div class="period-header-text">{{ translate("PERIOD_START") }}</div>
-        <div class="period-header-text">{{ translate("PERIOD_END") }}</div>
+        <div>{{ translate("PERIOD_START") }}</div>
+        <div>{{ translate("PERIOD_END") }}</div>
       </div>
       <div v-for="period in listPeriod">
         <div class="period" v-bind:class="{ current: period.isCurrent() && !isCalendar }" v-if="period.isVisible()">
@@ -135,7 +123,7 @@
           <div>{{ period.getStart() }}</div>
           <div>{{ period.getEnd() }}</div>
         </div>
-        <div class="period-information-small" v-scope="PeriodInformationComponent()" v-if="period.isCurrent() && !isCalendar && userSettings.INLINE_DETAILS"></div>
+        <div class="period-information small" v-scope="PeriodInformationComponent()" v-if="period.isCurrent() && !isCalendar && userSettings.INLINE_DETAILS"></div>
       </div>
       <div class="event-listing">{{ event }}</div>
     </template>

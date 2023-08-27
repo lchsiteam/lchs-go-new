@@ -1,5 +1,4 @@
 // Importing the Schedule, Settings, and Languages
-import { createApp } from "https://unpkg.com/petite-vue@0.2.2/dist/petite-vue.es.js";
 import { languageJSON, scheduleJSON, getSchedule, getScheduleType, getEvent } from "./schedule.js";
 import { userSettings, settings } from "./settings.js";
 
@@ -46,9 +45,19 @@ export const Pages = {
   map: (map) => Pages.values().map(map),
 };
 
+const pagesElement = document.getElementById("pages");
+await Promise.allSettled(
+  Pages.map((page) =>
+    fetch(`/pages/${page}.html`)
+      .then((response) => response.text())
+      .then((html) => ({ page, html }))
+      .then((page) => pagesElement.insertAdjacentHTML("beforeend", `<div id="${page.page}-page" v-if="currentPage == '${page.page}'">${page.html}</div>`))
+  )
+);
+
 // Petite Vue interface
 // Anything in here is accessible in the HTML
-createApp({
+PetiteVue.createApp({
   // Components
   PeriodInformationComponent,
   PeriodListComponent,

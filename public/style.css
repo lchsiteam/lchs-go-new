@@ -70,6 +70,7 @@ body {
   font-weight: 500;
   text-decoration: none;
   cursor: pointer;
+  user-select: none;
   transition: all 0.2s ease-in-out;
 }
 
@@ -107,12 +108,12 @@ body {
   border-radius: 0.5rem;
 }
 
-.period-information-small {
+.period-information.small {
   display: none;
+  border-radius: 0 0 0.5rem 0.5rem;
 }
 
 .progress-bar {
-  height: 100%;
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
@@ -271,6 +272,7 @@ body {
 }
 
 .calendar-day {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -448,13 +450,7 @@ body {
   background-color: var(--50);
 }
 
-.setting .color-slider {
-  outline: 0;
-  appearance: none;
-  width: 25rem;
-  height: 0.5rem;
-  border-radius: 1rem;
-  border: 1px solid var(--text-color);
+.setting .slider.color {
   background: linear-gradient(to right,
       hsl(0, 100%, 100%) 0%,
       hsl(0, 100%, 50%) 2%,
@@ -473,7 +469,6 @@ body {
       hsl(0, 100%, 0%) 100%);
 }
 
-.setting .color-slider::-webkit-slider-thumb,
 .setting .slider::-webkit-slider-thumb {
   width: 1rem;
   height: 1rem;
@@ -484,84 +479,50 @@ body {
   background-color: color-mix(in srgb, var(--text-color) 60%, transparent);
 }
 
-
-
-
-
 @media screen and (max-width: 767px) {
   .app-container {
-    padding-top: 5px;
-  }
-
-  .schedule-container {
-    justify-content: center;
-  }
-
-  .schedule-popup {
-    padding: 16vh 7vw;
-    padding-top: 0%;
-    top: 70px;
+    padding: 0.5rem;
   }
 
   .period-information {
     display: none;
   }
 
-  .period.current {
-    left: 0px;
-  }
-
-  .outside {
-    display: none;
-  }
-
-  .period-details-small {
+  .period-information.small {
     display: flex;
-    height: auto;
-    margin-top: 20px;
-    margin-bottom: 18px;
-    justify-content: flex-start;
-    align-items: stretch;
-    background-color: rgba(0, 0, 0, 0.25);
-    transform: scale(1.1);
   }
 
-  .period-details-small.current {
-    left: 0px;
-    display: none;
+  .period.current {
+    border-radius: 0.5rem 0.5rem 0 0;
   }
 
   .calendar-container {
-    /* justify-content: center; */
-    flex-wrap: nowrap;
-    overflow: auto;
-    flex-direction: column;
-    display: flex;
-    padding-left: 5px;
-    padding-right: 5px;
+    width: 100%;
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
   }
 
-  .calendar-day {
-    height: auto;
-    flex-basis: 80%;
-    width: 70vw;
-    margin-left: 15px;
-    margin-right: 15px;
-
+  .calendar-day.outside {
+    display: none;
   }
 
-  .settings-row {
-    width: 90vw;
-  }
-}
-
-@media screen and (max-width: 479px) {
-  .all-periods {
-    width: 315px;
+  .calendar-day-number {
+    position: absolute;
+    padding-right: 1rem;
+    text-align: right;
   }
 
-  .nav-button {
-    margin-right: 10px;
-    margin-left: 10px;
+  .setting {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
   }
+
+  .setting>div:nth-child(2) {
+    justify-content: flex-start;
+  }
+
+  .setting .slider {
+    width: 100%;
+  }
+
 }
