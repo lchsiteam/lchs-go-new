@@ -670,7 +670,7 @@
     "SETTINGS_CLASS_NAMES_DESC": "Impostare i nomi delle classi da utilizzare per ogni periodo",
     "SETTINGS_SHARE_TITLE": "Condividere",
     "SETTINGS_SHARE_DESC": "Condividi le tue impostazioni o i nomi delle classi con un link",
-    "RETURN_TO": "Torna a {Impostazioni}",
+    "RETURN_TO": "Torna a {}",
     "TRUE": "Vero",
     "FALSE": "Falso",
     "YES": "Si",
