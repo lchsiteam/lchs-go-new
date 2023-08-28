@@ -72,65 +72,6 @@
       </div>
     </div>
 
-    <!-- Templates Section - These are templates because they are used in multiple areas -->
-    <!-- AKA components from other frameworks -->
-    <!-- Period Information Template - Holds the time left -->
-    <template id="period-information-template">
-      <div class="progress-bar">
-        <div class="circle"></div>
-        <div class="vertical-bar" v-bind:style="{ height: 100 - percentCompleted - 5 + '%' }"></div>
-        <div class="moving-time" v-effect="$el.textContent = currentTime"></div>
-        <div class="vertical-bar" v-bind:style="{ height: percentCompleted - 5 + '%' }"></div>
-        <div class="circle"></div>
-      </div>
-      <div class="period-information-content">
-        <div>
-          <div class="start-end-time" v-effect="currentPeriod">{{ currentPeriod.getStart() }}</div>
-          <div class="divider-bar"></div>
-        </div>
-        <div>
-          <div class="time-left-name">{{ currentPeriod.getName() }}</div>
-          <div class="time-left-text">
-            <span v-if="Math.trunc(minutesLeft / 60) > 0">
-              <span class="time-left-number">{{ Math.trunc(minutesLeft / 60) }}</span>
-              {{ translate("HOUR_ABBREVIATION") }}
-            </span>
-            <span style="margin-right: 5px">
-              <span class="time-left-number">{{ minutesLeft % 60 }}</span>
-              {{ translate("MINUTE_ABBREVIATION") }}
-            </span>
-          </div>
-          <div class="time-left-text">{{ translate('UNITL_END') }}</div>
-          <div class="time-left-text percent">{{ translateWithInsert("PERCENT_COMPLETED", percentCompleted) }}</div>
-        </div>
-        <div>
-          <div class="divider-bar"></div>
-          <div class="start-end-time">{{ currentPeriod.getEnd() }}</div>
-        </div>
-      </div>
-    </template>
-    <!-- Period List Template - Holds the list of periods -->
-    <template id="period-list-template">
-      <div class="periods-header">
-        <div>
-          <div>{{ translate("PERIOD_NAME") }}</div>
-        </div>
-        <div>{{ translate("PERIOD_START") }}</div>
-        <div>{{ translate("PERIOD_END") }}</div>
-      </div>
-      <div v-for="period in listPeriod">
-        <div class="period" v-bind:class="{ current: period.isCurrent() && !isCalendar }" v-if="period.isVisible()">
-          <div class="period-name">
-            <label for="period-name"></label>
-            <input v-effect="$el.value = period.getName()" @click="$el.focus(); $el.select();" @blur="changeClassName(period.name, $el)" name="period-name" />
-          </div>
-          <div>{{ period.getStart() }}</div>
-          <div>{{ period.getEnd() }}</div>
-        </div>
-        <div class="period-information small" v-scope="PeriodInformationComponent()" v-if="period.isCurrent() && !isCalendar && userSettings.INLINE_DETAILS"></div>
-      </div>
-      <div class="event-listing">{{ event }}</div>
-    </template>
     <!-- Service Worker Startup -->
     <script>
       if ("serviceWorker" in navigator) {

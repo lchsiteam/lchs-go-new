@@ -1,0 +1,20 @@
+<!-- Period List Template - Holds the list of periods -->
+<div class="periods-header">
+  <div>
+    <div>{{ translate("PERIOD_NAME") }}</div>
+  </div>
+  <div>{{ translate("PERIOD_START") }}</div>
+  <div>{{ translate("PERIOD_END") }}</div>
+</div>
+<div v-for="period in listPeriod">
+  <div class="period" v-bind:class="{ current: period.isCurrent() && !isCalendar }" v-if="period.isVisible()">
+    <div class="period-name">
+      <label for="period-name"></label>
+      <input v-effect="$el.value = period.getName()" @click="$el.focus(); $el.select();" @blur="changeClassName(period.name, $el)" name="period-name" />
+    </div>
+    <div>{{ period.getStart() }}</div>
+    <div>{{ period.getEnd() }}</div>
+  </div>
+  <div class="period-information small" v-scope="PeriodInformationComponent()" v-if="period.isCurrent() && !isCalendar && userSettings.INLINE_DETAILS"></div>
+</div>
+<div class="event-listing">{{ event }}</div>

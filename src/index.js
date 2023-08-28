@@ -12,6 +12,44 @@ const rootStyle = document.querySelector(":root").style;
 rootStyle.setProperty("--animated-background-intensity", `${userSettings.THEME_ANIMATION_INTENSITY}deg`);
 rootStyle.setProperty("--background-emoji", `'${userSettings.EMOJI_RAIN}'`);
 
+export const Pages = {
+  Now: "now",
+  Calendar: "calendar",
+  CalendarDay: "calendarDay",
+  Settings: "settings",
+  ClassNames: "classNames",
+  Data: "data",
+  values: () => Object.values(Pages).filter((v) => typeof v === "string"),
+  contains: (page) => Pages.values().includes(page),
+  filter: (filter) => Pages.values().filter(filter),
+  map: (map) => Pages.values().map(map),
+};
+
+export const Templates = {
+  PeriodInformation: "periodInformation",
+  PeriodList: "periodList",
+  values: () => Object.values(Templates).filter((v) => typeof v === "string"),
+  contains: (template) => Templates.values().includes(template),
+  filter: (filter) => Templates.values().filter(filter),
+  map: (map) => Templates.values().map(map),
+};
+
+const pagesElement = document.getElementById("pages");
+await Promise.allSettled([
+  ...Pages.map((page) =>
+    fetch(`/pages/${page}.html`)
+      .then((response) => response.text())
+      .then((html) => ({ page, html }))
+      .then((page) => pagesElement.insertAdjacentHTML("beforeend", `<div id="${page.page}-page" v-if="currentPage == '${page.page}'">${page.html}</div>`))
+  ),
+  ...Templates.map((template) =>
+    fetch(`/templates/${template}.html`)
+      .then((response) => response.text())
+      .then((html) => ({ template, html }))
+      .then((template) => document.body.insertAdjacentHTML("beforeend", `<template id="${template.template}">${template.html}</template>`))
+  ),
+]);
+
 // Export the current settings JSON
 let customNames = JSON.parse(localStorage.getItem("customNamesJSON"));
 if (!customNames) {
@@ -32,29 +70,6 @@ todaysPeriodList.listPeriod.forEach((p) => {
     currentPeriod = p;
   }
 });
-
-export const Pages = {
-  Now: "now",
-  Calendar: "calendar",
-  CalendarDay: "calendarDay",
-  Settings: "settings",
-  ClassNames: "classNames",
-  Data: "data",
-  values: () => Object.values(Pages).filter((v) => typeof v === "string"),
-  contains: (page) => Pages.values().includes(page),
-  filter: (filter) => Pages.values().filter(filter),
-  map: (map) => Pages.values().map(map),
-};
-
-const pagesElement = document.getElementById("pages");
-await Promise.allSettled(
-  Pages.map((page) =>
-    fetch(`/pages/${page}.html`)
-      .then((response) => response.text())
-      .then((html) => ({ page, html }))
-      .then((page) => pagesElement.insertAdjacentHTML("beforeend", `<div id="${page.page}-page" v-if="currentPage == '${page.page}'">${page.html}</div>`))
-  )
-);
 
 // Petite Vue interface
 // Anything in here is accessible in the HTML
@@ -213,12 +228,13 @@ function CalendarDay(day, monthOffset) {
 // Component - Period Information Template - Used to make a period information block
 function PeriodInformationComponent(props) {
   return {
-    $template: "#period-information-template",
+    $template: `#${Templates.PeriodInformation}`,
   };
 }
 
 // Component - Period List Template - Used to make a period list block
 function PeriodListComponent(date, isCal) {
+  console.log("ss");
   const periods = getSchedule(date).periods;
   const periodList = periods
     .map((p) => {
@@ -229,7 +245,7 @@ function PeriodListComponent(date, isCal) {
     isCalendar: isCal,
     listPeriod: periodList,
     event: getEvent(date),
-    $template: "#period-list-template",
+    $template: `#${Templates.PeriodList}`,
   };
 }
 
