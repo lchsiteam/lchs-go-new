@@ -119,6 +119,11 @@ export function getSchedule(date) {
   return schedule;
 }
 
+/**
+ * Get the periods for a specific schedule type
+ * @param {string} scheduleType - The string of schedule type to get the periods for.
+ * @returns {Object.<string, timeString[]>[] | "NONE"} - The periods for the schedule type
+ */
 function getPeriods(scheduleType) {
   if (scheduleType == null || "NONE") return "NONE";
   const periods = scheduleJSON.gradeLevels[userSettings.GRADE_LEVEL][scheduleType];
@@ -127,6 +132,11 @@ function getPeriods(scheduleType) {
   return periods || inheritedPeriods || "NONE";
 }
 
+/**
+ *
+ * @param {Object.<string, timeString[]>[] | "NONE"} periodList - The periods to get the periods json for
+ * @returns {Period[]} - The formatted periods json including passing periods
+ */
 function getPeriodsJSON(periodList) {
   if (periodList == "NONE")
     return [
@@ -176,6 +186,11 @@ function getPeriodsJSON(periodList) {
   ];
 }
 
+/**
+ * Get the schedule default and override types for a specific date
+ * @param {dayjs} date - The date to get the schedule type for
+ * @returns {{scheduleDefault: string, scheduleOverride: string}} - The schedule types for the date
+ */
 function getScheduleTypes(date) {
   // Check if the date is in a break range
   const breakType = inBreak(date);
@@ -197,6 +212,11 @@ function getScheduleTypes(date) {
   return { scheduleOverride, scheduleDefault };
 }
 
+/**
+ * Gets the schedule type for a specific date without specifying the override
+ * @param {dayjs} date - The date to get the schedule type for
+ * @returns {string} - The schedule type for the date
+ */
 export function getScheduleType(date) {
   const scheduleTypes = getScheduleTypes(date);
   return scheduleTypes.scheduleOverride || scheduleTypes.scheduleDefault;
