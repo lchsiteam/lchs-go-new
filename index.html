@@ -48,7 +48,7 @@
   <body id="body" v-scope v-effect="startTimer()">
     <!-- Background - Used to do the color -->
     <div class="background" id="background" v-bind:class="{ 'animated': userSettings.THEME_ANIMATION }">
-      <div v-for="i in 100" class="emoji" v-bind:style="{ '--i': (userSettings.EMOJI_DISTRIBUTION == 'RANDOM' ? Math.random() * 60 + 's' : (i % 10 - 1) + 's'), left: (userSettings.EMOJI_DISTRIBUTION == 'RANDOM' ? `calc(${Math.random() * 100}vw - 2rem)` : (i - 3 + (i % 2) * 3) + 'vw') }">{{ emoji[Math.floor(Math.random() * emoji.length)] }}</div>
+      <div v-for="i in 100" class="emoji" v-bind:style="{ '--i': (userSettings.EMOJI_DISTRIBUTION == 'RANDOM' ? Math.random() * 60 + 's' : (i % 10 - 1) + 's'), left: (userSettings.EMOJI_DISTRIBUTION == 'RANDOM' ? `calc(${Math.random() * 100}vw - 2rem)` : (i - 3 + (i % 2) * 3) + 'vw') }"></div>
     </div>
     <div class="app-container">
       <!-- Navigation - Holds the page buttons -->

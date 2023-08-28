@@ -1,4 +1,4 @@
-import { userSettings } from "./settings.js";
+import { settings, userSettings } from "./settings.js";
 
 /**
  * @typedef GradeLevel
@@ -54,6 +54,17 @@ Promise.allSettled([
       tempJSON.language = userSettings.LANGUAGE;
       localStorage.setItem("languageJSON", JSON.stringify(tempJSON));
       languageJSON = tempJSON;
+
+      const englishKeys = Object.keys(serverLanguageJSON.ENGLISH);
+      for (let lang of settings.LANGUAGE.options) {
+        if (lang == "DEVELOPER") continue;
+        if (Object.keys(serverLanguageJSON[lang]).length != englishKeys.length) {
+          console.warn("\n\nLanguage JSON for " + lang + " is missing keys.\n\n");
+          for (let key of englishKeys) {
+            if (!serverLanguageJSON[lang][key]) console.warn("Missing key: " + key);
+          }
+        }
+      }
     }),
 
   // Fetch the events.json for updates

@@ -2,7 +2,7 @@
 import { languageJSON, scheduleJSON, getSchedule, getScheduleType, getEvent } from "./schedule.js";
 import { userSettings, settings } from "./settings.js";
 
-// Set timezone for dayjs (not sure if it does anything)
+// Set timezone for dayjs (not sure if it does anything) (error shows up here when resetting localstorage)
 dayjs.tz.setDefault(scheduleJSON.timezone);
 // Stores the user preference for how they display time
 const timeOffeset = dayjs.tz(scheduleJSON.timeOffset, "HH:mm:ss", scheduleJSON.timezone).local();
