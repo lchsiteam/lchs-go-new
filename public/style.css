@@ -521,6 +521,11 @@ body {
     padding: 0.5rem;
   }
 
+  .schedule-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
   .period-information {
     display: none;
   }
