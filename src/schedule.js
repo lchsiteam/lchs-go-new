@@ -25,9 +25,30 @@ import { settings, userSettings } from "./settings.js";
  * @property {Object} gradeLevels - The grade levels for each schedule type
  */
 /** @type {ScheduleJSON} */
-export let scheduleJSON = JSON.parse(localStorage.getItem("scheduleJSON"));
-export let languageJSON = JSON.parse(localStorage.getItem("languageJSON"));
-export let eventsJSON = JSON.parse(localStorage.getItem("eventsJSON"));
+export let scheduleJSON = {};
+export let languageJSON = {};
+export let eventsJSON = {};
+try {
+  scheduleJSON = JSON.parse(localStorage.getItem("scheduleJSON"));
+} catch (e) {
+  console.error("There was an error parsing the schedule JSON. Please reset your Local Storage.");
+  localStorage.removeItem("scheduleJSON");
+  location.reload();
+}
+try {
+  languageJSON = JSON.parse(localStorage.getItem("languageJSON"));
+} catch (e) {
+  console.error("There was an error parsing the language JSON. Please reset your Local Storage.");
+  localStorage.removeItem("languageJSON");
+  location.reload();
+}
+try {
+  eventsJSON = JSON.parse(localStorage.getItem("eventsJSON"));
+} catch (e) {
+  console.error("There was an error parsing the events JSON. Please reset your Local Storage.");
+  localStorage.removeItem("eventsJSON");
+  location.reload();
+}
 
 let reload = false;
 async function checkDataVersion(response, existingData) {
@@ -40,40 +61,52 @@ Promise.allSettled([
   // Fetch the schedule.json for updates
   fetch("/data/schedule.json")
     .then((r) => checkDataVersion(r, scheduleJSON))
-    .then((serverScheduleJSON) => {
-      localStorage.setItem("scheduleJSON", JSON.stringify(serverScheduleJSON));
-      scheduleJSON = serverScheduleJSON;
-    }),
+    .then(
+      (serverScheduleJSON) => {
+        localStorage.setItem("scheduleJSON", JSON.stringify(serverScheduleJSON));
+        scheduleJSON = serverScheduleJSON;
+      },
+      () => {}
+    )
+    .catch(() => console.error("There was an error updating the schedule JSON. Please reset your Local Storage.")),
 
   // Fetch the language.json for update
   fetch("/data/languages.json")
     .then((r) => checkDataVersion(r, languageJSON))
-    .then((serverLanguageJSON) => {
-      const tempJSON = serverLanguageJSON[userSettings.LANGUAGE];
-      tempJSON.version = serverLanguageJSON.version;
-      tempJSON.language = userSettings.LANGUAGE;
-      localStorage.setItem("languageJSON", JSON.stringify(tempJSON));
-      languageJSON = tempJSON;
-
-      const englishKeys = Object.keys(serverLanguageJSON.ENGLISH);
-      for (let lang of settings.LANGUAGE.options) {
-        if (lang == "DEVELOPER") continue;
-        if (Object.keys(serverLanguageJSON[lang]).length != englishKeys.length) {
-          console.warn("\n\nLanguage JSON for " + lang + " is missing keys.\n\n");
-          for (let key of englishKeys) {
-            if (!serverLanguageJSON[lang][key]) console.warn("Missing key: " + key);
+    .then(
+      (serverLanguageJSON) => {
+        const englishKeys = Object.keys(serverLanguageJSON.ENGLISH);
+        for (let lang of settings.LANGUAGE.options) {
+          if (lang == "DEVELOPER") continue;
+          if (Object.keys(serverLanguageJSON[lang]).length != englishKeys.length) {
+            console.warn("\n\nLanguage JSON for " + lang + " is missing keys.\n\n");
+            for (let key of englishKeys) {
+              if (!serverLanguageJSON[lang][key]) console.warn("Missing key: " + key);
+            }
           }
         }
-      }
-    }),
+
+        const tempJSON = serverLanguageJSON[userSettings.LANGUAGE];
+        tempJSON.version = serverLanguageJSON.version;
+        tempJSON.language = userSettings.LANGUAGE;
+        localStorage.setItem("languageJSON", JSON.stringify(tempJSON));
+        languageJSON = tempJSON;
+      },
+      () => {}
+    )
+    .catch(() => console.error("There was an error updating the language JSON. Please reset your Local Storage.")),
 
   // Fetch the events.json for updates
   fetch("/data/events.json")
     .then((r) => checkDataVersion(r, eventsJSON))
-    .then((serverEventsJSON) => {
-      localStorage.setItem("eventsJSON", JSON.stringify(serverEventsJSON));
-      eventsJSON = serverEventsJSON;
-    }),
+    .then(
+      (serverEventsJSON) => {
+        localStorage.setItem("eventsJSON", JSON.stringify(serverEventsJSON));
+        eventsJSON = serverEventsJSON;
+      },
+      () => {}
+    )
+    .catch(() => console.error("There was an error updating the events JSON. Please reset your Local Storage.")),
 ]).then(() => {
   if (reload) location.reload();
 });

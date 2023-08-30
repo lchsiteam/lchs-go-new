@@ -41,12 +41,14 @@ await Promise.allSettled([
       .then((response) => response.text())
       .then((html) => ({ page, html }))
       .then((page) => pagesElement.insertAdjacentHTML("beforeend", `<div id="${page.page}-page" v-if="currentPage == '${page.page}'">${page.html}</div>`))
+      .catch((error) => console.error("Failed to load page: " + page.page + "\n" + error))
   ),
   ...Templates.map((template) =>
     fetch(`/templates/${template}.html`)
       .then((response) => response.text())
       .then((html) => ({ template, html }))
       .then((template) => document.body.insertAdjacentHTML("beforeend", `<template id="${template.template}">${template.html}</template>`))
+      .catch((error) => console.error("Failed to load template: " + template.template + "\n" + error))
   ),
 ]);
 
@@ -234,7 +236,6 @@ function PeriodInformationComponent(props) {
 
 // Component - Period List Template - Used to make a period list block
 function PeriodListComponent(date, isCal) {
-  console.log("ss");
   const periods = getSchedule(date).periods;
   const periodList = periods
     .map((p) => {
