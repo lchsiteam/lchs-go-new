@@ -75,7 +75,7 @@
     <!-- Service Worker Startup -->
     <script>
       if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("/serviceWorker.js", { scope: "/" }).then(function (registration) {
+        navigator.serviceWorker.register("/src/serviceWorker.js", { scope: "/" }).then(function (registration) {
           // idk what to put here but it is needed for a pwa
         });
         navigator.serviceWorker.ready.then(function (registration) {});
