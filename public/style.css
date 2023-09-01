@@ -83,6 +83,10 @@ body {
   padding: 1rem;
 }
 
+#pages {
+  max-width: 50rem;
+}
+
 .navigation {
   display: flex;
   margin-bottom: 2rem;
@@ -268,6 +272,7 @@ body {
 }
 
 .event-listing:empty {
+  display: none;
   background-color: transparent;
   backdrop-filter: none;
 }
@@ -305,7 +310,7 @@ body {
   padding: 0.5rem;
   gap: 0.2rem;
   border-radius: 0.5rem;
-  background-color: var(--10);
+  background-color: var(--15);
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
@@ -333,7 +338,7 @@ body {
   padding: 0.3rem 0.5rem;
   font-size: 1rem;
   border-radius: 0.3rem;
-  background-color: var(--5);
+  background-color: var(--10);
 }
 
 .calendar-day-tag:empty {
@@ -346,6 +351,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 0.5rem 1rem;
+  gap: 1rem;
   margin: 1rem 0;
   border-radius: 0.5rem;
   transition: all 0.2s ease-in-out;
@@ -388,7 +394,7 @@ body {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: var(--10);
+  background-color: var(--15);
   padding: 0.3rem 0.3rem;
   border-radius: 0.3rem;
   width: fit-content;
@@ -406,11 +412,11 @@ body {
 }
 
 .setting .toggle .toggle-option:hover {
-  background-color: var(--5);
+  background-color: var(--15);
 }
 
 .setting .toggle .toggle-option.selected {
-  background-color: var(--5);
+  background-color: var(--15);
 }
 
 .setting .select {
@@ -452,7 +458,7 @@ body {
   gap: 0.5rem;
   padding: 0.7rem 1.2rem;
   border-radius: 0.3rem;
-  background-color: var(--10);
+  background-color: var(--15);
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }

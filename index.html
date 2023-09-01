@@ -38,7 +38,7 @@
       const classesUsingBackground = Array.from(document.styleSheets[0].rules)
         .map((e) => ({ selector: e.selectorText, number: styledBackgroundVariables.find((v) => e.cssText.includes(`var(--${v})`)) }))
         .filter((e) => e.number);
-      const styleTag = `<style>${classesUsingBackground.map((clazz) => `${clazz.selector} {backdrop-filter: saturate(${clazz.number + 100}%);}`).join("\n")}</style>`;
+      const styleTag = `<style>${classesUsingBackground.map((clazz) => ((saturate = clazz.number + 90), `${clazz.selector} {backdrop-filter: saturate(${saturate}%);-webkit-backdrop-filter: saturate(${saturate}%);}`)).join("\n")}</style>`;
       document.head.insertAdjacentHTML("beforeend", styleTag);
     </script>
     <script type="module" defer src="/src/index.js"></script>
