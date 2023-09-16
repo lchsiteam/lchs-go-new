@@ -68,25 +68,36 @@ Promise.allSettled([
       },
       () => {}
     )
-    .catch(() => console.error("There was an error updating the schedule JSON. Please reset your Local Storage.")),
+    .catch(() => {
+      console.error("There was an error updating the schedule JSON. Please reset your Local Storage."); 
+      localStorage.removeItem("scheduleJSON");
+      reload = true;
+    }),
 
-  // Fetch the language.json for update
+  // Fetch the language.json for update (uses settings)
   fetch("/data/languages.json")
     .then((r) => checkDataVersion(r, languageJSON))
     .then(
       (serverLanguageJSON) => {
-        const englishKeys = Object.keys(serverLanguageJSON.ENGLISH);
-        for (let lang of settings.LANGUAGE.options) {
-          if (lang == "DEVELOPER") continue;
-          if (Object.keys(serverLanguageJSON[lang]).length != englishKeys.length) {
-            console.warn("\n\nLanguage JSON for " + lang + " is missing keys.\n\n");
-            for (let key of englishKeys) {
-              if (!serverLanguageJSON[lang][key]) console.warn("Missing key: " + key);
+        try{
+          const englishKeys = Object.keys(serverLanguageJSON.ENGLISH);
+          for (let lang of settings.LANGUAGE.options) {
+            if (lang == "DEVELOPER") continue;
+            if (Object.keys(serverLanguageJSON[lang]).length != englishKeys.length) {
+              console.warn("\n\nLanguage JSON for " + lang + " is missing keys.\n\n");
+              for (let key of englishKeys) {
+                if (!serverLanguageJSON[lang][key]) console.warn("Missing key: " + key);
+              }
             }
           }
+        } catch (e) {
+          console.warn("There was an error matching the language JSON keys.");
         }
 
         const tempJSON = serverLanguageJSON[userSettings.LANGUAGE];
+        // Settings must be wack
+        // if (!tempJSON) localStorage.removeItem("settings")
+
         tempJSON.version = serverLanguageJSON.version;
         tempJSON.language = userSettings.LANGUAGE;
         localStorage.setItem("languageJSON", JSON.stringify(tempJSON));
@@ -94,7 +105,11 @@ Promise.allSettled([
       },
       () => {}
     )
-    .catch(() => console.error("There was an error updating the language JSON. Please reset your Local Storage.")),
+    .catch(() => {
+      console.error("There was an error updating the language JSON. Please reset your Local Storage."); 
+      localStorage.removeItem("languageJSON");
+      reload = true;
+    }),
 
   // Fetch the events.json for updates
   fetch("/data/events.json")
@@ -106,7 +121,11 @@ Promise.allSettled([
       },
       () => {}
     )
-    .catch(() => console.error("There was an error updating the events JSON. Please reset your Local Storage.")),
+    .catch(() => {
+      console.error("There was an error updating the events JSON. Please reset your Local Storage."); 
+      localStorage.removeItem("eventsJSON");
+      reload = true;
+    }),
 ]).then(() => {
   if (reload) location.reload();
 });

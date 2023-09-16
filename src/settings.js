@@ -236,7 +236,7 @@ export const settings = {
  */
 /** @type {UserSettings} */
 export let userSettings = JSON.parse(localStorage.getItem("settings"));
-if (userSettings == null) {
+if (userSettings == null || !settings.GRADE_LEVEL.options.includes(userSettings.GRADE_LEVEL) || !settings.LANGUAGE.options.includes(userSettings.LANGUAGE)) {
   userSettings = Object.fromEntries(Object.entries(settings).map(([key, value]) => [key, value.default]));
 
   // Send a message for the extension to pick up on when the settings change
