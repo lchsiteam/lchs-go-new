@@ -52,7 +52,7 @@
  */
 
 /** @type {Settings} */
-export const settings = {
+const settings = {
   GRADE_LEVEL: {
     mode: "dropdown",
     options: ["GRADE_7", "GRADE_8", "GRADE_9", "GRADE_10", "GRADE_11", "GRADE_12"],
@@ -235,7 +235,7 @@ export const settings = {
  * @property {string} NOTIFICATIONS_END - The notifications end setting
  */
 /** @type {UserSettings} */
-export let userSettings = JSON.parse(localStorage.getItem("settings"));
+let userSettings = JSON.parse(localStorage.getItem("settings"));
 if (userSettings == null || !settings.GRADE_LEVEL.options.includes(userSettings.GRADE_LEVEL) || !settings.LANGUAGE.options.includes(userSettings.LANGUAGE)) {
   userSettings = Object.fromEntries(Object.entries(settings).map(([key, value]) => [key, value.default]));
 
@@ -243,3 +243,4 @@ if (userSettings == null || !settings.GRADE_LEVEL.options.includes(userSettings.
   window.postMessage({ settingsChanged: true });
   localStorage.setItem("settings", JSON.stringify(userSettings));
 }
+export { userSettings, settings }
