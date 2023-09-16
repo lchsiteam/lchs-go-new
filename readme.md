@@ -1,4 +1,4 @@
-# ![New LCHS Go Icon](https://github.com/mark-crichton/lchs-go-new/blob/develop/favicon.ico) New LCHS Go
+# ![New LCHS Go Icon](https://github.com/lchsiteam/lchs-go-new/blob/develop/favicon.ico) New LCHS Go
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/bddnpkadgjcbafnmbampfbaiijafealk?style=for-the-badge)](https://chrome.google.com/webstore/detail/lchs-go-beta/bddnpkadgjcbafnmbampfbaiijafealk)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/stars/bddnpkadgjcbafnmbampfbaiijafealk?style=for-the-badge)](https://chrome.google.com/webstore/detail/lchs-go-beta/bddnpkadgjcbafnmbampfbaiijafealk)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/lchsiteam/lchs-go-new/firebase-hosting-merge.yml?branch=develop&style=for-the-badge)](https://github.com/lchsiteam/lchs-go-new/actions/workflows/firebase-hosting-merge.yml)
