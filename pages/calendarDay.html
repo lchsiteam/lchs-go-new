@@ -1,0 +1,13 @@
+<div v-scope="PeriodListComponent(selectedCalendarDay, true) || todaysPeriodList"></div>
+<div class="setting">
+  <div>
+    <div class="title">{{ translateWithInsert("RETURN_TO", translate("CALENDAR_TITLE")) }}</div>
+  </div>
+  <div>
+    <div class="button" @click="switchPage(Pages.Calendar)" tabindex="0">{{ translate("RETURN") }}</div>
+  </div>
+</div>
+
+<div class="credits">
+  <a href="https://forms.gle/BgFW4MgL9RGpezdw7" class="credits" target="_blank">Submit a missing event</a>
+</div>

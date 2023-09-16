@@ -3,18 +3,18 @@
   "name": "LCHS Go",
   "icons": [
     {
-      "src": "/favicon.ico",
+      "src": "/public/favicon.ico",
       "type": "image/ico",
       "sizes": "48x48"
     },
     {
-      "src": "/faviconLarge.png",
+      "src": "/public/faviconLarge.png",
       "type": "image/png",
       "sizes": "192x192",
       "purpose": "any maskable"
     },
     {
-      "src": "/faviconLargeLarge.png",
+      "src": "/public/faviconLargeLarge.png",
       "type": "image/png",
       "sizes": "512x512"
     }

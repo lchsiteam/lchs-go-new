@@ -1,0 +1,60 @@
+<!-- Settings Page - All of the user settings generated from settings.js -->
+
+<div class="page-title">{{ translate("SETTINGS_TITLE") }}</div>
+<div class="setting" v-for="(setting, key) in settings">
+  <div>
+    <span class="title">{{ translate("SETTINGS_" + key + "_TITLE") }}</span>
+    <span class="badge" v-if="setting.new">NEW</span>
+    <span class="badge experimental" v-if="setting.experimental">!</span>
+    <div class="description">{{ translate("SETTINGS_" + key + "_DESC") }}</div>
+  </div>
+  <div>
+    <div class="toggle" v-if="setting.mode == 'toggle'" v-scope="{ value: userSettings[key] }">
+      <!-- TOGGLE Setting -->
+      <div class="toggle-option" v-for="option in setting.options" tabindex="0" v-bind:class="{ 'selected': value == option.value }" @click="changeSetting(key, option.value); value = option.value; if(setting.reload) location.reload();">{{ translate(option.text) }}</div>
+    </div>
+    <select class="select" v-if="setting.mode == 'dropdown'" @change="changeSetting(key, setting.options[$el.selectedIndex]); if(setting.reload) location.reload();">
+      <!-- DROPDOWN Setting -->
+      <option class="select-option" v-for="option in setting.options" :selected="option == userSettings[key]">{{ translate(option) }}</option>
+    </select>
+    <!-- SLIDER Settings -->
+    <input v-if="setting.mode == 'slider' && key == 'COLOR_THEME'" class="slider color" :id="key" type="range" :max="setting.max" :min="setting.min" :value="userSettings[key]" v-on:input="changeHue($el.value)" @click="themeChange()" v-on:change="changeSetting(key, $el.value)" />
+    <input v-else-if="setting.mode == 'slider'" class="slider" :id="key" type="range" :max="setting.max" :min="setting.min" :value="userSettings[key]" v-on:change="changeSetting(key, $el.value)" />
+    <!-- TEXT Setting -->
+    <input v-if="setting.mode == 'text'" class="text" type="text" :value="userSettings[key]" v-on:input="changeSetting(key, $el.value)" :maxLength="setting.max" :minLength="setting.min" />
+  </div>
+</div>
+
+<!-- Always visible settings -->
+
+<div class="setting">
+  <div>
+    <span class="title">{{ translate("SETTINGS_CLASS_NAMES_TITLE") }}</span>
+    <div class="description">{{ translate("SETTINGS_CLASS_NAMES_DESC") }}</div>
+  </div>
+  <div class="button-wrapper">
+    <div class="button" @click="switchPage(Pages.ClassNames)" tabindex="0">{{ translate("CONFIGURE") }}</div>
+  </div>
+</div>
+<div class="setting">
+  <div>
+    <span class="title">{{ translate("SETTINGS_SHARE_TITLE") }}</span>
+    <div class="description">{{ translate("SETTINGS_SHARE_DESC") }}</div>
+  </div>
+  <div class="button-wrapper">
+    <div class="button" @click="shareSettings()" tabindex="0">{{ translate("SHARE_SETTINGS") }}</div>
+    <div class="button" @click="shareClassNames()" tabindex="0">{{ translate("SHARE_CLASS_NAMES") }}</div>
+    <div class="share-link" v-if="shareLink" v-effect="$el.textContent = shareLink" @click="navigator.clipboard.writeText(shareLink)" tabindex="0"></div>
+  </div>
+</div>
+<div class="setting" style="position: relative; z-index: 999">
+  <div>
+    <span class="title">Reset</span>
+    <div class="description">Reset any of the data stored in your local storage. Try using this if the page isn't working. (Try reloading first)</div>
+  </div>
+  <div class="button-wrapper">
+    <div class="button" onclick="localStorage.removeItem('settings'); location.reload()" tabindex="0">Reset Settings</div>
+    <div class="button" onclick="localStorage.removeItem('customNamesJSON'); location.reload()" tabindex="0">Reset Class Names</div>
+    <div class="button" onclick="localStorage.removeItem('scheduleJSON'); localStorage.removeItem('eventsJSON'); localStorage.removeItem('languageJSON'); location.reload()" tabindex="0">Reset Local Storage</div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<!-- Now Page - Has the period list and the times -->
+
+<div class="page-title" v-effect="$el.textContent = getTodaysGreeting()">
+  <!-- This should only display when things are broken but might durring slow page loads -->
+  Hello. Things are broken :)
+</div>
+<div class="schedule-container">
+  <div class="period-information" v-scope="PeriodInformationComponent()"></div>
+  <div class="all-periods" v-scope="todaysPeriodList">
+    <div style="margin-bottom: 30px" class="period-details-small" v-scope="PeriodInformationComponent()" v-if="!userSettings.INLINE_DETAILS"></div>
+  </div>
+</div>

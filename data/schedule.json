@@ -1,5 +1,7 @@
 {
-  "version": 30.3,
+  "version": 31.0,
+  "timeOffset": "00:00:00",
+  "timezone": "America/Los_Angeles",
   "defaults": {
     "0": "NONE",
     "1": "REGULAR",
@@ -8,6 +10,72 @@
     "4": "BLOCK_EVEN",
     "5": "REGULAR",
     "6": "NONE"
+  },
+  "overrides": {
+    "all": {
+      "11/11/2022": "NONE",
+      "05/31/2022": "FINALS_3_4",
+      "06/01/2022": "FINALS_1_6",
+      "06/02/2022": "FINALS_2_5",
+
+      "08/16/2023": "REGULAR",
+      "08/17/2023": "REGULAR",
+      "08/23/2023": "REGULAR",
+      "08/24/2023": "REGULAR",
+
+      "09/05/2022": "NONE",
+
+      "12/07/2022": "REGULAR",
+      "12/08/2022": "REGULAR",
+      "12/14/2022": "FINALS_2_6",
+      "12/15/2022": "FINALS_1_5",
+      "12/16/2022": "FINALS_3_4",
+
+      "01/04/2023": "REGULAR",
+      "01/05/2023": "REGULAR",
+      "02/17/2023": "NONE",
+      "02/20/2023": "NONE",
+
+      "04/14/2023": "MINIMUM",
+
+      "05/17/2023": "REGULAR",
+      "05/18/2023": "REGULAR",
+      "05/26/2023": "ASSEMBLY",
+      "05/29/2023": "NONE",
+      "05/31/2023": "FINALS_3_4",
+      "06/01/2023": "FINALS_1_6",
+      "06/02/2023": "FINALS_2_5"
+    },
+    "GRADE_7": {},
+    "GRADE_8": {},
+    "GRADE_9": {},
+    "GRADE_10": {},
+    "GRADE_11": {},
+    "GRADE_12": {}
+  },
+  "dateRanges": {
+    "breaks": {
+      "FALL_BREAK": [
+        ["11/21/2022", "11/25/2022"],
+        ["11/20/2023", "11/24/2023"]
+      ],
+      "WINTER_BREAK": [
+        ["12/18/2022", "01/03/2023"],
+        ["12/21/2023", "01/05/2024"]
+      ],
+      "SPRING_BREAK": [
+        ["04/03/2023", "04/07/2023"],
+        ["04/01/2024", "04/05/2024"]
+      ],
+      "SUMMER_BREAK": [
+        ["06/04/2023", "08/12/2023"],
+        ["06/07/2024", "08/14/2024"]
+      ]
+    },
+    "customWeeks": {
+      "BLOCK_SWITCH": ["11/12/2023", "02/17/2024"],
+      "SBAC_WEEK": ["04/17/2023", "04/20/2023"]
+    }
   },
   "customWeeks": {
     "BLOCK_SWITCH": {
@@ -38,105 +106,35 @@
       "6": "NONE"
     }
   },
-  "overrides": {
-    "all": {
-      "11/11/2022": "NONE",
-      "05/31/2022": "FINALS_3_4",
-      "06/01/2022": "FINALS_1_6",
-      "06/02/2022": "FINALS_2_5",
-      
-      "08/16/2023": "REGULAR",
-      "08/17/2023": "REGULAR",
-      "08/23/2023": "REGULAR",
-      "08/24/2023": "REGULAR",
-
-      "08/25/2023": "ASSEMBLY",
-      
-      "09/04/2023": "NONE",
-      
-      "12/07/2022": "REGULAR",
-      "12/08/2022": "REGULAR",
-      "12/14/2022": "FINALS_2_6",
-      "12/15/2022": "FINALS_1_5",
-      "12/16/2022": "FINALS_3_4",
-      
-      "01/04/2023": "REGULAR",
-      "01/05/2023": "REGULAR",
-      "02/17/2023": "NONE",
-      "02/20/2023": "NONE",
-      
-      "04/14/2023": "MINIMUM",
-      
-      "05/17/2023": "REGULAR",
-      "05/18/2023": "REGULAR",
-      "05/26/2023": "ASSEMBLY",
-      "05/29/2023": "NONE",
-      "05/31/2023": "FINALS_3_4",
-      "06/01/2023": "FINALS_1_6",
-      "06/02/2023": "FINALS_2_5"
-    },
-    "GRADE_7": {
-
-    },
-    "GRADE_8": {
-
-    },
-    "GRADE_9": {
-
-    },
-    "GRADE_10": {
-
-    },
-    "GRADE_11": {
-
-    },
-    "GRADE_12": {
-
-    }
-  },
-  "dateRanges": {
-    "breaks": {
-      "FALL_BREAK":     ["11/20/2023", "11/24/2023"],
-      "WINTER_BREAK":   ["12/21/2023", "01/05/2024"],
-      "SPRING_BREAK":   ["04/01/2024", "04/05/2024"],
-      "SUMMER_BREAK":   ["06/07/2024", "08/14/2024"]
-    },
-    "customWeeks": {
-      "BLOCK_SWITCH":    ["11/12/2023", "02/17/2024"],
-      "SBAC_WEEK":       ["04/17/2023", "04/20/2023"]
-    }
-  },
-  "timeOffset": "00:00:00",
-  "timezone": "America/Los_Angeles",
   "gradeLevels": {
-    "middleSchool": {
+    "GRADE_7": {
       "REGULAR": {
         "PERIOD_0": ["07:28 AM", "08:24 AM"],
         "PERIOD_1": ["08:30 AM", "09:26 AM"],
         "PERIOD_2": ["09:32 AM", "10:28 AM"],
-        "BREAK":    ["10:28 AM", "10:38 AM"],
+        "BREAK": ["10:28 AM", "10:38 AM"],
         "PERIOD_3": ["10:43 AM", "11:39 AM"],
         "PERIOD_4": ["11:45 AM", "12:41 PM"],
-        "LUNCH":    ["12:41 PM", "01:11 PM"],
+        "LUNCH": ["12:41 PM", "01:11 PM"],
         "PERIOD_5": ["01:16 PM", "02:12 PM"],
         "PERIOD_6": ["02:18 PM", "03:14 PM"]
       },
       "BLOCK_ODD": {
         "PERIOD_0": ["07:28 AM", "08:24 AM"],
         "PERIOD_1": ["08:30 AM", "10:14 AM"],
-        "BREAK":    ["10:14 AM", "10:24 AM"],
+        "BREAK": ["10:14 AM", "10:24 AM"],
         "PERIOD_3": ["10:29 AM", "12:13 PM"],
-        "LUNCH":    ["12:13 PM", "12:43 PM"],
-        "HOMEROOM": ["12:48 PM", "01:23 PM"],
+        "LUNCH": ["12:13 PM", "12:43 PM"],
+        "HOMEROOMHOMEROOM": ["12:48 PM", "01:23 PM"],
         "PERIOD_5": ["01:29 PM", "03:13 PM"]
       },
       "BLOCK_EVEN": {
         "PERIOD_0": ["07:28 AM", "08:24 AM"],
         "PERIOD_2": ["08:30 AM", "10:14 AM"],
-        "BREAK":    ["10:14 AM", "10:24 AM"],
+        "BREAK": ["10:14 AM", "10:24 AM"],
         "PERIOD_4": ["10:29 AM", "12:13 PM"],
-        "LUNCH":    ["12:13 PM", "12:43 PM"],
-        "HOMEROOM":["12:48 PM", "01:23 PM"],
+        "LUNCH": ["12:13 PM", "12:43 PM"],
+        "HOMEROOMHOMEROOM": ["12:48 PM", "01:23 PM"],
         "PERIOD_6": ["01:29 PM", "03:13 PM"]
       },
       "ASSEMBLY": {
@@ -146,26 +144,26 @@
         "ASSEMBLY": ["09:24 AM", "10:12 AM"],
         "PERIOD_2": ["10:12 AM", "11:00 AM"],
         "ASSEMBLY": ["10:12 AM", "11:00 AM"],
-        "BREAK":    ["11:00 AM", "11:09 AM"],
+        "BREAK": ["11:00 AM", "11:09 AM"],
         "PERIOD_3": ["11:15 AM", "12:03 PM"],
-        "LUNCH":    ["12:03 PM", "12:33 PM"],
-        "PERIOD_4": ["12:39 PM", "01:27 PM"],
+        "PERIOD_4": ["12:03 PM", "12:57 PM"],
+        "LUNCH": ["12:57 PM", "01:27 PM"],
         "PERIOD_5": ["01:33 PM", "02:21 PM"],
         "PERIOD_6": ["02:27 PM", "03:15 PM"]
       },
       "FINALS_1_6": {
         "PERIOD_1": ["08:30 AM", "10:50 AM"],
-        "BREAK":    ["10:50 AM", "11:15 AM"],
+        "BREAK": ["10:50 AM", "11:15 AM"],
         "PERIOD_6": ["11:20 AM", "01:40 PM"]
       },
       "FINALS_2_5": {
         "PERIOD_2": ["08:30 AM", "10:50 AM"],
-        "BREAK":    ["10:50 AM", "11:15 AM"],
+        "BREAK": ["10:50 AM", "11:15 AM"],
         "PERIOD_5": ["11:20 AM", "01:40 PM"]
       },
       "FINALS_3_4": {
         "PERIOD_3": ["08:30 AM", "10:50 AM"],
-        "BREAK":    ["10:50 AM", "11:15 AM"],
+        "BREAK": ["10:50 AM", "11:15 AM"],
         "PERIOD_4": ["11:20 AM", "01:40 PM"]
       },
       "MINIMUM": {
@@ -173,7 +171,7 @@
         "PERIOD_1": ["08:30 AM", "09:08 AM"],
         "PERIOD_2": ["09:15 AM", "09:53 AM"],
         "PERIOD_3": ["10:00 AM", "10:38 AM"],
-        "BREAK":    ["10:38 AM", "10:48 AM"],
+        "BREAK": ["10:38 AM", "10:48 AM"],
         "PERIOD_4": ["10:55 AM", "11:33 AM"],
         "PERIOD_5": ["11:40 AM", "12:18 PM"],
         "PERIOD_6": ["12:25 PM", "01:03 PM"]
@@ -184,67 +182,70 @@
         "PERIOD_2": ["09:34 AM", "10:28 AM"],
         "PERIOD_3": ["10:38 AM", "11:32 AM"],
         "PERIOD_4": ["11:42 AM", "12:36 PM"],
-        "LUNCH":    ["12:36 PM", "01:11 PM"],
+        "LUNCH": ["12:36 PM", "01:11 PM"],
         "PERIOD_5": ["01:16 PM", "02:10 PM"],
         "PERIOD_6": ["02:20 PM", "03:14 PM"]
       },
       "PILOT_BLOCK_A": {
         "PERIOD_0": ["07:30 AM", "08:24 AM"],
         "PERIOD_1": ["08:30 AM", "09:42 AM"],
-        "BREAK":    ["09:42 AM", "09:52 AM"],
+        "BREAK": ["09:42 AM", "09:52 AM"],
         "PERIOD_2": ["09:57 AM", "11:09 AM"],
         "PERIOD_3": ["11:19 AM", "12:31 PM"],
-        "LUNCH":    ["12:31 PM", "01:06 PM"],
+        "LUNCH": ["12:31 PM", "01:06 PM"],
         "HOMEROOM": ["01:16 PM", "01:51 PM"],
         "PERIOD_5": ["02:01 PM", "03:13 PM"]
       },
       "PILOT_BLOCK_B": {
         "PERIOD_0": ["07:30 AM", "08:24 AM"],
         "PERIOD_1": ["08:30 AM", "09:42 AM"],
-        "BREAK":    ["09:42 AM", "09:52 AM"],
+        "BREAK": ["09:42 AM", "09:52 AM"],
         "PERIOD_2": ["09:57 AM", "11:09 AM"],
         "PERIOD_4": ["11:19 AM", "12:31 PM"],
-        "LUNCH":    ["12:31 PM", "01:06 PM"],
+        "LUNCH": ["12:31 PM", "01:06 PM"],
         "HOMEROOM": ["01:16 PM", "01:51 PM"],
         "PERIOD_6": ["02:01 PM", "03:13 PM"]
       },
       "PILOT_BLOCK_C": {
         "PERIOD_0": ["07:30 AM", "08:24 AM"],
         "PERIOD_3": ["08:30 AM", "09:42 AM"],
-        "BREAK":    ["09:42 AM", "09:52 AM"],
+        "BREAK": ["09:42 AM", "09:52 AM"],
         "PERIOD_4": ["09:57 AM", "11:09 AM"],
         "PERIOD_5": ["11:19 AM", "12:31 PM"],
-        "LUNCH":    ["12:31 PM", "01:06 PM"],
+        "LUNCH": ["12:31 PM", "01:06 PM"],
         "HOMEROOM": ["01:16 PM", "01:51 PM"],
         "PERIOD_6": ["02:01 PM", "03:13 PM"]
       },
       "SBAC_BLOCK_ODD": {
         "PERIOD_0": ["07:28 AM", "08:24 AM"],
         "PERIOD_3": ["08:30 AM", "10:14 AM"],
-        "BREAK":    ["10:14 AM", "10:24 AM"],
+        "BREAK": ["10:14 AM", "10:24 AM"],
         "PERIOD_1": ["10:29 AM", "12:13 PM"],
-        "LUNCH":    ["12:13 PM", "12:43 PM"],
+        "LUNCH": ["12:13 PM", "12:43 PM"],
         "HOMEROOM": ["12:48 PM", "01:23 PM"],
         "PERIOD_5": ["01:29 PM", "03:13 PM"]
       },
       "SBAC_BLOCK_EVEN": {
         "PERIOD_0": ["07:28 AM", "08:24 AM"],
         "PERIOD_4": ["08:30 AM", "10:14 AM"],
-        "BREAK":    ["10:14 AM", "10:24 AM"],
+        "BREAK": ["10:14 AM", "10:24 AM"],
         "PERIOD_2": ["10:29 AM", "12:13 PM"],
-        "LUNCH":    ["12:13 PM", "12:43 PM"],
+        "LUNCH": ["12:13 PM", "12:43 PM"],
         "HOMEROOM": ["12:48 PM", "01:23 PM"],
         "PERIOD_6": ["01:29 PM", "03:13 PM"]
       }
     },
-    "highSchool": {
+    "GRADE_8": {
+      "inheritsFrom": "GRADE_7"
+    },
+    "GRADE_9": {
       "REGULAR": {
         "PERIOD_0": ["07:28 AM", "08:24 AM"],
         "PERIOD_1": ["08:30 AM", "09:26 AM"],
         "PERIOD_2": ["09:32 AM", "10:28 AM"],
-        "BREAK":    ["10:28 AM", "10:38 AM"],
+        "BREAK": ["10:28 AM", "10:38 AM"],
         "PERIOD_3": ["10:43 AM", "11:39 AM"],
-        "LUNCH":    ["11:39 AM", "12:09 PM"],
+        "LUNCH": ["11:39 AM", "12:09 PM"],
         "PERIOD_4": ["12:14 PM", "01:10 PM"],
         "PERIOD_5": ["01:16 PM", "02:12 PM"],
         "PERIOD_6": ["02:18 PM", "03:14 PM"]
@@ -252,19 +253,19 @@
       "BLOCK_ODD": {
         "PERIOD_0": ["07:28 AM", "08:24 AM"],
         "PERIOD_1": ["08:30 AM", "10:14 AM"],
-        "BREAK":    ["10:14 AM", "10:24 AM"],
+        "BREAK": ["10:14 AM", "10:24 AM"],
         "PERIOD_3": ["10:29 AM", "12:13 PM"],
         "ADVISORY": ["12:19 PM", "12:54 PM"],
-        "LUNCH":    ["12:54 PM", "01:24 PM"],
+        "LUNCH": ["12:54 PM", "01:24 PM"],
         "PERIOD_5": ["01:29 PM", "03:13 PM"]
       },
       "BLOCK_EVEN": {
         "PERIOD_0": ["07:28 AM", "08:24 AM"],
         "PERIOD_2": ["08:30 AM", "10:14 AM"],
-        "BREAK":    ["10:14 AM", "10:24 AM"],
+        "BREAK": ["10:14 AM", "10:24 AM"],
         "PERIOD_4": ["10:29 AM", "12:13 PM"],
         "ADVISORY": ["12:19 PM", "12:54 PM"],
-        "LUNCH":    ["12:54 PM", "01:24 PM"],
+        "LUNCH": ["12:54 PM", "01:24 PM"],
         "PERIOD_6": ["01:29 PM", "03:13 PM"]
       },
       "ASSEMBLY": {
@@ -272,36 +273,36 @@
         "PERIOD_1": ["08:30 AM", "09:18 AM"],
         "PERIOD_2": ["09:24 AM", "10:12 AM"],
         "ASSEMBLY": ["10:12 AM", "11:00 AM"],
-        "BREAK":    ["11:00 AM", "11:09 AM"],
+        "BREAK": ["11:00 AM", "11:09 AM"],
         "PERIOD_3": ["11:15 AM", "12:03 PM"],
-        "PERIOD_4": ["12:03 PM", "12:57 PM"],
-        "LUNCH":    ["12:57 PM", "01:27 PM"],
+        "LUNCH": ["12:03 PM", "12:33 PM"],
+        "PERIOD_4": ["12:39 PM", "01:27 PM"],
         "PERIOD_5": ["01:33 PM", "02:21 PM"],
         "PERIOD_6": ["02:27 PM", "03:15 PM"]
       },
       "FINALS_1_6": {
         "PERIOD_1": ["08:30 AM", "10:35 AM"],
-        "BREAK":    ["10:35 AM", "10:54 AM"],
+        "BREAK": ["10:35 AM", "10:54 AM"],
         "PERIOD_6": ["11:00 AM", "01:05 PM"]
       },
       "FINALS_2_5": {
         "PERIOD_2": ["08:30 AM", "10:35 AM"],
-        "BREAK":    ["10:35 AM", "10:54 AM"],
+        "BREAK": ["10:35 AM", "10:54 AM"],
         "PERIOD_5": ["11:00 AM", "01:05 PM"]
       },
       "FINALS_2_6": {
         "PERIOD_2": ["08:30 AM", "10:35 AM"],
-        "BREAK":    ["10:35 AM", "10:54 AM"],
+        "BREAK": ["10:35 AM", "10:54 AM"],
         "PERIOD_6": ["11:00 AM", "01:05 PM"]
       },
       "FINALS_1_5": {
         "PERIOD_1": ["08:30 AM", "10:35 AM"],
-        "BREAK":    ["10:35 AM", "10:54 AM"],
+        "BREAK": ["10:35 AM", "10:54 AM"],
         "PERIOD_5": ["11:00 AM", "01:05 PM"]
       },
       "FINALS_3_4": {
         "PERIOD_3": ["08:30 AM", "10:35 AM"],
-        "BREAK":    ["10:35 AM", "10:54 AM"],
+        "BREAK": ["10:35 AM", "10:54 AM"],
         "PERIOD_4": ["11:00 AM", "01:05 PM"]
       },
       "MINIMUM": {
@@ -309,7 +310,7 @@
         "PERIOD_1": ["08:30 AM", "09:08 AM"],
         "PERIOD_2": ["09:15 AM", "09:53 AM"],
         "PERIOD_3": ["10:00 AM", "10:38 AM"],
-        "BREAK":    ["10:38 AM", "10:48 AM"],
+        "BREAK": ["10:38 AM", "10:48 AM"],
         "PERIOD_4": ["10:55 AM", "11:33 AM"],
         "PERIOD_5": ["11:40 AM", "12:18 PM"],
         "PERIOD_6": ["12:25 PM", "01:03 PM"]
@@ -320,58 +321,67 @@
         "PERIOD_2": ["09:34 AM", "10:28 AM"],
         "PERIOD_3": ["10:38 AM", "11:32 AM"],
         "PERIOD_4": ["11:42 AM", "12:36 PM"],
-        "LUNCH":    ["12:36 PM", "01:11 PM"],
+        "LUNCH": ["12:36 PM", "01:11 PM"],
         "PERIOD_5": ["01:16 PM", "02:10 PM"],
         "PERIOD_6": ["02:20 PM", "03:14 PM"]
       },
       "PILOT_BLOCK_A": {
         "PERIOD_0": ["07:30 AM", "08:24 AM"],
         "PERIOD_1": ["08:30 AM", "09:42 AM"],
-        "BREAK":    ["09:42 AM", "09:52 AM"],
+        "BREAK": ["09:42 AM", "09:52 AM"],
         "PERIOD_2": ["09:57 AM", "11:09 AM"],
         "PERIOD_3": ["11:19 AM", "12:31 PM"],
-        "LUNCH":    ["12:31 PM", "01:06 PM"],
+        "LUNCH": ["12:31 PM", "01:06 PM"],
         "ADVISORY": ["01:16 PM", "01:51 PM"],
         "PERIOD_5": ["02:01 PM", "03:13 PM"]
       },
       "PILOT_BLOCK_B": {
         "PERIOD_0": ["07:30 AM", "08:24 AM"],
         "PERIOD_1": ["08:30 AM", "09:42 AM"],
-        "BREAK":    ["09:42 AM", "09:52 AM"],
+        "BREAK": ["09:42 AM", "09:52 AM"],
         "PERIOD_2": ["09:57 AM", "11:09 AM"],
         "PERIOD_4": ["11:19 AM", "12:31 PM"],
-        "LUNCH":    ["12:31 PM", "01:06 PM"],
-        "ADVISORY":     ["01:16 PM", "01:51 PM"],
+        "LUNCH": ["12:31 PM", "01:06 PM"],
+        "ADVISORY": ["01:16 PM", "01:51 PM"],
         "PERIOD_6": ["02:01 PM", "03:13 PM"]
       },
       "PILOT_BLOCK_C": {
         "PERIOD_0": ["07:30 AM", "08:24 AM"],
         "PERIOD_3": ["08:30 AM", "09:42 AM"],
-        "BREAK":    ["09:42 AM", "09:52 AM"],
+        "BREAK": ["09:42 AM", "09:52 AM"],
         "PERIOD_4": ["09:57 AM", "11:09 AM"],
         "PERIOD_5": ["11:19 AM", "12:31 PM"],
-        "LUNCH":    ["12:31 PM", "01:06 PM"],
+        "LUNCH": ["12:31 PM", "01:06 PM"],
         "ADVISORY": ["01:16 PM", "01:51 PM"],
         "PERIOD_6": ["02:01 PM", "03:13 PM"]
       },
       "SBAC_BLOCK_ODD": {
         "PERIOD_0": ["07:28 AM", "08:24 AM"],
         "PERIOD_3": ["08:30 AM", "10:14 AM"],
-        "BREAK":    ["10:14 AM", "10:24 AM"],
+        "BREAK": ["10:14 AM", "10:24 AM"],
         "PERIOD_1": ["10:29 AM", "12:13 PM"],
         "ADVISORY": ["12:19 PM", "12:54 PM"],
-        "LUNCH":    ["12:54 PM", "01:24 PM"],
+        "LUNCH": ["12:54 PM", "01:24 PM"],
         "PERIOD_5": ["01:29 PM", "03:13 PM"]
       },
       "SBAC_BLOCK_EVEN": {
         "PERIOD_0": ["07:28 AM", "08:24 AM"],
         "PERIOD_4": ["08:30 AM", "10:14 AM"],
-        "BREAK":    ["10:14 AM", "10:24 AM"],
+        "BREAK": ["10:14 AM", "10:24 AM"],
         "PERIOD_2": ["10:29 AM", "12:13 PM"],
-        "ADVISORY":["12:19 PM", "12:54 PM"],
-        "LUNCH":    ["12:54 PM", "01:24 PM"],
+        "ADVISORY": ["12:19 PM", "12:54 PM"],
+        "LUNCH": ["12:54 PM", "01:24 PM"],
         "PERIOD_6": ["01:29 PM", "03:13 PM"]
       }
+    },
+    "GRADE_10": {
+      "inheritsFrom": "GRADE_9"
+    },
+    "GRADE_11": {
+      "inheritsFrom": "GRADE_9"
+    },
+    "GRADE_12": {
+      "inheritsFrom": "GRADE_9"
     }
   }
 }

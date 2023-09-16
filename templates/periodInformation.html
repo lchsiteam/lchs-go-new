@@ -1,0 +1,33 @@
+<!-- Period Information Template - Holds the time left -->
+<div class="progress-bar">
+  <div class="circle"></div>
+  <div class="vertical-bar" v-bind:style="{ height: 100 - percentCompleted - 5 + '%' }"></div>
+  <div class="moving-time" v-effect="$el.textContent = currentTime"></div>
+  <div class="vertical-bar" v-bind:style="{ height: percentCompleted - 5 + '%' }"></div>
+  <div class="circle"></div>
+</div>
+<div class="period-information-content">
+  <div>
+    <div class="start-end-time" v-effect="currentPeriod">{{ currentPeriod.getStart() }}</div>
+    <div class="divider-bar"></div>
+  </div>
+  <div>
+    <div class="time-left-name">{{ currentPeriod.getName() }}</div>
+    <div class="time-left-text">
+      <span v-if="Math.trunc(minutesLeft / 60) > 0">
+        <span class="time-left-number">{{ Math.trunc(minutesLeft / 60) }}</span>
+        {{ translate("HOUR_ABBREVIATION") }}
+      </span>
+      <span style="margin-right: 5px">
+        <span class="time-left-number">{{ minutesLeft % 60 }}</span>
+        {{ translate("MINUTE_ABBREVIATION") }}
+      </span>
+    </div>
+    <div class="time-left-text">{{ translate('UNITL_END') }}</div>
+    <div class="time-left-text percent">{{ translateWithInsert("PERCENT_COMPLETED", percentCompleted) }}</div>
+  </div>
+  <div>
+    <div class="divider-bar"></div>
+    <div class="start-end-time">{{ currentPeriod.getEnd() }}</div>
+  </div>
+</div>
