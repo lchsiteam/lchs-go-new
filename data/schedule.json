@@ -125,7 +125,7 @@
         "BREAK": ["10:14 AM", "10:24 AM"],
         "PERIOD_3": ["10:29 AM", "12:13 PM"],
         "LUNCH": ["12:13 PM", "12:43 PM"],
-        "STEP_ODD": ["12:48 PM", "01:23 PM"],
+        "HOMEROOMHOMEROOM": ["12:48 PM", "01:23 PM"],
         "PERIOD_5": ["01:29 PM", "03:13 PM"]
       },
       "BLOCK_EVEN": {
@@ -134,7 +134,7 @@
         "BREAK": ["10:14 AM", "10:24 AM"],
         "PERIOD_4": ["10:29 AM", "12:13 PM"],
         "LUNCH": ["12:13 PM", "12:43 PM"],
-        "STEP_EVEN": ["12:48 PM", "01:23 PM"],
+        "HOMEROOMHOMEROOM": ["12:48 PM", "01:23 PM"],
         "PERIOD_6": ["01:29 PM", "03:13 PM"]
       },
       "ASSEMBLY": {
@@ -193,7 +193,7 @@
         "PERIOD_2": ["09:57 AM", "11:09 AM"],
         "PERIOD_3": ["11:19 AM", "12:31 PM"],
         "LUNCH": ["12:31 PM", "01:06 PM"],
-        "STEP": ["01:16 PM", "01:51 PM"],
+        "HOMEROOM": ["01:16 PM", "01:51 PM"],
         "PERIOD_5": ["02:01 PM", "03:13 PM"]
       },
       "PILOT_BLOCK_B": {
@@ -203,7 +203,7 @@
         "PERIOD_2": ["09:57 AM", "11:09 AM"],
         "PERIOD_4": ["11:19 AM", "12:31 PM"],
         "LUNCH": ["12:31 PM", "01:06 PM"],
-        "STEP": ["01:16 PM", "01:51 PM"],
+        "HOMEROOM": ["01:16 PM", "01:51 PM"],
         "PERIOD_6": ["02:01 PM", "03:13 PM"]
       },
       "PILOT_BLOCK_C": {
@@ -213,7 +213,7 @@
         "PERIOD_4": ["09:57 AM", "11:09 AM"],
         "PERIOD_5": ["11:19 AM", "12:31 PM"],
         "LUNCH": ["12:31 PM", "01:06 PM"],
-        "STEP": ["01:16 PM", "01:51 PM"],
+        "HOMEROOM": ["01:16 PM", "01:51 PM"],
         "PERIOD_6": ["02:01 PM", "03:13 PM"]
       },
       "SBAC_BLOCK_ODD": {
@@ -222,7 +222,7 @@
         "BREAK": ["10:14 AM", "10:24 AM"],
         "PERIOD_1": ["10:29 AM", "12:13 PM"],
         "LUNCH": ["12:13 PM", "12:43 PM"],
-        "STEP_ODD": ["12:48 PM", "01:23 PM"],
+        "HOMEROOM": ["12:48 PM", "01:23 PM"],
         "PERIOD_5": ["01:29 PM", "03:13 PM"]
       },
       "SBAC_BLOCK_EVEN": {
@@ -231,7 +231,7 @@
         "BREAK": ["10:14 AM", "10:24 AM"],
         "PERIOD_2": ["10:29 AM", "12:13 PM"],
         "LUNCH": ["12:13 PM", "12:43 PM"],
-        "STEP_EVEN": ["12:48 PM", "01:23 PM"],
+        "HOMEROOM": ["12:48 PM", "01:23 PM"],
         "PERIOD_6": ["01:29 PM", "03:13 PM"]
       }
     },
@@ -255,7 +255,7 @@
         "PERIOD_1": ["08:30 AM", "10:14 AM"],
         "BREAK": ["10:14 AM", "10:24 AM"],
         "PERIOD_3": ["10:29 AM", "12:13 PM"],
-        "STEP_ODD": ["12:19 PM", "12:54 PM"],
+        "ADVISORY": ["12:19 PM", "12:54 PM"],
         "LUNCH": ["12:54 PM", "01:24 PM"],
         "PERIOD_5": ["01:29 PM", "03:13 PM"]
       },
@@ -264,7 +264,7 @@
         "PERIOD_2": ["08:30 AM", "10:14 AM"],
         "BREAK": ["10:14 AM", "10:24 AM"],
         "PERIOD_4": ["10:29 AM", "12:13 PM"],
-        "STEP_EVEN": ["12:19 PM", "12:54 PM"],
+        "ADVISORY": ["12:19 PM", "12:54 PM"],
         "LUNCH": ["12:54 PM", "01:24 PM"],
         "PERIOD_6": ["01:29 PM", "03:13 PM"]
       },
@@ -332,7 +332,7 @@
         "PERIOD_2": ["09:57 AM", "11:09 AM"],
         "PERIOD_3": ["11:19 AM", "12:31 PM"],
         "LUNCH": ["12:31 PM", "01:06 PM"],
-        "STEP": ["01:16 PM", "01:51 PM"],
+        "ADVISORY": ["01:16 PM", "01:51 PM"],
         "PERIOD_5": ["02:01 PM", "03:13 PM"]
       },
       "PILOT_BLOCK_B": {
@@ -342,7 +342,7 @@
         "PERIOD_2": ["09:57 AM", "11:09 AM"],
         "PERIOD_4": ["11:19 AM", "12:31 PM"],
         "LUNCH": ["12:31 PM", "01:06 PM"],
-        "STEP": ["01:16 PM", "01:51 PM"],
+        "ADVISORY": ["01:16 PM", "01:51 PM"],
         "PERIOD_6": ["02:01 PM", "03:13 PM"]
       },
       "PILOT_BLOCK_C": {
@@ -352,7 +352,7 @@
         "PERIOD_4": ["09:57 AM", "11:09 AM"],
         "PERIOD_5": ["11:19 AM", "12:31 PM"],
         "LUNCH": ["12:31 PM", "01:06 PM"],
-        "STEP": ["01:16 PM", "01:51 PM"],
+        "ADVISORY": ["01:16 PM", "01:51 PM"],
         "PERIOD_6": ["02:01 PM", "03:13 PM"]
       },
       "SBAC_BLOCK_ODD": {
@@ -360,7 +360,7 @@
         "PERIOD_3": ["08:30 AM", "10:14 AM"],
         "BREAK": ["10:14 AM", "10:24 AM"],
         "PERIOD_1": ["10:29 AM", "12:13 PM"],
-        "STEP_ODD": ["12:19 PM", "12:54 PM"],
+        "ADVISORY": ["12:19 PM", "12:54 PM"],
         "LUNCH": ["12:54 PM", "01:24 PM"],
         "PERIOD_5": ["01:29 PM", "03:13 PM"]
       },
@@ -369,7 +369,7 @@
         "PERIOD_4": ["08:30 AM", "10:14 AM"],
         "BREAK": ["10:14 AM", "10:24 AM"],
         "PERIOD_2": ["10:29 AM", "12:13 PM"],
-        "STEP_EVEN": ["12:19 PM", "12:54 PM"],
+        "ADVISORY": ["12:19 PM", "12:54 PM"],
         "LUNCH": ["12:54 PM", "01:24 PM"],
         "PERIOD_6": ["01:29 PM", "03:13 PM"]
       }
