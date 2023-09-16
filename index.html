@@ -27,19 +27,8 @@
       dayjs.extend(window.dayjs_plugin_timezone);
     </script>
     <script>
-      const welcome = " _    ___   _ _____               \n| |  / __| (_)_   _|__ __ _ _ __  \n| |_| (__  | | | |/ -_) _` | '  \\ \n|____\\___| |_| |_|\\___\\__,_|_|_|_|\n\nhttps://github.com/lchsiteam/lchs-go-new";
-      console.log(welcome);
-
-      // Automatically saturate the background based on the background color
-      const styledBackgroundVariables = Array.from(document.styleSheets[0].rules[0].style)
-        .map((e) => e.replace("--", ""))
-        .filter((e) => isFinite(e))
-        .map((e) => parseInt(e));
-      const classesUsingBackground = Array.from(document.styleSheets[0].rules)
-        .map((e) => ({ selector: e.selectorText, number: styledBackgroundVariables.find((v) => e.cssText.includes(`var(--${v})`)) }))
-        .filter((e) => e.number);
-      const styleTag = `<style>${classesUsingBackground.map((clazz) => ((saturate = clazz.number + 90), `${clazz.selector} {backdrop-filter: saturate(${saturate}%);-webkit-backdrop-filter: saturate(${saturate}%);}`)).join("\n")}</style>`;
-      document.head.insertAdjacentHTML("beforeend", styleTag);
+      console.log(" _    ___   _ _____               \n| |  / __| (_)_   _|__ __ _ _ __  \n| |_| (__  | | | |/ -_) _` | '  \\ \n|____\\___| |_| |_|\\___\\__,_|_|_|_|\n\nhttps://github.com/lchsiteam/lchs-go-new");
+      // Here lies a memorial of code that was once used to make this look nice dynamically, now it is just manually in the styles
     </script>
     <script type="module" defer src="/src/index.js"></script>
     <title>LCHS Go</title>

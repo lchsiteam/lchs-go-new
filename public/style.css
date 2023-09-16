@@ -109,6 +109,7 @@ body {
 
 .nav-button.selected {
   background-color: var(--25);
+  backdrop-filter: saturate(125%);
 }
 
 .page-title {
@@ -133,6 +134,7 @@ body {
 
 .period-information {
   background-color: var(--25);
+  backdrop-filter: saturate(125%);
   display: flex;
   border-radius: 0.5rem;
 }
@@ -226,7 +228,8 @@ body {
   grid-template-columns: 2fr 1fr 1fr;
   padding: 0.5rem 1rem;
   margin: 0 1rem;
-  background-color: var(--15);
+  background-color: var(--25);
+  backdrop-filter: saturate(125%);
   border-radius: 0.5rem;
 }
 
@@ -236,6 +239,16 @@ body {
   padding: 0.5rem 1rem;
   margin: 0 2rem;
   background-color: var(--5);
+  backdrop-filter: saturate(105%);
+}
+
+.all-periods div:nth-child(odd)>.period:not(.current) {
+  background-color: var(--15);
+  backdrop-filter: saturate(115%);
+}
+
+.all-periods div:nth-last-child(2)>.period:not(.current) {
+  border-radius: 0 0 0.5rem 0.5rem;
 }
 
 .period.current {
@@ -244,18 +257,7 @@ body {
   padding-left: 3rem;
   border-radius: 0 0.5rem 0.5rem 0;
   background-color: var(--25);
-}
-
-.period.odd {
-  background-color: var(--10);
-}
-
-.all-periods div:nth-child(odd)>.period {
-  background-color: var(--10);
-}
-
-.all-periods div:nth-last-child(2)>.period:not(.current) {
-  border-radius: 0 0 0.5rem 0.5rem;
+  backdrop-filter: saturate(125%);
 }
 
 .period-name>input:hover {
@@ -269,6 +271,7 @@ body {
   margin: 0 2rem;
   border-radius: 0.5rem;
   background-color: var(--10);
+  backdrop-filter: saturate(110%);
 }
 
 .event-listing:empty {
@@ -311,12 +314,14 @@ body {
   gap: 0.2rem;
   border-radius: 0.5rem;
   background-color: var(--15);
+  backdrop-filter: saturate(115%);
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
 
 .calendar-day:hover {
   background-color: var(--15);
+  backdrop-filter: saturate(115%);
 }
 
 .calendar-day.outside {
@@ -365,6 +370,7 @@ body {
 
 .setting:hover {
   background-color: var(--5);
+  backdrop-filter: saturate(105%);
 }
 
 .setting .title {
@@ -384,6 +390,7 @@ body {
   padding: 0.3rem 0.5rem;
   border-radius: 0.3rem;
   background-color: var(--15);
+  backdrop-filter: saturate(115%);
 }
 
 .setting .badge.experimental:hover::before {
@@ -395,6 +402,7 @@ body {
   align-items: center;
   gap: 0.5rem;
   background-color: var(--15);
+  backdrop-filter: saturate(115%);
   padding: 0.3rem 0.3rem;
   border-radius: 0.3rem;
   width: fit-content;
@@ -426,6 +434,7 @@ body {
   padding: 0.6rem 0.8rem;
   border-radius: 0.3rem;
   background-color: var(--10);
+  backdrop-filter: saturate(110%);
   cursor: pointer;
 }
 
@@ -442,10 +451,12 @@ body {
 
 .setting .select .select-option:hover {
   background-color: var(--5);
+  backdrop-filter: saturate(105%);
 }
 
 .setting .select .select-option.selected {
   background-color: var(--5);
+  backdrop-filter: saturate(105%);
 }
 
 .setting .button-wrapper {
@@ -459,6 +470,7 @@ body {
   padding: 0.7rem 1.2rem;
   border-radius: 0.3rem;
   background-color: var(--15);
+  backdrop-filter: saturate(115%);
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
@@ -480,6 +492,7 @@ body {
   border-radius: 1rem;
   border: 1px solid var(--text-color);
   background-color: var(--50);
+  backdrop-filter: saturate(150%);
 }
 
 .setting .slider.color {
@@ -519,6 +532,7 @@ body {
   border-radius: 0.5rem;
   padding: 0.5rem;
   background-color: var(--10);
+  backdrop-filter: saturate(110%);
   width: 4rem;
 }
 

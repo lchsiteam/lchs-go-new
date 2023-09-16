@@ -158,10 +158,11 @@ export function getSchedule(date) {
  * @returns {Object.<string, timeString[]>[] | "NONE"} - The periods for the schedule type
  */
 function getPeriods(scheduleType) {
-  if (scheduleType == null || "NONE") return "NONE";
+  if (scheduleType == null || scheduleType == "NONE") return "NONE";
   const periods = scheduleJSON.gradeLevels[userSettings.GRADE_LEVEL][scheduleType];
   const inheritsFrom = scheduleJSON.gradeLevels[userSettings.GRADE_LEVEL].inheritsFrom;
-  const inheritedPeriods = scheduleJSON.gradeLevels[inheritsFrom][scheduleType];
+  let inheritedPeriods;
+  if (inheritsFrom) inheritedPeriods = scheduleJSON.gradeLevels[inheritsFrom][scheduleType];
   return periods || inheritedPeriods || "NONE";
 }
 
