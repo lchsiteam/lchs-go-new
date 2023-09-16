@@ -28,29 +28,29 @@ import { settings, userSettings } from "./settings.js";
 export let scheduleJSON = {};
 export let languageJSON = {};
 export let eventsJSON = {};
+let reload = false;
 try {
   scheduleJSON = JSON.parse(localStorage.getItem("scheduleJSON"));
 } catch (e) {
   console.error("There was an error parsing the schedule JSON. Please reset your Local Storage.");
   localStorage.removeItem("scheduleJSON");
-  location.reload();
+  reload = true;
 }
 try {
   languageJSON = JSON.parse(localStorage.getItem("languageJSON"));
 } catch (e) {
   console.error("There was an error parsing the language JSON. Please reset your Local Storage.");
   localStorage.removeItem("languageJSON");
-  location.reload();
+  reload = true;
 }
 try {
   eventsJSON = JSON.parse(localStorage.getItem("eventsJSON"));
 } catch (e) {
   console.error("There was an error parsing the events JSON. Please reset your Local Storage.");
   localStorage.removeItem("eventsJSON");
-  location.reload();
+  reload = true;
 }
 
-let reload = false;
 async function checkDataVersion(response, existingData) {
   const data = await response.json();
   if (existingData == null || existingData.version < data.version || (existingData.language && userSettings.LANGUAGE != existingData.language)) return (reload = true), data;
