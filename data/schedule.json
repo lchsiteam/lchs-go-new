@@ -1,5 +1,5 @@
 {
-  "version": 31.0,
+  "version": 31.1,
   "timeOffset": "00:00:00",
   "timezone": "America/Los_Angeles",
   "defaults": {
@@ -44,7 +44,9 @@
       "05/29/2023": "NONE",
       "05/31/2023": "FINALS_3_4",
       "06/01/2023": "FINALS_1_6",
-      "06/02/2023": "FINALS_2_5"
+      "10/02/2023": "FINALS_2_5",
+
+      "10/13/2023": "ASSEMBLY"
     },
     "GRADE_7": {},
     "GRADE_8": {},
