@@ -1,5 +1,5 @@
 {
-  "version": 30.4,
+  "version": 30.5,
   "defaults": {
     "0": "NONE",
     "1": "REGULAR",
@@ -53,6 +53,9 @@
       "08/25/2023": "ASSEMBLY",
       
       "09/04/2023": "NONE",
+      "10/13/2023": "ASSEMBLY",
+      "10/24/2023": "BLOCK_EVEN",
+      "10/26/2023": "ASSEMBLY",
       
       "12/07/2022": "REGULAR",
       "12/08/2022": "REGULAR",
@@ -104,7 +107,7 @@
     "customWeeks": {
       "BLOCK_SWITCH":    ["11/12/2023", "02/17/2024"],
       "SBAC_WEEK":       ["04/17/2023", "04/20/2023"],
-      "PILOT_SCHEDULE":  ["09/25/2023", "10/13/2023"]
+      "PILOT_SCHEDULE":  ["09/25/2023", "10/12/2023"]
     }
   },
   "timeOffset": "00:00:00",
