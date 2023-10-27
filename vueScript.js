@@ -26,7 +26,7 @@ periodListComponent.listPeriod.forEach((p) => {
 console.log("Hello, things are broken.");
 localStorage.removeItem("isExtension");
 localStorage.removeItem("changelog");
-if("numberOfClicks" in localStorage.settings) localStorage.removeItem("settings");
+if(localStorage.settings.hasOwnProperty("numberOfClicks")) localStorage.removeItem("settings");
 
 // Petite Vue interface
 PetiteVue.createApp({

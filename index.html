@@ -302,12 +302,6 @@
   </template>
   <!-- Service Worker Startup -->
   <script>
-      // remove the old go's localStorage
-      console.log("Hello, things are broken.");
-localStorage.removeItem("isExtension");
-localStorage.removeItem("changelog");
-      if(numberOfClicks in JSON.parse(localStorage.settings)) localStorage.removeItem("settings");
-    
       if('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/serviceWorker.js', { scope: '/' })
           .then(function(registration) {
