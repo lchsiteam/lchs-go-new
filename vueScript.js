@@ -23,6 +23,8 @@ periodListComponent.listPeriod.forEach((p) => {
   }
 });
 
+console.log("Hello, things are broken.");
+
 // Petite Vue interface
 PetiteVue.createApp({
   // Components
