@@ -259,7 +259,7 @@
     <div class="progress-bar">
       <div class="circle"></div><!--                             percent max  min          min-->
       <div class="moving-time" v-bind:style="{ top: percentCompleted * (85 - 12) / 100 + 12 + '%' }"
-        v-effect="$el.textContent = currentTime"></div>
+        ><span v-effect="$el.textContent = currentTime"></span></div>
       <!--12 - 85-->
       <div class="vertical-bar"></div>
       <div class="circle"></div>
