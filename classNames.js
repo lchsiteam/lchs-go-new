@@ -10,4 +10,4 @@ if (customNames == null) {
 }
 
 // Custom Names menu data
-export const namesMenu = ["PERIOD_0","PERIOD_1","PERIOD_2","PERIOD_3","PERIOD_4","PERIOD_5","PERIOD_6","ADVISORY"];
+export const namesMenu = ["PERIOD_0","PERIOD_1","PERIOD_2","PERIOD_3","PERIOD_4","PERIOD_5","PERIOD_6","ADVISORY", "HOMEROOM", "ADVISORY_FLEX", "ADVISORY_LESSON", "HOMEROOM_FLEX", "ADVISORY_ACADEMIC_HELP", "ADVISORY_CLUBS"];

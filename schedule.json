@@ -1,5 +1,5 @@
 {
-  "version": 30.8,
+  "version": 30.9,
   "defaults": {
     "0": "NONE",
     "1": "REGULAR",
@@ -28,6 +28,15 @@
       "5": "PILOT_REGULAR",
       "6": "NONE"
     },
+    "PILOT_SCHEDULE_2": {
+      "0": "NONE",
+      "1": "PILOT_2_REGULAR",
+      "2": "PILOT_2_REGULAR",
+      "3": "PILOT_2_BLOCK_A",
+      "4": "PILOT_2_BLOCK_B",
+      "5": "PILOT_2_REGULAR",
+      "6": "NONE"
+    }
     "SBAC_WEEK": {
       "0": "NONE",
       "1": "BLOCK_ODD",
@@ -87,9 +96,10 @@
       "SUMMER_BREAK":   ["06/07/2024", "08/14/2024"]
     },
     "customWeeks": {
-      "BLOCK_SWITCH":    ["11/12/2023", "02/17/2024"],
-      "SBAC_WEEK":       ["04/17/2023", "04/20/2023"],
-      "PILOT_SCHEDULE":  ["09/25/2023", "10/12/2023"]
+      "BLOCK_SWITCH":     ["11/12/2023", "02/17/2024"],
+      "SBAC_WEEK":        ["04/17/2023", "04/20/2023"],
+      "PILOT_SCHEDULE":   ["09/25/2023", "10/12/2023"],
+      "PILOT_SCHEDULE_2": ["01/29/2024", "02/15/2024"]
     }
   },
   "timeOffset": "00:00:00",
@@ -221,6 +231,35 @@
         "LUNCH":    ["12:13 PM", "12:43 PM"],
         "HOMEROOM": ["12:48 PM", "01:23 PM"],
         "PERIOD_6": ["01:29 PM", "03:13 PM"]
+      },
+      "PILOT_2_REGULAR": {
+        "PERIOD_0": ["07:28 AM", "08:24 AM"],
+        "PERIOD_1": ["08:30 AM", "09:26 AM"],
+        "PERIOD_2": ["09:32 AM", "10:28 AM"],
+        "BREAK":    ["10:28 AM", "10:33 AM"],
+        "PERIOD_3": ["10:38 AM", "11:34 AM"],
+        "PERIOD_4": ["11:40 AM", "12:36 PM"],
+        "LUNCH":    ["12:36 PM", "01:11 PM"],
+        "PERIOD_5": ["01:16 PM", "02:12 PM"],
+        "PERIOD_6": ["02:18 PM", "03:14 PM"]
+      },
+      "PILOT_2_BLOCK_A": {
+        "PERIOD_0":      ["07:28 AM", "08:24 AM"],
+        "PERIOD_1":      ["08:30 AM", "10:00 AM"],
+        "HOMEROOM":      ["10:08 AM", "10:38 AM"],
+        "PERIOD_3":      ["10:46 AM", "12:16 PM"],
+        "LUNCH":         ["12:16 PM", "12:51 PM"],
+        "HOMEROOM_FLEX": ["12:59 PM", "01:29 PM"],
+        "PERIOD_5":      ["01:37 PM", "03:07 PM"]
+      },
+      "PILOT_2_BLOCK_B": {
+        "PERIOD_0":      ["07:28 AM", "08:24 AM"],
+        "PERIOD_2":      ["08:30 AM", "10:00 AM"],
+        "HOMEROOM":      ["10:08 AM", "10:38 AM"],
+        "PERIOD_4":      ["10:46 AM", "12:16 PM"],
+        "LUNCH":         ["12:16 PM", "12:51 PM"],
+        "HOMEROOM_FLEX": ["12:59 PM", "01:29 PM"],
+        "PERIOD_6":      ["01:37 PM", "03:07 PM"]
       }
     },
     "highSchool": {
@@ -357,6 +396,35 @@
         "ADVISORY":["12:19 PM", "12:54 PM"],
         "LUNCH":    ["12:54 PM", "01:24 PM"],
         "PERIOD_6": ["01:29 PM", "03:13 PM"]
+      },
+      "PILOT_2_REGULAR": {
+        "PERIOD_0": ["07:28 AM", "08:24 AM"],
+        "PERIOD_1": ["08:30 AM", "09:26 AM"],
+        "PERIOD_2": ["09:32 AM", "10:28 AM"],
+        "BREAK":    ["10:28 AM", "10:33 AM"],
+        "PERIOD_3": ["10:38 AM", "11:34 AM"],
+        "LUNCH":    ["11:34 AM", "12:09 PM"],
+        "PERIOD_4": ["12:14 PM", "01:10 PM"],
+        "PERIOD_5": ["01:16 PM", "02:12 PM"],
+        "PERIOD_6": ["02:18 PM", "03:14 PM"]
+      },
+      "PILOT_2_BLOCK_A": {
+        "PERIOD_0":               ["07:28 AM", "08:24 AM"],
+        "PERIOD_1":               ["08:30 AM", "10:00 AM"],
+        "ADVISORY_FLEX":          ["10:08 AM", "10:38 AM"],
+        "PERIOD_3":               ["10:46 AM", "12:16 PM"],
+        "ADVISORY_ACADEMIC_HELP": ["12:24 PM", "12:54 PM"],
+        "LUNCH":                  ["12:54 PM", "01:29 PM"],
+        "PERIOD_5":               ["01:37 PM", "03:07 PM"]
+      },
+      "PILOT_2_BLOCK_B": {
+        "PERIOD_0":        ["07:28 AM", "08:24 AM"],
+        "PERIOD_2":        ["08:30 AM", "10:00 AM"],
+        "ADVISORY_LESSON": ["10:08 AM", "10:38 AM"],
+        "PERIOD_4":        ["10:46 AM", "12:16 PM"],
+        "ADVISORY_CLUBS":  ["12:24 PM", "12:54 PM"],
+        "LUNCH":           ["12:54 PM", "01:29 PM"],
+        "PERIOD_6":        ["01:37 PM", "03:07 PM"]
       }
     }
   }
