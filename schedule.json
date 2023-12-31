@@ -1,5 +1,5 @@
 {
-  "version": 30.9,
+  "version": 31,
   "defaults": {
     "0": "NONE",
     "1": "REGULAR",
@@ -36,7 +36,7 @@
       "4": "PILOT_2_BLOCK_B",
       "5": "PILOT_2_REGULAR",
       "6": "NONE"
-    }
+    },
     "SBAC_WEEK": {
       "0": "NONE",
       "1": "BLOCK_ODD",
