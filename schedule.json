@@ -1,5 +1,5 @@
 {
-  "version": 31.2,
+  "version": 31.3,
   "defaults": {
     "0": "NONE",
     "1": "REGULAR",
@@ -32,8 +32,8 @@
       "0": "NONE",
       "1": "PILOT_2_REGULAR",
       "2": "PILOT_2_REGULAR",
-      "3": "PILOT_2_BLOCK_A",
-      "4": "PILOT_2_BLOCK_B",
+      "3": "PILOT_2_BLOCK_B",
+      "4": "PILOT_2_BLOCK_A",
       "5": "PILOT_2_REGULAR",
       "6": "NONE"
     },
