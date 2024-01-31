@@ -1,5 +1,5 @@
 {
-  "version": 27.4,
+  "version": 27.5,
   "ENGLISH": {
     "ENGLISH": "English",
     "SPANISH": "Español",
@@ -53,7 +53,7 @@
     "PILOT_2_BLOCK_B": "Pilot 2 Block (even)",
     "ADVISORY_CLUBS": "Clubs",
     "ADVISORY_LESSON": "Advisory Lesson",
-    "ADVISORY_ACADEMIC_HELP": "Academic Assistance",
+    "ADVISORY_ACADEMIC_FLEX": "Academic Assistance",
     "ADVISORY_FLEX": "Advisory Flex",
     "SBAC_BLOCK_ODD": "Block (odd) (SBAC)",
     "SBAC_BLOCK_EVEN": "Block (even) (SBAC)",
