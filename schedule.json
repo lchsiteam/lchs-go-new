@@ -1,5 +1,5 @@
 {
-  "version": 31.8,
+  "version": 31.9,
   "defaults": {
     "0": "NONE",
     "1": "REGULAR",
@@ -75,7 +75,10 @@
       "02/19/2024": "NONE",
 
       "03/22/2024": "ASSEMBLY",
-      "04/8/2024": "NONE"
+      "04/08/2024": "NONE",
+      
+      "04/15/2024": "SBAC_BLOCK_ODD",
+      "04/16/2024": "SBAC_BLOCK_EVEN"
     },
     "GRADE_7": {
 
