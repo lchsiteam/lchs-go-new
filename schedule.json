@@ -1,5 +1,5 @@
 {
-  "version": 32.1,
+  "version": 32.2,
   "defaults": {
     "0": "NONE",
     "1": "REGULAR",
@@ -82,7 +82,14 @@
       "04/15/2024": "SBAC_BLOCK_ODD",
       "04/16/2024": "SBAC_BLOCK_EVEN",
 
-      "05/27/2024": "NONE"
+      "05/27/2024": "NONE",
+      
+      "05/22/2024": "REGULAR",
+      "05/23/2024": "REGULAR",
+
+      "06/04/2024": "FINALS_3_4",
+      "06/04/2024": "FINALS_1_6",
+      "06/04/2024": "FINALS_2_5"
     },
     "GRADE_7": {
 
@@ -91,16 +98,16 @@
 
     },
     "GRADE_9": {
-
+      "05/31/2024": "ASSEMBLY"
     },
     "GRADE_10": {
-
+      "05/31/2024": "ASSEMBLY"
     },
     "GRADE_11": {
-
+      "05/31/2024": "ASSEMBLY"
     },
     "GRADE_12": {
-
+      "05/31/2024": "ASSEMBLY"
     }
   },
   "dateRanges": {
