@@ -1,5 +1,5 @@
 {
-  "version": 32.6,
+  "version": 32.7,
   "defaults": {
     "0": "NONE",
     "1": "REGULAR",
@@ -92,7 +92,11 @@
       "06/06/2024": "FINALS_2_5",
 
       "08/14/2024": "REGULAR",
-      "08/15/2024": "REGULAR"
+      "08/15/2024": "REGULAR",
+
+      "08/21/2024": "REGULAR",
+      "08/22/2024": "REGULAR",
+      "08/23/2024": "ASSEMBLY"
     },
     "GRADE_7": {
 
@@ -169,7 +173,7 @@
         "ASSEMBLY": ["10:12 AM", "11:00 AM"],
         "BREAK":    ["11:00 AM", "11:09 AM"],
         "PERIOD_3": ["11:15 AM", "12:03 PM"],
-        "LUNCH":    ["12:03 PM", "12:33 PM"],
+        "LUNCH":    ["12:03 PM", "12:33 PM"], 
         "PERIOD_4": ["12:39 PM", "01:27 PM"],
         "PERIOD_5": ["01:33 PM", "02:21 PM"],
         "PERIOD_6": ["02:27 PM", "03:15 PM"]
