@@ -1,52 +1,5 @@
 {
-  "version": 32.4,
-  "apExams": {
-    "05/06/2024": {
-      "US_GOV_AND_POLITICS": ["08:00 AM", "10:25 AM"],
-      "CHEMISTRY": ["12:00 PM", "3:15 PM"]
-    },
-    "05/07/2024": {
-      "MICROECONOMICS": ["08:00 AM", "10:10 AM"],
-      "STATISTICS": ["12:00 PM", "3:00 PM"]
-    },
-    "05/08/2024": {
-      "LITERATURE_AND_COMPOSITION": ["08:00 AM", "11:00 AM"],
-      "COMPUTER_SCIENCE_A": ["12:00 PM", "3:00 PM"]
-    },
-    "05/09/2024": {
-      "ENVIRONMENTAL_SCIENCE": ["08:00 AM", "10:40 AM"],
-      "PSYCHOLOGY": ["12:00 PM", "2:00 PM"]
-    },
-    "05/10/2024": {
-      "EUROPEAN_HISTORY": ["08:00 AM", "11:15 AM"],
-      "US_HISTORY": ["08:00 AM", "11:15 AM"],
-      "MACROECONOMICS": ["12:00 PM", "2:10 PM"]
-    },
-    "05/13/2024": {
-      "CALCULUS_AB": ["08:00 AM", "11:15 AM"],
-      "CALCULUS_BC": ["08:00 AM", "11:15 AM"],
-      "PRECALCULUS": ["12:00 PM", "3:00 PM"]
-    },
-    "05/14/2024": {
-      "LANGUAGE_AND_COMPOSITION": ["08:00 AM", "11:15 AM"],
-      "PHYSICS_C_MECHANICS": ["12:00 PM", "01:30 PM"],
-      "PHYSICS_C_ELECTRICITY_AND_MAGNETISM": ["2:00 PM", "3:30 PM"]
-    },
-    "05/15/2024": {
-      "FRENCH": ["08:00 AM", "11:03 AM"],
-      "WORLD_HISTORY": ["8:00 AM", "11:15 AM"],
-      "COMPUTER_SCIENCE_PRINCIPLES": ["12:00 PM", "3:00 PM"],
-      "MUSIC_THEORY": ["12:00 PM", "2:40 PM"]
-    },
-    "05/16/2024": {
-      "SPANISH": ["08:00 AM", "11:03 AM"],
-      "BIOLOGY": ["12:00 PM", "3:00 PM"]
-    },
-    "05/17/2024": {
-      "GERMAN": ["08:00 AM", "11:00 AM"],
-      "PHYSICS_2": ["12:00 PM", "3:00 PM"]
-    }
-  },
+  "version": 33.2,
   "defaults": {
     "0": "NONE",
     "1": "REGULAR",
@@ -138,30 +91,74 @@
       "04/15/2024": "SBAC_BLOCK_ODD",
       "04/16/2024": "SBAC_BLOCK_EVEN",
 
-      "05/27/2024": "NONE"
+      "05/27/2024": "NONE",
+      
+      "05/22/2024": "REGULAR",
+      "05/23/2024": "REGULAR",
+
+      "06/04/2024": "FINALS_3_4",
+      "06/05/2024": "FINALS_1_6",
+      "06/06/2024": "FINALS_2_5",
+
+      "08/14/2024": "REGULAR",
+      "08/15/2024": "REGULAR",
+
+      "08/21/2024": "REGULAR",
+      "08/22/2024": "REGULAR",
+      "08/23/2024": "ASSEMBLY",
+
+      "10/25/2024": "ASSEMBLY",
+
+      "12/11/2024": "REGULAR",
+      "12/12/2024": "REGULAR",
+
+      "12/17/2024": "FINALS_3_4",
+      "12/18/2024": "FINALS_1_6",
+      "12/19/2024": "FINALS_2_5",
+      
+      "01/06/2025": "NONE",
+
+      "01/08/2025": "NONE",
+      "01/09/2025": "NONE",
+      "01/10/2025": "NONE",
+      "01/13/2025": "NONE",
+      "01/14/2025": "NONE",
+      "01/15/2025": "NONE",
+      "01/16/2025": "REGULAR",
+
+      "01/24/2025": "ASSEMBLY"
     },
-    "GRADE_7": {},
-    "GRADE_8": {},
-    "GRADE_9": {},
-    "GRADE_10": {},
-    "GRADE_11": {},
-    "GRADE_12": {},
-    "SS_78": {},
-    "SS_912": {}
+    "GRADE_7": {
+
+    },
+    "GRADE_8": {
+
+    },
+    "GRADE_9": {
+
+    },
+    "GRADE_10": {
+
+    },
+    "GRADE_11": {
+
+    },
+    "GRADE_12": {
+
+    }
   },
   "dateRanges": {
     "breaks": {
-      "FALL_BREAK": ["11/20/2023", "11/24/2023"],
-      "WINTER_BREAK": ["12/21/2023", "01/05/2024"],
-      "SPRING_BREAK": ["04/01/2024", "04/05/2024"],
-      "SUMMER_BREAK": ["06/07/2024", "08/14/2024"]
+      "FALL_BREAK":     ["11/20/2023", "11/24/2023"],
+      "WINTER_BREAK":   ["12/21/2023", "01/05/2024"],
+      "SPRING_BREAK":   ["04/01/2024", "04/05/2024"],
+      "SUMMER_BREAK":   ["06/07/2024", "08/14/2024"]
     },
     "customWeeks": {
-      "SS": ["06/11/2024", "07/12/2024"],
-      "PILOT_SCHEDULE_2": ["01/29/2024", "02/16/2024"],
-      "BLOCK_SWITCH": ["11/12/2023", "02/16/2025"],
-      "SBAC_WEEK": ["04/17/2023", "04/20/2023"],
-      "PILOT_SCHEDULE": ["09/25/2023", "10/12/2023"]
+      "PILOT_SCHEDULE_2": ["01/29/2024", "02/15/2024"],
+      "BLOCK_SWITCH":     ["11/12/2023", "02/17/2024"],
+      "SBAC_WEEK":        ["04/17/2023", "04/20/2023"],
+      "PILOT_SCHEDULE":   ["09/25/2023", "10/12/2023"]
     }
   },
   "timeOffset": "00:00:00",
@@ -172,10 +169,10 @@
         "PERIOD_0": ["07:28 AM", "08:24 AM"],
         "PERIOD_1": ["08:30 AM", "09:26 AM"],
         "PERIOD_2": ["09:32 AM", "10:28 AM"],
-        "BREAK": ["10:28 AM", "10:38 AM"],
+        "BREAK":    ["10:28 AM", "10:38 AM"],
         "PERIOD_3": ["10:43 AM", "11:39 AM"],
         "PERIOD_4": ["11:45 AM", "12:41 PM"],
-        "LUNCH": ["12:41 PM", "01:11 PM"],
+        "LUNCH":    ["12:41 PM", "01:11 PM"],
         "PERIOD_5": ["01:16 PM", "02:12 PM"],
         "PERIOD_6": ["02:18 PM", "03:14 PM"]
       },
@@ -206,7 +203,7 @@
         "ASSEMBLY": ["10:12 AM", "11:00 AM"],
         "BREAK": ["11:00 AM", "11:09 AM"],
         "PERIOD_3": ["11:15 AM", "12:03 PM"],
-        "LUNCH": ["12:03 PM", "12:33 PM"],
+        "LUNCH":    ["12:03 PM", "12:33 PM"],
         "PERIOD_4": ["12:39 PM", "01:27 PM"],
         "PERIOD_5": ["01:33 PM", "02:21 PM"],
         "PERIOD_6": ["02:27 PM", "03:15 PM"]
@@ -329,9 +326,9 @@
         "PERIOD_0": ["07:28 AM", "08:24 AM"],
         "PERIOD_1": ["08:30 AM", "09:26 AM"],
         "PERIOD_2": ["09:32 AM", "10:28 AM"],
-        "BREAK": ["10:28 AM", "10:38 AM"],
+        "BREAK":    ["10:28 AM", "10:38 AM"],
         "PERIOD_3": ["10:43 AM", "11:39 AM"],
-        "LUNCH": ["11:39 AM", "12:09 PM"],
+        "LUNCH":    ["11:39 AM", "12:09 PM"],
         "PERIOD_4": ["12:14 PM", "01:10 PM"],
         "PERIOD_5": ["01:16 PM", "02:12 PM"],
         "PERIOD_6": ["02:18 PM", "03:14 PM"]
