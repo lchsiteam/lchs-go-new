@@ -1,5 +1,5 @@
 {
-  "version": 27.5,
+  "version": 27.6,
   "ENGLISH": {
     "ENGLISH": "English",
     "SPANISH": "Español",
@@ -26,6 +26,7 @@
     "PERIOD_END": "End",
     "BEFORE_SCHOOL": "Before School",
     "AFTER_SCHOOL": "After School",
+    "PERIOD_1_SEGMENT_2": "Period 1",
     "PERIOD_0": "Period 0",
     "PERIOD_1": "Period 1",
     "PERIOD_2": "Period 2",
@@ -149,7 +150,9 @@
     "9_MIN": "9 minutes",
     "10_MIN": "10 minutes",
     "SHARE_SETTINGS": "Share Settings",
-    "SHARE_CLASS_NAMES": "Share Class Names"
+    "SHARE_CLASS_NAMES": "Share Class Names",
+    "SS_78": "7/8 Summer School",
+    "SS_912": "9-12 Summer School"
   },
   "SPANISH": {
     "ENGLISH": "Inglés",
@@ -904,8 +907,11 @@
     "9_MIN": "nya minutos",
     "10_MIN": "toon memez",
     "SHARE_SETTINGS": "giv butwans!!",
-    "SHARE_CLASS_NAMES": "giv memez!!"
+    "SHARE_CLASS_NAMES": "giv memez!!",
+    "SS_78": "why am i doing this",
+    "SS_912": "why am i doing this",
+    "PERIOD_1_SEGMENT_2": "cwas on"
+
   },
-  "DEVELOPER": {
-  }
+  "DEVELOPER": {}
 }

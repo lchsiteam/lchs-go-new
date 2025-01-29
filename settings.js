@@ -37,7 +37,7 @@ export const settingsMenu = {
     setting: "grade",
     key: "GRADE_LEVEL",
     mode: 'dropdown',
-    options: ["GRADE_7", "GRADE_8", "GRADE_9", "GRADE_10", "GRADE_11", "GRADE_12"],
+    options: ["GRADE_7", "GRADE_8", "GRADE_9", "GRADE_10", "GRADE_11", "GRADE_12", "SS_78", "SS_912"],
     new: false,
     experimental: false,
     reload: true,
