@@ -18,11 +18,11 @@
   <script src="https://unpkg.com/dayjs@1.10.8/plugin/utc.js"></script>
   <script src="https://unpkg.com/dayjs@1.10.8/plugin/timezone.js"></script>
   <script>
-    dayjs.extend(window.dayjs_plugin_isBetween);
-    dayjs.extend(window.dayjs_plugin_advancedFormat);
-    dayjs.extend(window.dayjs_plugin_customParseFormat);
-    dayjs.extend(window.dayjs_plugin_localeData);
-    dayjs.extend(window.dayjs_plugin_utc);
+    dayjs.extend(window.dayjs_plugin_isBetween)
+    dayjs.extend(window.dayjs_plugin_advancedFormat)
+    dayjs.extend(window.dayjs_plugin_customParseFormat)
+    dayjs.extend(window.dayjs_plugin_localeData)
+    dayjs.extend(window.dayjs_plugin_utc)
     dayjs.extend(window.dayjs_plugin_timezone);
   </script>
   <script type="module" src="scheduleFormatting.js"></script>
@@ -35,9 +35,9 @@
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-18JESF2TEP"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  window.dataLayer = window.dataLayer || []
+  function gtag() { dataLayer.push(arguments) }
+  gtag('js', new Date())
 
   gtag('config', 'G-18JESF2TEP');
 </script>
@@ -45,7 +45,21 @@
 <body class="body" id="body" v-scope v-effect="startTimer()">
   <!-- Background - Used to do the color -->
   <div class="background" id="background" v-bind:class="{ 'animated': settings.themeAnimation }"></div>
+  
   <div class="app-container">
+    <div id="modal-container" v-if="!settings.hasSeenAnnouncement">
+    <section id="modal">
+      <h2>Join the iTeam!</h2>
+      <div class="invitation">
+        <p>Calling anyone interested in learning web development and programming in a hands-on environment! The
+          <strong>LCiTeam</strong>, the creator of the app you're using right now, has recently started holding
+          meetings again, and we need new members to keep the club alive! You can sign up using <a href="https://docs.google.com/forms/d/e/1FAIpQLSfH805XIhXE6HZoHjdyg6H8Oh9Y5AtHCWeZSeemeIozOWwYsQ/viewform">this Google Form</a>,
+          and meetings are held every Monday at lunch in the C3.<br><br> We hope to see you there!
+          <br><br>With ❤️,<br>the iTeam
+        </p>
+      </div>
+    </section>
+  </div>
     <div class="header">
       <!-- Navigation - Holds the page buttons -->
       <div class="navigation">
@@ -267,8 +281,8 @@
   <template id="period-information-template">
     <div class="progress-bar">
       <div class="circle"></div><!--                             percent max  min          min-->
-      <div class="moving-time" v-bind:style="{ top: percentCompleted * (85 - 12) / 100 + 12 + '%' }"
-        ><span v-effect="$el.textContent = currentTime"></span></div>
+      <div class="moving-time" v-bind:style="{ top: percentCompleted * (85 - 12) / 100 + 12 + '%' }"><span
+          v-effect="$el.textContent = currentTime"></span></div>
       <!--12 - 85-->
       <div class="vertical-bar"></div>
       <div class="circle"></div>
@@ -324,20 +338,22 @@
         v-if="period.isCurrent() && !isCalendar && settings.inlinePeriodDetails"></div>
     </div>
   </template>
+
+
   <!-- Service Worker Startup -->
   <script>
-    console.log("Hello, please work.");
+    console.log("Hello, please work.")
     localStorage.removeItem("isExtension")
     localStorage.removeItem("changelog")
-    if (JSON.parse(localStorage.settings).hasOwnProperty("numberOfClicks")) localStorage.removeItem("settings");
+    if (JSON.parse(localStorage.settings).hasOwnProperty("numberOfClicks")) localStorage.removeItem("settings")
 
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/serviceWorker.js', { scope: '/' })
         .then(function (registration) {
           // idk what to put here but it is needed for a pwa
-        });
+        })
 
-      navigator.serviceWorker.ready.then(function (registration) { });
+      navigator.serviceWorker.ready.then(function (registration) { })
     }
   </script>
 </body>

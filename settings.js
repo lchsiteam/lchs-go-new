@@ -16,7 +16,8 @@ const defaultSettings = {
     language: 'ENGLISH',
     notificationToggle: false,
     notificationStart: '3_MIN',
-    notificationEnd: '2_MIN'
+    notificationEnd: '2_MIN',
+    hasSeenAnnouncement: false
   }
 }
 

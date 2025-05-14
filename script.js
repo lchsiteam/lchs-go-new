@@ -146,8 +146,11 @@ PetiteVue.createApp({
     }
     if (startReload) location.reload()
 
+    setModalHue(settings.colorTheme)
     changeHue(settings.colorTheme)
     this.update()
+    settings.hasSeenAnnouncement = true
+    console.log(settings.hasSeenAnnouncement)
 
     clearInterval(this.interval)
     this.interval = setInterval(() => {
@@ -421,6 +424,20 @@ function changeHue(hue) {
   // else
   //   iconImage = ("/favicons/favicon" + Math.floor(settings.colorTheme / 360 * 17 + 1) + ".ico");
   // changeIcon(iconImage);
+}
+
+function setModalHue(hue) {
+  var modalVal = hslToHex(hue, 50, 50)
+  document.getElementById("body").style.color = "white"
+  if (hue == 0) {
+    document.getElementById("body").style.color = "black"
+    modalVal = hslToHex(0, 0, 90)
+  } else if (hue == 360) {
+    modalVal = hslToHex(0, 0, 25)
+  } else if (hue == 359) {
+    modalVal = hslToHex(0, 0, 0)
+  }
+  document.getElementById("modal").style.backgroundColor = modalVal
 }
 
 var prevTime = Date.now()
