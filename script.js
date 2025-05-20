@@ -18,6 +18,15 @@ rootStyle.setProperty(
   settings.themeAnimationIntensity + "deg"
 )
 
+let seen = localStorage.seen
+if (seen === "true") {
+  document.getElementById("modal-container").style.display = "none"
+}
+
+console.log(document.getElementById("modal-container"))
+
+if (seen == null) localStorage.seen = true
+
 // Stores the user preference for how they display time
 var timeFormat =
   (settings.twentyFourHour ? "HH" : "h") +
@@ -37,7 +46,6 @@ periodListComponent.listPeriod.forEach((p) => {
   }
 })
 
-console.log(periodListComponent)
 
 // Petite Vue interface
 PetiteVue.createApp({
@@ -148,14 +156,21 @@ PetiteVue.createApp({
 
     setModalHue(settings.colorTheme)
     changeHue(settings.colorTheme)
+    document.addEventListener("click", (e) => {
+      if (e.target.id == "modal-container") {
+        document.getElementById("modal-container").style.display = "none"
+        localStorage.seen = true
+      }
+    })
+
     this.update()
-    settings.hasSeenAnnouncement = true
-    console.log(settings.hasSeenAnnouncement)
 
     clearInterval(this.interval)
     this.interval = setInterval(() => {
       this.update()
     }, 5000)
+
+
   },
   update() {
     if (!this.currentPeriod.isCurrent()) {
