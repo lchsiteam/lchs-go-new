@@ -19,13 +19,11 @@ rootStyle.setProperty(
 )
 
 let seen = localStorage.seen
-if (seen === "true") {
+if (seen > 2) {
   document.getElementById("modal-container").style.display = "none"
 }
 
-console.log(document.getElementById("modal-container"))
-
-if (seen == null) localStorage.seen = true
+localStorage.seen++
 
 // Stores the user preference for how they display time
 var timeFormat =
