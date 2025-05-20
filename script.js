@@ -18,12 +18,13 @@ rootStyle.setProperty(
   settings.themeAnimationIntensity + "deg"
 )
 
-let seen = localStorage.seen
-if (seen > 2) {
+let seenNum = localStorage.seenNum
+if (seenNum > 2) {
   document.getElementById("modal-container").style.display = "none"
+} else {
+  localStorage.seenNum++
 }
-
-localStorage.seen++
+if (seenNum == null) localStorage.seenNum = 1
 
 // Stores the user preference for how they display time
 var timeFormat =
