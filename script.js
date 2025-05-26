@@ -264,6 +264,10 @@ function PeriodComponent(setName, setStart, setEnd, setPassing) {
         }
       }
     },
+    isNoOrAfter(){
+      const name = this.currentPeriod
+      return name === "No School" || name === "After School"
+    },
     getName() {
       if (this.passing) {
         let tempName = this.name.split(",")

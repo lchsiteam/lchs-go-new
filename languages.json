@@ -1,5 +1,5 @@
 {
-  "version": 27.6,
+  "version": 27.8,
   "ENGLISH": {
     "ENGLISH": "English",
     "SPANISH": "Español",
@@ -68,6 +68,7 @@
     "SPRING_BREAK": "Spring Break",
     "FALL_BREAK": "Thanksgiving Break",
     "UNITL_END": " until period ends",
+    "UNITL_DAY_END": " until day ends",
     "PERCENT_COMPLETED": "({}% completed)",
     "SETTINGS_NOTIFICATION_TITLE": "Notifications",
     "SETTINGS_NOTIFICATION_DESC": "Enable notifications (Experimental)",

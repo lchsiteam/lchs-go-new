@@ -246,6 +246,7 @@ export function getSchedule(date) {
         start: dayjs().startOf("day"),
         end: dayjs().endOf("day"),
         passing: false,
+
       },
     ]
   }
