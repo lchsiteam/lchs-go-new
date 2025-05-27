@@ -2,13 +2,13 @@
 import { settings } from "./settings.js"
 
 // Export the JSON parsed in this file
-export var scheduleJSON = JSON.parse(localStorage.getItem("scheduleJSON"))
-export var languageJSON = JSON.parse(localStorage.getItem("languageJSON"))
-export var eventsJSON = JSON.parse(localStorage.getItem("eventsJSON"))
+export let scheduleJSON = JSON.parse(localStorage.getItem("scheduleJSON"))
+export let languageJSON = JSON.parse(localStorage.getItem("languageJSON"))
+export let eventsJSON = JSON.parse(localStorage.getItem("eventsJSON"))
 
-var reload = false
+let reload = false
 // Fetch the schedule.json for updates
-var fetchSchedule = true
+let fetchSchedule = true
 fetch("./schedule.json")
   .then((response) => response.json())
   .then((serverScheduleJSON) => {
@@ -25,7 +25,7 @@ fetch("./schedule.json")
   })
 
 // Fetch the language.json for update
-var fetchLang = true
+let fetchLang = true
 fetch("./languages.json")
   .then((response) => response.json())
   .then((serverLanguageJSON) => {
@@ -34,7 +34,7 @@ fetch("./languages.json")
       languageJSON.language != settings.language ||
       languageJSON.version < serverLanguageJSON.version
     ) {
-      var tempJSON = serverLanguageJSON[settings.language]
+      let tempJSON = serverLanguageJSON[settings.language]
       tempJSON.version = serverLanguageJSON.version
       tempJSON.language = settings.language
       localStorage.setItem("languageJSON", JSON.stringify(tempJSON))
@@ -45,7 +45,7 @@ fetch("./languages.json")
   })
 
 // Fetch the events.json for updates
-var fetchEvents = true
+let fetchEvents = true
 fetch("./events.json")
   .then((response) => response.json())
   .then((serverEventsJSON) => {
@@ -67,7 +67,7 @@ function refresh() {
 }
 
 // Create and export the formattedJSON for today
-export var formattedJSON = getSchedule(dayjs())
+export let formattedJSON = getSchedule(dayjs())
 
 // Set timezone for dayjs (not sure if it does anything)
 dayjs.tz.setDefault(scheduleJSON.timezone)
@@ -75,8 +75,8 @@ dayjs.tz.setDefault(scheduleJSON.timezone)
 // Function - get the formatted schedule json for a specific day - pass in a dayjs() object
 export function getSchedule(date) {
   if (date == null) return
-  var scheduleType
-  var localJSON = []
+  let scheduleType
+  let localJSON = []
 
   // Check if an override exists
   if (
@@ -92,8 +92,8 @@ export function getSchedule(date) {
       scheduleJSON.overrides[settings.grade][date.format("MM/DD/YYYY")]
   } else {
     // Check if today is in a range
-    var isBreak = inBreak(date)
-    var isCustomWeek = inCustomWeek(date)
+    let isBreak = inBreak(date)
+    let isCustomWeek = inCustomWeek(date)
 
     if (isCustomWeek)
       scheduleType = scheduleJSON.customWeeks[isCustomWeek][date.day()]
@@ -108,7 +108,7 @@ export function getSchedule(date) {
     scheduleType != "NONE" &&
     !Object.keys(scheduleJSON.dateRanges.breaks).includes(scheduleType)
   ) {
-    var previousEnd
+    let previousEnd
     switch (settings.grade) {
       case "GRADE_7":
       case "GRADE_8":
@@ -257,8 +257,8 @@ export function getSchedule(date) {
 
 // Function - Check if a date is in a break from the schedule.json and get that break if so
 function inBreak(date) {
-  var breakType = false
-  for (var range in scheduleJSON.dateRanges.breaks) {
+  let breakType = false
+  for (let range in scheduleJSON.dateRanges.breaks) {
     if (
       date
         .startOf()
@@ -281,8 +281,8 @@ function inBreak(date) {
 
 // Function - Check if a date is in a custom week from the schedule.json and get that week if so
 function inCustomWeek(date) {
-  var weekType = false
-  for (var range in scheduleJSON.dateRanges.customWeeks) {
+  let weekType = false
+  for (let range in scheduleJSON.dateRanges.customWeeks) {
     if (
       date
         .startOf()

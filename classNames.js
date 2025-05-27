@@ -1,5 +1,5 @@
 // Export the current settings JSON
-export var customNames = JSON.parse(localStorage.getItem("customNamesJSON"));
+export let customNames = JSON.parse(localStorage.getItem("customNamesJSON"));
 if (customNames == null) {
   customNames = {};
 

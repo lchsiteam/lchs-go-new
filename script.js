@@ -9,7 +9,7 @@ import {
 import { settings, settingsMenu } from "./settings.js"
 import { customNames, namesMenu } from "./classNames.js"
 
-var timeOffeset = dayjs
+let timeOffeset = dayjs
   .tz(scheduleJSON.timeOffset, "HH:mm:ss", scheduleJSON.timezone)
   .local()
 const rootStyle = document.querySelector(":root").style
@@ -27,17 +27,17 @@ if (seenNum > 2) {
 if (seenNum == null) localStorage.seenNum = 1
 
 // Stores the user preference for how they display time
-var timeFormat =
+let timeFormat =
   (settings.twentyFourHour ? "HH" : "h") +
   ":mm" +
   (settings.showAMPM ? " A" : "")
 
 // Find current Period
-var currentPeriod = null
-var periodListComponent = PeriodListComponent(formattedJSON, false)
+let currentPeriod = null
+let periodListComponent = PeriodListComponent(formattedJSON, false)
 
 // Stores if a notification has been sent already
-var notified = false
+let notified = false
 
 periodListComponent.listPeriod.forEach((p) => {
   if (p.isCurrent()) {
@@ -130,8 +130,8 @@ PetiteVue.createApp({
   // Update interval timer
   interval: null,
   startTimer() {
-    var url = new URLSearchParams(location.search)
-    var startReload = false
+    let url = new URLSearchParams(location.search)
+    let startReload = false
     if (url.has("setSettings")) {
       localStorage.setItem("settings", url.get("setSettings"))
       startReload = true
@@ -228,22 +228,22 @@ PetiteVue.createApp({
 
 // Component - Period - Holds the name, start, end, and if passing
 function PeriodComponent(setName, setStart, setEnd, setPassing) {
-  var varStart = dayjs(setStart, "hh:mm A") //formats from the json
-  var varEnd = dayjs(setEnd, "hh:mm A")
+  let letStart = dayjs(setStart, "hh:mm A") //formats from the json
+  let letEnd = dayjs(setEnd, "hh:mm A")
 
   return {
     name: setName,
-    start: varStart,
-    end: varEnd,
+    start: letStart,
+    end: letEnd,
     passing: setPassing,
     getStart() {
-      return varStart.format(timeFormat)
+      return letStart.format(timeFormat)
     },
     getEnd() {
-      return varEnd.format(timeFormat)
+      return letEnd.format(timeFormat)
     },
     isCurrent() {
-      var now = dayjs()
+      let now = dayjs()
         .subtract(timeOffeset.hour(), "hour")
         .subtract(timeOffeset.minute(), "minute")
         .subtract(timeOffeset.second(), "second")
@@ -276,11 +276,11 @@ function PeriodComponent(setName, setStart, setEnd, setPassing) {
 
 // Component - CalendarDay - Holds the schedule for the day and the date
 function CalendarDay(day, monthOffset) {
-  var dateS = dayjs()
+  let dateS = dayjs()
     .month(dayjs().month() + monthOffset)
     .startOf("month")
 
-  var dateM = dateS.set("date", day - dateS.day())
+  let dateM = dateS.set("date", day - dateS.day())
   return {
     date: dateM,
     schedule: getSchedule(dateM),
@@ -297,7 +297,7 @@ function PeriodInformationComponent(props) {
 
 // Component - Period List Template - Used to make a period list block
 function PeriodListComponent(periods, isCal) {
-  var periodList = periods.map((p) => {
+  let periodList = periods.map((p) => {
     return PeriodComponent(p.name, p.start, p.end, p.passing)
   })
   return {
@@ -318,7 +318,7 @@ export function getTodaysGreeting() {
 
 // Function - Get the translated current month for the calendar
 export function getMonthText(month) {
-  var monthsDict = {
+  let monthsDict = {
     0: "JANUARY",
     1: "FEBURARY",
     2: "MARCH",
@@ -337,7 +337,7 @@ export function getMonthText(month) {
 
 // Function - Get the time of day for the greeting
 function getGreeting() {
-  var hours = dayjs().hour()
+  let hours = dayjs().hour()
 
   if (hours < 12) {
     return translate("MORNING")
@@ -395,7 +395,7 @@ function changeSetting(setting, value) {
 
 // Function - Called by the HTML to set the background color
 function changeHue(hue) {
-  var value = hslToHex(hue, 50, 50)
+  let value = hslToHex(hue, 50, 50)
   document.getElementById("body").style.color = "white"
   if (hue == 0) {
     document.getElementById("body").style.color = "black"
@@ -407,11 +407,11 @@ function changeHue(hue) {
   }
   document.getElementById("background").style.backgroundColor = value
 
-  var canvas = document.createElement("canvas")
+  let canvas = document.createElement("canvas")
   canvas.width = 48
   canvas.height = 48
-  var ctx = canvas.getContext("2d")
-  var img = new Image()
+  let ctx = canvas.getContext("2d")
+  let img = new Image()
   img.src = "/faviconClear.png"
   img.onload = function () {
     ctx.fillStyle = value
@@ -423,14 +423,14 @@ function changeHue(hue) {
     }
     ctx.drawImage(img, 0, 0)
 
-    var link = document.createElement("link")
+    let link = document.createElement("link")
     link.type = "image/x-icon"
     link.rel = "shortcut icon"
     link.href = canvas.toDataURL("image/x-icon")
     document.getElementsByTagName("head")[0].appendChild(link)
   }
 
-  // var iconImage
+  // let iconImage
   // if (settings.colorTheme == 0)
   //   iconImage = "/favicons/favicon0.ico"
   // else if (settings.colorTheme >= 359)
@@ -441,7 +441,7 @@ function changeHue(hue) {
 }
 
 function setModalHue(hue) {
-  var modalVal = hslToHex(hue, 50, 50)
+  let modalVal = hslToHex(hue, 50, 50)
   document.getElementById("body").style.color = "white"
   if (hue == 0) {
     document.getElementById("body").style.color = "black"
@@ -454,7 +454,7 @@ function setModalHue(hue) {
   document.getElementById("modal").style.backgroundColor = modalVal
 }
 
-var prevTime = Date.now()
+let prevTime = Date.now()
 function themeChange() {
   if (Date.now() - prevTime < 100) {
     document.getElementById("background").style.backgroundColor = ""
@@ -479,7 +479,7 @@ function hslToHex(h, s, l) {
 }
 
 function changeIcon(src) {
-  var link = document.createElement("link"),
+  let link = document.createElement("link"),
     oldLink = document.getElementById("dynamic-favicon")
   link.id = "dynamic-favicon"
   link.rel = "shortcut icon"
@@ -492,7 +492,7 @@ function changeIcon(src) {
 
 // Function - Update the local storage for the customNames to the new custom names
 function changeClassName(periodId, element) {
-  var newValue = element.value
+  let newValue = element.value
   if (newValue == languageJSON[periodId] || newValue == "") {
     newValue = languageJSON[periodId]
     delete customNames[periodId]
@@ -507,13 +507,13 @@ function changeClassName(periodId, element) {
 }
 
 function shareSettings() {
-  var link = new URL(location.origin)
+  let link = new URL(location.origin)
   link.searchParams.set("setSettings", JSON.stringify(settings))
   this.shareLink = link.href + "&settings"
 }
 
 function shareClassNames() {
-  var link = new URL(location.origin)
+  let link = new URL(location.origin)
   link.searchParams.set("setClassNames", JSON.stringify(customNames))
   this.shareLink = link.href + "&settings"
 }
@@ -537,8 +537,8 @@ export function translateNoCustom(translateText) {
 
 // Function - Used to translate a key to the selected language and insert other text if possible.
 export function translateWithInsert(translateText, insertString) {
-  var returnText = translate(translateText)
-  var index = returnText.indexOf("{}")
+  let returnText = translate(translateText)
+  let index = returnText.indexOf("{}")
   if (index < 0) {
     return translate(translateText)
   }
@@ -548,7 +548,7 @@ export function translateWithInsert(translateText, insertString) {
 // Notify the user before period starts or ends
 export function sendNotification(period, timeLeft) {
   if (settings.notificationToggle && !notified) {
-    var nextPeriod = null
+    let nextPeriod = null
     periodListComponent.listPeriod.forEach((p) => {
       if (p.getStart() == period.getEnd()) {
         nextPeriod = p
@@ -592,7 +592,7 @@ export function sendNotification(period, timeLeft) {
 }
 
 export function mod(bigNum, smallNum) {
-  var output
+  let output
   if (bigNum < 0) {
     output = smallNum - (-bigNum % smallNum)
   } else {

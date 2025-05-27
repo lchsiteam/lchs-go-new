@@ -22,7 +22,7 @@ const defaultSettings = {
 }
 
 // Export the current settings JSON
-export var settings = JSON.parse(localStorage.getItem("settings"));
+export let settings = JSON.parse(localStorage.getItem("settings"));
 if (settings == null) {
   settings = defaultSettings.settings;
 
