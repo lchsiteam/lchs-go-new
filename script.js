@@ -18,6 +18,7 @@ rootStyle.setProperty(
   settings.themeAnimationIntensity + "deg"
 )
 
+
 let seenNum = localStorage.seenNum
 if (seenNum > 2) {
   document.getElementById("modal-container").style.display = "none"
@@ -248,6 +249,9 @@ function PeriodComponent(setName, setStart, setEnd, setPassing) {
         .subtract(timeOffeset.minute(), "minute")
         .subtract(timeOffeset.second(), "second")
       return now.isBetween(this.start, this.end)
+    },
+    isNoOrAfterSchool(){
+      return this.name === "AFTER_SCHOOL" || this.name === "NO_SCHOOL"
     },
     isVisible() {
       if (this.isCurrent() || settings.showExtraPeriods) {
@@ -600,3 +604,4 @@ export function mod(bigNum, smallNum) {
   }
   return output
 }
+console.log({name: "AFTER_SCHOOL"}.isNoOrAfterSchool())
