@@ -304,7 +304,12 @@
                 {{ translate("MINUTE_ABBREVIATION") }}
               </div>
             </div>
-            {{ translate('UNITL_END') }}
+            <div v-if="currentPeriod.isNoOrAfterSchool()">
+              {{ translate('UNTIL_DAY_ENDS') }}
+            </div>
+            <div v-else>
+              {{ translate('UNTIL_END') }}
+            </div>
           </div>
           <div class="time-left-percent">{{ percentCompletedText }}</div>
         </div>
