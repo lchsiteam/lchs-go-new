@@ -604,4 +604,3 @@ export function mod(bigNum, smallNum) {
   }
   return output
 }
-console.log({name: "AFTER_SCHOOL"}.isNoOrAfterSchool())
