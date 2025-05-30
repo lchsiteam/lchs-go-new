@@ -1,5 +1,5 @@
 {
-  "version": 33.5,
+  "version": 33.6,
   "defaults": {
     "0": "NONE",
     "1": "REGULAR",
@@ -131,7 +131,8 @@
       "04/11/2025": "MINIMUM",
 
       "05/21/2025": "REGULAR",
-      "05/22/2025": "REGULAR"
+      "05/22/2025": "REGULAR",
+      "05/30/2025": "ASSEMBLY"
     },
     "GRADE_7": {
 
