@@ -1,5 +1,5 @@
 {
-  "version": 34,
+  "version": 35,
   "defaults": {
     "0": "NONE",
     "1": "REGULAR",
@@ -22,23 +22,32 @@
   },
   "overrides": {
     "all": {
-      
+      "08/20/2025": "REGULAR",
+      "08/21/2025": "REGULAR",
+      "08/22/2025": "MINIMUM",
+
+      "08/29/2025": "ASSEMBLY",
+      "09/01/2025": "NONE",
+
+      "10/03/2025": "ASSEMBLY"
     },
     "GRADE_7": {},
     "GRADE_8": {},
-    "GRADE_9": {},
+    "GRADE_9": {
+      
+    },
     "GRADE_10": {},
     "GRADE_11": {},
     "GRADE_12": {}
   },
   "dateRanges": {
     "breaks": {
-      "FALL_BREAK":     ["11/20/2023", "11/24/2023"],
-      "WINTER_BREAK":   ["12/21/2023", "01/05/2024"],
-      "SPRING_BREAK":   ["04/01/2024", "04/05/2024"],
-      "SUMMER_BREAK":   ["06/07/2024", "08/14/2024"]
+      "FALL_BREAK":     ["11/24/2025", "11/28/2025"],
+      "WINTER_BREAK":   ["12/22/2025", "01/02/2026"]
     },
-    "customWeeks": {}
+    "customWeeks": {
+      "BLOCK_SWITCH": ["11/10/2025", "02/12/2026"]
+    }
   },
   "timeOffset": "00:00:00",
   "timezone": "America/Los_Angeles",
