@@ -1,5 +1,5 @@
 {
-  "version": 35,
+  "version": 36,
   "defaults": {
     "0": "NONE",
     "1": "REGULAR",
@@ -22,6 +22,8 @@
   },
   "overrides": {
     "all": {
+      "08/14/2025": "REGULAR",
+      
       "08/20/2025": "REGULAR",
       "08/21/2025": "REGULAR",
       "08/22/2025": "MINIMUM",
@@ -42,6 +44,7 @@
   },
   "dateRanges": {
     "breaks": {
+      "SUMMER_BREAK": ["06/05/2025", "08/13/2025"],
       "FALL_BREAK":     ["11/24/2025", "11/28/2025"],
       "WINTER_BREAK":   ["12/22/2025", "01/02/2026"]
     },
