@@ -1,5 +1,5 @@
 {
-  "version": 27.8,
+  "version": 30,
   "ENGLISH": {
     "ENGLISH": "English",
     "SPANISH": "Español",
@@ -55,6 +55,8 @@
     "ADVISORY_CLUBS": "Clubs",
     "ADVISORY_LESSON": "Advisory Lesson",
     "ADVISORY_ACADEMIC_FLEX": "Academic Assistance",
+    "PERIOD_2_OR_ASSEMBLY_8": "Period 2 (7th)/Assembly (8th)",
+    "PERIOD_2_OR_ASSEMBLY_8": "Period 2 (8th)/Assembly (7th)",
     "ADVISORY_FLEX": "Advisory Flex",
     "SBAC_BLOCK_ODD": "Block (odd) (SBAC)",
     "SBAC_BLOCK_EVEN": "Block (even) (SBAC)",
