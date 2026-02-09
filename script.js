@@ -251,7 +251,7 @@ function PeriodComponent(setName, setStart, setEnd, setPassing) {
       return now.isBetween(this.start, this.end)
     },
     isNoOrAfterSchool(){
-      return this.name === "AFTER_SCHOOL" || this.name === "NO_SCHOOL"
+      return this.name === "AFTER_SCHOOL" || this.name === "NO_SCHOOL" || this.name === "NONE"
     },
     isVisible() {
       if (this.isCurrent() || settings.showExtraPeriods) {
