@@ -1,5 +1,5 @@
 {
-  "version": 37,
+  "version": 38,
   "defaults": {
     "0": "NONE",
     "1": "REGULAR",
@@ -34,7 +34,10 @@
       "10/03/2025": "ASSEMBLY",
       
       "11/12/2025": "REGULAR",
-      "11/13/2025": "REGULAR"
+      "11/13/2025": "REGULAR",
+      "03/06/2026": "ASSEMBLY",
+      "04/10/2026": "MINIMUM",
+      "05/29/2026": "ASSEMBLY"
     },
     "GRADE_7": {},
     "GRADE_8": {},
@@ -49,7 +52,8 @@
     "breaks": {
       "SUMMER_BREAK": ["06/05/2025", "08/13/2025"],
       "FALL_BREAK":     ["11/24/2025", "11/28/2025"],
-      "WINTER_BREAK":   ["12/22/2025", "01/02/2026"]
+      "WINTER_BREAK":   ["12/22/2025", "01/02/2026"],
+      "SPRING_BREAK": ["03/30/2025", "04/03/2026"]
     },
     "customWeeks": {
       "BLOCK_SWITCH": ["11/10/2025", "02/12/2026"]
