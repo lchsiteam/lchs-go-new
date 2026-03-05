@@ -164,33 +164,7 @@ export function getSchedule(date) {
           }
         )
         break
-      case "SS_78":
-        Object.keys(
-          scheduleJSON.gradeLevels.summerSchool78[scheduleType]
-        ).forEach((period) => {
-          if (previousEnd != undefined) {
-            localJSON.push({
-              name: "PASSING_BEFORE," + period,
-              start: previousEnd,
-              end: scheduleJSON.gradeLevels.summerSchool78[scheduleType][
-                period
-              ][0],
-              passing: true,
-            })
-          }
-          localJSON.push({
-            name: period,
-            start:
-              scheduleJSON.gradeLevels.summerSchool78[scheduleType][period][0],
-            end: scheduleJSON.gradeLevels.summerSchool78[scheduleType][
-              period
-            ][1],
-            passing: false,
-          })
-          previousEnd =
-            scheduleJSON.gradeLevels.summerSchool78[scheduleType][period][1]
-        })
-        break
+      
       case "SS_912":
         Object.keys(
           scheduleJSON.gradeLevels.summerSchool912[scheduleType]
