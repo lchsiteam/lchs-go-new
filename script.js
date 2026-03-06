@@ -18,15 +18,6 @@ rootStyle.setProperty(
   settings.themeAnimationIntensity + "deg"
 )
 
-
-let seenNum = localStorage.seenNum
-if (seenNum > 2) {
-  document.getElementById("modal-container").style.display = "none"
-} else {
-  localStorage.seenNum++
-}
-if (seenNum == null) localStorage.seenNum = 1
-
 // Stores the user preference for how they display time
 let timeFormat =
   (settings.twentyFourHour ? "HH" : "h") +
@@ -154,14 +145,7 @@ PetiteVue.createApp({
     }
     if (startReload) location.reload()
 
-    setModalHue(settings.colorTheme)
     changeHue(settings.colorTheme)
-    document.addEventListener("click", (e) => {
-      if (e.target.id == "modal-container") {
-        document.getElementById("modal-container").style.display = "none"
-        localStorage.seen = true
-      }
-    })
 
     this.update()
 
@@ -442,20 +426,6 @@ function changeHue(hue) {
   // else
   //   iconImage = ("/favicons/favicon" + Math.floor(settings.colorTheme / 360 * 17 + 1) + ".ico");
   // changeIcon(iconImage);
-}
-
-function setModalHue(hue) {
-  let modalVal = hslToHex(hue, 50, 50)
-  document.getElementById("body").style.color = "white"
-  if (hue == 0) {
-    document.getElementById("body").style.color = "black"
-    modalVal = hslToHex(0, 0, 90)
-  } else if (hue == 360) {
-    modalVal = hslToHex(0, 0, 25)
-  } else if (hue == 359) {
-    modalVal = hslToHex(0, 0, 0)
-  }
-  document.getElementById("modal").style.backgroundColor = modalVal
 }
 
 let prevTime = Date.now()
