@@ -1,5 +1,5 @@
 {
-  "version": 39,
+  "version": 40,
   "defaults": {
     "0": "NONE",
     "1": "REGULAR",
@@ -16,6 +16,15 @@
       "2": "REGULAR",
       "3": "BLOCK_EVEN",
       "4": "BLOCK_ODD",
+      "5": "REGULAR",
+      "6": "NONE"
+    },
+    "CAASPP_WEEK": {
+      "0": "NONE",
+      "1": "CAASPP_REVERSE_ODD",
+      "2": "CAASPP_REVERSE_EVEN",
+      "3": "CAASP_NORMAL_ODD",
+      "4": "CAASP_NORMAL_EVEN",
       "5": "REGULAR",
       "6": "NONE"
     }
@@ -56,7 +65,8 @@
       "SPRING_BREAK": ["03/30/2026", "04/03/2026"]
     },
     "customWeeks": {
-      "BLOCK_SWITCH": ["11/10/2025", "02/12/2026"]
+      "BLOCK_SWITCH": ["11/10/2025", "02/12/2026"],
+      "CAASPP_WEEK": ["4/12/2026", "4/18/2026"]
     }
   },
   "timeOffset": "00:00:00",
@@ -166,6 +176,38 @@
         "PERIOD_4": ["10:55 AM", "11:33 AM"],
         "PERIOD_5": ["11:40 AM", "12:18 PM"],
         "PERIOD_6": ["12:25 PM", "01:03 PM"]
+      },
+      "CAASPP_NORMAL_EVEN": {
+        "PERIOD_0": ["07:28 AM", "08:24 AM"],
+        "PERIOD_2": ["08:30 AM", "10:14 AM"],
+        "BREAK": ["10:14 AM", "10:24 AM"],
+        "PERIOD_4": ["10:29 AM", "12:54 PM"],
+        "LUNCH": ["12:54 PM", "01:24 PM"],
+        "PERIOD_6": ["01:29 PM", "03:13 PM"]
+      },
+      "CAASPP_NORMAL_ODD": {
+        "PERIOD_0": ["07:28 AM", "08:24 AM"],
+        "PERIOD_1": ["08:30 AM", "10:14 AM"],
+        "BREAK": ["10:14 AM", "10:24 AM"],
+        "PERIOD_3": ["10:29 AM", "12:54 PM"],
+        "LUNCH": ["12:54 PM", "01:24 PM"],
+        "PERIOD_5": ["01:29 PM", "03:13 PM"]
+      },
+      "CAASPP_REVERSE_EVEN": {
+        "PERIOD_0": ["07:28 AM", "08:24 AM"],
+        "PERIOD_4": ["08:30 AM", "10:14 AM"],
+        "BREAK": ["10:14 AM", "10:24 AM"],
+        "PERIOD_2": ["10:29 AM", "12:54 PM"],
+        "LUNCH": ["12:54 PM", "01:24 PM"],
+        "PERIOD_6": ["01:29 PM", "03:13 PM"]
+      },
+      "CAASPP_REVERSE_ODD": {
+        "PERIOD_0": ["07:28 AM", "08:24 AM"],
+        "PERIOD_3": ["08:30 AM", "10:14 AM"],
+        "BREAK": ["10:14 AM", "10:24 AM"],
+        "PERIOD_1": ["10:29 AM", "12:54 PM"],
+        "LUNCH": ["12:54 PM", "01:24 PM"],
+        "PERIOD_5": ["01:29 PM", "03:13 PM"]
       }
     }
   }
