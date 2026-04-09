@@ -1,5 +1,5 @@
 {
-  "version": 30,
+  "version": 31,
   "ENGLISH": {
     "ENGLISH": "English",
     "SPANISH": "Español",
@@ -156,8 +156,8 @@
     "SHARE_CLASS_NAMES": "Share Class Names",
     "SS_78": "7/8 Summer School",
     "SS_912": "9-12 Summer School",
-    "CAASP_NORMAL_EVEN": "CAASPP Normal Even",
-    "CAASP_NORMAL_ODD": "CAASPP Normal Odd",
+    "CAASPP_NORMAL_EVEN": "CAASPP Normal Even",
+    "CAASPP_NORMAL_ODD": "CAASPP Normal Odd",
     "CAASPP_REVERSE_ODD": "CAASPP Reverse Odd",
     "CAASPP_REVERSE_EVEN": "CAASPP Reverse Even"
   },
