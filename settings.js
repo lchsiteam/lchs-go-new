@@ -1,6 +1,6 @@
 // Default settings JSON
-const defaultSettings = {
-  settings: {
+function getDefaultSettings() {
+  return {
     setting: "settings",
     showExtraPeriods: false,
     sixthEnabled: true,
@@ -21,16 +21,52 @@ const defaultSettings = {
   }
 }
 
-// Export the current settings JSON
-export let settings = JSON.parse(localStorage.getItem("settings"));
-if (settings == null) {
-  settings = defaultSettings.settings;
+function validateSettings(settings) {
 
-  // Send a message for the extension to pick up on when the settings change
-  window.postMessage({settingsChanged: true});
+  const defaultSettings = getDefaultSettings();
 
-  localStorage.setItem("settings", JSON.stringify(settings));
+  if (typeof settings.setting !== "string") settings.setting = defaultSettings.setting;
+  if (typeof settings.showExtraPeriods !== "boolean") settings.showExtraPeriods = defaultSettings.showExtraPeriods;
+  if (typeof settings.sixthEnabled !== "boolean") settings.sixthEnabled = defaultSettings.sixthEnabled;
+  if (typeof settings.zeroEnabled !== "boolean") settings.zeroEnabled = defaultSettings.zeroEnabled;
+  if (typeof settings.twentyFourHour !== "boolean") settings.twentyFourHour = defaultSettings.twentyFourHour;
+  if (typeof settings.showAMPM !== "boolean") settings.showAMPM = defaultSettings.showAMPM;
+  if (typeof settings.inlinePeriodDetails !== "boolean") settings.inlinePeriodDetails = defaultSettings.inlinePeriodDetails;
+  // if (typeof settings.showWeekends !== "boolean") settings.showWeekends = defaultSettings.showWeekends;
+  if (typeof settings.colorTheme !== "number") settings.colorTheme = defaultSettings.colorTheme;
+  if (typeof settings.themeAnimation !== "boolean") settings.themeAnimation = defaultSettings.themeAnimation;
+  if (typeof settings.themeAnimationIntensity !== "number") settings.themeAnimationIntensity = defaultSettings.themeAnimationIntensity;
+  if (typeof settings.grade !== "string") settings.grade = defaultSettings.grade;
+  if (typeof settings.language !== "string") settings.language = defaultSettings.language;
+  if (typeof settings.notificationToggle !== "boolean") settings.notificationToggle = defaultSettings.notificationToggle;
+  if (typeof settings.notificationStart !== "string") settings.notificationStart = defaultSettings.notificationStart;
+  if (typeof settings.notificationEnd !== "string") settings.notificationEnd = defaultSettings.notificationEnd;
+  if (typeof settings.hasSeenAnnouncement !== "boolean") settings.hasSeenAnnouncement = defaultSettings.hasSeenAnnouncement;
+
+  return settings;
+
 }
+
+function loadSettings() {
+  try {
+    const raw = localStorage.getItem("settings");
+    if (raw == null) {
+      return getDefaultSettings();
+    }
+    const parsed = JSON.parse(raw);
+
+    return validateSettings(parsed);
+  }
+  catch (e) {
+    console.error("Error loading settings, resetting to default", e);
+    localStorage.removeItem("settings");
+    return getDefaultSettings();
+  }
+}
+
+// Export the current settings JSON
+export let settings = loadSettings();
+localStorage.setItem("settings", JSON.stringify(settings));
 
 // Settings menu data
 export const settingsMenu = {
