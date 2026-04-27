@@ -268,8 +268,7 @@ a.credits:hover {
   display: -ms-flexbox;
   display: flex;
   height: 40px;
-  margin-top: 2px;
-  margin-bottom: 2px;
+  margin: 0;
   -webkit-justify-content: space-around;
   -ms-flex-pack: distribute;
   justify-content: space-around;
@@ -278,12 +277,35 @@ a.credits:hover {
   -ms-flex-align: center;
   align-items: center;
   border: 1px solid var(--surface-border);
-  border-radius: 16px;
+  border-radius: 0;
   background-color: rgba(0, 0, 0, 0.24);
+  box-shadow: none;
+}
+.period-list-stack {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 16px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   box-shadow: var(--shadow-soft);
-  -webkit-transform: scale(1.1);
-  -ms-transform: scale(1.1);
-  transform: scale(1.1);
+}
+.period-stack-item {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 .period {
   /* display: -webkit-box;
@@ -304,8 +326,9 @@ a.credits:hover {
   grid-template-rows: 1fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-  border: 1px solid transparent;
-  border-radius: 12px;
+  margin-top: -1px;
+  border: 1px solid var(--surface-border);
+  border-radius: 0;
   background-color: rgba(0, 0, 0, 0.05);
   transition:
     transform var(--transition-fast),
@@ -317,21 +340,19 @@ a.credits:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
 .period:hover:not(.current) {
-  transform: translateX(4px);
+  transform: none;
   background-color: rgba(0, 0, 0, 0.14);
   border-color: rgba(255, 255, 255, 0.08);
 }
 .period.current {
-  position: relative;
-  left: -12px;
-  margin-top: 2px;
-  margin-bottom: 2px;
+  left: 0;
+  margin-bottom: 0;
   border-color: var(--surface-border);
   background-color: rgba(0, 0, 0, 0.25);
-  box-shadow: var(--shadow-soft);
-  -webkit-transform: scale(1.1);
-  -ms-transform: scale(1.1);
-  transform: scale(1.1);
+  box-shadow: none;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
 }
 .period-details {
   font-size: 16px;
@@ -763,12 +784,11 @@ a.credits:hover {
 
 .schedule-popup .periods-header {
   margin-top: 0;
-  margin-bottom: 8px;
   transform: none;
 }
 
 .schedule-popup .period {
-  margin-bottom: 4px;
+  margin-bottom: 0;
 }
 
 .schedule-popup .credits {
@@ -1024,14 +1044,13 @@ select.sr-select:focus-visible,
   .outside {
     display: none;
   }
-  .period-details-small {
+  .period-details-standalone,
+  .period-details-inline {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     height: auto;
-    margin-top: 20px;
-    margin-bottom: 18px;
     -webkit-box-pack: start;
     -webkit-justify-content: flex-start;
     -ms-flex-pack: start;
@@ -1041,18 +1060,24 @@ select.sr-select:focus-visible,
     -ms-flex-align: stretch;
     align-items: stretch;
     border: 1px solid var(--surface-border);
-    border-radius: 24px;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.24), rgba(0, 0, 0, 0.14));
-    box-shadow: var(--shadow-soft);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
-    -webkit-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    transform: scale(1.1);
   }
-  .period-details-small.current {
-    left: 0px;
-    display: none;
+  .period-details-standalone {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    border-radius: 24px;
+    box-shadow: var(--shadow-soft);
+  }
+  .period-details-inline {
+    margin-top: -1px;
+    margin-bottom: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .period-stack-item.has-inline-details > .period {
+    margin-bottom: 0;
   }
   .calendar-container {
     /* justify-content: center; */

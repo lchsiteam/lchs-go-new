@@ -71,7 +71,7 @@
       <div class="schedule-container">
         <div class="period-information" v-scope="PeriodInformationComponent()"></div>
         <div class="all-periods" v-scope="periodListComponent">
-          <div style="margin-bottom: 30px;" class="period-details-small" v-scope="PeriodInformationComponent()"
+          <div class="period-details-small period-details-standalone" v-scope="PeriodInformationComponent()"
             v-if="!settings.inlinePeriodDetails"></div>
         </div>
       </div>
@@ -315,27 +315,29 @@
   </template>
   <!-- Period List Template - Holds the list of periods -->
   <template id="period-list-template">
-    <div class="periods-header">
-      <div class="period-name">
-        <div class="period-header-text">{{ translate("PERIOD_NAME") }}</div>
-      </div>
-      <div class="period-header-text">{{ translate("PERIOD_START") }}</div>
-      <div class="period-header-text">{{ translate("PERIOD_END") }}</div>
-    </div>
-    <div v-for="period in listPeriod">
-      <div class="period" v-bind:class="{ current: period.isCurrent() && !isCalendar, 'list-odd': getListCount() }"
-        v-if="period.isVisible()">
+    <div class="period-list-stack">
+      <div class="periods-header">
         <div class="period-name">
-          <label>
-            <input class="period-details" v-effect="$el.value = period.getName()" @click="$el.focus(); $el.select();"
-              @blur="changeClassName(period.name, $el)" />
-          </label>
+          <div class="period-header-text">{{ translate("PERIOD_NAME") }}</div>
         </div>
-        <div class="period-details">{{ period.getStart() }}</div>
-        <div class="period-details">{{ period.getEnd() }}</div>
+        <div class="period-header-text">{{ translate("PERIOD_START") }}</div>
+        <div class="period-header-text">{{ translate("PERIOD_END") }}</div>
       </div>
-      <div class="period-details-small" v-scope="PeriodInformationComponent()"
-        v-if="period.isCurrent() && !isCalendar && settings.inlinePeriodDetails"></div>
+      <div class="period-stack-item" v-for="(period, index) in visiblePeriods()"
+        v-bind:class="{ 'has-inline-details': showInlineDetails(period) }">
+        <div class="period" v-bind:class="{ current: period.isCurrent() && !isCalendar, 'list-odd': index % 2 === 1 }">
+          <div class="period-name">
+            <label>
+              <input class="period-details" v-effect="$el.value = period.getName()" @click="$el.focus(); $el.select();"
+                @blur="changeClassName(period.name, $el)" />
+            </label>
+          </div>
+          <div class="period-details">{{ period.getStart() }}</div>
+          <div class="period-details">{{ period.getEnd() }}</div>
+        </div>
+        <div class="period-details-small period-details-inline" v-scope="PeriodInformationComponent()"
+          v-if="showInlineDetails(period)"></div>
+      </div>
     </div>
   </template>
 

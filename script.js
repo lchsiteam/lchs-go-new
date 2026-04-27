@@ -54,11 +54,6 @@ PetiteVue.createApp({
   // periodList,
   periodListComponent,
   todaysGreeting: "",
-  listCount: 0,
-  getListCount() {
-    this.listCount++
-    return this.listCount % 2 == 0
-  },
   currentPeriod,
   currentTime: 0,
   minutesLeft: 0,
@@ -308,6 +303,12 @@ function PeriodListComponent(periods, isCal) {
   return {
     isCalendar: isCal,
     listPeriod: periodList,
+    visiblePeriods() {
+      return this.listPeriod.filter((period) => period.isVisible())
+    },
+    showInlineDetails(period) {
+      return period.isCurrent() && !this.isCalendar && settings.inlinePeriodDetails
+    },
     $template: "#period-list-template",
   }
 }
