@@ -3,26 +3,117 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#333">
   <title>Offline | LCHS Go</title>
   <style>
-    *, *::before, *::after {
-      font-family: "Niramit", sans-serif;
+    :root {
+      --offline-bg: #466272;
+      --surface-border: rgba(255, 255, 255, 0.16);
+      --shadow-strong: 0 24px 50px rgba(0, 0, 0, 0.24);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+      overflow: hidden;
+      font-family: "Niramit", system-ui, sans-serif;
       color: white;
+      background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.16), transparent 36%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(0, 0, 0, 0.18)),
+        var(--offline-bg);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.08), transparent 28%),
+        radial-gradient(circle at 80% 0%, rgba(255, 255, 255, 0.05), transparent 24%);
+      pointer-events: none;
     }
 
     .center {
+      position: relative;
+      width: min(100%, 520px);
       display: flex;
       flex-direction: column;
-      flex-wrap: nowrap;
-      justify-content: center;
-      align-content: center;
       align-items: center;
-      height: 80%;
+      gap: 16px;
+      padding: 32px 28px;
+      border: 1px solid var(--surface-border);
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.24), rgba(0, 0, 0, 0.14));
+      box-shadow: var(--shadow-strong);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      text-align: center;
+    }
+
+    svg {
+      width: min(220px, 55vw);
+      height: auto;
+      opacity: 0.96;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 2.5rem);
+      line-height: 1.1;
+    }
+
+    p {
+      margin: 0;
+      max-width: 28ch;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    button {
+      padding: 10px 18px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.1);
+      color: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.16);
+      transition: transform 140ms ease, background-color 140ms ease, border-color 140ms ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.16);
+      border-color: rgba(255, 255, 255, 0.24);
+    }
+
+    button:focus-visible {
+      outline: 2px solid rgba(255, 255, 255, 0.9);
+      outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
     }
   </style>
 </head>
 <body id="bod">
-  <div  class="center">
+  <main class="center">
     <svg width="300" height="300" viewBox="0 0 460 460" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path fill-rule="evenodd" clip-rule="evenodd" d="M12.8557 230.073C12.8557 110.171 110.049 12.9711 229.942 12.9711C287.517 12.9711 342.734 35.8444 383.446 76.5589C424.157 117.274 447.029 172.494 447.029 230.073C447.029 349.976 349.836 447.176 229.942 447.176C110.049 447.176 12.8557 349.976 12.8557 230.073V230.073Z" stroke="white" stroke-width="24" stroke-miterlimit="10" stroke-linejoin="round"/>
       <path fill-rule="evenodd" clip-rule="evenodd" d="M220.934 246.073C220.934 241.099 224.967 237.066 229.942 237.066C232.331 237.066 234.622 238.015 236.312 239.704C238.001 241.393 238.95 243.684 238.95 246.073C238.95 251.048 234.917 255.081 229.942 255.081C224.967 255.081 220.934 251.048 220.934 246.073V246.073Z" stroke="white" stroke-width="24" stroke-miterlimit="10" stroke-linejoin="round"/>
@@ -30,10 +121,23 @@
       <path d="M388.306 196.519C386.417 197.993 384.744 199.167 383.285 200.04C381.833 200.922 380.572 201.516 379.503 201.822C378.44 202.136 377.519 202.201 376.74 202.016C375.976 201.832 375.367 201.449 374.912 200.866L350.258 169.267L248.539 248.629C247.89 249.135 247.136 249.38 246.277 249.363C245.433 249.347 244.466 248.979 243.375 248.258C242.292 247.531 241.009 246.411 239.525 244.9C238.034 243.395 236.327 241.41 234.405 238.946C232.476 236.474 230.963 234.332 229.866 232.519C228.76 230.713 227.986 229.196 227.544 227.969C227.117 226.743 226.995 225.715 227.179 224.885C227.378 224.056 227.802 223.388 228.451 222.882L330.17 143.521L305.516 111.922C305.01 111.274 304.771 110.569 304.798 109.808C304.84 109.048 305.139 108.187 305.696 107.224C306.259 106.27 307.142 105.191 308.344 103.989C309.546 102.787 311.092 101.449 312.981 99.9749C314.927 98.4563 316.646 97.2473 318.138 96.3479C319.637 95.4421 320.919 94.8322 321.982 94.5181C323.051 94.2123 323.938 94.1474 324.644 94.3236C325.364 94.5016 325.977 94.915 326.484 95.5638L395.879 184.507C396.334 185.09 396.57 185.765 396.586 186.532C396.618 187.3 396.352 188.161 395.789 189.116C395.232 190.079 394.329 191.173 393.079 192.399C391.844 193.627 390.253 195.001 388.306 196.519Z" fill="white"/>
     </svg>
     <h1>You're Offline!</h1>
+    <p>LCHS Go will reconnect automatically when your connection comes back.</p>
     <button onclick="location.reload();">Reload</button>
-  </div>
+  </main>
   <script defer>
-    document.getElementById("bod").style.backgroundColor = hslToHex(JSON.parse(localStorage.getItem("settings")).colorTheme, 50, 50);
+    const savedSettings = JSON.parse(localStorage.getItem("settings") || "{}");
+    const hue = Number(savedSettings.colorTheme ?? 3);
+    let background = hslToHex(hue, 50, 50);
+
+    if (hue === 0) {
+      background = hslToHex(0, 0, 90);
+    } else if (hue === 360) {
+      background = hslToHex(0, 0, 25);
+    } else if (hue === 359) {
+      background = hslToHex(0, 0, 0);
+    }
+
+    document.documentElement.style.setProperty("--offline-bg", background);
 
     function hslToHex(h, s, l) {
       l /= 100;

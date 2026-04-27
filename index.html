@@ -71,7 +71,7 @@
       <div class="schedule-container">
         <div class="period-information" v-scope="PeriodInformationComponent()"></div>
         <div class="all-periods" v-scope="periodListComponent">
-          <div style="margin-bottom: 30px;" class="period-details-small" v-scope="PeriodInformationComponent()"
+          <div class="period-details-small period-details-standalone" v-scope="PeriodInformationComponent()"
             v-if="!settings.inlinePeriodDetails"></div>
         </div>
       </div>
@@ -83,7 +83,7 @@
     </div>
     <!-- Calendar Page - Calendar pulled from the events.json -->
     <div id="calendar-page" v-if="currentPage == 'calendar'">
-      <div class="calendar-title" v-if="popupDate == null">
+      <div class="calendar-title">
         <div class="month-select-left"
           @click="monthOffset--; calendarToggle=false; setTimeout( () => { calendarToggle = true; }, 10);" tabindex="0">
           ⇦</div>
@@ -96,10 +96,10 @@
           tabindex="0">⇨</div>
       </div>
       <div class="calendar-container" v-if="calendarToggle">
-        <button class="calendar-day-wrap" v-for="day in 35" v-scope="CalendarDay(day, monthOffset)"
-          @click="if (popupDate == null) {popupDate = date;} else {popupDate = null;}">
-          <div class="calendar-day" v-if="popupDate == null"
-            v-bind:class="{ 'today': date.date() == dayjs().date() && date.month() == dayjs().month() && date.year() == dayjs().year(), 'outside': date.month() !== mod(dayjs().month() + monthOffset,12) }">
+        <button type="button" class="calendar-day-wrap" v-for="day in 35" v-scope="CalendarDay(day, monthOffset)"
+          @click="openCalendarDay(date)">
+          <div class="calendar-day"
+            v-bind:class="{ 'today': date.date() == dayjs().date() && date.month() == dayjs().month() && date.year() == dayjs().year(), 'outside': date.month() !== mod(dayjs().month() + monthOffset,12), 'selected': isPopupDate(date) }">
             <div class="cd-number">
               {{ date.date() }}
             </div>
@@ -110,16 +110,24 @@
               {{ event }}
             </div>
           </div>
-          <div class="schedule-popup" v-if="popupDate == date" style="opacity: 200%;">
-            <div class="cd-tag" v-if="event != null" style="margin-bottom: 10px; padding: 10px;">
-              {{ event }}
-            </div>
-            <div v-scope="PeriodListComponent(schedule, true)"></div>
-            <div class="credits">
-              <a href="https://forms.gle/BgFW4MgL9RGpezdw7" class="credits" target="_blank">Submit a missing event</a>
-            </div>
-          </div>
         </button>
+      </div>
+      <div class="calendar-popup-backdrop" v-if="popupDate != null" @click="closeCalendarPopup()">
+        <div class="schedule-popup" @click.stop>
+          <div class="calendar-popup-header">
+            <div class="calendar-popup-date">{{ formatPopupDate(popupDate) }}</div>
+            <button type="button" class="calendar-popup-close" @click="closeCalendarPopup()" aria-label="Close schedule popup">
+              ×
+            </button>
+          </div>
+          <div class="cd-tag calendar-popup-event" v-if="getEvent(popupDate) != null">
+            {{ getEvent(popupDate) }}
+          </div>
+          <div v-scope="PeriodListComponent(getSchedule(popupDate), true)"></div>
+          <div class="credits">
+            <a href="https://forms.gle/BgFW4MgL9RGpezdw7" class="credits" target="_blank">Submit a missing event</a>
+          </div>
+        </div>
       </div>
     </div>
     <!-- Settings Page - All of the user settings generated from settings.js -->
@@ -307,27 +315,29 @@
   </template>
   <!-- Period List Template - Holds the list of periods -->
   <template id="period-list-template">
-    <div class="periods-header">
-      <div class="period-name">
-        <div class="period-header-text">{{ translate("PERIOD_NAME") }}</div>
-      </div>
-      <div class="period-header-text">{{ translate("PERIOD_START") }}</div>
-      <div class="period-header-text">{{ translate("PERIOD_END") }}</div>
-    </div>
-    <div v-for="period in listPeriod">
-      <div class="period" v-bind:class="{ current: period.isCurrent() && !isCalendar, 'list-odd': getListCount() }"
-        v-if="period.isVisible()">
+    <div class="period-list-stack">
+      <div class="periods-header">
         <div class="period-name">
-          <label>
-            <input class="period-details" v-effect="$el.value = period.getName()" @click="$el.focus(); $el.select();"
-              @blur="changeClassName(period.name, $el)" />
-          </label>
+          <div class="period-header-text">{{ translate("PERIOD_NAME") }}</div>
         </div>
-        <div class="period-details">{{ period.getStart() }}</div>
-        <div class="period-details">{{ period.getEnd() }}</div>
+        <div class="period-header-text">{{ translate("PERIOD_START") }}</div>
+        <div class="period-header-text">{{ translate("PERIOD_END") }}</div>
       </div>
-      <div class="period-details-small" v-scope="PeriodInformationComponent()"
-        v-if="period.isCurrent() && !isCalendar && settings.inlinePeriodDetails"></div>
+      <div class="period-stack-item" v-for="(period, index) in visiblePeriods()"
+        v-bind:class="{ 'has-inline-details': showInlineDetails(period) }">
+        <div class="period" v-bind:class="{ current: period.isCurrent() && !isCalendar, 'list-odd': index % 2 === 1 }">
+          <div class="period-name">
+            <label>
+              <input class="period-details" v-effect="$el.value = period.getName()" @click="$el.focus(); $el.select();"
+                @blur="changeClassName(period.name, $el)" />
+            </label>
+          </div>
+          <div class="period-details">{{ period.getStart() }}</div>
+          <div class="period-details">{{ period.getEnd() }}</div>
+        </div>
+        <div class="period-details-small period-details-inline" v-scope="PeriodInformationComponent()"
+          v-if="showInlineDetails(period)"></div>
+      </div>
     </div>
   </template>
 
