@@ -117,7 +117,24 @@ PetiteVue.createApp({
   mod,
   shareSettings,
   shareClassNames,
+  getSchedule,
   getEvent,
+  openCalendarDay(date) {
+    if (this.popupDate != null && this.popupDate.isSame(date, "day")) {
+      this.popupDate = null
+    } else {
+      this.popupDate = date
+    }
+  },
+  closeCalendarPopup() {
+    this.popupDate = null
+  },
+  isPopupDate(date) {
+    return this.popupDate != null && this.popupDate.isSame(date, "day")
+  },
+  formatPopupDate(date) {
+    return dayjs(date).format("dddd, MMMM D")
+  },
 
   // Update interval timer
   interval: null,
