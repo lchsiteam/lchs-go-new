@@ -963,6 +963,7 @@ select.sr-select:focus-visible,
 .sr-color-slider {
   outline: 0;
   -webkit-appearance: none;
+  appearance: none;
   width: 100%;
   height: 5px;
   border-radius: 999px;
@@ -989,6 +990,7 @@ select.sr-select:focus-visible,
 .sr-slider {
   outline: 0;
   -webkit-appearance: none;
+  appearance: none;
   width: 100%;
   height: 5px;
   border-radius: 999px;
