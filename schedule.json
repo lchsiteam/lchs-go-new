@@ -1,5 +1,5 @@
 {
-  "version": 42,
+  "version": 43,
   "defaults": {
     "0": "NONE",
     "1": "REGULAR",
@@ -31,6 +31,8 @@
   },
   "overrides": {
     "all": {
+      "05/20/2026": "REGULAR",
+      "05/21/2026": "REGULAR",
       "08/14/2025": "REGULAR",
       
       "08/20/2025": "REGULAR",
