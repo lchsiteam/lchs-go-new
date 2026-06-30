@@ -595,7 +595,7 @@ a.credits:hover {
   position: relative;
   display: flex;
   height: 100%;
-  min-height: 118px;
+  min-height: 85px;
   padding-top: 36px;
   padding-right: 10px;
   padding-bottom: 12px;
